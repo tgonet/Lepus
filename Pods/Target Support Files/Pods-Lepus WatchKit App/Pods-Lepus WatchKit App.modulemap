@@ -1,0 +1,6 @@
+framework module Pods_Lepus_WatchKit_App {
+  umbrella header "Pods-Lepus WatchKit App-umbrella.h"
+
+  export *
+  module * { export * }
+}
