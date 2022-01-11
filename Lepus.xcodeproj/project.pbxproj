@@ -1,0 +1,669 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75294689278DC0D900DC7815 /* LepusApp.swift */; };
+		7529468C278DC0D900DC7815 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529468B278DC0D900DC7815 /* ContentView.swift */; };
+		7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7529468D278DC0DB00DC7815 /* Assets.xcassets */; };
+		75294691278DC0DB00DC7815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75294690278DC0DB00DC7815 /* Preview Assets.xcassets */; };
+		75294695278DC0DB00DC7815 /* Lepus WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 75294694278DC0DB00DC7815 /* Lepus WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7529469A278DC0DC00DC7815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75294699278DC0DC00DC7815 /* Assets.xcassets */; };
+		752946A0278DC0DC00DC7815 /* Lepus WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7529469F278DC0DC00DC7815 /* Lepus WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		752946A5278DC0DC00DC7815 /* LepusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946A4278DC0DC00DC7815 /* LepusApp.swift */; };
+		752946A7278DC0DC00DC7815 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946A6278DC0DC00DC7815 /* ContentView.swift */; };
+		752946A9278DC0DC00DC7815 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946A8278DC0DC00DC7815 /* NotificationController.swift */; };
+		752946AB278DC0DC00DC7815 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946AA278DC0DC00DC7815 /* NotificationView.swift */; };
+		752946AD278DC0DC00DC7815 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946AC278DC0DC00DC7815 /* ComplicationController.swift */; };
+		752946AF278DC0DD00DC7815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752946AE278DC0DD00DC7815 /* Assets.xcassets */; };
+		752946B2278DC0DD00DC7815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752946B1278DC0DD00DC7815 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		75294696278DC0DB00DC7815 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7529467E278DC0D900DC7815 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75294693278DC0DB00DC7815;
+			remoteInfo = "Lepus WatchKit App";
+		};
+		752946A1278DC0DC00DC7815 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7529467E278DC0D900DC7815 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7529469E278DC0DC00DC7815;
+			remoteInfo = "Lepus WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		752946BA278DC0DD00DC7815 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				752946A0278DC0DC00DC7815 /* Lepus WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		752946BE278DC0DD00DC7815 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				75294695278DC0DB00DC7815 /* Lepus WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		75294686278DC0D900DC7815 /* Lepus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75294689278DC0D900DC7815 /* LepusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepusApp.swift; sourceTree = "<group>"; };
+		7529468B278DC0D900DC7815 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7529468D278DC0DB00DC7815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		75294690278DC0DB00DC7815 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		75294694278DC0DB00DC7815 /* Lepus WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lepus WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75294699278DC0DC00DC7815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7529469F278DC0DC00DC7815 /* Lepus WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Lepus WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		752946A4278DC0DC00DC7815 /* LepusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepusApp.swift; sourceTree = "<group>"; };
+		752946A6278DC0DC00DC7815 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		752946A8278DC0DC00DC7815 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		752946AA278DC0DC00DC7815 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		752946AC278DC0DC00DC7815 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		752946AE278DC0DD00DC7815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		752946B1278DC0DD00DC7815 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		752946B3278DC0DD00DC7815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		752946B4278DC0DD00DC7815 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		75294683278DC0D900DC7815 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7529469C278DC0DC00DC7815 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7529467D278DC0D900DC7815 = {
+			isa = PBXGroup;
+			children = (
+				75294688278DC0D900DC7815 /* Lepus */,
+				75294698278DC0DB00DC7815 /* Lepus WatchKit App */,
+				752946A3278DC0DC00DC7815 /* Lepus WatchKit Extension */,
+				75294687278DC0D900DC7815 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		75294687278DC0D900DC7815 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				75294686278DC0D900DC7815 /* Lepus.app */,
+				75294694278DC0DB00DC7815 /* Lepus WatchKit App.app */,
+				7529469F278DC0DC00DC7815 /* Lepus WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		75294688278DC0D900DC7815 /* Lepus */ = {
+			isa = PBXGroup;
+			children = (
+				75294689278DC0D900DC7815 /* LepusApp.swift */,
+				7529468B278DC0D900DC7815 /* ContentView.swift */,
+				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
+				7529468F278DC0DB00DC7815 /* Preview Content */,
+			);
+			path = Lepus;
+			sourceTree = "<group>";
+		};
+		7529468F278DC0DB00DC7815 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				75294690278DC0DB00DC7815 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		75294698278DC0DB00DC7815 /* Lepus WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				75294699278DC0DC00DC7815 /* Assets.xcassets */,
+			);
+			path = "Lepus WatchKit App";
+			sourceTree = "<group>";
+		};
+		752946A3278DC0DC00DC7815 /* Lepus WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				752946A4278DC0DC00DC7815 /* LepusApp.swift */,
+				752946A6278DC0DC00DC7815 /* ContentView.swift */,
+				752946A8278DC0DC00DC7815 /* NotificationController.swift */,
+				752946AA278DC0DC00DC7815 /* NotificationView.swift */,
+				752946AC278DC0DC00DC7815 /* ComplicationController.swift */,
+				752946AE278DC0DD00DC7815 /* Assets.xcassets */,
+				752946B3278DC0DD00DC7815 /* Info.plist */,
+				752946B4278DC0DD00DC7815 /* PushNotificationPayload.apns */,
+				752946B0278DC0DD00DC7815 /* Preview Content */,
+			);
+			path = "Lepus WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		752946B0278DC0DD00DC7815 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				752946B1278DC0DD00DC7815 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		75294685278DC0D900DC7815 /* Lepus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 752946BF278DC0DD00DC7815 /* Build configuration list for PBXNativeTarget "Lepus" */;
+			buildPhases = (
+				75294682278DC0D900DC7815 /* Sources */,
+				75294683278DC0D900DC7815 /* Frameworks */,
+				75294684278DC0D900DC7815 /* Resources */,
+				752946BE278DC0DD00DC7815 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				75294697278DC0DB00DC7815 /* PBXTargetDependency */,
+			);
+			name = Lepus;
+			productName = Lepus;
+			productReference = 75294686278DC0D900DC7815 /* Lepus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		75294693278DC0DB00DC7815 /* Lepus WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 752946BB278DC0DD00DC7815 /* Build configuration list for PBXNativeTarget "Lepus WatchKit App" */;
+			buildPhases = (
+				75294692278DC0DB00DC7815 /* Resources */,
+				752946BA278DC0DD00DC7815 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				752946A2278DC0DC00DC7815 /* PBXTargetDependency */,
+			);
+			name = "Lepus WatchKit App";
+			productName = "Lepus WatchKit App";
+			productReference = 75294694278DC0DB00DC7815 /* Lepus WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		7529469E278DC0DC00DC7815 /* Lepus WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 752946B7278DC0DD00DC7815 /* Build configuration list for PBXNativeTarget "Lepus WatchKit Extension" */;
+			buildPhases = (
+				7529469B278DC0DC00DC7815 /* Sources */,
+				7529469C278DC0DC00DC7815 /* Frameworks */,
+				7529469D278DC0DC00DC7815 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Lepus WatchKit Extension";
+			productName = "Lepus WatchKit Extension";
+			productReference = 7529469F278DC0DC00DC7815 /* Lepus WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7529467E278DC0D900DC7815 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					75294685278DC0D900DC7815 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					75294693278DC0DB00DC7815 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					7529469E278DC0DC00DC7815 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+				};
+			};
+			buildConfigurationList = 75294681278DC0D900DC7815 /* Build configuration list for PBXProject "Lepus" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7529467D278DC0D900DC7815;
+			productRefGroup = 75294687278DC0D900DC7815 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				75294685278DC0D900DC7815 /* Lepus */,
+				75294693278DC0DB00DC7815 /* Lepus WatchKit App */,
+				7529469E278DC0DC00DC7815 /* Lepus WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		75294684278DC0D900DC7815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75294691278DC0DB00DC7815 /* Preview Assets.xcassets in Resources */,
+				7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75294692278DC0DB00DC7815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7529469A278DC0DC00DC7815 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7529469D278DC0DC00DC7815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				752946B2278DC0DD00DC7815 /* Preview Assets.xcassets in Resources */,
+				752946AF278DC0DD00DC7815 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		75294682278DC0D900DC7815 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7529468C278DC0D900DC7815 /* ContentView.swift in Sources */,
+				7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7529469B278DC0DC00DC7815 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				752946A9278DC0DC00DC7815 /* NotificationController.swift in Sources */,
+				752946A7278DC0DC00DC7815 /* ContentView.swift in Sources */,
+				752946AD278DC0DC00DC7815 /* ComplicationController.swift in Sources */,
+				752946A5278DC0DC00DC7815 /* LepusApp.swift in Sources */,
+				752946AB278DC0DC00DC7815 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		75294697278DC0DB00DC7815 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75294693278DC0DB00DC7815 /* Lepus WatchKit App */;
+			targetProxy = 75294696278DC0DB00DC7815 /* PBXContainerItemProxy */;
+		};
+		752946A2278DC0DC00DC7815 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7529469E278DC0DC00DC7815 /* Lepus WatchKit Extension */;
+			targetProxy = 752946A1278DC0DC00DC7815 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		752946B5278DC0DD00DC7815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		752946B6278DC0DD00DC7815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		752946B8278DC0DD00DC7815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lepus WatchKit Extension/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Lepus WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Lepus WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sg.mz.Lepus.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		752946B9278DC0DD00DC7815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lepus WatchKit Extension/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Lepus WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Lepus WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sg.mz.Lepus.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		752946BC278DC0DD00DC7815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = Lepus_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "Lepus WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = sg.mz.Lepus;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sg.mz.Lepus.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		752946BD278DC0DD00DC7815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = Lepus_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "Lepus WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = sg.mz.Lepus;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sg.mz.Lepus.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		752946C0278DC0DD00DC7815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lepus/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sg.mz.Lepus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		752946C1278DC0DD00DC7815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lepus/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sg.mz.Lepus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		75294681278DC0D900DC7815 /* Build configuration list for PBXProject "Lepus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				752946B5278DC0DD00DC7815 /* Debug */,
+				752946B6278DC0DD00DC7815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		752946B7278DC0DD00DC7815 /* Build configuration list for PBXNativeTarget "Lepus WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				752946B8278DC0DD00DC7815 /* Debug */,
+				752946B9278DC0DD00DC7815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		752946BB278DC0DD00DC7815 /* Build configuration list for PBXNativeTarget "Lepus WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				752946BC278DC0DD00DC7815 /* Debug */,
+				752946BD278DC0DD00DC7815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		752946BF278DC0DD00DC7815 /* Build configuration list for PBXNativeTarget "Lepus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				752946C0278DC0DD00DC7815 /* Debug */,
+				752946C1278DC0DD00DC7815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7529467E278DC0D900DC7815 /* Project object */;
+}
