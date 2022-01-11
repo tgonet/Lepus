@@ -20,7 +20,7 @@ struct ContentView: View {
     center: CLLocationCoordinate2D(latitude: 37.334803, longitude: -122.008965),
     span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
-
+//to push info.plist
     var body: some View {
         ZStack{
             VStack{
