@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		445350535B279C9B4EAA1773 /* Pods_Lepus_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBCC2E2D5BC8C300D7E9CE9 /* Pods_Lepus_WatchKit_Extension.framework */; };
 		7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75294689278DC0D900DC7815 /* LepusApp.swift */; };
 		7529468C278DC0D900DC7815 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529468B278DC0D900DC7815 /* ContentView.swift */; };
 		7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7529468D278DC0DB00DC7815 /* Assets.xcassets */; };
@@ -21,6 +22,11 @@
 		752946AD278DC0DC00DC7815 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946AC278DC0DC00DC7815 /* ComplicationController.swift */; };
 		752946AF278DC0DD00DC7815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752946AE278DC0DD00DC7815 /* Assets.xcassets */; };
 		752946B2278DC0DD00DC7815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752946B1278DC0DD00DC7815 /* Preview Assets.xcassets */; };
+		752946C3278DC10300DC7815 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C2278DC10300DC7815 /* MapView.swift */; };
+		752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C4278DC13400DC7815 /* StopwatchManager.swift */; };
+		752946C7278DC37E00DC7815 /* Shared in Resources */ = {isa = PBXBuildFile; fileRef = 752946C6278DC37E00DC7815 /* Shared */; };
+		B6F09D3A28CDFC0F391A0A1A /* Pods_Lepus_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78536E054A661D5F8BBDD59 /* Pods_Lepus_WatchKit_App.framework */; };
+		D05ABC0E2E85430955A61E23 /* Pods_Lepus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A80EB9583DE2BCBA7C871B /* Pods_Lepus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +72,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C08AC03645C04F9076E4DD9 /* Pods-Lepus WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-Lepus WatchKit Extension/Pods-Lepus WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
+		1CBCC2E2D5BC8C300D7E9CE9 /* Pods_Lepus_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5510CD28EB7A0FDBB3E5B48E /* Pods-Lepus WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-Lepus WatchKit App/Pods-Lepus WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
+		62A80EB9583DE2BCBA7C871B /* Pods_Lepus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		697AE6BF35060EC4D35E17A2 /* Pods-Lepus WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-Lepus WatchKit Extension/Pods-Lepus WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		75294686278DC0D900DC7815 /* Lepus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75294689278DC0D900DC7815 /* LepusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepusApp.swift; sourceTree = "<group>"; };
 		7529468B278DC0D900DC7815 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,13 +94,29 @@
 		752946B1278DC0DD00DC7815 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		752946B3278DC0DD00DC7815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		752946B4278DC0DD00DC7815 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		752946C2278DC10300DC7815 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		752946C4278DC13400DC7815 /* StopwatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
+		752946C6278DC37E00DC7815 /* Shared */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Shared; sourceTree = SOURCE_ROOT; };
+		A78536E054A661D5F8BBDD59 /* Pods_Lepus_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7831A4C563F250D62A504D7 /* Pods-Lepus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus.release.xcconfig"; path = "Target Support Files/Pods-Lepus/Pods-Lepus.release.xcconfig"; sourceTree = "<group>"; };
+		C7CFAB99A1CA167D9251899A /* Pods-Lepus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus.debug.xcconfig"; path = "Target Support Files/Pods-Lepus/Pods-Lepus.debug.xcconfig"; sourceTree = "<group>"; };
+		E021C067295B04AD5EC6EDD0 /* Pods-Lepus WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus WatchKit App.release.xcconfig"; path = "Target Support Files/Pods-Lepus WatchKit App/Pods-Lepus WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5586695CAB4F1153EC319221 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6F09D3A28CDFC0F391A0A1A /* Pods_Lepus_WatchKit_App.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75294683278DC0D900DC7815 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05ABC0E2E85430955A61E23 /* Pods_Lepus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,19 +124,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				445350535B279C9B4EAA1773 /* Pods_Lepus_WatchKit_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7088EC28D2C7E290C2E481D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C7CFAB99A1CA167D9251899A /* Pods-Lepus.debug.xcconfig */,
+				C7831A4C563F250D62A504D7 /* Pods-Lepus.release.xcconfig */,
+				5510CD28EB7A0FDBB3E5B48E /* Pods-Lepus WatchKit App.debug.xcconfig */,
+				E021C067295B04AD5EC6EDD0 /* Pods-Lepus WatchKit App.release.xcconfig */,
+				697AE6BF35060EC4D35E17A2 /* Pods-Lepus WatchKit Extension.debug.xcconfig */,
+				0C08AC03645C04F9076E4DD9 /* Pods-Lepus WatchKit Extension.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		7529467D278DC0D900DC7815 = {
 			isa = PBXGroup;
 			children = (
+				752946C6278DC37E00DC7815 /* Shared */,
 				75294688278DC0D900DC7815 /* Lepus */,
 				75294698278DC0DB00DC7815 /* Lepus WatchKit App */,
 				752946A3278DC0DC00DC7815 /* Lepus WatchKit Extension */,
 				75294687278DC0D900DC7815 /* Products */,
+				7088EC28D2C7E290C2E481D5 /* Pods */,
+				7C35D3E5445052D6BD770963 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,8 +171,10 @@
 		75294688278DC0D900DC7815 /* Lepus */ = {
 			isa = PBXGroup;
 			children = (
+				752946C4278DC13400DC7815 /* StopwatchManager.swift */,
 				75294689278DC0D900DC7815 /* LepusApp.swift */,
 				7529468B278DC0D900DC7815 /* ContentView.swift */,
+				752946C2278DC10300DC7815 /* MapView.swift */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
 			);
@@ -174,6 +221,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		7C35D3E5445052D6BD770963 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62A80EB9583DE2BCBA7C871B /* Pods_Lepus.framework */,
+				A78536E054A661D5F8BBDD59 /* Pods_Lepus_WatchKit_App.framework */,
+				1CBCC2E2D5BC8C300D7E9CE9 /* Pods_Lepus_WatchKit_Extension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,6 +238,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 752946BF278DC0DD00DC7815 /* Build configuration list for PBXNativeTarget "Lepus" */;
 			buildPhases = (
+				1E9BD0B72ED7B9088C897DC4 /* [CP] Check Pods Manifest.lock */,
 				75294682278DC0D900DC7815 /* Sources */,
 				75294683278DC0D900DC7815 /* Frameworks */,
 				75294684278DC0D900DC7815 /* Resources */,
@@ -200,8 +258,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 752946BB278DC0DD00DC7815 /* Build configuration list for PBXNativeTarget "Lepus WatchKit App" */;
 			buildPhases = (
+				7BE538673C3D78DC645A336D /* [CP] Check Pods Manifest.lock */,
 				75294692278DC0DB00DC7815 /* Resources */,
 				752946BA278DC0DD00DC7815 /* Embed App Extensions */,
+				5586695CAB4F1153EC319221 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,6 +277,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 752946B7278DC0DD00DC7815 /* Build configuration list for PBXNativeTarget "Lepus WatchKit Extension" */;
 			buildPhases = (
+				E713D88FF6795E734E4F3549 /* [CP] Check Pods Manifest.lock */,
 				7529469B278DC0DC00DC7815 /* Sources */,
 				7529469C278DC0DC00DC7815 /* Frameworks */,
 				7529469D278DC0DC00DC7815 /* Resources */,
@@ -278,6 +339,7 @@
 			files = (
 				75294691278DC0DB00DC7815 /* Preview Assets.xcassets in Resources */,
 				7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */,
+				752946C7278DC37E00DC7815 /* Shared in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,12 +362,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1E9BD0B72ED7B9088C897DC4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lepus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BE538673C3D78DC645A336D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lepus WatchKit App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E713D88FF6795E734E4F3549 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lepus WatchKit Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		75294682278DC0D900DC7815 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7529468C278DC0D900DC7815 /* ContentView.swift in Sources */,
+				752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */,
+				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
 				7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,6 +584,7 @@
 		};
 		752946B8278DC0DD00DC7815 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 697AE6BF35060EC4D35E17A2 /* Pods-Lepus WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -482,6 +616,7 @@
 		};
 		752946B9278DC0DD00DC7815 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C08AC03645C04F9076E4DD9 /* Pods-Lepus WatchKit Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -514,6 +649,7 @@
 		};
 		752946BC278DC0DD00DC7815 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5510CD28EB7A0FDBB3E5B48E /* Pods-Lepus WatchKit App.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -539,6 +675,7 @@
 		};
 		752946BD278DC0DD00DC7815 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E021C067295B04AD5EC6EDD0 /* Pods-Lepus WatchKit App.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -565,6 +702,7 @@
 		};
 		752946C0278DC0DD00DC7815 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7CFAB99A1CA167D9251899A /* Pods-Lepus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -573,6 +711,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Lepus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Lepus/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -595,6 +734,7 @@
 		};
 		752946C1278DC0DD00DC7815 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7831A4C563F250D62A504D7 /* Pods-Lepus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -603,6 +743,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Lepus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Lepus/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
