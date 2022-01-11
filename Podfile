@@ -6,6 +6,8 @@ target 'Lepus' do
   use_frameworks!
 
   # Pods for Lepus
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
 end
 

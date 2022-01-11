@@ -24,6 +24,9 @@
 		752946B2278DC0DD00DC7815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752946B1278DC0DD00DC7815 /* Preview Assets.xcassets */; };
 		752946C3278DC10300DC7815 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C2278DC10300DC7815 /* MapView.swift */; };
 		752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C4278DC13400DC7815 /* StopwatchManager.swift */; };
+		752946D9278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
+		752946DA278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
+		752946DB278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
 		91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		91E73909278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		91E7390C278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
@@ -99,6 +102,7 @@
 		752946B4278DC0DD00DC7815 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		752946C2278DC10300DC7815 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		752946C4278DC13400DC7815 /* StopwatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
+		752946D8278DF00700DC7815 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		91E73907278DD6B700502C0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sansita-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A78536E054A661D5F8BBDD59 /* Pods_Lepus_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +155,7 @@
 		7529467D278DC0D900DC7815 = {
 			isa = PBXGroup;
 			children = (
+				752946D8278DF00700DC7815 /* GoogleService-Info.plist */,
 				91E73902278DD61100502C0A /* Fonts */,
 				75294688278DC0D900DC7815 /* Lepus */,
 				75294698278DC0DB00DC7815 /* Lepus WatchKit App */,
@@ -271,6 +276,7 @@
 				75294683278DC0D900DC7815 /* Frameworks */,
 				75294684278DC0D900DC7815 /* Resources */,
 				752946BE278DC0DD00DC7815 /* Embed Watch Content */,
+				00CCBC6734B57556653F330D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -367,6 +373,7 @@
 			files = (
 				75294691278DC0DB00DC7815 /* Preview Assets.xcassets in Resources */,
 				91E7390C278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */,
+				752946D9278DF00700DC7815 /* GoogleService-Info.plist in Resources */,
 				91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */,
 				7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */,
 			);
@@ -377,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7529469A278DC0DC00DC7815 /* Assets.xcassets in Resources */,
+				752946DA278DF00700DC7815 /* GoogleService-Info.plist in Resources */,
 				91E73909278DD6B700502C0A /* Rubik-Regular.ttf in Resources */,
 				91E7390D278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */,
 			);
@@ -388,12 +396,30 @@
 			files = (
 				752946B2278DC0DD00DC7815 /* Preview Assets.xcassets in Resources */,
 				752946AF278DC0DD00DC7815 /* Assets.xcassets in Resources */,
+				752946DB278DF00700DC7815 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00CCBC6734B57556653F330D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lepus/Pods-Lepus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lepus/Pods-Lepus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lepus/Pods-Lepus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1E9BD0B72ED7B9088C897DC4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
