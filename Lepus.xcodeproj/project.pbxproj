@@ -24,7 +24,10 @@
 		752946B2278DC0DD00DC7815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752946B1278DC0DD00DC7815 /* Preview Assets.xcassets */; };
 		752946C3278DC10300DC7815 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C2278DC10300DC7815 /* MapView.swift */; };
 		752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C4278DC13400DC7815 /* StopwatchManager.swift */; };
-		752946C7278DC37E00DC7815 /* Shared in Resources */ = {isa = PBXBuildFile; fileRef = 752946C6278DC37E00DC7815 /* Shared */; };
+		91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
+		91E73909278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
+		91E7390C278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
+		91E7390D278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
 		B6F09D3A28CDFC0F391A0A1A /* Pods_Lepus_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78536E054A661D5F8BBDD59 /* Pods_Lepus_WatchKit_App.framework */; };
 		D05ABC0E2E85430955A61E23 /* Pods_Lepus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A80EB9583DE2BCBA7C871B /* Pods_Lepus.framework */; };
 /* End PBXBuildFile section */
@@ -96,7 +99,8 @@
 		752946B4278DC0DD00DC7815 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		752946C2278DC10300DC7815 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		752946C4278DC13400DC7815 /* StopwatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
-		752946C6278DC37E00DC7815 /* Shared */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Shared; sourceTree = SOURCE_ROOT; };
+		91E73907278DD6B700502C0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sansita-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A78536E054A661D5F8BBDD59 /* Pods_Lepus_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7831A4C563F250D62A504D7 /* Pods-Lepus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus.release.xcconfig"; path = "Target Support Files/Pods-Lepus/Pods-Lepus.release.xcconfig"; sourceTree = "<group>"; };
 		C7CFAB99A1CA167D9251899A /* Pods-Lepus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus.debug.xcconfig"; path = "Target Support Files/Pods-Lepus/Pods-Lepus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,14 +145,13 @@
 				697AE6BF35060EC4D35E17A2 /* Pods-Lepus WatchKit Extension.debug.xcconfig */,
 				0C08AC03645C04F9076E4DD9 /* Pods-Lepus WatchKit Extension.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		7529467D278DC0D900DC7815 = {
 			isa = PBXGroup;
 			children = (
-				752946C6278DC37E00DC7815 /* Shared */,
+				91E73902278DD61100502C0A /* Fonts */,
 				75294688278DC0D900DC7815 /* Lepus */,
 				75294698278DC0DB00DC7815 /* Lepus WatchKit App */,
 				752946A3278DC0DC00DC7815 /* Lepus WatchKit Extension */,
@@ -229,6 +232,31 @@
 				1CBCC2E2D5BC8C300D7E9CE9 /* Pods_Lepus_WatchKit_Extension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91E73902278DD61100502C0A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				91E7390A278DD6C600502C0A /* Sansita-One */,
+				91E73903278DD61F00502C0A /* Rubik */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		91E73903278DD61F00502C0A /* Rubik */ = {
+			isa = PBXGroup;
+			children = (
+				91E73907278DD6B700502C0A /* Rubik-Regular.ttf */,
+			);
+			path = Rubik;
+			sourceTree = "<group>";
+		};
+		91E7390A278DD6C600502C0A /* Sansita-One */ = {
+			isa = PBXGroup;
+			children = (
+				91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */,
+			);
+			path = "Sansita-One";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,8 +366,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				75294691278DC0DB00DC7815 /* Preview Assets.xcassets in Resources */,
+				91E7390C278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */,
+				91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */,
 				7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */,
-				752946C7278DC37E00DC7815 /* Shared in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +377,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7529469A278DC0DC00DC7815 /* Assets.xcassets in Resources */,
+				91E73909278DD6B700502C0A /* Rubik-Regular.ttf in Resources */,
+				91E7390D278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

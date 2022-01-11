@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "lepusLogo.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
