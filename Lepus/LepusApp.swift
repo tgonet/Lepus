@@ -10,7 +10,8 @@ import Firebase
 
 @main
 struct LepusApp: App {
-    @UIApplicationDelegateAdapter(Delegate.self) var delegate
+    @UIApplicationDelegateAdaptor(Delegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
