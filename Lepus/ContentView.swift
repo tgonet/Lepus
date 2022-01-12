@@ -8,23 +8,18 @@
 import SwiftUI
 import MapKit
 
-var latitude = 37.330828
-var longtitude = -122.007495
-
 struct ContentView: View {
     
     @ObservedObject var stopwatchManager = StopwatchManager()
-   
-    @State private var region = MKCoordinateRegion(
-    // Apple Park
-    center: CLLocationCoordinate2D(latitude: 37.334803, longitude: -122.008965),
-    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    )
+    
+    var span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+    
 //to push info.plist
     var body: some View {
+        
         ZStack{
             VStack{
-                MapView(region: region,lineCoordinates: stopwatchManager.lineCoordinates)
+                MapView(region: MKCoordinateRegion(center: stopwatchManager.locationManager.location.coordinate, span: span),lineCoordinates: stopwatchManager.lineCoordinates)
                 VStack{
                     Text("Duration")
                         .font(Font.custom("Rubik-Regular", size:12))
@@ -35,13 +30,13 @@ struct ContentView: View {
                     VStack{
                         Text("Distance")
                             .font(Font.custom("Rubik-Regular", size:12))
-                        Text("2.55km")
+                        Text("\(String(format: "%.2f", stopwatchManager.distance))km")
                             .font(Font.custom("Sansita-BoldItalic", size:32))
                     }
                     VStack{
                         Text("Avg Pace")
                             .font(Font.custom("Rubik-Regular", size:12))
-                        Text("6'55")
+                        Text("\(String(format: "%.2f", stopwatchManager.avePace))\"")
                             .font(Font.custom("Sansita-BoldItalic", size:32))
                     }
                 }.padding(10)
@@ -66,6 +61,33 @@ struct ContentView: View {
                     }
                     else if stopwatchManager.mode == .running
                     {
+//                        Button(action:{self.stopwatchManager.start()}, label: {
+//                            Image(systemName: "play.fill")
+//                                .resizable()
+//                                .frame(width: 30, height: 30)
+//                                .aspectRatio(contentMode: .fit)
+//                                .foregroundColor(Color("AccentColor2"))
+//                                .padding(8)
+//                        })
+//                            .frame(width: 80, height: 80)
+//                            .background(Color("AccentColor"))
+//                            .clipShape(Circle())
+                        
+                        Button(action:{self.stopwatchManager.pause()
+                            print("HI")
+                        }, label: {
+                            Image(systemName: "pause.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(Color("AccentColor"))
+                                .padding(8)
+                        })
+                            .frame(width: 80, height: 80)
+                            .background(Color("AccentColor2"))
+                            .clipShape(Circle())
+                    }
+                    else if stopwatchManager.mode == .paused{
                         Button(action:{self.stopwatchManager.start()}, label: {
                             Image(systemName: "play.fill")
                                 .resizable()
@@ -78,10 +100,10 @@ struct ContentView: View {
                             .background(Color("AccentColor"))
                             .clipShape(Circle())
                         
-                        Button(action:{self.stopwatchManager.pause()
+                        Button(action:{self.stopwatchManager.stop()
                             print("HI")
                         }, label: {
-                            Image(systemName: "pause.fill")
+                            Image(systemName: "stop.fill")
                                 .resizable()
                                 .frame(width: 30, height: 30)
                                 .aspectRatio(contentMode: .fit)

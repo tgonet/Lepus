@@ -11,6 +11,7 @@ import MapKit
 
 class StopwatchManager : ObservableObject{
     @Published var secondsElapsed = 0
+    var doubleTime = 0.0
     var sec = "0"
     var min = "0"
     var hr = "0"
@@ -20,10 +21,11 @@ class StopwatchManager : ObservableObject{
     @Published var timeStr = "00:00:00"
     @Published var mode: stopWatchMode = .stopped
     var timer = Timer()
-    var latitude = 37.330828
-    var longtitude = -122.007495
-    
     @Published var lineCoordinates:[CLLocationCoordinate2D] = []
+    @Published var distance = 0.00
+    @Published var avePace = 0.00
+    var location:CLLocation? = nil
+    var locationManager : LocationManager = LocationManager()
     
     func start() {
         mode = .running
@@ -40,16 +42,29 @@ class StopwatchManager : ObservableObject{
             self.hr = self.calHr! > 0 ? String(format: "%02d", self.calHr!) : "00"
             
             self.timeStr = "\(self.hr):\(self.min):\(self.sec)"
-            self.latitude += 0.001
-            self.longtitude -= 0.001
-            self.lineCoordinates.append(CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longtitude))
             
+            if(self.lineCoordinates.count > 0){
+                self.distance += (self.lineCoordinates.last?.distance(from: CLLocationCoordinate2D(latitude: self.locationManager.location.coordinate.latitude, longitude: self.locationManager.location.coordinate.longitude)) ?? 0.00) / 1000
+            }
+            
+            self.lineCoordinates.append(CLLocationCoordinate2D(latitude: self.locationManager.location.coordinate.latitude, longitude: self.locationManager.location.coordinate.longitude))
+            
+            self.doubleTime = Double(self.secondsElapsed)
+            self.avePace = ((self.doubleTime / 60) / self.distance).isInfinite ? 0.00 : (self.doubleTime / 60) / self.distance
+            print("Lat : \(self.avePace)")
         }
     }
     
     func stop() {
         timer.invalidate()
         secondsElapsed = 0
+        self.sec = "00"
+        self.min = "00"
+        self.hr = "00"
+        self.avePace = 0.00
+        self.distance = 0.00
+        self.lineCoordinates = []
+        self.timeStr = "\(self.hr):\(self.min):\(self.sec)"
         mode = .stopped
     }
     
@@ -63,5 +78,16 @@ enum stopWatchMode {
     case running
     case stopped
     case paused
+}
+
+extension CLLocationCoordinate2D {
+    /// Returns distance from coordianate in meters.
+    /// - Parameter from: coordinate which will be used as end point.
+    /// - Returns: Returns distance in meters.
+    func distance(from: CLLocationCoordinate2D) -> CLLocationDistance {
+        let from = CLLocation(latitude: from.latitude, longitude: from.longitude)
+        let to = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        return from.distance(from: to)
+    }
 }
 
