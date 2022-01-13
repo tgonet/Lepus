@@ -7,7 +7,7 @@ target 'Lepus' do
 
   # Pods for Lepus
   pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
 
 end
 
