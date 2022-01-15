@@ -32,10 +32,6 @@ struct RegisterView: View {
                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                 .padding()
             
-
-                
-            
-            
             HStack(spacing:15){
                 Image(systemName: "person.fill")
                 TextField("Name",text:$name)

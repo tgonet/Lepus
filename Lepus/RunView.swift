@@ -51,13 +51,13 @@ struct RunView: View {
                             VStack{
                                 Text("Distance")
                                     .font(Font.custom("Rubik-Regular", size:12))
-                                Text("2.55km")
+                                Text("\(String(format: "%.2f", stopwatchManager.distance))km")
                                     .font(Font.custom("Sansita-BoldItalic", size:32))
                             }
                             VStack{
                                 Text("Avg Pace")
                                     .font(Font.custom("Rubik-Regular", size:12))
-                                Text("6'55")
+                                Text("\(String(format: "%.2f", stopwatchManager.avePace))\"")
                                     .font(Font.custom("Sansita-BoldItalic", size:32))
                             }
                         }.padding(10)
@@ -113,7 +113,7 @@ struct RunView: View {
                     .background(Color("BackgroundColor"))
                 }
             }
-            .ignoresSafeArea()
+            
         }
     }
 

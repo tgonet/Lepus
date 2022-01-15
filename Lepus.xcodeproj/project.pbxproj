@@ -28,6 +28,8 @@
 		752946D9278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
 		752946DA278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
 		752946DB278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
+		7594C741279317A100C4C20F /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabView.swift */; };
+		7594C74327931F0B00C4C20F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* HistoryView.swift */; };
 		917934C02792F96700DCFAC2 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934BF2792F96700DCFAC2 /* StartView.swift */; };
 		917934C22792F97200DCFAC2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934C12792F97200DCFAC2 /* LoginView.swift */; };
 		91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
@@ -107,6 +109,9 @@
 		752946C2278DC10300DC7815 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		752946C4278DC13400DC7815 /* StopwatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
 		752946D8278DF00700DC7815 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7594C740279317A100C4C20F /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		7594C74227931F0B00C4C20F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		917934BA2792F7B800DCFAC2 /* Lepus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Lepus.entitlements; path = ../../../../.Trash/Lepus.entitlements; sourceTree = "<group>"; };
 		917934BF2792F96700DCFAC2 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		917934C12792F97200DCFAC2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		91E73907278DD6B700502C0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
@@ -186,6 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				75294689278DC0D900DC7815 /* LepusApp.swift */,
+				7594C740279317A100C4C20F /* TabView.swift */,
+				7594C74227931F0B00C4C20F /* HistoryView.swift */,
 				917934BF2792F96700DCFAC2 /* StartView.swift */,
 				917934C12792F97200DCFAC2 /* LoginView.swift */,
 				0EF6A1E5278E973D00E55FAA /* RegisterView.swift */,
@@ -504,10 +511,12 @@
 			files = (
 				7529468C278DC0D900DC7815 /* RunView.swift in Sources */,
 				917934C22792F97200DCFAC2 /* LoginView.swift in Sources */,
+				7594C741279317A100C4C20F /* TabView.swift in Sources */,
 				0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */,
 				752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */,
 				917934C02792F96700DCFAC2 /* StartView.swift in Sources */,
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
+				7594C74327931F0B00C4C20F /* HistoryView.swift in Sources */,
 				7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
