@@ -9,7 +9,14 @@ import SwiftUI
 
 struct StartView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Image("startBackground")
+            VStack{
+                Text("Lepus")
+                    .font(Font.custom("Sansita-BoldItalic", size:32))
+                
+            }
+        }
     }
 }
 
