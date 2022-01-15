@@ -8,8 +8,54 @@
 import SwiftUI
 
 struct LoginView: View {
+    @State private var email:String = ""
+    @State private var password:String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            VStack{
+                Image("runImage")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea()
+                HStack(alignment:.center, spacing:15){
+                    Image(systemName: "envelope")
+                    TextField("Email", text: $email)
+                    }
+                    .padding(.vertical,12)
+                    .padding(.horizontal)
+                    .background(Color.white)
+                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+                    .cornerRadius(10)
+                    .padding()
+                
+                HStack(alignment:.center, spacing:15){
+                    Image(systemName: "lock")
+                    TextField("Password", text: $password)
+                    }
+                    .padding(.vertical,12)
+                    .padding(.horizontal)
+                    .background(Color.white)
+                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+                    .cornerRadius(10)
+                    .padding()
+                Button(action:{}, label:{
+                    HStack{
+                        Spacer(minLength: 0)
+                        Text("Login")
+                            .foregroundColor(Color.black)
+                        Spacer(minLength: 0)
+                        
+                    }
+                    .padding(.vertical,12)
+                    .padding(.horizontal)
+                    .background(Color("AccentColor"))
+                    .cornerRadius(10)
+                    .padding()
+                })
+            }
+        }
     }
 }
 
