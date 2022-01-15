@@ -82,8 +82,6 @@ extension LocationManager : CLLocationManagerDelegate{
         guard let location = locations.last else{ return }
         
         self.location = location
-        print("\(location.coordinate.latitude)")
-
     }
 }
 
