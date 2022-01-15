@@ -15,6 +15,7 @@ struct LepusApp: App {
     var body: some Scene {
         WindowGroup {
             RunView()
+            
         }
     }
 }

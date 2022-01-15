@@ -14,9 +14,8 @@ struct RunView: View {
     
     var span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     
-//to push info.plist
     var body: some View {
-            ZStack{
+        ZStack{
                 if stopwatchManager.mode == .onLoad{
                     MapView(region: MKCoordinateRegion(center: stopwatchManager.locationManager.location.coordinate, span: span),lineCoordinates: stopwatchManager.lineCoordinates)
                     VStack{
