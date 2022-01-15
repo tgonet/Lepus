@@ -10,7 +10,7 @@
 		0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A1E5278E973D00E55FAA /* RegisterView.swift */; };
 		445350535B279C9B4EAA1773 /* Pods_Lepus_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBCC2E2D5BC8C300D7E9CE9 /* Pods_Lepus_WatchKit_Extension.framework */; };
 		7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75294689278DC0D900DC7815 /* LepusApp.swift */; };
-		7529468C278DC0D900DC7815 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529468B278DC0D900DC7815 /* ContentView.swift */; };
+		7529468C278DC0D900DC7815 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529468B278DC0D900DC7815 /* RunView.swift */; };
 		7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7529468D278DC0DB00DC7815 /* Assets.xcassets */; };
 		75294691278DC0DB00DC7815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75294690278DC0DB00DC7815 /* Preview Assets.xcassets */; };
 		75294695278DC0DB00DC7815 /* Lepus WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 75294694278DC0DB00DC7815 /* Lepus WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -28,6 +28,8 @@
 		752946D9278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
 		752946DA278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
 		752946DB278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
+		917934C02792F96700DCFAC2 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934BF2792F96700DCFAC2 /* StartView.swift */; };
+		917934C22792F97200DCFAC2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934C12792F97200DCFAC2 /* LoginView.swift */; };
 		91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		91E73909278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		91E7390C278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
@@ -87,7 +89,7 @@
 		697AE6BF35060EC4D35E17A2 /* Pods-Lepus WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-Lepus WatchKit Extension/Pods-Lepus WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		75294686278DC0D900DC7815 /* Lepus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75294689278DC0D900DC7815 /* LepusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepusApp.swift; sourceTree = "<group>"; };
-		7529468B278DC0D900DC7815 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7529468B278DC0D900DC7815 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		7529468D278DC0DB00DC7815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75294690278DC0DB00DC7815 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		75294694278DC0DB00DC7815 /* Lepus WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lepus WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,9 @@
 		752946C2278DC10300DC7815 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		752946C4278DC13400DC7815 /* StopwatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
 		752946D8278DF00700DC7815 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		917934BA2792F7B800DCFAC2 /* Lepus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Lepus.entitlements; path = ../../../../.Trash/Lepus.entitlements; sourceTree = "<group>"; };
+		917934BF2792F96700DCFAC2 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		917934C12792F97200DCFAC2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		91E73907278DD6B700502C0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sansita-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A78536E054A661D5F8BBDD59 /* Pods_Lepus_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,13 +186,16 @@
 		75294688278DC0D900DC7815 /* Lepus */ = {
 			isa = PBXGroup;
 			children = (
-				752946C4278DC13400DC7815 /* StopwatchManager.swift */,
+				917934BA2792F7B800DCFAC2 /* Lepus.entitlements */,
 				75294689278DC0D900DC7815 /* LepusApp.swift */,
-				7529468B278DC0D900DC7815 /* ContentView.swift */,
+				917934BF2792F96700DCFAC2 /* StartView.swift */,
+				917934C12792F97200DCFAC2 /* LoginView.swift */,
+				0EF6A1E5278E973D00E55FAA /* RegisterView.swift */,
+				7529468B278DC0D900DC7815 /* RunView.swift */,
 				752946C2278DC10300DC7815 /* MapView.swift */,
+				752946C4278DC13400DC7815 /* StopwatchManager.swift */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
-				0EF6A1E5278E973D00E55FAA /* RegisterView.swift */,
 			);
 			path = Lepus;
 			sourceTree = "<group>";
@@ -496,9 +504,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7529468C278DC0D900DC7815 /* ContentView.swift in Sources */,
+				7529468C278DC0D900DC7815 /* RunView.swift in Sources */,
+				917934C22792F97200DCFAC2 /* LoginView.swift in Sources */,
 				0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */,
 				752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */,
+				917934C02792F96700DCFAC2 /* StartView.swift in Sources */,
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
 				7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */,
 			);
@@ -651,6 +661,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lepus WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 55ATJC9JTS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lepus WatchKit Extension/Info.plist";
@@ -683,6 +694,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lepus WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 55ATJC9JTS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lepus WatchKit Extension/Info.plist";
@@ -717,6 +729,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 55ATJC9JTS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Lepus_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lepus WatchKit App";
@@ -743,6 +756,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 55ATJC9JTS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Lepus_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lepus WatchKit App";
@@ -767,9 +781,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Lepus/Lepus.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lepus/Preview Content\"";
+				DEVELOPMENT_TEAM = 55ATJC9JTS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lepus/Info.plist;
@@ -788,6 +805,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = sg.mz.Lepus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -801,9 +819,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Lepus/Lepus.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lepus/Preview Content\"";
+				DEVELOPMENT_TEAM = 55ATJC9JTS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lepus/Info.plist;
@@ -822,6 +843,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = sg.mz.Lepus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

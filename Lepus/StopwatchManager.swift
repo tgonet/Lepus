@@ -19,7 +19,7 @@ class StopwatchManager : ObservableObject{
     var calMin:Int?
     var calHr:Int?
     @Published var timeStr = "00:00:00"
-    @Published var mode: stopWatchMode = .stopped
+    @Published var mode: stopWatchMode = .onLoad
     var timer = Timer()
     @Published var lineCoordinates:[CLLocationCoordinate2D] = []
     @Published var distance = 0.00
@@ -75,6 +75,7 @@ class StopwatchManager : ObservableObject{
 }
 
 enum stopWatchMode {
+    case onLoad
     case running
     case stopped
     case paused
