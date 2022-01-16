@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
 
 struct RegisterView: View {
     @State private var email:String = ""
     @State private var name:String = ""
     @State private var password:String = ""
     @State private var confirmPassword:String = ""
+    
+    @State private var showAlert = false
+      
+    @State private var ref: DatabaseReference!
+    
     var body: some View {
         VStack{
             Text("Register")
@@ -92,13 +98,45 @@ struct RegisterView: View {
             //Disable if inputs not entered
                 .opacity((email != "" && name != "" && password != "" && confirmPassword != "") ? 1:0.6)
                 .disabled((email != "" && name != "" && password != "" && confirmPassword != "") ? false:true)
-            
+                .alert(isPresented: $showAlert){
+                                    Alert(title: Text("Password does not match"), message: Text("Password and Confirm Password do not match"), dismissButton: .default(Text("Ok")))
+                                }
             }.padding(.horizontal)
         }
+func registerUser(email:String,name:String, password:String,confirmPass:String){
+    if(password == confirmPass){
+        showAlert = false
+        ref = Database.database().reference()
+        let user:Register = Register(email: email, name: name, password: password)
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(user)
+                            
+        let json = String (data:jsonData,encoding:String.Encoding.utf8)
+                        
+        self.ref.child("user1").setValue(json)
+                            
+        } else if (password != confirmPass){
+            showAlert = true
+        }
+                        
     }
+}
+
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterView()
+    }
+}
+
+struct Register :Codable{
+    var email: String?
+    var name: String?
+    var password: String?
+                    
+    init(email: String?, name:String? , password:String?){
+        self.email = email
+        self.name = name
+        self.password = password
     }
 }
