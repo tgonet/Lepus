@@ -18,6 +18,8 @@ struct RegisterView: View {
       
     @State private var ref: DatabaseReference!
     
+    @State var selection: Int? = nil
+    
     var body: some View {
         VStack{
             Text("Register")
@@ -81,26 +83,30 @@ struct RegisterView: View {
             Spacer()
             //Redirect to home page? upon creation
             
-            Button(action:{}, label:{
-                HStack{
-                    Spacer(minLength: 0)
-                    Text("Register")
-                    Spacer(minLength: 0)
-                    
+            NavigationLink(destination: TabViewUI(), tag: 1, selection: $selection) {
+                Button(action:{
+                    self.selection = 1
+                }, label:{
+                    HStack{
+                        Spacer(minLength: 0)
+                        Text("Register")
+                        Spacer(minLength: 0)
+                        
+                    }
+                    .foregroundColor(.white)
+                    .padding(.vertical,12)
+                    .padding(.horizontal)
+                    .background(.yellow)
+                    .cornerRadius(10)
+                    .padding()
+                })
+                //Disable if inputs not entered
+                    .opacity((email != "" && name != "" && password != "" && confirmPassword != "") ? 1:0.6)
+                    .disabled((email != "" && name != "" && password != "" && confirmPassword != "") ? false:true)
+                    .alert(isPresented: $showAlert){
+                                        Alert(title: Text("Password does not match"), message: Text("Password and Confirm Password do not match"), dismissButton: .default(Text("Ok")))
                 }
-                .foregroundColor(.white)
-                .padding(.vertical,12)
-                .padding(.horizontal)
-                .background(.yellow)
-                .cornerRadius(10)
-                .padding()
-            })
-            //Disable if inputs not entered
-                .opacity((email != "" && name != "" && password != "" && confirmPassword != "") ? 1:0.6)
-                .disabled((email != "" && name != "" && password != "" && confirmPassword != "") ? false:true)
-                .alert(isPresented: $showAlert){
-                                    Alert(title: Text("Password does not match"), message: Text("Password and Confirm Password do not match"), dismissButton: .default(Text("Ok")))
-                                }
+            }
             }.padding(.horizontal)
         }
 func registerUser(email:String,name:String, password:String,confirmPass:String){

@@ -17,7 +17,7 @@ struct RunView: View {
     var body: some View {
         ZStack{
                 if stopwatchManager.mode == .onLoad{
-                    MapView(region: MKCoordinateRegion(center: stopwatchManager.locationManager.location.coordinate, span: span),lineCoordinates: stopwatchManager.lineCoordinates)
+                    MapView(region: MKCoordinateRegion(center: stopwatchManager.locationManager.location.coordinate, span: span),lineCoordinates: stopwatchManager.lineCoordinates).ignoresSafeArea(edges: .top)
                     VStack{
                         Spacer()
                         Button(action:{self.stopwatchManager.start()}, label: {
@@ -40,7 +40,7 @@ struct RunView: View {
                 
                 else{
                     VStack{
-                        MapView(region: MKCoordinateRegion(center: stopwatchManager.locationManager.location.coordinate, span: span),lineCoordinates: stopwatchManager.lineCoordinates)
+                        MapView(region: MKCoordinateRegion(center: stopwatchManager.locationManager.location.coordinate, span: span),lineCoordinates: stopwatchManager.lineCoordinates).ignoresSafeArea(edges: .top)
                         VStack{
                             Text("Duration")
                                 .font(Font.custom("Rubik-Regular", size:12))
@@ -112,8 +112,9 @@ struct RunView: View {
                     }
                     .background(Color("BackgroundColor"))
                 }
-            }
-            
+            }.navigationBarTitle("", displayMode: .inline) //this must be empty
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
     }
 

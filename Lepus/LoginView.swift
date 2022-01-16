@@ -10,6 +10,8 @@ import SwiftUI
 struct LoginView: View {
     @State private var email:String = ""
     @State private var password:String = ""
+    @State var selection: Int? = nil
+    
     var body: some View {
         ZStack{
             VStack{
@@ -40,20 +42,24 @@ struct LoginView: View {
                     .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                     .cornerRadius(10)
                     .padding()
-                Button(action:{}, label:{
-                    HStack{
-                        Spacer(minLength: 0)
-                        Text("Login")
-                            .foregroundColor(Color.black)
-                        Spacer(minLength: 0)
-                        
-                    }
-                    .padding(.vertical,12)
-                    .padding(.horizontal)
-                    .background(Color("AccentColor"))
-                    .cornerRadius(10)
-                    .padding()
-                })
+                NavigationLink(destination: TabViewUI(), tag: 1, selection: $selection) {
+                    Button(action:{
+                        self.selection = 1
+                    }, label:{
+                        HStack{
+                            Spacer(minLength: 0)
+                            Text("Login")
+                                .foregroundColor(Color.black)
+                            Spacer(minLength: 0)
+                            
+                        }
+                        .padding(.vertical,12)
+                        .padding(.horizontal)
+                        .background(Color("AccentColor"))
+                        .cornerRadius(10)
+                        .padding()
+                    })
+                }
             }
         }
     }
