@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A1E5278E973D00E55FAA /* RegisterView.swift */; };
 		445350535B279C9B4EAA1773 /* Pods_Lepus_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBCC2E2D5BC8C300D7E9CE9 /* Pods_Lepus_WatchKit_Extension.framework */; };
+		75268B702793C35B00657768 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75268B6F2793C35B00657768 /* History.swift */; };
+		75268B722793DA1600657768 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75268B712793DA1600657768 /* NavigationBar.swift */; };
 		7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75294689278DC0D900DC7815 /* LepusApp.swift */; };
 		7529468C278DC0D900DC7815 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529468B278DC0D900DC7815 /* RunView.swift */; };
 		7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7529468D278DC0DB00DC7815 /* Assets.xcassets */; };
@@ -89,6 +91,8 @@
 		5510CD28EB7A0FDBB3E5B48E /* Pods-Lepus WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-Lepus WatchKit App/Pods-Lepus WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
 		62A80EB9583DE2BCBA7C871B /* Pods_Lepus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		697AE6BF35060EC4D35E17A2 /* Pods-Lepus WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-Lepus WatchKit Extension/Pods-Lepus WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		75268B6F2793C35B00657768 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		75268B712793DA1600657768 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		75294686278DC0D900DC7815 /* Lepus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75294689278DC0D900DC7815 /* LepusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepusApp.swift; sourceTree = "<group>"; };
 		7529468B278DC0D900DC7815 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
@@ -111,7 +115,6 @@
 		752946D8278DF00700DC7815 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		917934BA2792F7B800DCFAC2 /* Lepus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Lepus.entitlements; path = ../../../../.Trash/Lepus.entitlements; sourceTree = "<group>"; };
 		917934BF2792F96700DCFAC2 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		917934C12792F97200DCFAC2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		91E73907278DD6B700502C0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
@@ -192,6 +195,7 @@
 			children = (
 				75294689278DC0D900DC7815 /* LepusApp.swift */,
 				7594C740279317A100C4C20F /* TabView.swift */,
+				75268B6F2793C35B00657768 /* History.swift */,
 				7594C74227931F0B00C4C20F /* HistoryView.swift */,
 				917934BF2792F96700DCFAC2 /* StartView.swift */,
 				917934C12792F97200DCFAC2 /* LoginView.swift */,
@@ -199,6 +203,7 @@
 				7529468B278DC0D900DC7815 /* RunView.swift */,
 				752946C2278DC10300DC7815 /* MapView.swift */,
 				752946C4278DC13400DC7815 /* StopwatchManager.swift */,
+				75268B712793DA1600657768 /* NavigationBar.swift */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
 			);
@@ -513,6 +518,8 @@
 				917934C22792F97200DCFAC2 /* LoginView.swift in Sources */,
 				7594C741279317A100C4C20F /* TabView.swift in Sources */,
 				0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */,
+				75268B702793C35B00657768 /* History.swift in Sources */,
+				75268B722793DA1600657768 /* NavigationBar.swift in Sources */,
 				752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */,
 				917934C02792F96700DCFAC2 /* StartView.swift in Sources */,
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
