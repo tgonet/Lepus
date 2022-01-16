@@ -12,7 +12,7 @@
 		75268B702793C35B00657768 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75268B6F2793C35B00657768 /* History.swift */; };
 		75268B722793DA1600657768 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75268B712793DA1600657768 /* NavigationBar.swift */; };
 		7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75294689278DC0D900DC7815 /* LepusApp.swift */; };
-		7529468C278DC0D900DC7815 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529468B278DC0D900DC7815 /* RunView.swift */; };
+		7529468C278DC0D900DC7815 /* RunTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529468B278DC0D900DC7815 /* RunTabView.swift */; };
 		7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7529468D278DC0DB00DC7815 /* Assets.xcassets */; };
 		75294691278DC0DB00DC7815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75294690278DC0DB00DC7815 /* Preview Assets.xcassets */; };
 		75294695278DC0DB00DC7815 /* Lepus WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 75294694278DC0DB00DC7815 /* Lepus WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -30,6 +30,7 @@
 		752946D9278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
 		752946DA278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
 		752946DB278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
+		756708B527945B190076B317 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756708B427945B190076B317 /* RunView.swift */; };
 		7594C741279317A100C4C20F /* TabViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabViewUI.swift */; };
 		7594C74327931F0B00C4C20F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* HistoryView.swift */; };
 		917934C02792F96700DCFAC2 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934BF2792F96700DCFAC2 /* StartView.swift */; };
@@ -95,7 +96,7 @@
 		75268B712793DA1600657768 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		75294686278DC0D900DC7815 /* Lepus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75294689278DC0D900DC7815 /* LepusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepusApp.swift; sourceTree = "<group>"; };
-		7529468B278DC0D900DC7815 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
+		7529468B278DC0D900DC7815 /* RunTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTabView.swift; sourceTree = "<group>"; };
 		7529468D278DC0DB00DC7815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75294690278DC0DB00DC7815 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		75294694278DC0DB00DC7815 /* Lepus WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lepus WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +114,7 @@
 		752946C2278DC10300DC7815 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		752946C4278DC13400DC7815 /* StopwatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
 		752946D8278DF00700DC7815 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		917934BF2792F96700DCFAC2 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -200,10 +202,11 @@
 				917934BF2792F96700DCFAC2 /* StartView.swift */,
 				917934C12792F97200DCFAC2 /* LoginView.swift */,
 				0EF6A1E5278E973D00E55FAA /* RegisterView.swift */,
-				7529468B278DC0D900DC7815 /* RunView.swift */,
+				7529468B278DC0D900DC7815 /* RunTabView.swift */,
 				752946C2278DC10300DC7815 /* MapView.swift */,
 				752946C4278DC13400DC7815 /* StopwatchManager.swift */,
 				75268B712793DA1600657768 /* NavigationBar.swift */,
+				756708B427945B190076B317 /* RunView.swift */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
 			);
@@ -514,7 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7529468C278DC0D900DC7815 /* RunView.swift in Sources */,
+				7529468C278DC0D900DC7815 /* RunTabView.swift in Sources */,
 				917934C22792F97200DCFAC2 /* LoginView.swift in Sources */,
 				7594C741279317A100C4C20F /* TabViewUI.swift in Sources */,
 				0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */,
@@ -524,6 +527,7 @@
 				917934C02792F96700DCFAC2 /* StartView.swift in Sources */,
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
 				7594C74327931F0B00C4C20F /* HistoryView.swift in Sources */,
+				756708B527945B190076B317 /* RunView.swift in Sources */,
 				7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

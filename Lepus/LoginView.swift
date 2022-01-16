@@ -18,7 +18,7 @@ struct LoginView: View {
                 Image("runImage")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .ignoresSafeArea()
+                    .edgesIgnoringSafeArea(.top).frame(height: 400)
                 HStack(alignment:.center, spacing:15){
                     Image(systemName: "envelope")
                     TextField("Email", text: $email)
