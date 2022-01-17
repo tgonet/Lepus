@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseDatabase
+import FirebaseAuth
 
 struct RegisterView: View {
     @State private var email:String = ""
@@ -17,6 +18,7 @@ struct RegisterView: View {
     @State private var showAlert = false
       
     @State private var ref: DatabaseReference!
+    @State private var auth = Auth.auth()
     
     @State var selection: Int? = nil
     
@@ -42,7 +44,7 @@ struct RegisterView: View {
             
             HStack(spacing:15){
                 Image(systemName: "person.fill")
-                TextField("Name",text:$name)
+                SecureField("Name",text:$name)
 
             }.padding(.vertical,12)
              .padding(.horizontal)
@@ -56,7 +58,7 @@ struct RegisterView: View {
             
             HStack(spacing:15){
                 Image(systemName: "lock")
-                TextField("Password", text: $password)
+                SecureField("Password", text: $password)
                 }
                 .padding(.vertical,12)
                 .padding(.horizontal)
@@ -85,7 +87,7 @@ struct RegisterView: View {
             
             NavigationLink(destination: TabViewUI(), tag: 1, selection: $selection) {
                 Button(action:{
-                    self.selection = 1
+                    registerUser(email: email, name: name, password: password, confirmPass: confirmPassword)
                 }, label:{
                     HStack{
                         Spacer(minLength: 0)
@@ -112,15 +114,23 @@ struct RegisterView: View {
 func registerUser(email:String,name:String, password:String,confirmPass:String){
     if(password == confirmPass){
         showAlert = false
-        ref = Database.database().reference()
-        let user:Register = Register(email: email, name: name, password: password)
+        //ref = Database.database().reference()
+        //let user:User = User(email: email, name: name, password: password)
+       /*
         let jsonEncoder = JSONEncoder()
         let jsonData = try! jsonEncoder.encode(user)
                             
         let json = String (data:jsonData,encoding:String.Encoding.utf8)
                         
         self.ref.child("user1").setValue(json)
-                            
+        
+        */
+        
+        auth.createUser(withEmail: email, password: password){ result, error in guard result != nil, error == nil else {
+            return
+        }}
+        self.selection = 1
+
         } else if (password != confirmPass){
             showAlert = true
         }
