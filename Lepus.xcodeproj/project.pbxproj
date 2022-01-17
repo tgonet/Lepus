@@ -38,6 +38,7 @@
 		9113D9E6279586E70064D028 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9113D9E3279586E70064D028 /* Rubik-Medium.ttf */; };
 		9113D9E7279586ED0064D028 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		9113D9E8279586F00064D028 /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
+		9113D9EA27959E250064D028 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9113D9E927959E250064D028 /* User.swift */; };
 		917934C02792F96700DCFAC2 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934BF2792F96700DCFAC2 /* StartView.swift */; };
 		917934C22792F97200DCFAC2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934C12792F97200DCFAC2 /* LoginView.swift */; };
 		91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
@@ -123,6 +124,7 @@
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		9113D9E3279586E70064D028 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		9113D9E927959E250064D028 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		917934BF2792F96700DCFAC2 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		917934C12792F97200DCFAC2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		91E73907278DD6B700502C0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				752946C4278DC13400DC7815 /* StopwatchManager.swift */,
 				75268B712793DA1600657768 /* NavigationBar.swift */,
 				756708B427945B190076B317 /* RunView.swift */,
+				9113D9E927959E250064D028 /* User.swift */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
 			);
@@ -529,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9113D9EA27959E250064D028 /* User.swift in Sources */,
 				7529468C278DC0D900DC7815 /* RunTabView.swift in Sources */,
 				917934C22792F97200DCFAC2 /* LoginView.swift in Sources */,
 				7594C741279317A100C4C20F /* TabViewUI.swift in Sources */,
