@@ -14,7 +14,7 @@ struct LepusApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabViewUI()
+            StartView()
             
         }
     }

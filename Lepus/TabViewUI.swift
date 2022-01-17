@@ -11,7 +11,7 @@ struct TabViewUI: View {
     
     var body: some View {
         TabView {
-            RunView()
+            RunTabView()
                 .tabItem {
                     Label("Run",systemImage:"figure.walk")
                 }
