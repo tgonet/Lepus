@@ -11,8 +11,7 @@ import Firebase
 struct LoginView: View {
     @State private var email:String = ""
     @State private var password:String = ""
-    @State private var selection: Int? = nil
-    @State private var currUser:User?
+    @State private var Redirect = true
     
     var body: some View {
         ZStack{
@@ -44,10 +43,9 @@ struct LoginView: View {
                     .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                     .cornerRadius(10)
                     .padding()
-                NavigationLink(destination: TabViewUI(), tag: 1, selection: $selection) {
+                NavigationLink(destination: TabViewUI(), isActive: $Redirect) {
                     Button(action:{
-                        self.currUser = Login(email: email, password: password)
-                        self.selection = 1
+                        Login(email: email, password: password)
                     }, label:{
                         HStack{
                             Spacer(minLength: 0)
@@ -62,36 +60,42 @@ struct LoginView: View {
                         .cornerRadius(10)
                         .padding()
                     })
+                        .opacity((email.isEmpty || password.isEmpty) ? 0.8:1)
                         .disabled((email.isEmpty || password.isEmpty) ? false:true)
-                        .disabled((currUser == nil) ? false:true)
                 }
             }
         }
     }
-}
-
-func Login(email:String, password:String)->User?{
-    var user:User?
-    let auth = Auth.auth()
-    auth.signIn(withEmail: email, password: password, completion: { result, error in
-        guard result != nil, error == nil else{
-            return
-        }
-    })
-    if auth.currentUser != nil
-    {
-        let uid = Auth.auth().currentUser!.uid
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.child("users/\(uid)/username").getData(completion: {error, snapshot in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return;
+    func Login(email:String, password:String){
+        var user:User?
+        let auth = Auth.auth()
+        auth.signIn(withEmail: email, password: password, completion: { result, error in
+            guard result != nil, error == nil else{
+                return
             }
-            user = snapshot.value as? User ?? user
         })
+        
+        //
+        if auth.currentUser != nil
+        {
+            let uid = auth.currentUser!.uid
+            var ref: DatabaseReference!
+            ref = Database.database().reference()
+            ref.child("users/\(uid)").getData(completion: {error, snapshot in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return;
+                }
+                print("managed to get ref")
+                user = snapshot.value as? User ?? user
+            })
+            
+            if user != nil{
+                print("user not nil")
+                self.Redirect = false
+            }
+        }
     }
-    return user
 }
 
 struct LoginView_Previews: PreviewProvider {
