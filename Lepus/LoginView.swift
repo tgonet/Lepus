@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct LoginView: View {
     @State private var email:String = ""
     @State private var password:String = ""
-    @State var selection: Int? = nil
+    @State private var selection: Int? = nil
+    @State private var currUser:User?
     
     var body: some View {
         ZStack{
@@ -33,7 +35,7 @@ struct LoginView: View {
                 
                 HStack(alignment:.center, spacing:15){
                     Image(systemName: "lock")
-                    TextField("Password", text: $password)
+                    SecureField("Password", text: $password)
                     }
                     .padding(.vertical,12)
                     .padding(.horizontal)
@@ -44,6 +46,7 @@ struct LoginView: View {
                     .padding()
                 NavigationLink(destination: TabViewUI(), tag: 1, selection: $selection) {
                     Button(action:{
+                        self.currUser = Login(email: email, password: password)
                         self.selection = 1
                     }, label:{
                         HStack{
@@ -59,12 +62,37 @@ struct LoginView: View {
                         .cornerRadius(10)
                         .padding()
                     })
+                        .disabled((email.isEmpty || password.isEmpty) ? false:true)
+                        .disabled((currUser == nil) ? false:true)
                 }
             }
         }
     }
 }
 
+func Login(email:String, password:String)->User?{
+    var user:User?
+    let auth = Auth.auth()
+    auth.signIn(withEmail: email, password: password, completion: { result, error in
+        guard result != nil, error == nil else{
+            return
+        }
+    })
+    if auth.currentUser != nil
+    {
+        let uid = Auth.auth().currentUser!.uid
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/username").getData(completion: {error, snapshot in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return;
+            }
+            user = snapshot.value as? User ?? user
+        })
+    }
+    return user
+}
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
