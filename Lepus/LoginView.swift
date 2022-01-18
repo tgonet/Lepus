@@ -11,7 +11,7 @@ import Firebase
 struct LoginView: View {
     @State private var email:String = ""
     @State private var password:String = ""
-    @State private var Redirect = true
+    @State private var Redirect = false
     
     var body: some View {
         ZStack{
@@ -45,6 +45,7 @@ struct LoginView: View {
                     .padding()
                 NavigationLink(destination: TabViewUI(), isActive: $Redirect) {
                     Button(action:{
+                        print("HI")
                         Login(email: email, password: password)
                     }, label:{
                         HStack{
@@ -61,7 +62,7 @@ struct LoginView: View {
                         .padding()
                     })
                         .opacity((email.isEmpty || password.isEmpty) ? 0.8:1)
-                        .disabled((email.isEmpty || password.isEmpty) ? false:true)
+                        .disabled((email.isEmpty || password.isEmpty) ? true:false)
                 }
             }
         }
@@ -73,12 +74,7 @@ struct LoginView: View {
             guard result != nil, error == nil else{
                 return
             }
-        })
-        
-        //
-        if auth.currentUser != nil
-        {
-            let uid = auth.currentUser!.uid
+            let uid = result!.user.uid
             var ref: DatabaseReference!
             ref = Database.database().reference()
             ref.child("users/\(uid)").getData(completion: {error, snapshot in
@@ -87,14 +83,34 @@ struct LoginView: View {
                     return;
                 }
                 print("managed to get ref")
-                user = snapshot.value as? User ?? user
+                let value = snapshot.value as? NSDictionary
+                var name:String = value?["name"] as? String ?? ""
+                var email:String = value?["email"] as? String ?? ""
+                user = User(email: email, name: name)
+                self.Redirect = true
             })
-            
-            if user != nil{
-                print("user not nil")
-                self.Redirect = false
-            }
-        }
+        })
+        
+        
+//        if auth.currentUser != nil
+//        {
+//            let uid = auth.currentUser!.uid
+//            var ref: DatabaseReference!
+//            ref = Database.database().reference()
+//            ref.child("users/\(uid)").getData(completion: {error, snapshot in
+//                guard error == nil else {
+//                    print(error!.localizedDescription)
+//                    return;
+//                }
+//                print("managed to get ref")
+//                user = snapshot.value as? User ?? user
+//            })
+//            
+//            if user != nil{
+//                print("user not nil")
+//                self.Redirect = false
+//            }
+//        }
     }
 }
 

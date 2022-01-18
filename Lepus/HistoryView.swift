@@ -33,21 +33,21 @@ struct HistoryView: View {
                                     Text("Distance")
                                         .font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
                                     Text("2.4KM")
-                                        .font(Font.custom("Rubik-Regular", size:15))
+                                        .font(Font.custom("Rubik-Medium", size:15))
                                 }
                                 .padding(.trailing)
                                 VStack(alignment: .leading){
                                     Text("Average Pace")
                                         .font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
                                     Text("6'55\"")
-                                        .font(Font.custom("Rubik-Regular", size:15))
+                                        .font(Font.custom("Rubik-Medium", size:15))
                                 }
                             }
                             .padding(.bottom)
                             HStack{
                                 VStack(alignment: .leading){
                                     Text("Duration").font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
-                                    Text("12min 20sec").font(Font.custom("Rubik-Regular", size:15))
+                                    Text("12min 20sec").font(Font.custom("Rubik-Medium", size:15))
                                 }
                             }
                             Divider().background(Color("Divider"))

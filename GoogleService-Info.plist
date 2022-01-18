@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:223508135310:ios:2ed5b92ce11b3f7ee538df</string>
+	<key>DATABASE_URL</key>
+	<string>https://lepus-d32ce-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>
