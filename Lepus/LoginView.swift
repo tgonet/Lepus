@@ -15,13 +15,14 @@ struct LoginView: View {
     @State private var Redirect = false
     @State private var authFail = false
     
+    
     var body: some View {
             ZStack{
                 VStack{
+                    ScrollView{
                     Image("runImage")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .edgesIgnoringSafeArea(.top).frame(height: 400)
                     HStack(alignment:.center, spacing:10){
                         Image(systemName: "envelope")
                         TextField("Email", text: $email)
@@ -74,6 +75,7 @@ struct LoginView: View {
                         .padding()
                     
                     Button(action:{
+                        hideKeyboard()
                         Login(email: email, password: password)
                     }, label:{
                         HStack{
@@ -85,7 +87,7 @@ struct LoginView: View {
                             
                         }
                         .padding(.vertical,12)
-                        .padding(.horizontal)
+                        .padding(.horizontal,20)
                         .background(Color("AccentColor"))
                         .cornerRadius(10)
                         .padding()
@@ -101,11 +103,15 @@ struct LoginView: View {
                         Text("Authentication failed. Please try again")
                             .foregroundColor(Color.red)
                             .font(Font.custom("Rubik-Regular", size:16))
+                            .padding(.bottom)
                     }
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .background(Color("BackgroundColor"))                
+                    .edgesIgnoringSafeArea(.top)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                }
+                .background(Color("BackgroundColor"))
         }
+            
     }
     func Login(email:String, password:String){
         var user:User?
