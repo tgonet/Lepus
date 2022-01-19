@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 import Firebase
+import FirebaseStorage
 
 struct RunView: View {
     
@@ -111,7 +112,7 @@ struct RunView: View {
         let user = Auth.auth().currentUser
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        var myDict:[String: String] = ["Duration":duration, "Pace":pace, "Distance":distance, "userId":user!.uid]
+        let myDict:[String: String] = ["Duration":duration, "Pace":pace, "Distance":distance, "userId":user!.uid]
 
         ref.child("Runs").childByAutoId().setValue(myDict)
         generateSnapshot(width: 300, height: 300, lineCoord: lineCoord)
@@ -151,7 +152,7 @@ struct RunView: View {
     
     func drawLineOnImage(snapshot: MKMapSnapshotter.Snapshot, lineCoord:[CLLocationCoordinate2D]){
         let image = snapshot.image
-        var yourCoordinates = lineCoord
+        let yourCoordinates = lineCoord
         // for Retina screen
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), true, 0)
 
@@ -184,6 +185,31 @@ struct RunView: View {
         // end the graphics context
         UIGraphicsEndImageContext()
         UIImageWriteToSavedPhotosAlbum(resultImage!, nil, nil, nil)
+        upload(imagetoUpload: resultImage!)
+    }
+    
+    func upload(imagetoUpload: UIImage) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference().child("images")
+    
+        // Convert the image into JPEG and compress the quality to reduce its size
+        let data = imagetoUpload.jpegData(compressionQuality: 0.2)
+        // Change the content type to jpg. If you don't, it'll be saved as application/octet-stream type
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpg"
+
+                // Upload the image
+                if let data = data {
+                    storageRef.putData(data, metadata: metadata) { (metadata, error) in
+                        if let error = error {
+                            print("Error while uploading file: ", error)
+                        }
+
+                        if let metadata = metadata {
+                            print("Metadata: ", metadata)
+                        }
+                    }
+                }
     }
 }
 
