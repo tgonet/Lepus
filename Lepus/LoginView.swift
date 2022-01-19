@@ -16,7 +16,6 @@ struct LoginView: View {
     @State private var authFail = false
     
     var body: some View {
-        NavigationView{
             ZStack{
                 VStack{
                     Image("runImage")
@@ -104,9 +103,8 @@ struct LoginView: View {
                             .font(Font.custom("Rubik-Regular", size:16))
                     }
                 }
-                .background(Color("BackgroundColor"))
-                
-            }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                .background(Color("BackgroundColor"))                
         }
     }
     func Login(email:String, password:String){
