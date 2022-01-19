@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import Firebase
 
 struct RunView: View {
     
@@ -17,6 +18,7 @@ struct RunView: View {
     @ObservedObject var stopwatchManager = StopwatchManager()
     
     var span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+    @State private var snapshotImage: UIImage? = nil
     
     var body: some View {
         VStack{
@@ -94,14 +96,94 @@ struct RunView: View {
                 }.padding(30).alert("Do you want to end the run?", isPresented: $showingAlert) {
                     Button("No", role: .cancel) { }
                     Button("Yes", role: .none) {
+                        saveRun(duration: stopwatchManager.timeStr, pace: "\(stopwatchManager.avePace)", distance: "\(stopwatchManager.distance)", lineCoord: stopwatchManager.lineCoordinates)
+                        
                         self.stopwatchManager.stop()
                         self.presentationMode.wrappedValue.dismiss()
-                        
                     }
                 }
             }
         }
         .background(Color("BackgroundColor"))
+    }
+    
+    func saveRun(duration:String, pace:String, distance:String, lineCoord:[CLLocationCoordinate2D]){
+        let user = Auth.auth().currentUser
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        var myDict:[String: String] = ["Duration":duration, "Pace":pace, "Distance":distance, "userId":user!.uid]
+
+        ref.child("Runs").childByAutoId().setValue(myDict)
+        generateSnapshot(width: 300, height: 300, lineCoord: lineCoord)
+        
+    }
+    
+    func generateSnapshot(width: CGFloat, height: CGFloat, lineCoord:[CLLocationCoordinate2D]) {
+
+      // The region the map should display.
+      let region = MKCoordinateRegion(
+        center: self.stopwatchManager.locationManager.location.coordinate,
+        span: self.span
+      )
+
+      // Map options.
+      let mapOptions = MKMapSnapshotter.Options()
+      let polyLine = MKPolyline(coordinates: lineCoord, count: lineCoord.count)
+    
+
+      mapOptions.region = region
+      mapOptions.size = CGSize(width: width, height: height)
+      mapOptions.showsBuildings = true
+
+      // Create the snapshotter and run it.
+      let snapshotter = MKMapSnapshotter(options: mapOptions)
+      snapshotter.start { (snapshotOrNil, errorOrNil) in
+        if let error = errorOrNil {
+          print(error)
+          return
+        }
+        if let snapshot = snapshotOrNil {
+          self.snapshotImage = snapshot.image
+            drawLineOnImage(snapshot: snapshot, lineCoord: lineCoord)
+        }
+      }
+    }
+    
+    func drawLineOnImage(snapshot: MKMapSnapshotter.Snapshot, lineCoord:[CLLocationCoordinate2D]){
+        let image = snapshot.image
+        var yourCoordinates = lineCoord
+        // for Retina screen
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), true, 0)
+
+        // draw original image into the context
+        image.draw(at: CGPoint.zero)
+
+        // get the context for CoreGraphics
+        let context = UIGraphicsGetCurrentContext()
+
+        // set stroking width and color of the context
+        context!.setLineWidth(2.0)
+        context!.setStrokeColor(UIColor.orange.cgColor)
+
+        // Here is the trick :
+        // We use addLine() and move() to draw the line, this should be easy to understand.
+        // The diificult part is that they both take CGPoint as parameters, and it would be way too complex for us to calculate by ourselves
+        // Thus we use snapshot.point() to save the pain.
+        context!.move(to: snapshot.point(for: yourCoordinates[0]))
+        for i in 0...yourCoordinates.count-1 {
+          context!.addLine(to: snapshot.point(for: yourCoordinates[i]))
+          context!.move(to: snapshot.point(for: yourCoordinates[i]))
+        }
+
+        // apply the stroke to the context
+        context!.strokePath()
+
+        // get the image from the graphics context
+        let resultImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        // end the graphics context
+        UIGraphicsEndImageContext()
+        UIImageWriteToSavedPhotosAlbum(resultImage!, nil, nil, nil)
     }
 }
 
