@@ -42,6 +42,7 @@
 		917934C02792F96700DCFAC2 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934BF2792F96700DCFAC2 /* StartView.swift */; };
 		917934C22792F97200DCFAC2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934C12792F97200DCFAC2 /* LoginView.swift */; };
 		91918B7A2797CECC00278A54 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91918B792797CECC00278A54 /* ViewExtension.swift */; };
+		91918B7D2799198F00278A54 /* Lepus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91918B7B2799198F00278A54 /* Lepus.xcdatamodeld */; };
 		91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		91E73909278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		91E7390C278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
@@ -129,6 +130,7 @@
 		917934BF2792F96700DCFAC2 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		917934C12792F97200DCFAC2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		91918B792797CECC00278A54 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		91918B7C2799198F00278A54 /* Lepus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lepus.xcdatamodel; sourceTree = "<group>"; };
 		91E73907278DD6B700502C0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sansita-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A78536E054A661D5F8BBDD59 /* Pods_Lepus_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +223,7 @@
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
 				91918B792797CECC00278A54 /* ViewExtension.swift */,
+				91918B7B2799198F00278A54 /* Lepus.xcdatamodeld */,
 			);
 			path = Lepus;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				91918B7A2797CECC00278A54 /* ViewExtension.swift in Sources */,
 				7594C74327931F0B00C4C20F /* HistoryView.swift in Sources */,
 				756708B527945B190076B317 /* RunView.swift in Sources */,
+				91918B7D2799198F00278A54 /* Lepus.xcdatamodeld in Sources */,
 				7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -930,6 +934,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		91918B7B2799198F00278A54 /* Lepus.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				91918B7C2799198F00278A54 /* Lepus.xcdatamodel */,
+			);
+			currentVersion = 91918B7C2799198F00278A54 /* Lepus.xcdatamodel */;
+			path = Lepus.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7529467E278DC0D900DC7815 /* Project object */;
 }
