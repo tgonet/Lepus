@@ -105,11 +105,15 @@ struct RunView: View {
         }
     }
     
-    func saveRun(duration:String, pace:String, distance:String, url:String){
+    func saveRun(duration:String, pace:Double, distance:Double, url:String, coord:CLLocationCoordinate2D){
         let user = Auth.auth().currentUser
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        let myDict:[String: String] = ["Duration":duration, "Pace":pace, "Distance":distance, "Url":url, "userId":user!.uid]
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_SG")
+        dateFormatter.dateFormat = "dd MMM YYYY H:mm a"
+        let date = dateFormatter.string(from: Date())
+        let myDict:[String: Any] = ["Duration":duration, "Pace":pace, "Distance":distance, "Startlatitude":"\(coord.latitude)", "Startlongitude":"\(coord.longitude)", "Url":url,  "Date": date, "userId":user!.uid]
 
         ref.child("Runs").childByAutoId().setValue(myDict)
         self.stopwatchManager.stop()
@@ -183,11 +187,11 @@ struct RunView: View {
 
         // end the graphics context
         UIGraphicsEndImageContext()
-        UIImageWriteToSavedPhotosAlbum(resultImage!, nil, nil, nil)
-        upload(imagetoUpload: resultImage!)
+        //UIImageWriteToSavedPhotosAlbum(resultImage!, nil, nil, nil)
+        upload(imagetoUpload: resultImage!, coord: lineCoord[0])
     }
     
-    func upload(imagetoUpload: UIImage) {
+    func upload(imagetoUpload: UIImage, coord:CLLocationCoordinate2D) {
         let storage = Storage.storage()
         let storageRef = storage.reference().child("\(UUID())")
     
@@ -206,7 +210,7 @@ struct RunView: View {
             
             // To get URL for display in run history
             storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
-                saveRun(duration: stopwatchManager.timeStr, pace: "\(stopwatchManager.avePace)", distance: "\(stopwatchManager.distance)", url: url!.absoluteString)
+                saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, url: url!.absoluteString, coord: coord)
                     })
             }
         }
