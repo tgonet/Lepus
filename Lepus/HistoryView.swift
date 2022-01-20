@@ -49,25 +49,30 @@ struct RunRow: View {
                 Image("Logo")
                     .resizable()
                     .clipShape(Circle()).frame(width: 35.0, height: 35.0)
-                Text("Ming Zhe")
+                Text(run.name)
                     .font(Font.custom("Rubik-Regular", size:16))
-                Text("November 12, 2021 at 10.00PM")
+                Text(run.date)
                     .font(Font.custom("Rubik-Regular", size:12))
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            Image("RunMap").resizable()
+            AsyncImage(url: URL(string: run.url)) { image in
+                image.resizable()
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(height: 300)
             HStack{
                 VStack(alignment: .leading){
                     Text("Distance")
                         .font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
-                    Text("2.4KM")
+                    Text("\(String(format: "%.2f", run.distance))KM")
                         .font(Font.custom("Rubik-Medium", size:15))
                 }
                 .padding(.trailing)
                 VStack(alignment: .leading){
                     Text("Average Pace")
                         .font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
-                    Text("6'55\"")
+                    Text("\(String(format: "%.2f", run.pace))")
                         .font(Font.custom("Rubik-Medium", size:15))
                 }
             }
@@ -75,7 +80,7 @@ struct RunRow: View {
             HStack{
                 VStack(alignment: .leading){
                     Text("Duration").font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
-                    Text("12min 20sec").font(Font.custom("Rubik-Medium", size:15))
+                    Text(run.duration).font(Font.custom("Rubik-Medium", size:15))
                 }
             }
             Divider().background(Color("Divider"))
