@@ -33,7 +33,6 @@
 		756708B527945B190076B317 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756708B427945B190076B317 /* RunView.swift */; };
 		7594C741279317A100C4C20F /* TabViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabViewUI.swift */; };
 		7594C74327931F0B00C4C20F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* HistoryView.swift */; };
-		75F2C4C927994DAC00D7F261 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C4C827994DAC00D7F261 /* Run.swift */; };
 		75F2C4CB2799569800D7F261 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C4CA2799569800D7F261 /* FirebaseManager.swift */; };
 		9113D9E4279586E70064D028 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9113D9E3279586E70064D028 /* Rubik-Medium.ttf */; };
 		9113D9E5279586E70064D028 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9113D9E3279586E70064D028 /* Rubik-Medium.ttf */; };
@@ -45,6 +44,7 @@
 		917934C22792F97200DCFAC2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934C12792F97200DCFAC2 /* LoginView.swift */; };
 		91918B7A2797CECC00278A54 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91918B792797CECC00278A54 /* ViewExtension.swift */; };
 		91918B7D2799198F00278A54 /* Lepus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91918B7B2799198F00278A54 /* Lepus.xcdatamodeld */; };
+		91918B822799C8E100278A54 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91918B812799C8E100278A54 /* Run.swift */; };
 		91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		91E73909278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		91E7390C278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
@@ -127,7 +127,6 @@
 		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		75F2C4C827994DAC00D7F261 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		75F2C4CA2799569800D7F261 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		9113D9E3279586E70064D028 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		9113D9E927959E250064D028 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		917934C12792F97200DCFAC2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		91918B792797CECC00278A54 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		91918B7C2799198F00278A54 /* Lepus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lepus.xcdatamodel; sourceTree = "<group>"; };
+		91918B812799C8E100278A54 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		91E73907278DD6B700502C0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sansita-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A78536E054A661D5F8BBDD59 /* Pods_Lepus_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,8 +228,8 @@
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
 				91918B792797CECC00278A54 /* ViewExtension.swift */,
-				75F2C4C827994DAC00D7F261 /* Run.swift */,
 				91918B7B2799198F00278A54 /* Lepus.xcdatamodeld */,
+				91918B812799C8E100278A54 /* Run.swift */,
 			);
 			path = Lepus;
 			sourceTree = "<group>";
@@ -559,6 +559,7 @@
 				75F2C4CB2799569800D7F261 /* FirebaseManager.swift in Sources */,
 				756708B527945B190076B317 /* RunView.swift in Sources */,
 				91918B7D2799198F00278A54 /* Lepus.xcdatamodeld in Sources */,
+				91918B822799C8E100278A54 /* Run.swift in Sources */,
 				7529468A278DC0D900DC7815 /* LepusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
