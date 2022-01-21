@@ -9,13 +9,13 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
+    let container = CoreDataManager.shared
     @State private var email:String = ""
     @State private var password:String = ""
     @State private var showPassword = false
     @State private var Redirect = false
     @State private var authFail = false
-    
-    
+
     var body: some View {
             ZStack{
                 VStack{
@@ -132,10 +132,12 @@ struct LoginView: View {
                 }
                 print("managed to get ref")
                 let value = snapshot.value as? NSDictionary
+                let userId:String = value?["email"] as? String ?? ""
                 let name:String = value?["name"] as? String ?? ""
-                let email:String = value?["email"] as? String ?? ""
-                user = User(email: email, name: name)
-                print("\(user!.name), \(user!.email)")
+                let profilePic:String? = value?["profilePic"] as! String?
+                user = User(userId: userId, name: name, profilePic:profilePic)
+                print("\(user!.name), \(user!.name)")
+                container.StoreUser(user: user!)
                 self.Redirect = true
             })
         })

@@ -7,14 +7,25 @@
 
 import SwiftUI
 import Firebase
+import CoreData
 
 @main
 struct LepusApp: App {
     @UIApplicationDelegateAdaptor(Delegate.self) var delegate
+    //@Environment(\.managedObjectContext) private var viewContext
+    //let container = CoreDataManager.shared
+    @ObservedObject var CDManager = CoreDataUserManager()
     
     var body: some Scene {
         WindowGroup {
-            StartView()
+            //let user:User = container.isLoggedIn()
+            if (CDManager.user.userId != "")
+            {
+                TabViewUI()
+            }
+            else{
+                StartView()
+            }
             
         }
     }
@@ -27,7 +38,5 @@ class Delegate: NSObject, UIApplicationDelegate{
         FirebaseApp.configure()
         return true
     }
-    
-    
     
 }

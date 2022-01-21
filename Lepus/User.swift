@@ -8,13 +8,14 @@
 import Foundation
 
 class User : Codable{
-    var email: String
+    var userId: String
     var name: String
     var profilePic: String?
     
-    init(email:String, name:String){
-        self.email = email
+    init(userId:String, name:String, profilePic:String?){
+        self.userId = userId
         self.name = name
+        self.profilePic = profilePic
     }
     
     func setProfilePic(profilePic:String){
