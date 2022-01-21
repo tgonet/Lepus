@@ -187,7 +187,7 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
         //startLoading()
         sleep(5)
         let currentUser = auth.currentUser
-        let myDict:[String: String] = ["Email":email, "Name":name]
+        let myDict:[String: String] = ["Email":email, "Name":name, "ProfilePic":""]
         ref.child("users").child(currentUser!.uid).setValue(myDict)
 
         self.selection = 1

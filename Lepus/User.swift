@@ -10,9 +10,18 @@ import Foundation
 class User : Codable{
     var email: String
     var name: String
+    var profilePic: String?
     
     init(email:String, name:String){
         self.email = email
         self.name = name
+    }
+    
+    func setProfilePic(profilePic:String){
+        self.profilePic = profilePic
+    }
+    
+    func getProfilePic()->String{
+        return profilePic!
     }
 }
