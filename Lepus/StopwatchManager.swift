@@ -51,7 +51,6 @@ class StopwatchManager : ObservableObject{
             
             self.doubleTime = Double(self.secondsElapsed)
             self.avePace = ((self.doubleTime / 60) / self.distance).isInfinite ? 0.00 : (self.doubleTime / 60) / self.distance
-            print("Lat : \(self.avePace)")
         }
     }
     

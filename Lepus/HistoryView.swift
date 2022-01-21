@@ -15,13 +15,14 @@ struct HistoryView: View {
     init() {
         UITableView.appearance().backgroundColor = UIColor.clear
         firebaseManager.readRuns()
-        
     }
     
     var body: some View {
         ZStack {
             VStack{
-                NavigationBar().padding(.horizontal, 15).padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+                NavigationBar()
+                    .padding(.horizontal, 15)
+                    .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                 List(firebaseManager.runList) {run in
                         RunRow(run: run)
                     }.listStyle(GroupedListStyle())
@@ -46,7 +47,7 @@ struct RunRow: View {
     var body: some View {
         VStack(alignment: .leading){
             HStack{
-                Image("Logo")
+                Image("profileImg")
                     .resizable()
                     .clipShape(Circle()).frame(width: 35.0, height: 35.0)
                 Text(run.name)

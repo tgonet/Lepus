@@ -15,31 +15,30 @@ struct MapView: UIViewRepresentable {
     let lineCoordinates: [CLLocationCoordinate2D]
     
 
-  func makeUIView(context: Context) -> MKMapView {
-      //needs the frame for trackingmode to work
-    let mapView = MKMapView(frame: UIScreen.main.bounds)
-    mapView.delegate = context.coordinator
-    mapView.region = region
-    mapView.showsUserLocation = true
-    mapView.userTrackingMode = .follow
-    let polyline = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
-    
-    mapView.addOverlay(polyline)
-
-    return mapView
-  }
+    func makeUIView(context: Context) -> MKMapView {
+        //needs the frame for trackingmode to work
+        let mapView = MKMapView(frame: UIScreen.main.bounds)
+        mapView.delegate = context.coordinator
+        mapView.region = region
+        mapView.showsUserLocation = true
+        mapView.setUserTrackingMode(.follow, animated: true)
+        let polyline = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
+        mapView.addOverlay(polyline)
+        return mapView
+    }
 
     
-  func updateUIView(_ view: MKMapView, context: Context) {
-      view.removeOverlays(view.overlays)
-      let polylines = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
-      view.addOverlay(polylines)
-      print(lineCoordinates.count)
-  }
+    func updateUIView(_ view: MKMapView, context: Context) {
+        view.removeOverlays(view.overlays)
+        let polylines = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
+        view.addOverlay(polylines)
+        //view.region.center = view.userLocation.coordinate
+        print(#function, view.region.span)
+    }
 
-  func makeCoordinator() -> Coordinator {
-    Coordinator(self)
-  }
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
 
 }
 
