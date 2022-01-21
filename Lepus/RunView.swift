@@ -113,7 +113,7 @@ struct RunView: View {
         dateFormatter.locale = Locale(identifier: "en_SG")
         dateFormatter.dateFormat = "dd MMM YYYY H:mm a"
         let date = dateFormatter.string(from: Date())
-        let myDict:[String: Any] = ["Duration":duration, "Pace":pace, "Distance":distance, "Startlatitude":"\(coord.latitude)", "Startlongitude":"\(coord.longitude)", "Url":url,  "Date": date, "userId":user!.uid]
+        let myDict:[String: Any] = ["Duration":duration, "Pace":pace, "Distance":distance, "Startlatitude":"\(coord.latitude)", "Startlongitude":"\(coord.longitude)", "Url":url,  "Date": date, "Name": "mz", "userId":user!.uid]
 
         ref.child("Runs").childByAutoId().setValue(myDict)
         self.stopwatchManager.stop()
@@ -122,20 +122,20 @@ struct RunView: View {
     }
     
     func generateSnapshot(width: CGFloat, height: CGFloat, lineCoord:[CLLocationCoordinate2D]) {
+        
+        let polyLine = MKPolyline(coordinates: lineCoord, count: lineCoord.count)
+        
         // The region the map should display.
-        let region = MKCoordinateRegion(
-            center: self.stopwatchManager.locationManager.location.coordinate,
-            span: self.span
-        )
+        var region:MKCoordinateRegion = MKCoordinateRegion(polyLine.boundingMapRect)
+        
+        region.span.latitudeDelta += 0.05
+        region.span.longitudeDelta += 0.05
 
         // Map options.
         let mapOptions = MKMapSnapshotter.Options()
-        let polyLine = MKPolyline(coordinates: lineCoord, count: lineCoord.count)
-
-
+        
         mapOptions.region = region
         mapOptions.size = CGSize(width: width, height: height)
-        mapOptions.showsBuildings = true
 
         // Create the snapshotter and run it.
         let snapshotter = MKMapSnapshotter(options: mapOptions)

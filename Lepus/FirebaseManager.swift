@@ -27,7 +27,7 @@ class FirebaseManager : ObservableObject{
                     }
                 var date = dict["Date"] as Any
                 var pace = dict["Pace"] as Any
-                var name = dict["name"] as Any
+                var name = dict["Name"] as Any
                 var distance = dict["Distance"] as Any
                 var duration = dict["Duration"] as Any
                 var url = dict["Url"] as Any
