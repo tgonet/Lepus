@@ -15,7 +15,7 @@ struct RunView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showingAlert = false
     @ObservedObject var stopwatchManager = StopwatchManager()
-    var span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+    @State var span = MKCoordinateSpan(latitudeDelta: 0.0002, longitudeDelta: 0.0002)
     @State private var snapshotImage: UIImage? = nil
     
     var body: some View {
@@ -128,8 +128,9 @@ struct RunView: View {
         // The region the map should display.
         var region:MKCoordinateRegion = MKCoordinateRegion(polyLine.boundingMapRect)
         
-        region.span.latitudeDelta += 0.05
-        region.span.longitudeDelta += 0.05
+        // Some padding for the lines
+        region.span.latitudeDelta += 0.001
+        region.span.longitudeDelta += 0.001
 
         // Map options.
         let mapOptions = MKMapSnapshotter.Options()

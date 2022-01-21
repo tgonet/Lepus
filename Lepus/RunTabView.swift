@@ -12,7 +12,7 @@ struct RunTabView: View {
     
     @ObservedObject var stopwatchManager = StopwatchManager()
     
-    var span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+    var span = MKCoordinateSpan(latitudeDelta: 0.00000001, longitudeDelta: 0.0000001)
     
     @State var selection: Int? = nil
     

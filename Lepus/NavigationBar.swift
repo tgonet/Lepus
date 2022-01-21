@@ -17,10 +17,10 @@ struct NavigationBar: View {
             Image("Logo")
                 .frame(width: 50.0, height: 30.0)
             Spacer()
-            Image("Logo")
+            Image("profileImg")
                 .resizable()
                 .clipShape(Circle()).frame(width: 35.0, height: 35.0)
-        }
+        }.padding()
     }
 }
 

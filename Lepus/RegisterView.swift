@@ -189,6 +189,13 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
         let currentUser = auth.currentUser
         let myDict:[String: String] = ["Email":email, "Name":name, "ProfilePic":""]
         ref.child("users").child(currentUser!.uid).setValue(myDict)
+        
+        let changeRequest = currentUser!.createProfileChangeRequest()
+        changeRequest.displayName = name
+        changeRequest.photoURL = URL(string: "")
+        changeRequest.commitChanges { error in
+          // ...
+        }
 
         self.selection = 1
 
