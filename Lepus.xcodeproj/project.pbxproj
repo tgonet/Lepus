@@ -34,6 +34,7 @@
 		75D1CE542799EC320048EE28 /* Lepus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */; };
 		75D1CE562799EDE70048EE28 /* LepusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75294689278DC0D900DC7815 /* LepusApp.swift */; };
 		75D1CE572799EDED0048EE28 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756708B427945B190076B317 /* RunView.swift */; };
+		75F20309279BC61200D9CE78 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F20308279BC61200D9CE78 /* ProfileView.swift */; };
 		75F2C4CB2799569800D7F261 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C4CA2799569800D7F261 /* FirebaseManager.swift */; };
 		9113D9E4279586E70064D028 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9113D9E3279586E70064D028 /* Rubik-Medium.ttf */; };
 		9113D9E5279586E70064D028 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9113D9E3279586E70064D028 /* Rubik-Medium.ttf */; };
@@ -128,6 +129,7 @@
 		7594C74227931F0B00C4C20F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		75D1CE4D2799E9D40048EE28 /* Lepus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lepus.xcdatamodel; sourceTree = "<group>"; };
 		75D1CE4F2799EA470048EE28 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		75F20308279BC61200D9CE78 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		75F2C4CA2799569800D7F261 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		9113D9E3279586E70064D028 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		9113D9E927959E250064D028 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				752946C4278DC13400DC7815 /* StopwatchManager.swift */,
 				75268B712793DA1600657768 /* NavigationBar.swift */,
 				756708B427945B190076B317 /* RunView.swift */,
+				75F20308279BC61200D9CE78 /* ProfileView.swift */,
 				9113D9E927959E250064D028 /* User.swift */,
 				75D1CE4F2799EA470048EE28 /* Run.swift */,
 				9163762E279B213F0075E367 /* CoreDataManager.swift */,
@@ -562,6 +565,7 @@
 				7594C741279317A100C4C20F /* TabViewUI.swift in Sources */,
 				0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */,
 				75268B722793DA1600657768 /* NavigationBar.swift in Sources */,
+				75F20309279BC61200D9CE78 /* ProfileView.swift in Sources */,
 				752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */,
 				917934C02792F96700DCFAC2 /* StartView.swift in Sources */,
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,

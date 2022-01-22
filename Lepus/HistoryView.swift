@@ -9,24 +9,24 @@ import SwiftUI
 import Firebase
 
 struct HistoryView: View {
-    var ref: DatabaseReference!
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
-    let user:Firebase.User = Auth.auth().currentUser!
+    var user:Firebase.User?
     
     init() {
         UITableView.appearance().backgroundColor = UIColor.clear
+        user = Auth.auth().currentUser
         firebaseManager.readRuns()
     }
     
     var body: some View {
         ZStack {
             VStack{
-                NavigationBar(url: user.photoURL ?? URL(string: ""))
+                NavigationBar()
                     .padding(.horizontal, 15)
                     .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
-                List(firebaseManager.runList) {run in
-                        RunRow(run: run, url: Auth.auth().currentUser!.photoURL ?? URL(string: ""))
-                    }.listStyle(GroupedListStyle())
+//                List(firebaseManager.runList) {run in
+//                    RunRow(run: run, url: user?.photoURL ?? URL(string: ""))
+//                    }.listStyle(GroupedListStyle())
             }
         }.ignoresSafeArea(.all, edges: .top)
     }
