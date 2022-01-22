@@ -14,12 +14,19 @@ struct TabViewUI: View {
     
     var body: some View {
         TabView {
+            BuddyView()
+                .tabItem{
+                    Label("Buddies", systemImage:"person.2.fill")
+                }
             RunTabView()
                 .tabItem {
                     Label("Run",systemImage:"figure.walk")
                 }
             
-            HistoryView().tabItem{ Label("History", systemImage:"list.dash")}
+            HistoryView()
+                .tabItem{
+                    Label("History", systemImage:"list.dash")
+                }
         }
     }
 }
