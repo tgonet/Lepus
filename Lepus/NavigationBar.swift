@@ -6,32 +6,41 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct NavigationBar: View {
-    var url:URL!
+    @State private var Redirect = false
+    var url:URL? = Auth.auth().currentUser?.photoURL ?? URL(string: "")
     
     var body: some View {
         HStack{
             // Image placeholder to make the logo center
-            Image("")
+            Image("placeholder")
                 .resizable()
                 .clipShape(Circle()).frame(width: 35.0, height: 35.0)
             Spacer()
             Image("Logo")
                 .frame(width: 50.0, height: 30.0)
             Spacer()
-            if(url == URL(string:"")){
-                Image("profileImg")
-                    .resizable()
-                    .clipShape(Circle()).frame(width: 35.0, height: 35.0)
+            NavigationLink(destination: ProfileView(), isActive: $Redirect) {
+                EmptyView()
             }
-            else{
-                AsyncImage(url: url) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
+            Button{print("HI")
+                self.Redirect = true
+            } label: {
+                if(url == URL(string:"")){
+                    Image("profileImg")
+                        .resizable()
+                        .clipShape(Circle()).frame(width: 35.0, height: 35.0)
                 }
-                .clipShape(Circle()).frame(width: 35.0, height: 35.0)
+                else{
+                    AsyncImage(url: url) { image in
+                        image.resizable()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .clipShape(Circle()).frame(width: 35.0, height: 35.0)
+                }
             }
         }.padding()
     }

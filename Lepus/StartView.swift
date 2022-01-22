@@ -10,7 +10,6 @@ import SwiftUI
 struct StartView: View {
     @State var selection: Int? = nil
     
-    
     var body: some View {
         NavigationView {
             ZStack{

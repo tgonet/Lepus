@@ -13,6 +13,16 @@ struct TabViewUI: View {
        }
     
     var body: some View {
+        NavigationView {
+            TabView {
+                RunTabView()
+                    .tabItem {
+                        Label("Run",systemImage:"figure.walk")
+                    }
+                
+                HistoryView().tabItem{ Label("History", systemImage:"list.dash")}
+            }
+        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
         TabView {
             BuddyView()
                 .tabItem{
