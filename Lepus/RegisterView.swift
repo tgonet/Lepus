@@ -191,8 +191,9 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
         ref.child("users").child(currentUser!.uid).setValue(myDict)
         
         let changeRequest = currentUser!.createProfileChangeRequest()
+        let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/placeholder.jpeg?alt=media&token=1701b9cd-8f50-4a9a-bc99-cddb913c7ff0"
         changeRequest.displayName = name
-        changeRequest.photoURL = URL(string: "")
+        changeRequest.photoURL = URL(string: url)
         changeRequest.commitChanges { error in
           // ...
         }

@@ -113,7 +113,7 @@ struct RunView: View {
         dateFormatter.locale = Locale(identifier: "en_SG")
         dateFormatter.dateFormat = "dd MMM YYYY H:mm a"
         let date = dateFormatter.string(from: Date())
-        let myDict:[String: Any] = ["Duration":duration, "Pace":pace, "Distance":distance, "Startlatitude":"\(coord.latitude)", "Startlongitude":"\(coord.longitude)", "Url":url,  "Date": date, "Name": "mz", "userId":user!.uid]
+        let myDict:[String: Any] = ["Duration":duration, "Pace":pace, "Distance":distance, "Startlatitude":"\(coord.latitude)", "Startlongitude":"\(coord.longitude)", "Url":url,  "Date": date, "Name": user!.displayName!, "userId":user!.uid]
 
         ref.child("Runs").childByAutoId().setValue(myDict)
         self.stopwatchManager.stop()
@@ -129,8 +129,8 @@ struct RunView: View {
         var region:MKCoordinateRegion = MKCoordinateRegion(polyLine.boundingMapRect)
         
         // Some padding for the lines
-        region.span.latitudeDelta += 0.001
-        region.span.longitudeDelta += 0.001
+        region.span.latitudeDelta += 0.003
+        region.span.longitudeDelta += 0.003
 
         // Map options.
         let mapOptions = MKMapSnapshotter.Options()
@@ -158,7 +158,7 @@ struct RunView: View {
         let lineCoordinates = lineCoord
         
         // for Retina screen
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), true, 0)
+        UIGraphicsBeginImageContextWithOptions(image.size, true, 0)
 
         // draw original image into the context
         image.draw(at: CGPoint.zero)
