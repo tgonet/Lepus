@@ -26,6 +26,7 @@ class CoreDataManager{
     {
         let cdUser = CDUser(context: container.viewContext)
         cdUser.userId = user.userId
+        cdUser.email = user.email
         cdUser.name = user.name
         cdUser.profilePic = user.profilePic
         
@@ -42,13 +43,14 @@ class CoreDataManager{
     func isLoggedIn()->User{
         let fetchRequest:NSFetchRequest<CDUser> =  CDUser.fetchRequest()
         
-        var user:User = User(userId: "", name: "", profilePic: "")
+        var user:User = User(userId: "", email:"", name: "", profilePic: "")
         do {
             
             let cdUser = try container.viewContext.fetch(fetchRequest)
             if (cdUser.count > 0)
             {
                 user.userId = cdUser[0].userId!
+                user.email = cdUser[0].email!
                 user.name = cdUser[0].name!
                 user.profilePic = cdUser[0].profilePic
             }
@@ -88,7 +90,7 @@ class CoreDataManager{
             if (cdUsers.count != 0)
             {
                 for cdUser in cdUsers {
-                    let u: User = User(userId: "", name: "", profilePic: "")
+                    let u: User = User(userId: "", email:"", name: "", profilePic: "")
                     u.userId = cdUser.userId!
                     u.name = cdUser.name!
                     u.profilePic = cdUser.profilePic
@@ -103,16 +105,6 @@ class CoreDataManager{
         
         return userList
     }
-    
-    // For prototyping, to be removed after implementation
-    func getBuddies()->[User]{
-        var userList:[User] = []
-        for _ in 1...10{
-            userList.append(isLoggedIn())
-        }
-        return userList
-    }
-    
 }
 
 class CoreDataUserManager: ObservableObject{

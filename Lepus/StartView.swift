@@ -56,7 +56,10 @@ struct StartView: View {
                     }
                 }
                 .padding(120)
-            }.navigationBarHidden(true)
+            }
+            .navigationBarHidden(true)
+            .edgesIgnoringSafeArea(.top)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
     }
 }

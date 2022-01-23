@@ -137,11 +137,11 @@ struct LoginView: View {
                 }
                 print("managed to get ref")
                 let value = snapshot.value as? NSDictionary
-                let userId:String = value?["Email"] as? String ?? ""
+                let email:String = value?["Email"] as? String ?? ""
                 let name:String = value?["Name"] as? String ?? ""
                 let profilePic:String? = value?["ProfilePic"] as! String?
-                user = User(userId: userId, name: name, profilePic:profilePic)
-                print("\(user!.name), \(user!.name)")
+                user = User(userId: uid, email: email, name: name, profilePic:profilePic)
+                print("\(user!.userId), \(user!.email), \(user!.name), \(user!.profilePic ?? "")")
                 container.StoreUser(user: user!)
                 self.Redirect = true
             })

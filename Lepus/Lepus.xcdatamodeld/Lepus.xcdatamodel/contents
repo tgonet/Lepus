@@ -9,6 +9,7 @@
         <relationship name="byUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRun" inverseName="byUser" inverseEntity="CDRun"/>
     </entity>
     <entity name="CDUser" representedClassName="CDUser" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="profilePic" optional="YES" attributeType="String"/>
         <attribute name="userId" optional="YES" attributeType="String"/>
@@ -16,6 +17,6 @@
     </entity>
     <elements>
         <element name="CDRun" positionX="-59.21728515625" positionY="13.28762817382812" width="128" height="119"/>
-        <element name="CDUser" positionX="-410.2501831054688" positionY="38.29745483398438" width="128" height="103"/>
+        <element name="CDUser" positionX="-410.2501831054688" positionY="38.29745483398438" width="128" height="104"/>
     </elements>
 </model>

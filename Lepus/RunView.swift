@@ -101,6 +101,8 @@ struct RunView: View {
                     }
                 }
             }
+            .edgesIgnoringSafeArea(.top)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .background(Color("BackgroundColor"))
         }
     }
