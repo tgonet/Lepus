@@ -15,6 +15,10 @@ struct TabViewUI: View {
     var body: some View {
         NavigationView {
             TabView {
+                BuddyView()
+                    .tabItem{
+                        Label("Buddies", systemImage:"person.2.fill")
+                    }
                 RunTabView()
                     .tabItem {
                         Label("Run",systemImage:"figure.walk")
@@ -23,21 +27,6 @@ struct TabViewUI: View {
                 HistoryView().tabItem{ Label("History", systemImage:"list.dash")}
             }
         }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
-        TabView {
-            BuddyView()
-                .tabItem{
-                    Label("Buddies", systemImage:"person.2.fill")
-                }
-            RunTabView()
-                .tabItem {
-                    Label("Run",systemImage:"figure.walk")
-                }
-            
-            HistoryView()
-                .tabItem{
-                    Label("History", systemImage:"list.dash")
-                }
-        }
     }
 }
 
