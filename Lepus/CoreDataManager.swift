@@ -103,10 +103,20 @@ class CoreDataManager{
         
         return userList
     }
+    
+    // For prototyping, to be removed after implementation
+    func getBuddies()->[User]{
+        var userList:[User] = []
+        for _ in 1...10{
+            userList.append(isLoggedIn())
+        }
+        return userList
+    }
+    
 }
 
 class CoreDataUserManager: ObservableObject{
     @Published var user:User = CoreDataManager().isLoggedIn()
-    
+    @Published var buddies:[User] = CoreDataManager().getBuddies()
 }
 

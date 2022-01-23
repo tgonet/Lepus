@@ -16,6 +16,10 @@ struct TabViewUI: View {
     var body: some View {
         NavigationView {
             TabView {
+                BuddyView()
+                    .tabItem{
+                        Label("Buddies", systemImage:"person.2.fill")
+                    }
                 RunTabView()
                     .tabItem {
                         Label("Run",systemImage:"figure.walk")
