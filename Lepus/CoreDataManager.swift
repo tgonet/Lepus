@@ -44,6 +44,7 @@ class CoreDataManager{
         
         var user:User = User(userId: "", name: "", profilePic: "")
         do {
+            
             let cdUser = try container.viewContext.fetch(fetchRequest)
             if (cdUser.count > 0)
             {

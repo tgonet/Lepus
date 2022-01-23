@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TabViewUI: View {
+    
     init() {
            UITabBar.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
        }
@@ -20,7 +21,7 @@ struct TabViewUI: View {
                         Label("Run",systemImage:"figure.walk")
                     }
                 
-                HistoryView().tabItem{ Label("History", systemImage:"list.dash")}
+                ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
             }
         }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }

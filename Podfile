@@ -9,6 +9,7 @@ target 'Lepus' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'Kingfisher', '~> 7.1'
 
 end
 

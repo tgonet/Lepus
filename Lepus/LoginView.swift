@@ -15,6 +15,11 @@ struct LoginView: View {
     @State private var showPassword = false
     @State private var Redirect = false
     @State private var authFail = false
+    @ObservedObject var CDManager = CoreDataUserManager()
+    
+    init(){
+        print(CDManager.user.userId)
+    }
 
     var body: some View {
             ZStack{
@@ -132,9 +137,9 @@ struct LoginView: View {
                 }
                 print("managed to get ref")
                 let value = snapshot.value as? NSDictionary
-                let userId:String = value?["email"] as? String ?? ""
-                let name:String = value?["name"] as? String ?? ""
-                let profilePic:String? = value?["profilePic"] as! String?
+                let userId:String = value?["Email"] as? String ?? ""
+                let name:String = value?["Name"] as? String ?? ""
+                let profilePic:String? = value?["ProfilePic"] as! String?
                 user = User(userId: userId, name: name, profilePic:profilePic)
                 print("\(user!.name), \(user!.name)")
                 container.StoreUser(user: user!)

@@ -7,30 +7,26 @@
 
 import SwiftUI
 import Firebase
+import Kingfisher
 
-struct ProfileView: View {
+struct EditProfileView: View {
     @State private var height:String = ""
     @State private var weight:String = ""
-    //@State private var gender:String = ""
     var gender = ["Male", "Female"]
     @State private var selectedGender = "Male"
     @State var url:URL? = Auth.auth().currentUser?.photoURL ?? URL(string: "")
     
     var body: some View {
         VStack(spacing:0){
-            if(url == URL(string:"")){
-                Image("profileImg")
-                    .resizable()
-                    .clipShape(Circle()).frame(width: 100.0, height: 100.0)
-            }
-            else{
-                AsyncImage(url: url) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
-                }
+            KFImage.url(url)
+                .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 100.0, height: 100.0)}
+                .resizable()
+                .loadDiskFileSynchronously()
+                .cacheOriginalImage()
+                .onProgress { receivedSize, totalSize in  }
+                .onSuccess { result in  }
+                .onFailure { error in }
                 .clipShape(Circle()).frame(width: 100.0, height: 100.0)
-            }
             Text("Change profile image").padding().font(Font.custom("Rubik-Medium", size:16)).padding(.bottom, 20)
             
             HStack(alignment:.center, spacing:10){
@@ -81,8 +77,8 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
+struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        EditProfileView()
     }
 }

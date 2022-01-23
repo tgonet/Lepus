@@ -13,7 +13,7 @@ import CoreData
 struct LepusApp: App {
     @UIApplicationDelegateAdaptor(Delegate.self) var delegate
     @ObservedObject var CDManager = CoreDataUserManager()
-    
+
     var body: some Scene {
         WindowGroup {
             //let user:User = container.isLoggedIn()

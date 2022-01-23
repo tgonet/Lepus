@@ -25,7 +25,7 @@ struct NavigationBar: View {
             Image("Logo")
                 .frame(width: 50.0, height: 30.0)
             Spacer()
-            NavigationLink(destination: ProfileView(), isActive: $Redirect) {
+            NavigationLink(destination: ProfileTabView(), isActive: $Redirect) {
                 EmptyView()
             }
             Button{print("HI")
