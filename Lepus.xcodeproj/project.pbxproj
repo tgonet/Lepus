@@ -28,6 +28,8 @@
 		752946D9278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
 		752946DA278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
 		752946DB278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
+		75399F1A279D204C00063CFC /* Lepus in Resources */ = {isa = PBXBuildFile; fileRef = 75399F19279D204C00063CFC /* Lepus */; };
+		75399F1C279D207100063CFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75399F1B279D207100063CFC /* User.swift */; };
 		7594C741279317A100C4C20F /* TabViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabViewUI.swift */; };
 		7594C74327931F0B00C4C20F /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* ProfileTabView.swift */; };
 		75D1CE502799EA470048EE28 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1CE4F2799EA470048EE28 /* Run.swift */; };
@@ -41,7 +43,6 @@
 		9113D9E6279586E70064D028 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9113D9E3279586E70064D028 /* Rubik-Medium.ttf */; };
 		9113D9E7279586ED0064D028 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		9113D9E8279586F00064D028 /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
-		9113D9EA27959E250064D028 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9113D9E927959E250064D028 /* User.swift */; };
 		9163762F279B213F0075E367 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163762E279B213F0075E367 /* CoreDataManager.swift */; };
 		917934C02792F96700DCFAC2 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934BF2792F96700DCFAC2 /* StartView.swift */; };
 		917934C22792F97200DCFAC2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917934C12792F97200DCFAC2 /* LoginView.swift */; };
@@ -125,6 +126,8 @@
 		752946C2278DC10300DC7815 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		752946C4278DC13400DC7815 /* StopwatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
 		752946D8278DF00700DC7815 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75399F19279D204C00063CFC /* Lepus */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Lepus; sourceTree = "<group>"; };
+		75399F1B279D207100063CFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
@@ -133,7 +136,6 @@
 		75F20308279BC61200D9CE78 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		75F2C4CA2799569800D7F261 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		9113D9E3279586E70064D028 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
-		9113D9E927959E250064D028 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9163762E279B213F0075E367 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		917934BF2792F96700DCFAC2 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		917934C12792F97200DCFAC2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		75294688278DC0D900DC7815 /* Lepus */ = {
 			isa = PBXGroup;
 			children = (
+				75399F1B279D207100063CFC /* User.swift */,
 				75294689278DC0D900DC7815 /* LepusApp.swift */,
 				7594C740279317A100C4C20F /* TabViewUI.swift */,
 				7594C74227931F0B00C4C20F /* ProfileTabView.swift */,
@@ -283,6 +286,7 @@
 		75D1CE492799E8EE0048EE28 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
+				75399F19279D204C00063CFC /* Lepus */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -439,6 +443,7 @@
 				752946D9278DF00700DC7815 /* GoogleService-Info.plist in Resources */,
 				9113D9E4279586E70064D028 /* Rubik-Medium.ttf in Resources */,
 				91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */,
+				75399F1A279D204C00063CFC /* Lepus in Resources */,
 				7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,9 +566,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75399F1C279D207100063CFC /* User.swift in Sources */,
 				75D1CE572799EDED0048EE28 /* RunView.swift in Sources */,
 				75D1CE562799EDE70048EE28 /* LepusApp.swift in Sources */,
-				9113D9EA27959E250064D028 /* User.swift in Sources */,
 				9163762F279B213F0075E367 /* CoreDataManager.swift in Sources */,
 				75D1CE502799EA470048EE28 /* Run.swift in Sources */,
 				7529468C278DC0D900DC7815 /* RunTabView.swift in Sources */,
