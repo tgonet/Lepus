@@ -12,8 +12,6 @@ import CoreData
 @main
 struct LepusApp: App {
     @UIApplicationDelegateAdaptor(Delegate.self) var delegate
-    //@Environment(\.managedObjectContext) private var viewContext
-    //let container = CoreDataManager.shared
     @ObservedObject var CDManager = CoreDataUserManager()
     
     var body: some Scene {

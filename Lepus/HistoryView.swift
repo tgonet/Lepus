@@ -10,23 +10,56 @@ import Firebase
 
 struct HistoryView: View {
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
-    var user:Firebase.User?
+    @State var user:Firebase.User?
+    @State private var Redirect = true
+    @State var url:URL? = Auth.auth().currentUser?.photoURL
     
     init() {
         UITableView.appearance().backgroundColor = UIColor.clear
         user = Auth.auth().currentUser
         firebaseManager.readRuns()
+        print("HIHIVIew\(self.url)")
     }
     
     var body: some View {
         ZStack {
             VStack{
-                NavigationBar()
+                HStack{
+                    // Image placeholder to make the logo center
+                    Image("placeholder")
+                        .resizable()
+                        .clipShape(Circle()).frame(width: 35.0, height: 35.0)
+                    Spacer()
+                    Image("Logo")
+                        .frame(width: 50.0, height: 30.0)
+                    Spacer()
+                    NavigationLink(destination: ProfileView(), isActive: $Redirect) {
+                        EmptyView()
+                    }
+                    Button{
+                        print("HI")
+                        self.Redirect = true
+                    } label: {
+                        if(url == URL(string:"")){
+                            Image("profileImg")
+                                .resizable()
+                                .clipShape(Circle()).frame(width: 35.0, height: 35.0)
+                        }
+                        else{
+                            AsyncImage(url: url) { image in
+                                image.resizable()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .clipShape(Circle()).frame(width: 35.0, height: 35.0)
+                        }
+                    }
+                }.padding()
                     .padding(.horizontal, 15)
                     .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
-//                List(firebaseManager.runList) {run in
-//                    RunRow(run: run, url: user?.photoURL ?? URL(string: ""))
-//                    }.listStyle(GroupedListStyle())
+                List(firebaseManager.runList) {run in
+                    RunRow(run: run, url: url!)
+                    }.listStyle(GroupedListStyle())
             }
         }.ignoresSafeArea(.all, edges: .top)
     }
@@ -41,10 +74,16 @@ struct HistoryView_Previews: PreviewProvider {
     }
 }
 
-// A view that shows the data for one Restaurant.
+// A view that shows the data for one Run.
 struct RunRow: View {
     var run : Run
-    let url:URL?
+    let url:URL
+    
+    init(run:Run, url:URL){
+        self.run = run
+        self.url = url
+        print("HIHII\(url)")
+    }
 
     var body: some View {
         VStack(alignment: .leading){

@@ -10,8 +10,11 @@ import Firebase
 
 struct NavigationBar: View {
     @State private var Redirect = false
-    var url:URL? = Auth.auth().currentUser?.photoURL ?? URL(string: "")
+    @State var url:URL? = Auth.auth().currentUser?.photoURL
     
+    init(){
+        print("HIHI\(url)")
+    }
     var body: some View {
         HStack{
             // Image placeholder to make the logo center
