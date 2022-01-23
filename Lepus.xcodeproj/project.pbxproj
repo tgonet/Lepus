@@ -25,11 +25,8 @@
 		752946B2278DC0DD00DC7815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752946B1278DC0DD00DC7815 /* Preview Assets.xcassets */; };
 		752946C3278DC10300DC7815 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C2278DC10300DC7815 /* MapView.swift */; };
 		752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C4278DC13400DC7815 /* StopwatchManager.swift */; };
-		752946D9278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
-		752946DA278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
-		752946DB278DF00700DC7815 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 752946D8278DF00700DC7815 /* GoogleService-Info.plist */; };
-		75399F1A279D204C00063CFC /* Lepus in Resources */ = {isa = PBXBuildFile; fileRef = 75399F19279D204C00063CFC /* Lepus */; };
 		75399F1C279D207100063CFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75399F1B279D207100063CFC /* User.swift */; };
+		75399F1F279D26D600063CFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75399F1E279D26D600063CFC /* GoogleService-Info.plist */; };
 		7594C741279317A100C4C20F /* TabViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabViewUI.swift */; };
 		7594C74327931F0B00C4C20F /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* ProfileTabView.swift */; };
 		75D1CE502799EA470048EE28 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1CE4F2799EA470048EE28 /* Run.swift */; };
@@ -125,9 +122,9 @@
 		752946B4278DC0DD00DC7815 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		752946C2278DC10300DC7815 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		752946C4278DC13400DC7815 /* StopwatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
-		752946D8278DF00700DC7815 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		75399F19279D204C00063CFC /* Lepus */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Lepus; sourceTree = "<group>"; };
+		75399F19279D204C00063CFC /* Lepus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lepus; sourceTree = "<group>"; };
 		75399F1B279D207100063CFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		75399F1E279D26D600063CFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
@@ -193,7 +190,7 @@
 		7529467D278DC0D900DC7815 = {
 			isa = PBXGroup;
 			children = (
-				752946D8278DF00700DC7815 /* GoogleService-Info.plist */,
+				75399F1E279D26D600063CFC /* GoogleService-Info.plist */,
 				91E73902278DD61100502C0A /* Fonts */,
 				75294688278DC0D900DC7815 /* Lepus */,
 				75294698278DC0DB00DC7815 /* Lepus WatchKit App */,
@@ -438,12 +435,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75399F1F279D26D600063CFC /* GoogleService-Info.plist in Resources */,
 				75294691278DC0DB00DC7815 /* Preview Assets.xcassets in Resources */,
 				91E7390C278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */,
-				752946D9278DF00700DC7815 /* GoogleService-Info.plist in Resources */,
 				9113D9E4279586E70064D028 /* Rubik-Medium.ttf in Resources */,
 				91E73908278DD6B700502C0A /* Rubik-Regular.ttf in Resources */,
-				75399F1A279D204C00063CFC /* Lepus in Resources */,
 				7529468E278DC0DB00DC7815 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,7 +449,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7529469A278DC0DC00DC7815 /* Assets.xcassets in Resources */,
-				752946DA278DF00700DC7815 /* GoogleService-Info.plist in Resources */,
 				91E73909278DD6B700502C0A /* Rubik-Regular.ttf in Resources */,
 				91E7390D278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */,
 				9113D9E5279586E70064D028 /* Rubik-Medium.ttf in Resources */,
@@ -466,7 +461,6 @@
 			files = (
 				752946B2278DC0DD00DC7815 /* Preview Assets.xcassets in Resources */,
 				752946AF278DC0DD00DC7815 /* Assets.xcassets in Resources */,
-				752946DB278DF00700DC7815 /* GoogleService-Info.plist in Resources */,
 				9113D9E7279586ED0064D028 /* Rubik-Regular.ttf in Resources */,
 				9113D9E6279586E70064D028 /* Rubik-Medium.ttf in Resources */,
 				9113D9E8279586F00064D028 /* Sansita-BoldItalic.ttf in Resources */,
