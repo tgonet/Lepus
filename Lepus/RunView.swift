@@ -42,7 +42,7 @@ struct RunView: View {
                     VStack{
                         Text("Avg Pace")
                             .font(Font.custom("Rubik-Regular", size:12))
-                        Text("\(String(format: "%.2f", stopwatchManager.avePace))\"")
+                        Text("\(stopwatchManager.avePaceStr)")
                             .font(Font.custom("Sansita-BoldItalic", size:32))
                     }
                 }.padding(10)

@@ -19,6 +19,7 @@ class StopwatchManager : ObservableObject{
     var calMin:Int?
     var calHr:Int?
     @Published var timeStr = "00:00:00"
+    @Published var avePaceStr = "0:00"
     @Published var mode: stopWatchMode = .onLoad
     var timer = Timer()
     @Published var lineCoordinates:[CLLocationCoordinate2D] = []
@@ -51,6 +52,7 @@ class StopwatchManager : ObservableObject{
             
             self.doubleTime = Double(self.secondsElapsed)
             self.avePace = ((self.doubleTime / 60) / self.distance).isInfinite ? 0.00 : (self.doubleTime / 60) / self.distance
+            //self.avePaceStr = "\(Int(self.avePace)):\(self.avePace - Int(self.avePace))"
         }
     }
     

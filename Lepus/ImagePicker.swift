@@ -1,6 +1,6 @@
 //
-//  ImagePicker.swift
-//  Pods
+//  File.swift
+//  Lepus
 //
 //  Created by Tan Ming Zhe on 24/1/22.
 //
@@ -47,4 +47,3 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
     }
 }
-

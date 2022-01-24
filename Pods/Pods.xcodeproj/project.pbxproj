@@ -10212,7 +10212,6 @@
 		755158B17C9693BD548436F5B70359F0 /* transport_security_grpc.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = transport_security_grpc.cc; path = src/core/tsi/transport_security_grpc.cc; sourceTree = "<group>"; };
 		755177EF8BA2ADFDD7F86E2AAD6CD732 /* crypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypto.h; path = src/include/openssl/crypto.h; sourceTree = "<group>"; };
 		7552EFAA101C2A4787BC15C4CEA08A46 /* urandom.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = urandom.c; path = src/crypto/fipsmodule/rand/urandom.c; sourceTree = "<group>"; };
-		757608C9279ED7440050C055 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = ../Lepus/ImagePicker.swift; sourceTree = "<group>"; };
 		758E1AC8489589C78FA310488736FECD /* log_format.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = log_format.h; path = db/log_format.h; sourceTree = "<group>"; };
 		75A361FBC3429800512556F14CB8F87F /* FIRStorageUpdateMetadataTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRStorageUpdateMetadataTask.m; path = FirebaseStorage/Sources/FIRStorageUpdateMetadataTask.m; sourceTree = "<group>"; };
 		75A8DDA1C13805B0EAAF1A2D82F3CE13 /* server_credentials.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = server_credentials.h; path = include/grpcpp/security/server_credentials.h; sourceTree = "<group>"; };
@@ -15230,7 +15229,6 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
-				757608C9279ED7440050C055 /* ImagePicker.swift */,
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				EDC425B38001698F5BA7A5DC03CB2F47 /* Frameworks */,
 				EA82FCC7129C03508511D71854026F90 /* Pods */,

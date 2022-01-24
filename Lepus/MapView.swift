@@ -33,7 +33,7 @@ struct MapView: UIViewRepresentable {
         let polylines = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
         view.addOverlay(polylines)
         //view.region.center = view.userLocation.coordinate
-        print(#function, view.region.span)
+        //print(#function, view.region.span)
     }
 
     func makeCoordinator() -> Coordinator {

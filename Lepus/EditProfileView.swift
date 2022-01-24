@@ -13,6 +13,7 @@ struct EditProfileView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showingAlert = false
     @State private var showingImagePicker = false
+    @State private var imageChanged = false
     @State private var inputImage: UIImage?
     @State private var height:String = ""
     @State private var weight:String = ""
@@ -28,19 +29,35 @@ struct EditProfileView: View {
     
     var body: some View {
         VStack(spacing:0){
-            KFImage.url(url)
-                .placeholder{image.clipShape(Circle()).frame(width: 100.0, height: 100.0)}
-                .resizable()
-                .loadDiskFileSynchronously()
-                .cacheOriginalImage()
-                .onProgress { receivedSize, totalSize in  }
-                .onSuccess { result in  }
-                .onFailure { error in }
-                .clipShape(Circle()).frame(width: 100.0, height: 100.0)
+            if(imageChanged){
+                image.resizable().clipShape(Circle()).frame(width: 100.0, height: 100.0)
+            }
+            else{
+                KFImage.url(url)
+                    .placeholder{image}
+                    .resizable()
+                    .loadDiskFileSynchronously()
+                    .cacheOriginalImage()
+                    .onProgress { receivedSize, totalSize in  }
+                    .onSuccess { result in  }
+                    .onFailure { error in }
+                    .clipShape(Circle()).frame(width: 100.0, height: 100.0)
+            }
             Button(action: {showingImagePicker = true}, label: {
                 Text("Change profile image").padding().font(Font.custom("Rubik-Medium", size:16)).padding(.bottom, 20)
             })
             
+            HStack(alignment:.center, spacing:10){
+                Text("Name").padding(.leading,20)
+                TextField("Name", text: $firebaseManager.name)
+                    .autocapitalization(.none)
+                    .font(Font.custom("Rubik-Regular", size:18))
+                    .foregroundColor(Color("AccentColor"))
+                    .disableAutocorrection(true) .multilineTextAlignment(.trailing).padding(.trailing, 20)
+                }
+                .padding(.vertical,10)
+                .background(Color.white)
+            Divider()
             HStack(alignment:.center, spacing:10){
                 Text("Gender").padding(.leading,20)
                 Menu {
@@ -80,12 +97,17 @@ struct EditProfileView: View {
                 }
                 .padding(.vertical,10)
                 .background(Color.white)
+            
             Text("We will use these information to provide you with more accurate results").frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .center).multilineTextAlignment(.center).foregroundColor(Color("TextColor")).padding(.top, 30)
             Spacer()
         }.navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar {
             Button("Save") {
                 print("Help tapped!")
-                firebaseManager.updateProfile(id: Auth.auth().currentUser!.uid, weight: firebaseManager.weight, height: firebaseManager.height, name: Auth.auth().currentUser!.displayName!, gender: firebaseManager.gender)
+                firebaseManager.updateProfile(weight: firebaseManager.weight, height: firebaseManager.height, name: firebaseManager.name, gender: firebaseManager.gender)
+                if(imageChanged){
+                    upload(imagetoUpload: inputImage!)
+                }
+                
                 showingAlert = true
             }.alert("Profile updated", isPresented: $showingAlert) {
                 Button("Ok", role: .none) {
@@ -94,12 +116,39 @@ struct EditProfileView: View {
             }
         }.background(Color("BackgroundColor")).fullScreenCover(isPresented: $showingImagePicker) {
             ImagePicker(image: $inputImage)
-        }.onChange(of: image) { _ in loadImage() }
+        }.onChange(of: inputImage) { _ in loadImage() }
     }
     
     func loadImage() {
         guard let inputImage = inputImage else { return }
+        imageChanged = true
         image = Image(uiImage: inputImage)
+    }
+    
+    func upload(imagetoUpload: UIImage) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference().child("\(UUID())")
+        let firebaseManager = FirebaseManager()
+    
+        // Convert the image into JPEG and compress the quality to reduce its size
+        let data = imagetoUpload.jpegData(compressionQuality: 0.2)
+        // Change the content type to jpg. If you don't, it'll be saved as application/octet-stream type
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        // Upload the image
+        if let data = data {
+            storageRef.putData(data, metadata: metadata) { (metadata, error) in
+                if let error = error {
+                    print("Error while uploading file: ", error)
+                }
+            
+            // To get URL for display in run history
+            storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
+                firebaseManager.updateProfilePic(url: url!)
+                    })
+            }
+        }
     }
 }
 

@@ -18,7 +18,6 @@ struct ProfileTabView: View {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor.clear
-        //user = Auth.auth().currentUser
         firebaseManager.readRuns() 
     }
     
@@ -65,7 +64,7 @@ struct ProfileTabView: View {
                     RoundedRectangle(cornerRadius: 13)
                         .stroke(Color("AccentColor"), lineWidth: 1)).padding(.horizontal).padding(.vertical,10).fixedSize(horizontal: false, vertical: true)
                 
-                List(firebaseManager.runList) {run in
+                List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
                     RunRow(run: run, url: user!.photoURL!)
                     }.listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
@@ -89,11 +88,13 @@ struct ProfileTabView_Previews: PreviewProvider {
 struct RunRow: View {
     var run : Run
     let url:URL?
+    let dateFormatter = DateFormatter()
     
     init(run:Run, url:URL){
         self.run = run
         self.url = url
-        print("HIHII\(url)")
+        dateFormatter.locale = Locale(identifier: "en_SG")
+        dateFormatter.dateFormat = "dd MMM YYYY HH:mm a"
     }
 
     var body: some View {
@@ -111,7 +112,7 @@ struct RunRow: View {
                 
                 Text(run.name)
                     .font(Font.custom("Rubik-Regular", size:16))
-                Text(run.date)
+                Text(dateFormatter.string(from: run.date))
                     .font(Font.custom("Rubik-Regular", size:12))
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
