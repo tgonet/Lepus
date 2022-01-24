@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E163B7B279EEA8B009C3EDB /* MessageUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E163B7A279EEA8B009C3EDB /* MessageUser.swift */; };
+		0E163B7F279EEAAA009C3EDB /* chatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E163B7C279EEAAA009C3EDB /* chatRow.swift */; };
+		0E163B80279EEAAA009C3EDB /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E163B7D279EEAAA009C3EDB /* chatModel.swift */; };
+		0E163B81279EEAAA009C3EDB /* chatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E163B7E279EEAAA009C3EDB /* chatView.swift */; };
 		0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A1E5278E973D00E55FAA /* RegisterView.swift */; };
 		75268B722793DA1600657768 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75268B712793DA1600657768 /* NavigationBar.swift */; };
 		7529468C278DC0D900DC7815 /* RunTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529468B278DC0D900DC7815 /* RunTabView.swift */; };
@@ -26,6 +30,7 @@
 		752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C4278DC13400DC7815 /* StopwatchManager.swift */; };
 		75399F1C279D207100063CFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75399F1B279D207100063CFC /* User.swift */; };
 		75399F1F279D26D600063CFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75399F1E279D26D600063CFC /* GoogleService-Info.plist */; };
+		757608CB279ED8860050C055 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757608CA279ED8860050C055 /* ImagePicker.swift */; };
 		7594C741279317A100C4C20F /* TabViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabViewUI.swift */; };
 		7594C74327931F0B00C4C20F /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* ProfileTabView.swift */; };
 		75D1CE502799EA470048EE28 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1CE4F2799EA470048EE28 /* Run.swift */; };
@@ -99,6 +104,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E163B7A279EEA8B009C3EDB /* MessageUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUser.swift; sourceTree = "<group>"; };
+		0E163B7C279EEAAA009C3EDB /* chatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatRow.swift; sourceTree = "<group>"; };
+		0E163B7D279EEAAA009C3EDB /* chatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
+		0E163B7E279EEAAA009C3EDB /* chatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatView.swift; sourceTree = "<group>"; };
 		0EF6A1E5278E973D00E55FAA /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		0F835AF3D54FACE0CB19AF84 /* Pods-Lepus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus.release.xcconfig"; path = "Target Support Files/Pods-Lepus/Pods-Lepus.release.xcconfig"; sourceTree = "<group>"; };
 		4FBC0700A1D6DFA389D5985E /* Pods_Lepus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +135,7 @@
 		75399F1B279D207100063CFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75399F1E279D26D600063CFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
+		757608CA279ED8860050C055 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		75D1CE4D2799E9D40048EE28 /* Lepus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lepus.xcdatamodel; sourceTree = "<group>"; };
@@ -231,6 +241,10 @@
 		75294688278DC0D900DC7815 /* Lepus */ = {
 			isa = PBXGroup;
 			children = (
+				0E163B7D279EEAAA009C3EDB /* chatModel.swift */,
+				0E163B7C279EEAAA009C3EDB /* chatRow.swift */,
+				0E163B7E279EEAAA009C3EDB /* chatView.swift */,
+				0E163B7A279EEA8B009C3EDB /* MessageUser.swift */,
 				75399F1B279D207100063CFC /* User.swift */,
 				75D1CE4F2799EA470048EE28 /* Run.swift */,
 				9175E027279D3D9C00B0AD4A /* Message.swift */,
@@ -252,6 +266,7 @@
 				75F20308279BC61200D9CE78 /* EditProfileView.swift */,
 				9163762E279B213F0075E367 /* CoreDataManager.swift */,
 				91918B792797CECC00278A54 /* ViewExtension.swift */,
+				757608CA279ED8860050C055 /* ImagePicker.swift */,
 				75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
@@ -565,6 +580,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E163B7F279EEAAA009C3EDB /* chatRow.swift in Sources */,
+				0E163B80279EEAAA009C3EDB /* chatModel.swift in Sources */,
+				0E163B81279EEAAA009C3EDB /* chatView.swift in Sources */,
+				0E163B7B279EEA8B009C3EDB /* MessageUser.swift in Sources */,
 				75399F1C279D207100063CFC /* User.swift in Sources */,
 				75D1CE572799EDED0048EE28 /* RunView.swift in Sources */,
 				75D1CE562799EDE70048EE28 /* LepusApp.swift in Sources */,
@@ -572,6 +591,7 @@
 				75D1CE502799EA470048EE28 /* Run.swift in Sources */,
 				7529468C278DC0D900DC7815 /* RunTabView.swift in Sources */,
 				917934C22792F97200DCFAC2 /* LoginView.swift in Sources */,
+				757608CB279ED8860050C055 /* ImagePicker.swift in Sources */,
 				7594C741279317A100C4C20F /* TabViewUI.swift in Sources */,
 				0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */,
 				75268B722793DA1600657768 /* NavigationBar.swift in Sources */,

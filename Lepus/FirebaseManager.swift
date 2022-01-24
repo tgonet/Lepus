@@ -18,8 +18,8 @@ class FirebaseManager : ObservableObject{
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     @Published var runList:[Run] = []
-    @Published var height = "0.00"
-    @Published var weight = "0.00"
+    @Published var height = 0.00
+    @Published var weight = 0.00
     @Published var gender = "Male"
     @Published var name = ""
     
@@ -71,8 +71,8 @@ class FirebaseManager : ObservableObject{
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()!
-                self.weight = data["weight"] as! String
-                self.height = data["height"] as! String
+                self.weight = data["weight"] as! Double
+                self.height = data["height"] as! Double
                 self.name = data["name"] as! String
                 self.gender = data["gender"] as! String
             } else {
@@ -81,7 +81,7 @@ class FirebaseManager : ObservableObject{
         }
     }
     
-    func updateProfile(id:String, weight:String, height:String, name:String, gender:String){
+    func updateProfile(id:String, weight:Double, height:Double, name:String, gender:String){
         let docRef = db.collection("users").document(id)
         docRef.updateData([
             "weight": weight,

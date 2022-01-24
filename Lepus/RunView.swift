@@ -107,15 +107,6 @@ struct RunView: View {
         }
     }
     
-    func saveRun(duration:String, pace:Double, distance:Double, url:String, coord:CLLocationCoordinate2D){
-
-
-        
-
-        
-    }
-     
-    
     func generateSnapshot(width: CGFloat, height: CGFloat, lineCoord:[CLLocationCoordinate2D]) {
         
         let polyLine = MKPolyline(coordinates: lineCoord, count: lineCoord.count)
