@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E163B7B279EEA8B009C3EDB /* MessageUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E163B7A279EEA8B009C3EDB /* MessageUser.swift */; };
+		0E163B7F279EEAAA009C3EDB /* chatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E163B7C279EEAAA009C3EDB /* chatRow.swift */; };
+		0E163B80279EEAAA009C3EDB /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E163B7D279EEAAA009C3EDB /* chatModel.swift */; };
+		0E163B81279EEAAA009C3EDB /* chatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E163B7E279EEAAA009C3EDB /* chatView.swift */; };
 		0EF6A1E6278E973D00E55FAA /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A1E5278E973D00E55FAA /* RegisterView.swift */; };
 		75268B722793DA1600657768 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75268B712793DA1600657768 /* NavigationBar.swift */; };
 		7529468C278DC0D900DC7815 /* RunTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529468B278DC0D900DC7815 /* RunTabView.swift */; };
@@ -99,6 +103,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E163B7A279EEA8B009C3EDB /* MessageUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUser.swift; sourceTree = "<group>"; };
+		0E163B7C279EEAAA009C3EDB /* chatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatRow.swift; sourceTree = "<group>"; };
+		0E163B7D279EEAAA009C3EDB /* chatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
+		0E163B7E279EEAAA009C3EDB /* chatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatView.swift; sourceTree = "<group>"; };
 		0EF6A1E5278E973D00E55FAA /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		0F835AF3D54FACE0CB19AF84 /* Pods-Lepus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus.release.xcconfig"; path = "Target Support Files/Pods-Lepus/Pods-Lepus.release.xcconfig"; sourceTree = "<group>"; };
 		4FBC0700A1D6DFA389D5985E /* Pods_Lepus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +239,10 @@
 		75294688278DC0D900DC7815 /* Lepus */ = {
 			isa = PBXGroup;
 			children = (
+				0E163B7D279EEAAA009C3EDB /* chatModel.swift */,
+				0E163B7C279EEAAA009C3EDB /* chatRow.swift */,
+				0E163B7E279EEAAA009C3EDB /* chatView.swift */,
+				0E163B7A279EEA8B009C3EDB /* MessageUser.swift */,
 				75399F1B279D207100063CFC /* User.swift */,
 				75D1CE4F2799EA470048EE28 /* Run.swift */,
 				9175E027279D3D9C00B0AD4A /* Message.swift */,
@@ -565,6 +577,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E163B7F279EEAAA009C3EDB /* chatRow.swift in Sources */,
+				0E163B80279EEAAA009C3EDB /* chatModel.swift in Sources */,
+				0E163B81279EEAAA009C3EDB /* chatView.swift in Sources */,
+				0E163B7B279EEA8B009C3EDB /* MessageUser.swift in Sources */,
 				75399F1C279D207100063CFC /* User.swift in Sources */,
 				75D1CE572799EDED0048EE28 /* RunView.swift in Sources */,
 				75D1CE562799EDE70048EE28 /* LepusApp.swift in Sources */,

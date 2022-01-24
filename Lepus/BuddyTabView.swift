@@ -25,9 +25,9 @@ struct BuddyTabView: View {
     ]
     
     let messages = [
-            Message(user: "Ming Zhe", datetime: "12:00PM", content: "Hello, what time are we meeting?"),
-            Message(user: "Ye Cheng", datetime:"10:00AM", content:"Hi, I'm Ye Cheng!"),
-            Message(user: "Joey", datetime:"8:00AM", content:"Hi there, I'm Joey!")
+        Message(user: "Ming Zhe", datetime: Date(), content: "Hello, what time are we meeting?"),
+        Message(user: "Ye Cheng", datetime:Date(), content:"Hi, I'm Ye Cheng!"),
+        Message(user: "Joey", datetime:Date(), content:"Hi there, I'm Joey!")
         ]
     
     var body: some View {
@@ -157,7 +157,9 @@ struct MessageListItem:View{
                     Text(message.user)
                         .font(Font.custom("Rubik-Medium", size:16))
                     Spacer()
-                    Text(message.datetime)
+                    let dateFormatter = DateFormatter()
+                    let datetime =  dateFormatter.string(from: message.datetime)
+                    Text(datetime)
                         .font(Font.custom("Rubik-Regular", size:14))
                 }
                 Text(message.content)
