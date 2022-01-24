@@ -22,7 +22,6 @@ class User : Codable{
         self.name = name
         self.profilePic = profilePic
     }
-    
 }
 */
 
@@ -31,4 +30,7 @@ struct User:Codable{
     var email: String
     var name: String
     var profilePic: String
+    var height:String
+    var weight:String
+    var gender:String
 }
