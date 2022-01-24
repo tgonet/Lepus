@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 class FirebaseManager : ObservableObject{
+    /*
     var ref: DatabaseReference!
     @Published var runList:[Run] = []
     
@@ -31,5 +32,6 @@ class FirebaseManager : ObservableObject{
                 }
         }
     }
+     */
     
 }

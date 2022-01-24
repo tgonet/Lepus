@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FirebaseDatabase
+//import FirebaseDatabase
 import FirebaseAuth
 
 struct RegisterView: View {
@@ -136,7 +136,7 @@ struct RegisterView: View {
             NavigationLink(destination: TabViewUI(), tag: 1, selection: $selection) {
                 Button(action:{
                     hideKeyboard()
-                    registerUser(email: email, name: name, password: password, confirmPass: confirmPassword)
+                    //registerUser(email: email, name: name, password: password, confirmPass: confirmPassword)
                 }, label:{
                     HStack{
                         Spacer(minLength: 0)
@@ -166,6 +166,7 @@ struct RegisterView: View {
             }
         }
     }
+        /*
 func registerUser(email:String,name:String, password:String,confirmPass:String){
     if(password == confirmPass){
         showAlert = false
@@ -213,8 +214,8 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
             isLoading = false
         }
     }
+         */
 }
-
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {

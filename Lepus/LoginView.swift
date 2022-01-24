@@ -7,9 +7,11 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFirestore
 
 struct LoginView: View {
     let container = CoreDataManager.shared
+    let db = Firestore.firestore()
     @State private var email:String = ""
     @State private var password:String = ""
     @State private var showPassword = false
@@ -126,8 +128,29 @@ struct LoginView: View {
                 authFail = true
                 return
             }
-            
+            /*
             let uid = result!.user.uid
+            let ref = db.collection("users").document(uid)
+            ref.getDocument { (document, error) in
+                let result = Result {
+                    try document?.data(as: User(userId: uid, email: <#T##String#>, name: <#T##String#>, profilePic: <#T##String?#>))
+                    }
+                    switch result {
+                    case .success(let user):
+                        if let user = user {
+                            print("\(user!.userId), \(user!.email), \(user!.name), \(user!.profilePic ?? "")")
+                            container.StoreUser(user: user!)
+                            self.Redirect = true
+                        } else {
+                            print("Document does not exist")
+                        }
+                    case .failure(let error):
+                        // A `City` value could not be initialized from the DocumentSnapshot.
+                        print("Error decoding city: \(error)")
+                    }
+            }
+             */
+            /*
             var ref: DatabaseReference!
             ref = Database.database().reference()
             ref.child("users/\(uid)").getData(completion: {error, snapshot in
@@ -145,6 +168,7 @@ struct LoginView: View {
                 container.StoreUser(user: user!)
                 self.Redirect = true
             })
+             */
         })
     }
 }

@@ -106,7 +106,7 @@ struct RunView: View {
             .background(Color("BackgroundColor"))
         }
     }
-    
+    /*
     func saveRun(duration:String, pace:Double, distance:Double, url:String, coord:CLLocationCoordinate2D){
         let user = Auth.auth().currentUser
         var ref: DatabaseReference!
@@ -122,6 +122,7 @@ struct RunView: View {
         self.presentationMode.wrappedValue.dismiss()
         
     }
+     */
     
     func generateSnapshot(width: CGFloat, height: CGFloat, lineCoord:[CLLocationCoordinate2D]) {
         
@@ -213,7 +214,7 @@ struct RunView: View {
             
             // To get URL for display in run history
             storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
-                saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, url: url!.absoluteString, coord: coord)
+                //saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, url: url!.absoluteString, coord: coord)
                     })
             }
         }

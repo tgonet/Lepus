@@ -109,6 +109,5 @@ class CoreDataManager{
 
 class CoreDataUserManager: ObservableObject{
     @Published var user:User = CoreDataManager().isLoggedIn()
-    @Published var buddies:[User] = CoreDataManager().getBuddies()
 }
 
