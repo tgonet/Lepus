@@ -13,6 +13,7 @@ struct BuddyTabView: View {
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
     //let user:Firebase.User = Auth.auth().currentUser!
+    /*
     let users:[BuddyRecoUser] = [
         BuddyRecoUser(name: "Joey", profilePic: URL(string: "https://instagram.fsin2-1.fna.fbcdn.net/v/t51.2885-19/s320x320/51685961_246382309580298_7945062956360794112_n.jpg?_nc_ht=instagram.fsin2-1.fna.fbcdn.net&_nc_cat=106&_nc_ohc=df1nko7vrqMAX8etMpC&edm=ABfd0MgBAAAA&ccb=7-4&oh=00_AT8ksztLd0auWZhm_NVQheduCz7Lsz2VhzRIJXPQZn5qug&oe=61F3D2EF&_nc_sid=7bff83")),
         BuddyRecoUser(name: "Ye Cheng", profilePic: URL(string: "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/placeholder.jpeg?alt=media&token=1701b9cd-8f50-4a9a-bc99-cddb913c7ff0")),
@@ -29,7 +30,7 @@ struct BuddyTabView: View {
             Message(user: "Ye Cheng", datetime:"10:00AM", content:"Hi, I'm Ye Cheng!"),
             Message(user: "Joey", datetime:"8:00AM", content:"Hi there, I'm Joey!")
         ]
-    
+    */
     var body: some View {
         ZStack{
             VStack{
@@ -61,7 +62,7 @@ struct BuddyTabView: View {
                     .foregroundColor(Color.black)
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
-                    
+                    /*
                     ScrollView (.horizontal, showsIndicators: false) {
                         HStack{
                             ForEach(users) {
@@ -80,6 +81,7 @@ struct BuddyTabView: View {
                         .frame(height: 50)
                         .padding(.horizontal)
                         .padding(.vertical, 20)
+                     */
                  }
                 .padding(.vertical, 12)
                 .background(
@@ -99,6 +101,7 @@ struct BuddyTabView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
+                    /*
                     List(messages) {
                         message in
                         MessageListItem(message:message)
@@ -106,6 +109,7 @@ struct BuddyTabView: View {
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
                     })
+                     */
                 }
                 .padding(.vertical, 12)
             }

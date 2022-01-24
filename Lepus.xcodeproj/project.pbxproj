@@ -42,6 +42,7 @@
 		9113D9E7279586ED0064D028 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		9113D9E8279586F00064D028 /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
 		9163762F279B213F0075E367 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163762E279B213F0075E367 /* CoreDataManager.swift */; };
+		9167552B279EE565008FB654 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9167552A279EE565008FB654 /* MessageListView.swift */; };
 		9175E028279D3D9C00B0AD4A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175E027279D3D9C00B0AD4A /* Message.swift */; };
 		9175E02A279D4C7900B0AD4A /* BuddyRecoUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175E029279D4C7900B0AD4A /* BuddyRecoUser.swift */; };
 		9175E02C279EBA1A00B0AD4A /* BuddyTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175E02B279EBA1A00B0AD4A /* BuddyTabView.swift */; };
@@ -133,6 +134,7 @@
 		75F2C4CA2799569800D7F261 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		9113D9E3279586E70064D028 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		9163762E279B213F0075E367 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		9167552A279EE565008FB654 /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		9175E027279D3D9C00B0AD4A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		9175E029279D4C7900B0AD4A /* BuddyRecoUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyRecoUser.swift; sourceTree = "<group>"; };
 		9175E02B279EBA1A00B0AD4A /* BuddyTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyTabView.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				75399F1B279D207100063CFC /* User.swift */,
 				75D1CE4F2799EA470048EE28 /* Run.swift */,
 				9175E027279D3D9C00B0AD4A /* Message.swift */,
+				9167552A279EE565008FB654 /* MessageListView.swift */,
 				9175E029279D4C7900B0AD4A /* BuddyRecoUser.swift */,
 				75294689278DC0D900DC7815 /* LepusApp.swift */,
 				7594C740279317A100C4C20F /* TabViewUI.swift */,
@@ -580,6 +583,7 @@
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
 				75D1CE542799EC320048EE28 /* Lepus.xcdatamodeld in Sources */,
 				91918B7A2797CECC00278A54 /* ViewExtension.swift in Sources */,
+				9167552B279EE565008FB654 /* MessageListView.swift in Sources */,
 				9175E028279D3D9C00B0AD4A /* Message.swift in Sources */,
 				7594C74327931F0B00C4C20F /* ProfileTabView.swift in Sources */,
 				75F2C4CB2799569800D7F261 /* FirebaseManager.swift in Sources */,
