@@ -8,9 +8,11 @@
 import SwiftUI
 import Firebase
 import Kingfisher
+import Accelerate
 
 struct ProfileTabView: View {
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
+    @ObservedObject var CDManager = CoreDataUserManager()
     @State var user:Firebase.User? = Auth.auth().currentUser
     @State private var Redirect = false
     
@@ -35,6 +37,19 @@ struct ProfileTabView: View {
                         .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)
                     Text(user!.displayName!)
                     Spacer()
+                    
+                    Button(action: {
+                        do{
+                            try Auth.auth().signOut()
+                            CoreDataManager().LogOutUser(user:CDManager.user!)
+                        }
+                        catch let error as NSError{
+                            
+                        }
+                        
+                    }, label: {
+                        Text("Logout")
+                    })
                 }
                     .padding(.horizontal, 15)
                     .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)

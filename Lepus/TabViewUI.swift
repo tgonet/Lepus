@@ -16,7 +16,7 @@ struct TabViewUI: View {
     var body: some View {
         NavigationView {
             TabView {
-                BuddyView()
+                BuddyTabView()
                     .tabItem{
                         Label("Buddies", systemImage:"person.2.fill")
                     }

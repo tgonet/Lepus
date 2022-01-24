@@ -7,6 +7,8 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 import MapKit
 import SwiftUI
 
@@ -92,5 +94,37 @@ class FirebaseManager : ObservableObject{
                 print("Document successfully updated")
             }
         }
+    }
+/*
+    func getUser(from uid:String, completion: @escaping User? -> ()){
+        var user:User?
+        let ref = db.collection("users").document(uid)
+        ref.getDocument{ (document, error) in
+            let result = Result {
+                try document?.data(as: User.self)
+                }
+                switch result {
+                case .success(let u):
+                    if let u = u {
+                        print("\(u.userId!), \(u.email), \(u.name), \(u.profilePic)")
+                        user = u
+                    } else {
+                        print("Document does not exist")
+                    }
+                case .failure(let error):
+                    print("Error decoding user: \(error)")
+                }
+        }
+        print(user ?? "nil")
+        completion(user)
+    }
+ */
+    
+    func getBuddies(){
+        let docRef =
+    }
+    
+    func getMessageList(){
+        
     }
 }

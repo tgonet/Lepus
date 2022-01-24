@@ -1,14 +1,14 @@
 //
-//  BuddyView.swift
+//  BuddyTabView.swift
 //  Lepus
 //
-//  Created by Aw Joey on 22/1/22.
+//  Created by Aw Joey on 24/1/22.
 //
 
 import SwiftUI
-import Firebase
 import Kingfisher
-struct BuddyView: View {
+
+struct BuddyTabView: View {
     @State var searchText = ""
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
@@ -115,9 +115,9 @@ struct BuddyView: View {
     }
 }
 
-struct BuddyView_Previews: PreviewProvider {
+struct BuddyTabView_Previews: PreviewProvider {
     static var previews: some View {
-        BuddyView()
+        BuddyTabView()
     }
 }
 
