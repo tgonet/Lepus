@@ -15,6 +15,11 @@ struct EditProfileView: View {
     var gender = ["Male", "Female"]
     @State private var selectedGender = "Male"
     @State var url:URL? = Auth.auth().currentUser?.photoURL ?? URL(string: "")
+    @ObservedObject var firebaseManager = FirebaseManager()
+    
+    init(){
+        firebaseManager.getprofileDetails(id: Auth.auth().currentUser!.uid)
+    }
     
     var body: some View {
         VStack(spacing:0){
@@ -32,13 +37,13 @@ struct EditProfileView: View {
             HStack(alignment:.center, spacing:10){
                 Text("Gender").padding(.leading,20)
                 Menu {
-                    Picker("Please select your gender", selection: $selectedGender) {
+                    Picker("Please select your gender", selection: $firebaseManager.gender) {
                                     ForEach(gender, id: \.self) {
                                         Text($0).font(Font.custom("Rubik-Regular", size:18))
                                     }
                     }
                 } label:{
-                    Text(selectedGender)
+                    Text(firebaseManager.gender)
                         .font(Font.custom("Rubik-Regular", size:18))
                 }.frame(minWidth: 200, maxWidth: UIScreen.main.bounds.width, alignment: .trailing).padding(.trailing, 20)
             }
@@ -47,9 +52,10 @@ struct EditProfileView: View {
             
             HStack(alignment:.center, spacing:10){
                 Text("Height").padding(.leading,20)
-                TextField("Height", text: $height)
+                TextField("Height", text: $firebaseManager.height)
                     .autocapitalization(.none)
                     .font(Font.custom("Rubik-Regular", size:18))
+                    .foregroundColor(Color("AccentColor"))
                     .disableAutocorrection(true) .multilineTextAlignment(.trailing).padding(.trailing, 20).keyboardType(.numberPad)
                 }
                 .padding(.vertical,10)
@@ -58,7 +64,7 @@ struct EditProfileView: View {
             HStack(alignment:.center, spacing:10){
                 Text("Weight").padding(.leading,20)
                 Spacer()
-                TextField("Weight", text: $weight)
+                TextField("Weight", text: $firebaseManager.weight)
                     .autocapitalization(.none)
                     .font(Font.custom("Rubik-Regular", size:18))
                     .foregroundColor(Color("AccentColor"))
@@ -72,6 +78,7 @@ struct EditProfileView: View {
         }.navigationTitle("Profile").toolbar {
             Button("Save") {
                 print("Help tapped!")
+                firebaseManager.updateProfile(id: Auth.auth().currentUser!.uid, weight: firebaseManager.weight, height: firebaseManager.height, name: Auth.auth().currentUser!.displayName!, gender: firebaseManager.gender)
             }
         }.background(Color("BackgroundColor"))
     }
