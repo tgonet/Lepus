@@ -23,6 +23,8 @@ class FirebaseManager : ObservableObject{
     @Published var gender = "Male"
     @Published var name = ""
     
+    @Published var recoList:[BuddyRecoUser] = []
+    
     func readRuns(){
         db.collection("runs").whereField("userId", isEqualTo: user!.uid).addSnapshotListener{ (querySnapshot, err) in
             if let err = err {
@@ -141,15 +143,101 @@ class FirebaseManager : ObservableObject{
     }
  */
     
-    /*
     func getBuddies(){
-        
+        var recouidList:[String] = []
+        var buddyReco:BuddyRecoUser?
+        let uid = user!.uid
+        var buddyList:[String] = []
+        let buddyRef = db.collection("Buddies").document(uid)
+        buddyRef.getDocument{(document,error) in
+            if let document = document, document.exists {
+                buddyList = document.data()!["buddyList"]! as! [String]
+                print(buddyList[0])
+              }
+            else {
+                print("Document does not exist")
+            }
+            let userStatRef = self.db.collection("BuddyRecommendation").document(uid)
+            userStatRef.getDocument{(document,error) in
+                if let document = document, document.exists {
+                    buddyList.append(uid)
+                    // TO DO: compare stats
+                    self.db.collection("BuddyRecommendation")
+                        .whereField("userId", notIn: buddyList)
+                        .getDocuments(){ (querySnapshot, err) in
+                            if let err = err {
+                                print("Error getting documents: \(err)")
+                            }
+                            else {
+                                for document in querySnapshot!.documents {
+                                    recouidList.append(document.documentID)
+                                    print("\(document.documentID) => \(document.data())")
+                                }
+                            }
+                            
+                            self.db.collection("Users")
+                                .getDocuments(){(querySnapshot, err) in
+                                    if let err = err {
+                                        print("Error getting documents: \(err)")
+                                    }
+                                    else {
+                                        for document in querySnapshot!.documents {
+                                            print("\(document.documentID) => \(document.data())")
+                                            for uid in recouidList
+                                            {
+                                                if (document.documentID == uid)
+                                                {
+                                                    let data = document.data()
+                                                    let name = data["name"] as Any
+                                                    let profilePic = data["profilePic"] as Any
+                                                    let buddyReco:BuddyRecoUser = BuddyRecoUser(name: name as! String, profilePic: profilePic as! String)
+                                                    self.recoList.append(buddyReco)
+                                                    //recouidList.removeFirst()
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                        }
+                    }
+                else
+                {
+                    print("Document does not exist")
+                }
+                
+                
+            }
+            
+        }
     }
     
-    func getMessageList(){
-        
+    func getMessageList()->[Message]{
+        var messageList:[Message] = []
+        var message:Message?
+        let uid = user!.uid
+        let ref = db.collection("MessageGroup")
+            .whereField("users", arrayContains: uid)
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    /*
+                    let data = document.data()
+                    let date = data as Any
+                    let pace = data["Pace"] as Any
+                    let name = data["Name"] as Any
+                    let distance = data["Distance"] as Any
+                    let duration = data["Duration"] as Any
+                    let url = data["Url"] as Any
+                    self.runList.append(Run(name: name as! String, date: date as! Date, distance: distance as! Double, pace: pace as! Double, duration: duration as! String, url:url as! String))
+                     */
+                }
+            }
+        }
+        return messageList
     }
-     */
 }
 
 

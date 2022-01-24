@@ -11,26 +11,14 @@ import Kingfisher
 struct BuddyTabView: View {
     @State var searchText = ""
     @ObservedObject var CDManager = CoreDataUserManager()
-    @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
-    //let user:Firebase.User = Auth.auth().currentUser!
-    /*
-    let users:[BuddyRecoUser] = [
-        BuddyRecoUser(name: "Joey", profilePic: URL(string: "https://instagram.fsin2-1.fna.fbcdn.net/v/t51.2885-19/s320x320/51685961_246382309580298_7945062956360794112_n.jpg?_nc_ht=instagram.fsin2-1.fna.fbcdn.net&_nc_cat=106&_nc_ohc=df1nko7vrqMAX8etMpC&edm=ABfd0MgBAAAA&ccb=7-4&oh=00_AT8ksztLd0auWZhm_NVQheduCz7Lsz2VhzRIJXPQZn5qug&oe=61F3D2EF&_nc_sid=7bff83")),
-        BuddyRecoUser(name: "Ye Cheng", profilePic: URL(string: "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/placeholder.jpeg?alt=media&token=1701b9cd-8f50-4a9a-bc99-cddb913c7ff0")),
-        BuddyRecoUser(name: "Ming Zhe", profilePic: nil),
-        BuddyRecoUser(name: "Joern", profilePic: URL(string: "")),
-        BuddyRecoUser(name: "Zhi Qi", profilePic: URL(string: "")),
-        BuddyRecoUser(name: "Wei Yang", profilePic: URL(string: "")),
-        BuddyRecoUser(name: "Zheng Hao", profilePic: URL(string: "")),
-        BuddyRecoUser(name: "Edgar", profilePic: URL(string: ""))
-    ]
+    @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
     
     let messages = [
         Message(user: "Ming Zhe", datetime: Date(), content: "Hello, what time are we meeting?"),
         Message(user: "Ye Cheng", datetime:Date(), content:"Hi, I'm Ye Cheng!"),
         Message(user: "Joey", datetime:Date(), content:"Hi there, I'm Joey!")
         ]
-    */
+    
     var body: some View {
         ZStack{
             VStack{
@@ -62,11 +50,11 @@ struct BuddyTabView: View {
                     .foregroundColor(Color.black)
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
-                    /*
+                    
                     ScrollView (.horizontal, showsIndicators: false) {
                         HStack{
-                            ForEach(users) {
-                                user in BuddyRecommendationItem(url: user.profilePic, name: user.name)
+                            ForEach(FBManager.recoList) {
+                                user in BuddyRecommendationItem(url: URL(string:user.profilePic), name: user.name)
                                     .padding(8)
                                 }
                             }
@@ -76,7 +64,7 @@ struct BuddyTabView: View {
                                     .padding(8)
                                 }
                             }
-                             */
+                             
                          }
                         .frame(height: 50)
                         .padding(.horizontal)
@@ -101,7 +89,7 @@ struct BuddyTabView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
-                    /*
+                    
                     List(messages) {
                         message in
                         MessageListItem(message:message)
@@ -109,7 +97,7 @@ struct BuddyTabView: View {
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
                     })
-                     */
+                    
                 }
                 .padding(.vertical, 12)
             }
@@ -117,6 +105,7 @@ struct BuddyTabView: View {
         .ignoresSafeArea(.all, edges: .top)
         .background(Color("BackgroundColor"))
     }
+}
 }
 
 struct BuddyTabView_Previews: PreviewProvider {
