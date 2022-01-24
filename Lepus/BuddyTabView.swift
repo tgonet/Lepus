@@ -19,6 +19,10 @@ struct BuddyTabView: View {
         Message(user: "Joey", datetime:Date(), content:"Hi there, I'm Joey!")
         ]
     
+    init() {
+        FBManager.getBuddies()
+    }
+    
     var body: some View {
         ZStack{
             VStack{
@@ -64,12 +68,12 @@ struct BuddyTabView: View {
                                     .padding(8)
                                 }
                             }
+                             */
                              
                          }
                         .frame(height: 50)
                         .padding(.horizontal)
                         .padding(.vertical, 20)
-                     */
                  }
                 .padding(.vertical, 12)
                 .background(
@@ -105,7 +109,6 @@ struct BuddyTabView: View {
         .ignoresSafeArea(.all, edges: .top)
         .background(Color("BackgroundColor"))
     }
-}
 }
 
 struct BuddyTabView_Previews: PreviewProvider {

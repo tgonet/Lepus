@@ -153,6 +153,7 @@ class FirebaseManager : ObservableObject{
             if let document = document, document.exists {
                 buddyList = document.data()!["buddyList"]! as! [String]
                 print(buddyList[0])
+                print("hi my buddy")
               }
             else {
                 print("Document does not exist")
@@ -175,16 +176,18 @@ class FirebaseManager : ObservableObject{
                                 }
                             }
                             
-                            self.db.collection("Users")
+                            self.db.collection("users")
                                 .getDocuments(){(querySnapshot, err) in
                                     if let err = err {
                                         print("Error getting documents: \(err)")
                                     }
                                     else {
                                         for document in querySnapshot!.documents {
-                                            print("\(document.documentID) => \(document.data())")
+                                            //print("\(document.documentID) => \(document.data())")
                                             for uid in recouidList
                                             {
+                                                print(uid)
+                                                print(document.documentID)
                                                 if (document.documentID == uid)
                                                 {
                                                     let data = document.data()
@@ -192,6 +195,7 @@ class FirebaseManager : ObservableObject{
                                                     let profilePic = data["profilePic"] as Any
                                                     let buddyReco:BuddyRecoUser = BuddyRecoUser(name: name as! String, profilePic: profilePic as! String)
                                                     self.recoList.append(buddyReco)
+                                                    print(buddyReco.name)
                                                     //recouidList.removeFirst()
                                                 }
                                             }
