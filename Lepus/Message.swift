@@ -6,16 +6,23 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-class Message:Identifiable{
+struct Message:Identifiable,Codable,Hashable{
     let id = UUID()
     var user:String
-    var datetime:String
+    var datetime:Date
     var content:String
     
-    init(user:String, datetime:String, content:String){
+    init(user:String, datetime:Date, content:String){
         self.user = user
         self.datetime = datetime
         self.content = content
+    }
+    enum CodingKeys: String,CodingKey {
+        case id
+        case user
+        case datetime
+        case content
     }
 }
