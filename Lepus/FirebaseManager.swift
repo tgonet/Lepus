@@ -120,11 +120,12 @@ class FirebaseManager : ObservableObject{
     }
  */
     
+    /*
     func getBuddies(){
-        let docRef =
     }
     
     func getMessageList(){
         
     }
+     */
 }
