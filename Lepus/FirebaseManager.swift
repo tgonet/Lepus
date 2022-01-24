@@ -8,14 +8,15 @@
 import Foundation
 import Firebase
 import MapKit
+import SwiftUI
 
 class FirebaseManager : ObservableObject{
     
     var ref: DocumentReference? = nil
     let db = Firestore.firestore()
     @Published var runList:[Run] = []
-    @Published var height = ""
-    @Published var weight = ""
+    @Published var height = "0.00"
+    @Published var weight = "0.00"
     @Published var gender = "Male"
     @Published var name = ""
     
