@@ -106,23 +106,15 @@ struct RunView: View {
             .background(Color("BackgroundColor"))
         }
     }
-    /*
+    
     func saveRun(duration:String, pace:Double, distance:Double, url:String, coord:CLLocationCoordinate2D){
-        let user = Auth.auth().currentUser
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_SG")
-        dateFormatter.dateFormat = "dd MMM YYYY H:mm a"
-        let date = dateFormatter.string(from: Date())
-        let myDict:[String: Any] = ["Duration":duration, "Pace":pace, "Distance":distance, "Startlatitude":"\(coord.latitude)", "Startlongitude":"\(coord.longitude)", "Url":url,  "Date": date, "Name": user!.displayName!, "userId":user!.uid]
 
-        ref.child("Runs").childByAutoId().setValue(myDict)
-        self.stopwatchManager.stop()
-        self.presentationMode.wrappedValue.dismiss()
+
+        
+
         
     }
-     */
+     
     
     func generateSnapshot(width: CGFloat, height: CGFloat, lineCoord:[CLLocationCoordinate2D]) {
         
@@ -198,6 +190,7 @@ struct RunView: View {
     func upload(imagetoUpload: UIImage, coord:CLLocationCoordinate2D) {
         let storage = Storage.storage()
         let storageRef = storage.reference().child("\(UUID())")
+        let firebaseManager = FirebaseManager()
     
         // Convert the image into JPEG and compress the quality to reduce its size
         let data = imagetoUpload.jpegData(compressionQuality: 0.2)
@@ -214,7 +207,9 @@ struct RunView: View {
             
             // To get URL for display in run history
             storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
-                //saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, url: url!.absoluteString, coord: coord)
+                firebaseManager.saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, url: url!.absoluteString, coord: coord)
+                self.stopwatchManager.stop()
+                self.presentationMode.wrappedValue.dismiss()
                     })
             }
         }

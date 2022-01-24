@@ -17,7 +17,7 @@ struct ProfileTabView: View {
     init() {
         UITableView.appearance().backgroundColor = UIColor.clear
         //user = Auth.auth().currentUser
-        //firebaseManager.readRuns() MZ u need change this
+        firebaseManager.readRuns() 
     }
     
     var body: some View {
@@ -49,13 +49,13 @@ struct ProfileTabView: View {
                 }.padding(7).overlay(
                     RoundedRectangle(cornerRadius: 13)
                         .stroke(Color("AccentColor"), lineWidth: 1)).padding(.horizontal).padding(.vertical,10).fixedSize(horizontal: false, vertical: true)
-                /*
+                
                 List(firebaseManager.runList) {run in
                     RunRow(run: run, url: user!.photoURL!)
                     }.listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
                     })
-                 */
+                 
             }
         }.ignoresSafeArea(.all, edges: .top)
     }

@@ -128,6 +128,7 @@ struct LoginView: View {
                 authFail = true
                 return
             }
+            self.Redirect = true
             /*
             let uid = result!.user.uid
             let ref = db.collection("users").document(uid)
