@@ -10,12 +10,17 @@ import Firebase
 import Kingfisher
 
 struct EditProfileView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @State private var showingAlert = false
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
     @State private var height:String = ""
     @State private var weight:String = ""
     var gender = ["Male", "Female"]
     @State private var selectedGender = "Male"
     @State var url:URL? = Auth.auth().currentUser?.photoURL ?? URL(string: "")
     @ObservedObject var firebaseManager = FirebaseManager()
+    @State var image:Image = Image("profileImg")
     
     init(){
         firebaseManager.getprofileDetails(id: Auth.auth().currentUser!.uid)
@@ -24,7 +29,7 @@ struct EditProfileView: View {
     var body: some View {
         VStack(spacing:0){
             KFImage.url(url)
-                .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 100.0, height: 100.0)}
+                .placeholder{image.clipShape(Circle()).frame(width: 100.0, height: 100.0)}
                 .resizable()
                 .loadDiskFileSynchronously()
                 .cacheOriginalImage()
@@ -32,7 +37,9 @@ struct EditProfileView: View {
                 .onSuccess { result in  }
                 .onFailure { error in }
                 .clipShape(Circle()).frame(width: 100.0, height: 100.0)
-            Text("Change profile image").padding().font(Font.custom("Rubik-Medium", size:16)).padding(.bottom, 20)
+            Button(action: {showingImagePicker = true}, label: {
+                Text("Change profile image").padding().font(Font.custom("Rubik-Medium", size:16)).padding(.bottom, 20)
+            })
             
             HStack(alignment:.center, spacing:10){
                 Text("Gender").padding(.leading,20)
@@ -52,7 +59,7 @@ struct EditProfileView: View {
             
             HStack(alignment:.center, spacing:10){
                 Text("Height").padding(.leading,20)
-                TextField("Height", text: $firebaseManager.height)
+                TextField("Height", value: $firebaseManager.height, format: .number)
                     .autocapitalization(.none)
                     .font(Font.custom("Rubik-Regular", size:18))
                     .foregroundColor(Color("AccentColor"))
@@ -64,7 +71,7 @@ struct EditProfileView: View {
             HStack(alignment:.center, spacing:10){
                 Text("Weight").padding(.leading,20)
                 Spacer()
-                TextField("Weight", text: $firebaseManager.weight)
+                TextField("Weight", value: $firebaseManager.weight, format: .number)
                     .autocapitalization(.none)
                     .font(Font.custom("Rubik-Regular", size:18))
                     .foregroundColor(Color("AccentColor"))
@@ -75,12 +82,24 @@ struct EditProfileView: View {
                 .background(Color.white)
             Text("We will use these information to provide you with more accurate results").frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .center).multilineTextAlignment(.center).foregroundColor(Color("TextColor")).padding(.top, 30)
             Spacer()
-        }.navigationTitle("Profile").toolbar {
+        }.navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar {
             Button("Save") {
                 print("Help tapped!")
                 firebaseManager.updateProfile(id: Auth.auth().currentUser!.uid, weight: firebaseManager.weight, height: firebaseManager.height, name: Auth.auth().currentUser!.displayName!, gender: firebaseManager.gender)
+                showingAlert = true
+            }.alert("Profile updated", isPresented: $showingAlert) {
+                Button("Ok", role: .none) {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }
-        }.background(Color("BackgroundColor"))
+        }.background(Color("BackgroundColor")).fullScreenCover(isPresented: $showingImagePicker) {
+            ImagePicker(image: $inputImage)
+        }.onChange(of: image) { _ in loadImage() }
+    }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
 }
 
