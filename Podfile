@@ -8,7 +8,7 @@ target 'Lepus' do
   # Pods for Lepus
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift'
+  pod 'FirebaseFirestoreSwift','8.3.0-beta'
   pod 'Firebase/Storage'
   pod 'Kingfisher', '~> 7.1'
 

@@ -18,11 +18,12 @@ struct LoginView: View {
     @State private var Redirect = false
     @State private var authFail = false
     @ObservedObject var CDManager = CoreDataUserManager()
-    
+    @ObservedObject var FBManager = FirebaseManager()
+    /*
     init(){
         print(CDManager.user.userId)
     }
-
+     */
     var body: some View {
             ZStack{
                 VStack{
@@ -121,54 +122,32 @@ struct LoginView: View {
             
     }
     func Login(email:String, password:String){
-        var user:User?
         let auth = Auth.auth()
         auth.signIn(withEmail: email, password: password, completion: { result, error in
             guard result != nil, error == nil else{
                 authFail = true
                 return
             }
-            /*
             let uid = result!.user.uid
+            //user = FBManager.getUser(uid: uid)
             let ref = db.collection("users").document(uid)
             ref.getDocument { (document, error) in
                 let result = Result {
-                    try document?.data(as: User(userId: uid, email: <#T##String#>, name: <#T##String#>, profilePic: <#T##String?#>))
+                    try document?.data(as: User.self)
                     }
                     switch result {
                     case .success(let user):
                         if let user = user {
-                            print("\(user!.userId), \(user!.email), \(user!.name), \(user!.profilePic ?? "")")
-                            container.StoreUser(user: user!)
+                            print("\(user.userId), \(user.email), \(user.name), \(user.profilePic)")
+                            container.StoreUser(user: user)
                             self.Redirect = true
                         } else {
                             print("Document does not exist")
                         }
                     case .failure(let error):
-                        // A `City` value could not be initialized from the DocumentSnapshot.
-                        print("Error decoding city: \(error)")
+                        print("Error decoding user: \(error)")
                     }
             }
-             */
-            /*
-            var ref: DatabaseReference!
-            ref = Database.database().reference()
-            ref.child("users/\(uid)").getData(completion: {error, snapshot in
-                guard error == nil else {
-                    print(error!.localizedDescription)
-                    return;
-                }
-                print("managed to get ref")
-                let value = snapshot.value as? NSDictionary
-                let email:String = value?["Email"] as? String ?? ""
-                let name:String = value?["Name"] as? String ?? ""
-                let profilePic:String? = value?["ProfilePic"] as! String?
-                user = User(userId: uid, email: email, name: name, profilePic:profilePic)
-                print("\(user!.userId), \(user!.email), \(user!.name), \(user!.profilePic ?? "")")
-                container.StoreUser(user: user!)
-                self.Redirect = true
-            })
-             */
         })
     }
 }

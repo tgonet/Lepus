@@ -52,7 +52,7 @@ class CoreDataManager{
                 user.userId = cdUser[0].userId!
                 user.email = cdUser[0].email!
                 user.name = cdUser[0].name!
-                user.profilePic = cdUser[0].profilePic
+                user.profilePic = cdUser[0].profilePic!
             }
             
         }catch let error as NSError {
@@ -81,6 +81,7 @@ class CoreDataManager{
     }
     
     // For development testing
+    /*
     func getUsers()->[User]{
         let fetchRequest:NSFetchRequest<CDUser> =  CDUser.fetchRequest()
         
@@ -105,6 +106,7 @@ class CoreDataManager{
         
         return userList
     }
+     */
 }
 
 class CoreDataUserManager: ObservableObject{
