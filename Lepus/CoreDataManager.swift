@@ -40,18 +40,18 @@ class CoreDataManager{
     }
     
     // Check if user has already been logged in
-    func isLoggedIn()->User?{
+    func isLoggedIn()->User{
         let fetchRequest:NSFetchRequest<CDUser> =  CDUser.fetchRequest()
-        var user:User?
+        var user:User = User(userId: "", email: "", name: "", profilePic: "", height: 0, weight: 0, gender: "")
         do {
             
             let cdUser = try container.viewContext.fetch(fetchRequest)
             if (cdUser.count > 0)
             {
-                user!.userId = cdUser[0].userId!
-                user!.email = cdUser[0].email!
-                user!.name = cdUser[0].name!
-                user!.profilePic = cdUser[0].profilePic!
+                user.userId = cdUser[0].userId!
+                user.email = cdUser[0].email!
+                user.name = cdUser[0].name!
+                user.profilePic = cdUser[0].profilePic!
             }
             
         }catch let error as NSError {
@@ -109,6 +109,6 @@ class CoreDataManager{
 }
 
 class CoreDataUserManager: ObservableObject{
-    @Published var user:User = CoreDataManager().isLoggedIn()
+    @Published var user:User? = CoreDataManager().isLoggedIn()
 }
 

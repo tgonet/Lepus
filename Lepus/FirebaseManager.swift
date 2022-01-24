@@ -16,6 +16,7 @@ class FirebaseManager : ObservableObject{
     
     var ref: DocumentReference? = nil
     let db = Firestore.firestore()
+    let user = Auth.auth().currentUser
     @Published var runList:[Run] = []
     @Published var height = "0.00"
     @Published var weight = "0.00"
@@ -122,6 +123,7 @@ class FirebaseManager : ObservableObject{
     
     /*
     func getBuddies(){
+        
     }
     
     func getMessageList(){
