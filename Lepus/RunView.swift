@@ -106,6 +106,8 @@ struct RunView: View {
                             }
                             else{
                                 CoreDataManager().saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, startLatitude: stopwatchManager.lineCoordinates[0].latitude, startLongitude: stopwatchManager.lineCoordinates[0].longitude)
+                                self.stopwatchManager.stop()
+                                self.presentationMode.wrappedValue.dismiss()
                             }
                             
                         }

@@ -18,6 +18,10 @@ struct RunTabView: View {
     @State var selection: Int? = nil
     @State private var tabBar: UITabBar! = nil
     
+    init(){
+        print(selection)
+    }
+    
     var body: some View {
         NavigationView {
             ZStack{

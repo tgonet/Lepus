@@ -266,10 +266,10 @@
 				757608CE279EDA630050C055 /* ImagePicker.swift */,
 				9163762E279B213F0075E367 /* CoreDataManager.swift */,
 				91918B792797CECC00278A54 /* ViewExtension.swift */,
+				7566188F27A0379C0041A3ED /* NetworkManager.swift */,
 				75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
-				7566188F27A0379C0041A3ED /* NetworkManager.swift */,
 			);
 			path = Lepus;
 			sourceTree = "<group>";
