@@ -75,7 +75,7 @@ struct EditProfileView: View {
                 .background(Color.white).padding(.bottom,40)
             
             HStack(alignment:.center, spacing:10){
-                Text("Height(M)").padding(.leading,20)
+                Text("Height (M)").padding(.leading,20)
                 TextField("Height", value: $firebaseManager.height, format: .number)
                     .autocapitalization(.none)
                     .font(Font.custom("Rubik-Regular", size:18))
@@ -86,7 +86,7 @@ struct EditProfileView: View {
                 .background(Color.white)
             Divider()
             HStack(alignment:.center, spacing:10){
-                Text("Weight(KG)").padding(.leading,20)
+                Text("Weight (KG)").padding(.leading,20)
                 Spacer()
                 TextField("Weight", value: $firebaseManager.weight, format: .number)
                     .autocapitalization(.none)

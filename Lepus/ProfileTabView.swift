@@ -16,6 +16,7 @@ struct ProfileTabView: View {
     @State var user:Firebase.User? = Auth.auth().currentUser
     @State private var Redirect = false
     @State private var logOut = false
+    @State private var tabBar: UITabBar! = nil
     
     init() {
         UITableView.appearance().backgroundColor = UIColor.clear
@@ -23,52 +24,61 @@ struct ProfileTabView: View {
     }
     
     var body: some View {
-        ZStack {
-            VStack{
-                HStack{
-                    KFImage.url(user?.photoURL)
-                        .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)}
-                        .resizable()
-                        .loadDiskFileSynchronously()
-                        .cacheOriginalImage()
-                        .onProgress { receivedSize, totalSize in  }
-                        .onSuccess { result in  }
-                        .onFailure { error in }
-                        .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)
-                    Text(user!.displayName!)
-                    Spacer()
-                    
-                    Button(action: {
-                        LogOut()
-                    }, label: {
-                        Text("Logout")
-                        .font(Font.custom("Rubik-Medium", size:15))
-                    }).padding(.vertical,12)
-                }
-                    .padding(.horizontal, 15)
-                    .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
-                HStack{
-                    Button(action: {}, label: {Text("10 Buddies").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
-                    //Spacer()
-                    Divider()
-                    NavigationLink(destination: EditProfileView(), isActive: $Redirect) {
-                        Button(action: {self.Redirect = true}, label: {Text("Edit Profile").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
+        NavigationView {
+            ZStack {
+                VStack{
+                    HStack{
+                        KFImage.url(user?.photoURL)
+                            .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)}
+                            .resizable()
+                            .loadDiskFileSynchronously()
+                            .cacheOriginalImage()
+                            .onProgress { receivedSize, totalSize in  }
+                            .onSuccess { result in  }
+                            .onFailure { error in }
+                            .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)
+                        Text(user!.displayName!)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            LogOut()
+                        }, label: {
+                            Text("Logout")
+                            .font(Font.custom("Rubik-Medium", size:15))
+                        }).padding(.vertical,12)
                     }
+                        .padding(.horizontal, 15)
+                        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+                    HStack{
+                        Button(action: {}, label: {Text("10 Buddies").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
+                        //Spacer()
+                        Divider()
+                        NavigationLink(destination: EditProfileView()
+                                        .onAppear { self.tabBar.isHidden = true }     // !!
+                                        .onDisappear { self.tabBar.isHidden = false } , isActive: $Redirect) {
+                            Button(action: {self.Redirect = true}, label: {Text("Edit Profile").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
+                        }
 
-                }.padding(7).overlay(
-                    RoundedRectangle(cornerRadius: 13)
-                        .stroke(Color("AccentColor"), lineWidth: 1)).padding(.horizontal).padding(.vertical,10).fixedSize(horizontal: false, vertical: true)
-                
-                List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
-                    RunRow(run: run, url: user!.photoURL!)
-                    }.listStyle(GroupedListStyle()).onAppear(perform: {
-                        UITableView.appearance().contentInset.top = -35
-                    })
-                 
-            }
-        }.ignoresSafeArea(.all, edges: .top)
+                    }.padding(7).overlay(
+                        RoundedRectangle(cornerRadius: 13)
+                            .stroke(Color("AccentColor"), lineWidth: 1)).padding(.horizontal).padding(.vertical,10).fixedSize(horizontal: false, vertical: true)
+                    
+                    List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
+                        RunRow(run: run, url: user!.photoURL!)
+                        }.listStyle(GroupedListStyle()).onAppear(perform: {
+                            UITableView.appearance().contentInset.top = -35
+                        })
+                     
+                }
+            }.ignoresSafeArea(.all, edges: .top).background(TabBarAccessor { tabbar in   // << here !!
+                self.tabBar = tabbar
+                })
+        }
     }
+    
     func LogOut(){
+        print("HI")
         do{
             try Auth.auth().signOut()
             CoreDataManager().LogOutUser(user:CDManager.user!)

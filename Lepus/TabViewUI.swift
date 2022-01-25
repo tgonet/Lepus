@@ -32,20 +32,21 @@ struct TabViewUI: View {
        }
     
     var body: some View {
-        NavigationView {
-            TabView {
-                BuddyTabView()
-                    .tabItem{
-                        Label("Buddies", systemImage:"person.2.fill")
-                    }
-                RunTabView()
-                    .tabItem {
-                        Label("Run",systemImage:"figure.walk")
-                    }
-                
-                ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
-            }
-        }.navigationBarHidden(true).navigationBarBackButtonHidden(true).navigationViewStyle(StackNavigationViewStyle())
+        TabView {
+            BuddyTabView()
+                .tabItem{
+                    Label("Buddies", systemImage:"person.2.fill")
+                }
+            RunTabView()
+                .tabItem {
+                    Label("Run",systemImage:"figure.walk")
+                }
+            
+            ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
+        }
+//        NavigationView {
+//
+//        }.navigationBarHidden(true).navigationBarBackButtonHidden(true).navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

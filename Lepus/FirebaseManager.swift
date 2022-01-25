@@ -117,6 +117,10 @@ class FirebaseManager : ObservableObject{
             }
         }
     }
+    
+    func addUser(uid:String, dict:[String: Any]){
+        
+    }
 /*
     func getUser(from uid:String, completion: @escaping User? -> ()){
         var user:User?
