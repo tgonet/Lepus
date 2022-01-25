@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import FirebaseDatabase
+import Firebase
 import FirebaseAuth
 
 struct RegisterView: View {
@@ -20,7 +20,7 @@ struct RegisterView: View {
     @State private var showAlert = false
     @State private var isLoading = false
       
-    
+    let db = Firestore.firestore()
     @State var selection: Int? = nil
     
     var body: some View {
@@ -136,7 +136,7 @@ struct RegisterView: View {
             NavigationLink(destination: TabViewUI(), tag: 1, selection: $selection) {
                 Button(action:{
                     hideKeyboard()
-                    //registerUser(email: email, name: name, password: password, confirmPass: confirmPassword)
+                    registerUser(email: email, name: name, password: password, confirmPass: confirmPassword)
                 }, label:{
                     HStack{
                         Spacer(minLength: 0)
@@ -166,11 +166,10 @@ struct RegisterView: View {
             }
         }
     }
-        /*
+ 
 func registerUser(email:String,name:String, password:String,confirmPass:String){
     if(password == confirmPass){
         showAlert = false
-        var ref: DatabaseReference!
         let auth = Auth.auth()
         do {
           try auth.signOut()
@@ -178,7 +177,6 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
             print(err)
         }
         
-        ref = Database.database().reference()
         auth.createUser(withEmail: email, password: password){ (result, error) in
             if error == nil {
 
@@ -189,8 +187,15 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
         sleep(5)
         let currentUser = auth.currentUser
         let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/placeholder.jpeg?alt=media&token=1701b9cd-8f50-4a9a-bc99-cddb913c7ff0"
-        let myDict:[String: String] = ["Email":email, "Name":name, "ProfilePic":url]
-        ref.child("users").child(currentUser!.uid).setValue(myDict)
+        let myDict:[String: Any] = ["email":email, "name":name, "profilePic":url, "id":currentUser!.uid, "weight":0, "height":0, "gender": "Male"]
+        let docRef = db.collection("users").document(currentUser!.uid)
+        docRef.setData(myDict) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document successfully added")
+            }
+        }
         
         let changeRequest = currentUser!.createProfileChangeRequest()
         changeRequest.displayName = name
@@ -214,7 +219,6 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
             isLoading = false
         }
     }
-         */
 }
 
 struct RegisterView_Previews: PreviewProvider {

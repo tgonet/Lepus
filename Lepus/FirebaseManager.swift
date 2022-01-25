@@ -122,8 +122,6 @@ class FirebaseManager : ObservableObject{
                                     {   //12. if freq Location close to run location
                                         latitude = (latitude * frequentLocationCount + coord.latitude)/(frequentLocationCount+1)
                                         longitude = (longitude * frequentLocationCount + coord.longitude)/(frequentLocationCount+1)
-                                        frequentLocationCount += 1
-                                        numRuns += 1
                                         
                                         userLocationRef.document(frequentLocationId).updateData([
                                             "runCount": FieldValue.increment(Int64(1))
@@ -147,8 +145,11 @@ class FirebaseManager : ObservableObject{
                                                     ])
                                                     if runCount > frequentLocationCount
                                                     {
+                                                        // error here
                                                         frequentLocationId = document.documentID
                                                         frequentLocationCount = runCount
+                                                        longitude = locLong
+                                                        latitude = locLat
                                                     }
                                                     exist = true
                                                     break;
@@ -159,8 +160,8 @@ class FirebaseManager : ObservableObject{
                                         if !exist
                                         { // 17. if exist false
                                         userLocationRef.addDocument(data: [
-                                            "latitude":coord.latitude,
-                                            "longitude":coord.longitude,
+                                            "latitude":"\(coord.latitude)",
+                                            "longitude":"\(coord.longitude)",
                                             "runCount":1]){ err in // 18. error
                                             if let err = err {//19. if error
                                                 print("Error adding document: \(err)")
@@ -168,6 +169,8 @@ class FirebaseManager : ObservableObject{
                                             } //18. error
                                         } // 17. if exist false
                                     } //13. else freq Location close to run location
+                                    frequentLocationCount += 1
+                                    numRuns += 1
                                     userRef.updateData([
                                         "statistics.avgPace":avgPace,
                                         "statistics.avgDistance":avgDistance,
@@ -237,6 +240,10 @@ class FirebaseManager : ObservableObject{
                 print("Document successfully updated")
             }
         }
+    }
+    
+    func addUser(uid:String, dict:[String: Any]){
+        
     }
 /*
     func getUser(from uid:String, completion: @escaping User? -> ()){
