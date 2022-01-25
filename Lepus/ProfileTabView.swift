@@ -15,6 +15,7 @@ struct ProfileTabView: View {
     @ObservedObject var CDManager = CoreDataUserManager()
     @State var user:Firebase.User? = Auth.auth().currentUser
     @State private var Redirect = false
+    @State private var logOut = false
     
     init() {
         UITableView.appearance().backgroundColor = UIColor.clear
@@ -38,17 +39,11 @@ struct ProfileTabView: View {
                     Spacer()
                     
                     Button(action: {
-                        do{
-                            try Auth.auth().signOut()
-                            CoreDataManager().LogOutUser(user:CDManager.user!)
-                        }
-                        catch let error as NSError{
-                            
-                        }
-                        
+                        LogOut()
                     }, label: {
                         Text("Logout")
-                    })
+                        .font(Font.custom("Rubik-Medium", size:15))
+                    }).padding(.vertical,12)
                 }
                     .padding(.horizontal, 15)
                     .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
@@ -73,6 +68,18 @@ struct ProfileTabView: View {
             }
         }.ignoresSafeArea(.all, edges: .top)
     }
+    func LogOut(){
+        do{
+            try Auth.auth().signOut()
+            CoreDataManager().LogOutUser(user:CDManager.user!)
+            print("test")
+            self.logOut = true
+        }
+        catch let error as NSError{
+            print("can't sign out")
+        }
+    }
+
 }
 
 struct ProfileTabView_Previews: PreviewProvider {
@@ -150,5 +157,6 @@ struct RunRow: View {
             Divider().background(Color("Divider"))
         }.listRowSeparator(.hidden)
     }
+    
 }
 

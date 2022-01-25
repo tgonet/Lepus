@@ -66,6 +66,7 @@ class CoreDataManager{
     {
         var cdUser:CDUser?
         cdUser!.userId = user.userId
+        cdUser!.email = user.email
         cdUser!.name = user.name
         cdUser?.profilePic = user.profilePic
         container.viewContext.delete(cdUser!)

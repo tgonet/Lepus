@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import MapKit
 import SwiftUI
+import CoreLocation
 
 class FirebaseManager : ObservableObject{
     
@@ -24,6 +25,7 @@ class FirebaseManager : ObservableObject{
     @Published var name = ""
     
     @Published var recoList:[BuddyRecoUser] = []
+    @Published var noStatistics = false
     
     func readRuns(){
         db.collection("runs").whereField("userId", isEqualTo: user!.uid).addSnapshotListener{ (querySnapshot, err) in
@@ -142,7 +144,7 @@ class FirebaseManager : ObservableObject{
         completion(user)
     }
  */
-    
+    /*
     func getBuddies(){
         var recouidList:[String] = []
         var buddyReco:BuddyRecoUser?
@@ -161,6 +163,9 @@ class FirebaseManager : ObservableObject{
             let userStatRef = self.db.collection("BuddyRecommendation").document(uid)
             userStatRef.getDocument{(document,error) in
                 if let document = document, document.exists {
+                    let data = document.data()!
+                    let userLat = data["latitude"] as Any
+                    let userLong = data["longitude"] as Any
                     buddyList.append(uid)
                     // TO DO: compare stats
                     self.db.collection("BuddyRecommendation")
@@ -208,10 +213,88 @@ class FirebaseManager : ObservableObject{
                 {
                     print("Document does not exist")
                 }
-                
-                
             }
-            
+        }
+    }
+    */
+    func getBuddies(){
+        var recouidList:[String] = []
+        var buddyReco:BuddyRecoUser?
+        let uid = user!.uid
+        var buddyList:[String] = []
+        let buddyRef = db.collection("Buddies").document(uid)
+        
+        var userLat:Double = 0
+        var userLong:Double = 0
+        var userCoord: CLLocation = CLLocation(latitude: 0, longitude: 0)
+        
+        var recoLat:Double = 0
+        var recoLong:Double = 0
+        var recoCoord: CLLocation = CLLocation(latitude: 0, longitude: 0)
+        
+        buddyRef.getDocument{(document,error) in
+            if let document = document, document.exists {
+                buddyList = document.data()!["buddyList"]! as! [String]
+                print(buddyList[0])
+                print("hi my buddy")
+              }
+            else {
+                print("Document does not exist")
+            }
+            let userStatRef = self.db.collection("users").document(uid)
+            userStatRef.getDocument{(document,error) in
+                if let document = document, document.exists {
+                    let data = document.data()!
+                    if let statistics = data["statistics"] as? [String: Any] {
+                        userLat = Double(statistics["latitude"] as! String)!
+                        userLong = Double(statistics["longitude"] as! String)!
+                        userCoord = CLLocation(latitude: userLat, longitude: userLong)
+                        print("user Coord \(userCoord)")
+                        buddyList.append(uid)
+                        
+                        self.db.collection("users")
+                            .whereField("id", notIn: buddyList)
+                            .getDocuments(){(querySnapshot, err) in
+                                if let err = err {
+                                    print("Error getting documents: \(err)")
+                                }
+                                else {
+                                    for document in querySnapshot!.documents {
+                                        print("\(document.documentID) => \(document.data())")
+                                            if let statistics = document.data()["statistics"] as? [String: Any] {
+                                                recoLat = Double(statistics["latitude"] as! String)!
+                                                recoLong = Double(statistics["longitude"] as! String)!
+
+                                                recoCoord = CLLocation(latitude: recoLat, longitude: recoLong)
+
+                                                let distanceInMeters = userCoord.distance(from: recoCoord)
+                                                print(distanceInMeters)
+                                                if(distanceInMeters <= 500)
+                                                {
+                                                    let name = document.data()["name"] as Any
+                                                    let profilePic = document.data()["profilePic"] as Any
+                                                    let buddyReco:BuddyRecoUser = BuddyRecoUser(name: name as! String, profilePic: profilePic as! String)
+                                                    self.recoList.append(buddyReco)
+                                                    print(buddyReco.name)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                    }
+                    else{
+                        self.noStatistics = true
+                    }
+                    buddyList.append(uid)
+                    // TO DO: compare stats
+                            
+                    
+                        }
+                else
+                {
+                    print("Document does not exist")
+                }
+            }
         }
     }
     

@@ -17,7 +17,7 @@ struct LepusApp: App {
     var body: some Scene {
         WindowGroup {
             //let user:User = container.isLoggedIn()
-            if (CDManager.user != nil)
+            if (CDManager.user?.userId != "")
             {
                 TabViewUI()
             }
