@@ -187,7 +187,7 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
         sleep(5)
         let currentUser = auth.currentUser
         let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/placeholder.jpeg?alt=media&token=1701b9cd-8f50-4a9a-bc99-cddb913c7ff0"
-        let myDict:[String: Any] = ["email":email, "name":name, "profilePic":url, "userId":currentUser?.uid, "weight":0, "height":0, "gender": "Male"]
+        let myDict:[String: Any] = ["email":email, "name":name, "profilePic":url, "id":currentUser!.uid, "weight":0, "height":0, "gender": "Male"]
         let docRef = db.collection("users").document(currentUser!.uid)
         docRef.setData(myDict) { err in
             if let err = err {
