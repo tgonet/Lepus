@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CDRun" representedClassName="CDRun" syncable="YES" codeGenerationType="class">
-        <attribute name="distance" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="pace" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String"/>
+        <attribute name="pace" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="runId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="snapshot" optional="YES" attributeType="Binary"/>
-        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="startLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="startLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="byUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRun" inverseName="byUser" inverseEntity="CDRun"/>
     </entity>
     <entity name="CDUser" representedClassName="CDUser" syncable="YES" codeGenerationType="class">
@@ -16,7 +19,7 @@
         <relationship name="runs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDRun"/>
     </entity>
     <elements>
-        <element name="CDRun" positionX="-59.21728515625" positionY="13.28762817382812" width="128" height="119"/>
+        <element name="CDRun" positionX="-59.21728515625" positionY="13.28762817382812" width="128" height="164"/>
         <element name="CDUser" positionX="-410.2501831054688" positionY="38.29745483398438" width="128" height="104"/>
     </elements>
 </model>

@@ -36,23 +36,20 @@ class FirebaseManager : ObservableObject{
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
                     let data = document.data()
+                    let id = document.documentID
                     let date = data["Date"] as? Timestamp
                     let pace = data["Pace"] as? Double
                     let name = data["Name"] as? String
                     let distance = data["Distance"] as? Double
                     let duration = data["Duration"] as? String
                     let url = data["Url"] as? String
-                    self.runList.append(Run(name: name as! String, date: date!.dateValue(), distance: distance as! Double, pace: pace as! Double, duration: duration as! String, url:url as! String))
+                    self.runList.append(Run(id:id, name: name!, date: date!.dateValue(), distance: distance!, pace: pace!, duration: duration!, url:url!))
                     }
                 }
         }
         
         }
     func saveRun(duration:String, pace:Double, distance:Double, url:String, coord:CLLocationCoordinate2D){
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_SG")
-        dateFormatter.dateFormat = "dd MMM YYYY H:mm a"
-        let date = dateFormatter.string(from: Date())
         ref = db.collection("runs").addDocument(data: [
             "Duration":duration,
             "Pace":pace,

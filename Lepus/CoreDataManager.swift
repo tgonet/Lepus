@@ -5,11 +5,13 @@
 //  Created by Aw Joey on 22/1/22.
 //
 
+import SwiftUI
 import Foundation
 import CoreData
 
 class CoreDataManager{
     static let shared = CoreDataManager()
+    var runList:[CDRun] = []
     let container:NSPersistentContainer
     
     init(){
@@ -107,6 +109,42 @@ class CoreDataManager{
         return userList
     }
      */
+    
+    func saveRun(duration:String, pace:Double, distance:Double, startLatitude:Double, startLongitude:Double){
+        let cdRun = CDRun(context: container.viewContext)
+        cdRun.pace = pace
+        cdRun.duration = duration
+        cdRun.date = Date()
+        cdRun.distance = distance
+        //cdRun.snapshot = image.pngData()
+        cdRun.startLatitude = startLatitude
+        cdRun.startLongitude = startLongitude
+        do {
+            try container.viewContext.save()
+            print("Saved Run")
+        }
+        catch let error as NSError {
+            print("Could not store run. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func getRuns()->[CDRun]{
+        let fetchRequest:NSFetchRequest<CDRun> =  CDRun.fetchRequest()
+        do {
+            
+            let cdRun = try container.viewContext.fetch(fetchRequest)
+            if (cdRun.count > 0)
+            {
+                runList = cdRun
+            }
+            
+        }catch let error as NSError {
+            print("Could not get a user. \(error), \(error.userInfo)")
+        }
+        
+        return runList
+    }
+    
 }
 
 class CoreDataUserManager: ObservableObject{
