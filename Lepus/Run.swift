@@ -8,7 +8,7 @@
 import Foundation
 
 class Run : Identifiable, Codable{
-    var id = UUID()
+    var id:String
     var name:String
     var date:Date
     var distance:Double
@@ -16,7 +16,8 @@ class Run : Identifiable, Codable{
     var duration:String
     var url:String
     
-    init(name:String, date:Date, distance:Double, pace:Double, duration:String, url:String){
+    init(id:String, name:String, date:Date, distance:Double, pace:Double, duration:String, url:String){
+        self.id = id
         self.name = name
         self.date = date
         self.distance = distance

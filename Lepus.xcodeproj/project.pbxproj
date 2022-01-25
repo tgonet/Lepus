@@ -29,6 +29,7 @@
 		752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C4278DC13400DC7815 /* StopwatchManager.swift */; };
 		75399F1C279D207100063CFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75399F1B279D207100063CFC /* User.swift */; };
 		75399F1F279D26D600063CFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75399F1E279D26D600063CFC /* GoogleService-Info.plist */; };
+		7566189027A0379C0041A3ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7566188F27A0379C0041A3ED /* NetworkManager.swift */; };
 		757608CF279EDA630050C055 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757608CE279EDA630050C055 /* ImagePicker.swift */; };
 		7594C741279317A100C4C20F /* TabViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabViewUI.swift */; };
 		7594C74327931F0B00C4C20F /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* ProfileTabView.swift */; };
@@ -133,6 +134,7 @@
 		75399F19279D204C00063CFC /* Lepus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lepus; sourceTree = "<group>"; };
 		75399F1B279D207100063CFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75399F1E279D26D600063CFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7566188F27A0379C0041A3ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		757608CE279EDA630050C055 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
@@ -269,7 +271,7 @@
 				75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
-				91A4F82D27A028AD00590C5B /* FirebaseTest.swift */,
+				7566188F27A0379C0041A3ED /* NetworkManager.swift */,
 			);
 			path = Lepus;
 			sourceTree = "<group>";
@@ -580,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7566189027A0379C0041A3ED /* NetworkManager.swift in Sources */,
 				0E163B7F279EEAAA009C3EDB /* chatRow.swift in Sources */,
 				0E163B80279EEAAA009C3EDB /* chatModel.swift in Sources */,
 				0E163B81279EEAAA009C3EDB /* chatView.swift in Sources */,
@@ -886,9 +889,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lepus/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow location access so that we can track your runs.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Please allow location access so that we can track your runs.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow location access to track your runs.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow location access to track your runs.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please give this permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -926,9 +928,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lepus/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow location access so that we can track your runs.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Please allow location access so that we can track your runs.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow location access to track your runs.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow location access to track your runs.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please give this permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

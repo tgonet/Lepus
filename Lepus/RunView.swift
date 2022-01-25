@@ -15,8 +15,13 @@ struct RunView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showingAlert = false
     @ObservedObject var stopwatchManager = StopwatchManager()
+    @ObservedObject var networkManager = NetworkManager()
     @State var span = MKCoordinateSpan(latitudeDelta: 0.0002, longitudeDelta: 0.0002)
     @State private var snapshotImage: UIImage? = nil
+    
+    init(){
+        networkManager.getConnectionStatus()
+    }
     
     var body: some View {
         ZStack {
@@ -42,7 +47,7 @@ struct RunView: View {
                     VStack{
                         Text("Avg Pace")
                             .font(Font.custom("Rubik-Regular", size:12))
-                        Text("\(stopwatchManager.avePaceStr)")
+                        Text("\(String(format: "%.2f", stopwatchManager.avePace))")
                             .font(Font.custom("Sansita-BoldItalic", size:32))
                     }
                 }.padding(10)
@@ -96,14 +101,22 @@ struct RunView: View {
                     }.padding(30).alert("Do you want to end the run?", isPresented: $showingAlert) {
                         Button("No", role: .cancel) { }
                         Button("Yes", role: .none) {
-                            generateSnapshot(width: 300, height: 300, lineCoord: stopwatchManager.lineCoordinates)
+                            if(networkManager.isConnected){
+                                generateSnapshot(width: 300, height: 300, lineCoord: stopwatchManager.lineCoordinates)
+                            }
+                            else{
+                                CoreDataManager().saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, startLatitude: stopwatchManager.lineCoordinates[0].latitude, startLongitude: stopwatchManager.lineCoordinates[0].longitude)
+                            }
+                            
                         }
                     }
                 }
             }
             .edgesIgnoringSafeArea(.top)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .background(Color("BackgroundColor"))
+            .background(Color("BackgroundColor")).onDisappear{
+                print("hi")
+            }
         }
     }
     
@@ -174,23 +187,24 @@ struct RunView: View {
 
         // end the graphics context
         UIGraphicsEndImageContext()
-        //UIImageWriteToSavedPhotosAlbum(resultImage!, nil, nil, nil)
-        upload(imagetoUpload: resultImage!, coord: lineCoord[0])
+        
+        let data = resultImage?.pngData()
+        upload(imagetoUpload: data!, coord: lineCoord[0])
     }
     
-    func upload(imagetoUpload: UIImage, coord:CLLocationCoordinate2D) {
+    func upload(imagetoUpload: Data?, coord:CLLocationCoordinate2D) {
         let storage = Storage.storage()
         let storageRef = storage.reference().child("\(UUID())")
         let firebaseManager = FirebaseManager()
     
         // Convert the image into JPEG and compress the quality to reduce its size
-        let data = imagetoUpload.jpegData(compressionQuality: 0.2)
+        //let data = imagetoUpload.jpegData(compressionQuality: 0.2)
         // Change the content type to jpg. If you don't, it'll be saved as application/octet-stream type
         let metadata = StorageMetadata()
-        metadata.contentType = "image/jpg"
+        metadata.contentType = "image/png"
         
         // Upload the image
-        if let data = data {
+        if let data = imagetoUpload {
             storageRef.putData(data, metadata: metadata) { (metadata, error) in
                 if let error = error {
                     print("Error while uploading file: ", error)
@@ -201,7 +215,7 @@ struct RunView: View {
                 firebaseManager.saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, url: url!.absoluteString, coord: coord)
                 self.stopwatchManager.stop()
                 self.presentationMode.wrappedValue.dismiss()
-                    })
+                })
             }
         }
     }

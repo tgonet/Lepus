@@ -14,7 +14,11 @@ struct RunTabView: View {
     
     var span = MKCoordinateSpan(latitudeDelta: 0.00000001, longitudeDelta: 0.0000001)
     
-    @State var selection: Int? = nil
+    @State var selection: Int? = 1
+    
+    init(){
+        print(selection)
+    }
     
     var body: some View {
         ZStack{

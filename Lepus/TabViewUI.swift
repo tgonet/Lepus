@@ -6,11 +6,29 @@
 //
 
 import SwiftUI
+import Firebase
+import CoreData
+import MapKit
 
 struct TabViewUI: View {
+    let firebaseManager = FirebaseManager()
+    var coreDataManager = CoreDataManager()
+    @ObservedObject var networkManager = NetworkManager()
+    var runList:[CDRun] = []
     
     init() {
-           UITabBar.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
+       UITabBar.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
+        networkManager.getConnectionStatus()
+        if(networkManager.isConnected){
+            runList = coreDataManager.getRuns()
+            print(runList.count)
+            if(runList.count > 0){
+                for run in runList {
+                    firebaseManager.saveRun(duration: run.duration!, pace: run.pace, distance: run.distance, url: "", coord: CLLocationCoordinate2D(latitude: run.startLatitude, longitude: run.startLongitude))
+                }
+            }
+                
+        }
        }
     
     var body: some View {
@@ -27,7 +45,7 @@ struct TabViewUI: View {
                 
                 ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
             }
-        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        }.navigationBarHidden(true).navigationBarBackButtonHidden(true).navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
