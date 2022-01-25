@@ -10,11 +10,25 @@ import Foundation
 import CoreData
 
 class CoreDataManager{
-    static let shared = CoreDataManager()
+    //static let shared = CoreDataManager()
     var runList:[CDRun] = []
-    let container:NSPersistentContainer
+    //let container:NSPersistentContainer
     
+    private static var container: NSPersistentContainer = {
+                let container = NSPersistentContainer(name: "Lepus")
+                container.loadPersistentStores { description, error in
+                    if let error = error {
+                         fatalError("Unable to load persistent stores: \(error)")
+                    }
+                }
+                return container
+            }()
+    var context: NSManagedObjectContext {
+           return Self.container.viewContext
+       }
+        /*
     init(){
+        
         container = NSPersistentContainer(name: "Lepus")
         container.loadPersistentStores {(storeDescription, error) in
             if let error = error as NSError?{
@@ -22,18 +36,19 @@ class CoreDataManager{
             }
             }
     }
+         */
     
     // Login and Register -> Store the user for persistent session
     func StoreUser(user:User)
     {
-        let cdUser = CDUser(context: container.viewContext)
+        let cdUser = CDUser(context: CoreDataManager.container.viewContext)
         cdUser.userId = user.userId
         cdUser.email = user.email
         cdUser.name = user.name
         cdUser.profilePic = user.profilePic
         
         do {
-            try container.viewContext.save()
+            try CoreDataManager.container.viewContext.save()
             print("Saved user")
         }
         catch let error as NSError {
@@ -47,7 +62,7 @@ class CoreDataManager{
         var user:User = User(userId: "", email: "", name: "", profilePic: "", height: 0, weight: 0, gender: "")
         do {
             
-            let cdUser = try container.viewContext.fetch(fetchRequest)
+            let cdUser = try CoreDataManager.container.viewContext.fetch(fetchRequest)
             if (cdUser.count > 0)
             {
                 user.userId = cdUser[0].userId!
@@ -71,13 +86,13 @@ class CoreDataManager{
         cdUser!.email = user.email
         cdUser!.name = user.name
         cdUser?.profilePic = user.profilePic
-        container.viewContext.delete(cdUser!)
+        CoreDataManager.container.viewContext.delete(cdUser!)
         
         do {
-            try container.viewContext.save()
+            try CoreDataManager.container.viewContext.save()
         }
         catch let error as NSError {
-            container.viewContext.rollback()
+            CoreDataManager.container.viewContext.rollback()
             print("Could not log out user. \(error), \(error.userInfo)")
         }
     }
@@ -111,7 +126,7 @@ class CoreDataManager{
      */
     
     func saveRun(duration:String, pace:Double, distance:Double, startLatitude:Double, startLongitude:Double){
-        let cdRun = CDRun(context: container.viewContext)
+        let cdRun = CDRun(context: CoreDataManager.container.viewContext)
         cdRun.pace = pace
         cdRun.duration = duration
         cdRun.date = Date()
@@ -120,7 +135,7 @@ class CoreDataManager{
         cdRun.startLatitude = startLatitude
         cdRun.startLongitude = startLongitude
         do {
-            try container.viewContext.save()
+            try CoreDataManager.container.viewContext.save()
             print("Saved Run")
         }
         catch let error as NSError {
@@ -132,7 +147,7 @@ class CoreDataManager{
         let fetchRequest:NSFetchRequest<CDRun> =  CDRun.fetchRequest()
         do {
             
-            let cdRun = try container.viewContext.fetch(fetchRequest)
+            let cdRun = try CoreDataManager.container.viewContext.fetch(fetchRequest)
             if (cdRun.count > 0)
             {
                 runList = cdRun

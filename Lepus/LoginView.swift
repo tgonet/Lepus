@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestore
 
 struct LoginView: View {
-    let container = CoreDataManager.shared
+    //let container = CoreDataManager.shared
     let db = Firestore.firestore()
     @State private var email:String = ""
     @State private var password:String = ""
@@ -139,7 +139,7 @@ struct LoginView: View {
                     case .success(let user):
                         if let user = user {
                             print("\(user.userId), \(user.email), \(user.name), \(user.profilePic)")
-                            container.StoreUser(user: user)
+                            CoreDataManager().StoreUser(user: user)
                             self.Redirect = true
                         } else {
                             print("Document does not exist")

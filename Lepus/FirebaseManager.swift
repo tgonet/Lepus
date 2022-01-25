@@ -120,8 +120,8 @@ class FirebaseManager : ObservableObject{
                                     
                                     if self.isDistance500OrLesser(lat1: coord.latitude, long1: coord.longitude, lat2: latitude, long2: longitude)
                                     {   //12. if freq Location close to run location
-                                        latitude = (latitude * numRuns + coord.latitude)/(numRuns+1)
-                                        longitude = (longitude * numRuns + coord.longitude)/(numRuns+1)
+                                        latitude = (latitude * frequentLocationCount + coord.latitude)/(frequentLocationCount+1)
+                                        longitude = (longitude * frequentLocationCount + coord.longitude)/(frequentLocationCount+1)
                                         frequentLocationCount += 1
                                         numRuns += 1
                                         

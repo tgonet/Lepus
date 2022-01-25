@@ -9,17 +9,17 @@
         <attribute name="snapshot" optional="YES" attributeType="Binary"/>
         <attribute name="startLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="startLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="byUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRun" inverseName="byUser" inverseEntity="CDRun"/>
+        <relationship name="byUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="runs" inverseEntity="CDUser"/>
     </entity>
     <entity name="CDUser" representedClassName="CDUser" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="profilePic" optional="YES" attributeType="String"/>
         <attribute name="userId" optional="YES" attributeType="String"/>
-        <relationship name="runs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDRun"/>
+        <relationship name="runs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDRun" inverseName="byUser" inverseEntity="CDRun"/>
     </entity>
     <elements>
-        <element name="CDRun" positionX="-59.21728515625" positionY="13.28762817382812" width="128" height="164"/>
-        <element name="CDUser" positionX="-410.2501831054688" positionY="38.29745483398438" width="128" height="104"/>
+        <element name="CDRun" positionX="-59.21728515625" positionY="13.28762817382812" width="128" height="178"/>
+        <element name="CDUser" positionX="-410.2501831054688" positionY="38.29745483398438" width="128" height="118"/>
     </elements>
 </model>
