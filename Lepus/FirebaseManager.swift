@@ -117,11 +117,11 @@ class FirebaseManager : ObservableObject{
                                     avgPace = (avgPace * numRuns + pace)/(numRuns+1)
                                     avgDistance = (avgDistance * numRuns + distance)/(numRuns+1)
                                     
-                                    if self.isDistance500OrLesser(lat1: coord.latitude, long1: coord.longitude, lat2: latitude, long2: longitude)
+                                    if self.isLocationDistance500OrLesser(lat1: coord.latitude, long1: coord.longitude, lat2: latitude, long2: longitude)
                                     {   //12. if freq Location close to run location
                                         latitude = (latitude * frequentLocationCount + coord.latitude)/(frequentLocationCount+1)
                                         longitude = (longitude * frequentLocationCount + coord.longitude)/(frequentLocationCount+1)
-                                        
+                                        frequentLocationCount += 1
                                         userLocationRef.document(frequentLocationId).updateData([
                                             "runCount": FieldValue.increment(Int64(1))
                                         ])
@@ -137,19 +137,19 @@ class FirebaseManager : ObservableObject{
                                                 let locLat = Double(data["latitude"] as! String)!
                                                 let locLong = Double(data["longitude"] as! String)!
                                                 let runCount = data["runCount"] as! Double
-                                                if self.isDistance500OrLesser(lat1: coord.latitude, long1: coord.longitude, lat2: locLat, long2: locLong)
+                                                if self.isLocationDistance500OrLesser(lat1: coord.latitude, long1: coord.longitude, lat2: locLat, long2: locLong)
                                                 { // 16. if freq Location close to run location
-                                                    userLocationRef.document(document.documentID).updateData([
-                                                        "runCount": FieldValue.increment(Int64(1))
-                                                    ])
-                                                    if runCount > frequentLocationCount
+                                                    if runCount+1 > frequentLocationCount
                                                     {
                                                         // error here
                                                         frequentLocationId = document.documentID
-                                                        frequentLocationCount = runCount
+                                                        frequentLocationCount = runCount+1
                                                         longitude = locLong
                                                         latitude = locLat
                                                     }
+                                                    userLocationRef.document(document.documentID).updateData([
+                                                        "runCount": FieldValue.increment(Int64(1))
+                                                    ])
                                                     exist = true
                                                     break;
                                                 } // 16. if freq Location close to run location
@@ -168,7 +168,6 @@ class FirebaseManager : ObservableObject{
                                             } //18. error
                                         } // 17. if exist false
                                     } //13. else freq Location close to run location
-                                    frequentLocationCount += 1
                                     numRuns += 1
                                     userRef.updateData([
                                         "statistics.avgPace":avgPace,
@@ -267,6 +266,7 @@ class FirebaseManager : ObservableObject{
  */
 
     func getBuddies(){
+        recoList = []
         let uid = user!.uid
         var buddyList:[String] = []
         let buddyRef = db.collection("Buddies").document(uid)
@@ -281,11 +281,14 @@ class FirebaseManager : ObservableObject{
         var recoPace:Double = 0
         var recoDistance:Double = 0
         
+        var LocationNear = true
+        var DistanceSimilar = true
+        var PaceSimilar = true
+        
         buddyRef.getDocument{(document,error) in
             if let document = document, document.exists {
                 buddyList = document.data()!["buddyList"]! as! [String]
-                print(buddyList[0])
-                print("hi my buddy")
+                print("Buddy 1: \(buddyList[0])")
               }
             else {
                 print("Document does not exist")
@@ -297,10 +300,13 @@ class FirebaseManager : ObservableObject{
                     if let statistics = data["statistics"] as? [String: Any] {
                         userLat = Double(statistics["latitude"] as! String)!
                         userLong = Double(statistics["longitude"] as! String)!
+                        userPace = statistics["avgPace"] as! Double
+                        userDistance = statistics["avgDistance"] as! Double
                         buddyList.append(uid)
                         
                         self.db.collection("users")
                             .whereField("id", notIn: buddyList)
+                            .limit(to: 10)
                             .getDocuments(){ [self](querySnapshot, err) in
                                 if let err = err {
                                     print("Error getting documents: \(err)")
@@ -311,21 +317,24 @@ class FirebaseManager : ObservableObject{
                                             if let statistics = document.data()["statistics"] as? [String: Any] {
                                                 recoLat = Double(statistics["latitude"] as! String)!
                                                 recoLong = Double(statistics["longitude"] as! String)!
+                                                recoPace = statistics["avgPace"] as! Double
+                                                recoDistance = statistics["avgDistance"] as! Double
                                                 
-
-                                                if(self.isDistance500OrLesser(lat1: userLat, long1: userLong, lat2: recoLat, long2: recoLong))
+                                                LocationNear = self.isLocationDistance500OrLesser(lat1: userLat, long1: userLong, lat2: recoLat, long2: recoLong)
+                                                PaceSimilar = self.isPaceSimilar(pace1: userPace, pace2: recoPace)
+                                                DistanceSimilar = self.isDistanceSimilar(distance1: userDistance, distance2: recoDistance)
+                                                
+                                                if(LocationNear||PaceSimilar||DistanceSimilar)
                                                 {
                                                     let name = document.data()["name"] as Any
                                                     let profilePic = document.data()["profilePic"] as Any
                                                     let buddyReco:BuddyRecoUser = BuddyRecoUser(name: name as! String, profilePic: profilePic as! String)
                                                     self.recoList.append(buddyReco)
                                                     print(buddyReco.name)
+                                                    print("Location near:\(LocationNear)")
+                                                    print("Pace similar:\(PaceSimilar)")
+                                                    print("Distance similar:\(DistanceSimilar)")
                                                 }
-                                                /*
-                                                else if ()
-                                                {
-                                                    
-                                                }*/
                                             }
                                         }
                                     }
@@ -343,13 +352,31 @@ class FirebaseManager : ObservableObject{
         }
     }
     
-    func isDistance500OrLesser(lat1:Double, long1:Double, lat2:Double, long2:Double)->Bool
+    func isLocationDistance500OrLesser(lat1:Double, long1:Double, lat2:Double, long2:Double)->Bool
     {
         let coord1 = CLLocation(latitude: lat1, longitude: long1)
         let coord2 = CLLocation(latitude: lat2, longitude: long2)
         let distanceInMeters = coord1.distance(from: coord2)
         print("\(distanceInMeters) in function")
         return distanceInMeters <= 500
+    }
+    
+    func isPaceSimilar(pace1:Double,pace2:Double)->Bool{
+        let paceDiff = pace1-pace2
+        if (paceDiff >= -0.5 && paceDiff <= 0.5)
+        {
+            return true
+        }
+        return false
+    }
+    
+    func isDistanceSimilar(distance1:Double, distance2:Double)->Bool{
+        let distanceDiff = distance1-distance2
+        if (distanceDiff >= -0.5 && distanceDiff <= 0.5)
+        {
+            return true
+        }
+        return false
     }
     
     func getMessageList()->[Message]{
