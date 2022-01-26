@@ -21,7 +21,7 @@ struct ProfileTabView: View {
     @State private var url = URL(string: "")
     
     init() {
-        UITableView.appearance().backgroundColor = UIColor.clear
+        UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
         firebaseManager.readRuns()
     }
     
@@ -42,9 +42,13 @@ struct ProfileTabView: View {
                             }
                         Text(name)
                         Spacer()
-                    }.padding(.horizontal, 15)
+                    }
+                    .padding(.horizontal, 15)
                     HStack{
-                        Button(action: {}, label: {Text("10 Buddies").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
+                        Button(action: {}, label:
+                                {Text("10 Buddies")
+                            .font(Font.custom("Rubik-Medium", size:15))})
+                            .frame(minWidth: 10, maxWidth: 500, alignment: .center)
                         //Spacer()
                         Divider()
                         NavigationLink(destination: EditProfileView()
@@ -52,26 +56,38 @@ struct ProfileTabView: View {
                                         .onDisappear { self.tabBar.isHidden = false } , isActive: $Redirect) {
                             EmptyView()
                         }
-                        Button(action: {self.Redirect = true}, label: {Text("Edit Profile").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
+                        Button(action: {self.Redirect = true}, label: {Text("Edit Profile")
+                            .font(Font.custom("Rubik-Medium", size:15))})
+                            .foregroundColor(Color.black)
+                            .frame(minWidth: 10, maxWidth: 500, alignment: .center)
 
-                    }.padding(7).overlay(
+                    }
+                    .padding(7).overlay(
                         RoundedRectangle(cornerRadius: 13)
-                            .stroke(Color("AccentColor"), lineWidth: 1)).padding(.horizontal).padding(.vertical,10).fixedSize(horizontal: false, vertical: true)
+                            .stroke(Color("AccentColor"), lineWidth: 1.5))
+                        .padding(.horizontal)
+                        .padding(.vertical,10)
+                        .fixedSize(horizontal: false, vertical: true)
                     
                     List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
                         RunRow(run: run, url: user.photoURL!)
-                        }.listStyle(GroupedListStyle()).onAppear(perform: {
+                        }
+                    .listStyle(GroupedListStyle()).onAppear(perform: {
                             UITableView.appearance().contentInset.top = -35
+                            
                         })
-                     
-                }.navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.onAppear(perform: {
+                }
+                .navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.onAppear(perform: {
                     self.name = user.displayName!
                     self.url = user.photoURL!
                 })
-            }.background(TabBarAccessor { tabbar in   // << here !!
+            }
+        .background(TabBarAccessor { tabbar in   // << here !!
                 self.tabBar = tabbar
             })
+        .background(Color("BackgroundColor"))
     }
+        
     
     func LogOut(){
         print("HI")
@@ -165,4 +181,5 @@ struct RunRow: View {
     }
     
 }
+
 

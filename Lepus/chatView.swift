@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 struct chatView: View {
+    var message:Message
     @StateObject var chatData = chatModel()
     @State var scrolled = false
     
@@ -69,8 +70,3 @@ struct chatView: View {
     }
 }
 
-struct chatVIew_Previews: PreviewProvider {
-    static var previews: some View {
-        chatView()
-    }
-}
