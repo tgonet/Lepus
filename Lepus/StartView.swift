@@ -60,7 +60,7 @@ struct StartView: View {
             }
             .navigationBarHidden(true)
             .edgesIgnoringSafeArea(.top)
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).onAppear(perform: { print("Fiebase: \(Auth.auth().currentUser!.displayName)")})
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
     }
 }

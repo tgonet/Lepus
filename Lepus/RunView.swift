@@ -18,10 +18,7 @@ struct RunView: View {
     @ObservedObject var networkManager = NetworkManager()
     @State private var span = MKCoordinateSpan(latitudeDelta: 0.0002, longitudeDelta: 0.0002)
     @State private var snapshotImage: UIImage? = nil
-    
-    init(){
-        networkManager.getConnectionStatus()
-    }
+
     
     var body: some View {
         ZStack {

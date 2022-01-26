@@ -14,7 +14,7 @@ class NetworkManager : ObservableObject{
     @Published var isConnected = false
     let queue = DispatchQueue(label: "InternetConnectionMonitor")
     
-    func getConnectionStatus(){
+    init(){
         monitor.pathUpdateHandler = { path in
             if path.usesInterfaceType(.wifi) || path.usesInterfaceType(.cellular){
                 if path.status == .satisfied {
