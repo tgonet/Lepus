@@ -68,9 +68,7 @@ class CoreDataManager{
                 user.userId = cdUser[0].userId!
                 user.email = cdUser[0].email!
                 user.name = cdUser[0].name!
-                user.profilePic = cdUser[0].profilePic!
-                print("Coredata: \(user.profilePic)")
-                print("Coredata: \(user.name)")
+                user.profilePic = cdUser[0].profilePic!     
             }
             
         }catch let error as NSError {
