@@ -44,10 +44,18 @@ struct RegisterView: View {
             HStack(alignment:.center, spacing:15){
                 Image(systemName: "envelope")
                 TextField("Email", text: $email)
+                    .autocapitalization(.none)
+                    .font(Font.custom("Rubik-Regular", size:18))
+                    .disableAutocorrection(true)
                 }
                 .padding(.vertical,12)
                 .padding(.horizontal)
-                .background(Color.white)
+                
+                .background(Color("TextFieldColor"))
+                .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+                .cornerRadius(10)
                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                 .padding()
@@ -55,14 +63,21 @@ struct RegisterView: View {
             HStack(spacing:15){
                 Image(systemName: "person.fill")
                 TextField("Name",text:$name)
+                    .font(Font.custom("Rubik-Regular", size:18))
+                    .disableAutocorrection(true)
 
-            }.padding(.vertical,12)
-             .padding(.horizontal)
-             .background(Color.white)
-             .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
-             .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
-             .padding()
-             .padding(.top,-15)
+            }
+            .padding(.vertical,12)
+            .padding(.horizontal)
+            
+            .background(Color("TextFieldColor"))
+            .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+            .cornerRadius(10)
+            .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+            .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+            .padding()
              
             HStack(alignment:.center, spacing:15){
                 Image(systemName: "lock")
@@ -89,13 +104,18 @@ struct RegisterView: View {
                         
                     }
                      
-                }.padding(.vertical,12)
-                 .padding(.horizontal)
-                 .background(Color.white)
-                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
-                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
-                 .padding()
-                 .padding(.top,-15)
+                }
+                .padding(.vertical,12)
+                .padding(.horizontal)
+                
+                .background(Color("TextFieldColor"))
+                .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+                .cornerRadius(10)
+                .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+                .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+                .padding()
                 
                 HStack(alignment:.center, spacing:15){
                     Image(systemName: "lock")
@@ -122,13 +142,18 @@ struct RegisterView: View {
                         
                     }
                      
-                }.padding(.vertical,12)
-                 .padding(.horizontal)
-                 .background(Color.white)
-                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
-                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
-                 .padding()
-                 .padding(.top,-15)
+                }
+                .padding(.vertical,12)
+                .padding(.horizontal)
+                
+                .background(Color("TextFieldColor"))
+                .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+                .cornerRadius(10)
+                .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+                .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+                .padding()
                 
             
             Spacer()
@@ -165,6 +190,7 @@ struct RegisterView: View {
                 .edgesIgnoringSafeArea(.top)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }
+            .background(Color("BackgroundColor"))
         }
     }
  
@@ -181,7 +207,7 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
         auth.createUser(withEmail: email, password: password){ (result, error) in
             if error == nil {
                 let currentUser = auth.currentUser
-                let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/placeholder.jpeg?alt=media&token=1701b9cd-8f50-4a9a-bc99-cddb913c7ff0"
+                let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/profileImg.png?alt=media&token=30a50d9b-aefc-4dd5-92cd-88f173b6eef8"
                 let myDict:[String: Any] = ["email":email, "name":name, "profilePic":url, "id":currentUser!.uid, "weight":50, "height":165, "gender": "Male"]
                 CoreDataManager().StoreUser(user: User(userId: currentUser?.uid, email: email, name: name, profilePic: url, height: 165, weight: 50, gender: "Male"))
                 let ref = db.collection("users").document((currentUser!.uid))
