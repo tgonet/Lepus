@@ -12,16 +12,16 @@ import Kingfisher
 struct EditProfileView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showingAlert = false
+    @State private var showingNoConnAlert = false
     @State private var showingImagePicker = false
     @State private var imageChanged = false
     @State private var inputImage: UIImage?
-    @State private var height:String = ""
-    @State private var weight:String = ""
-    var gender = ["Male", "Female"]
     @State private var selectedGender = "Male"
     @State var url:URL? = Auth.auth().currentUser?.photoURL ?? URL(string: "")
-    @ObservedObject var firebaseManager = FirebaseManager()
     @State var image:Image = Image("profileImg")
+    @ObservedObject var firebaseManager = FirebaseManager()
+    @ObservedObject var networkManager = NetworkManager()
+    var gender = ["Male", "Female"]
     
     init(){
         firebaseManager.getprofileDetails(id: Auth.auth().currentUser!.uid)
@@ -103,16 +103,22 @@ struct EditProfileView: View {
         }.navigationBarTitleDisplayMode(.inline).navigationTitle("Edit Profile").toolbar {
             Button("Save") {
                 print("Help tapped!")
-                CoreDataManager().updateUsername(name: firebaseManager.name, id: Auth.auth().currentUser!.uid)
-                firebaseManager.updateProfile(weight: firebaseManager.weight, height: firebaseManager.height, name: firebaseManager.name, gender: firebaseManager.gender)
-                if(imageChanged){
-                    upload(imagetoUpload: inputImage!)
+                if(networkManager.isConnected){
+                    CoreDataManager().updateUsername(name: firebaseManager.name, id: Auth.auth().currentUser!.uid)
+                    firebaseManager.updateProfile(weight: firebaseManager.weight, height: firebaseManager.height, name: firebaseManager.name, gender: firebaseManager.gender)
+                    if(imageChanged){
+                        /// To do async to only show alert after image is uploaded
+                        upload(imagetoUpload: inputImage!)
+                    }
+                    showingAlert = true
                 }
-                
-                showingAlert = true
             }.alert("Profile updated", isPresented: $showingAlert) {
                 Button("Ok", role: .none) {
                     self.presentationMode.wrappedValue.dismiss()
+                }
+            }.alert("No internet Connection", isPresented: $showingNoConnAlert){
+                Button("Ok", role: .none) {
+                    
                 }
             }
         }.background(Color("BackgroundColor")).fullScreenCover(isPresented: $showingImagePicker) {

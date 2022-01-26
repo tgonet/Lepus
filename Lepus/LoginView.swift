@@ -40,11 +40,14 @@ struct LoginView: View {
                         }
                         .padding(.vertical,12)
                         .padding(.horizontal)
-                        .background(Color.white)
-                        .foregroundColor(Color.black)
+                        
+                        .background(Color("TextFieldColor"))
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+                        .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
                         .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
-                        .cornerRadius(10)
                         .padding()
                     
                     HStack(alignment:.center, spacing:15){
@@ -75,11 +78,14 @@ struct LoginView: View {
                     }
                         .padding(.vertical,12)
                         .padding(.horizontal)
-                        .background(Color.white)
-                        .foregroundColor(Color.black)
+                        
+                        .background(Color("TextFieldColor"))
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+                        .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
                         .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
-                        .cornerRadius(10)
                         .padding()
                     
                     Button(action:{
@@ -100,7 +106,7 @@ struct LoginView: View {
                         .cornerRadius(10)
                         .padding()
                     })
-                        .opacity((email.isEmpty || password.isEmpty) ? 0.8:1)
+                        .opacity((email.isEmpty || password.isEmpty) ? 0.6:1)
                         .disabled((email.isEmpty || password.isEmpty))
                 
                     NavigationLink(destination: TabViewUI(), isActive: $Redirect) {

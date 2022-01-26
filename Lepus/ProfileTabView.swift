@@ -65,15 +65,13 @@ struct ProfileTabView: View {
                         })
                      
                 }.navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.onAppear(perform: {
-                    print("HI")
-                    //user = Auth.auth().currentUser
                     self.name = user.displayName!
                     self.url = user.photoURL!
-                    print(url)
                 })
             }.background(TabBarAccessor { tabbar in   // << here !!
                 self.tabBar = tabbar
             })
+            .background(Color("BackgroundColor"))
     }
     
     func LogOut(){
@@ -165,7 +163,8 @@ struct RunRow: View {
             }
             Divider().background(Color("Divider"))
         }.listRowSeparator(.hidden)
+            .background(Color("BackgroundColor"))
     }
-    
+        
 }
 

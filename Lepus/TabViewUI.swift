@@ -17,9 +17,7 @@ struct TabViewUI: View {
     var runList:[CDRun] = []
     
     init() {
-       UITabBar.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
-       
-        networkManager.getConnectionStatus()
+        UITabBar.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
         if(networkManager.isConnected){
             runList = coreDataManager.getRuns()
             //print(runList.count)
