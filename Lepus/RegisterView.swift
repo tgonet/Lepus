@@ -183,6 +183,7 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
                 let currentUser = auth.currentUser
                 let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/placeholder.jpeg?alt=media&token=1701b9cd-8f50-4a9a-bc99-cddb913c7ff0"
                 var myDict:[String: Any] = ["email":email, "name":name, "profilePic":url, "id":currentUser!.uid, "weight":50, "height":165, "gender": "Male"]
+                CoreDataManager().StoreUser(user: User(userId: currentUser?.uid, email: email, name: name, profilePic: url, height: 165, weight: 50, gender: "Male"))
                 let ref = db.collection("users").document((currentUser!.uid))
                 ref.setData(myDict,merge: true){ err in
                     if let err = err {
