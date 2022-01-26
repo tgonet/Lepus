@@ -35,7 +35,6 @@ class FirebaseManager : ObservableObject{
             } else {
                 self.runList.removeAll()
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
                     let data = document.data()
                     let id = document.documentID
                     let date = data["Date"] as? Timestamp
@@ -242,9 +241,6 @@ class FirebaseManager : ObservableObject{
         }
     }
     
-    func addUser(uid:String, dict:[String: Any]){
-        
-    }
 /*
     func getUser(from uid:String, completion: @escaping User? -> ()){
         var user:User?

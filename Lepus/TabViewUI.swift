@@ -21,7 +21,7 @@ struct TabViewUI: View {
         networkManager.getConnectionStatus()
         if(networkManager.isConnected){
             runList = coreDataManager.getRuns()
-            print(runList.count)
+            //print(runList.count)
             if(runList.count > 0){
                 for run in runList {
                     firebaseManager.saveRun(duration: run.duration!, pace: run.pace, distance: run.distance, url: "", coord: CLLocationCoordinate2D(latitude: run.startLatitude, longitude: run.startLongitude))
@@ -43,7 +43,7 @@ struct TabViewUI: View {
                 }
             
             ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
-        }
+        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
 //        NavigationView {
 //
 //        }.navigationBarHidden(true).navigationBarBackButtonHidden(true).navigationViewStyle(StackNavigationViewStyle())

@@ -16,7 +16,7 @@ struct RunView: View {
     @State private var showingAlert = false
     @ObservedObject var stopwatchManager = StopwatchManager()
     @ObservedObject var networkManager = NetworkManager()
-    @State var span = MKCoordinateSpan(latitudeDelta: 0.0002, longitudeDelta: 0.0002)
+    @State private var span = MKCoordinateSpan(latitudeDelta: 0.0002, longitudeDelta: 0.0002)
     @State private var snapshotImage: UIImage? = nil
     
     init(){
@@ -28,7 +28,6 @@ struct RunView: View {
             VStack{
                 MapView(region: MKCoordinateRegion(center: stopwatchManager.locationManager.location.coordinate, span: span),lineCoordinates: stopwatchManager.lineCoordinates).ignoresSafeArea(edges: .top).onAppear{
                     stopwatchManager.start()
-                    print("initss")
                 }
                 
                 VStack{
@@ -116,9 +115,7 @@ struct RunView: View {
             }
             .edgesIgnoringSafeArea(.top)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .background(Color("BackgroundColor")).onAppear{
-                print("hi")
-            }.navigationBarHidden(true)
+            .background(Color("BackgroundColor")).navigationBarHidden(true)
                 .navigationBarBackButtonHidden(true)
         }
     }

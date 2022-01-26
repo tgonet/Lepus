@@ -31,6 +31,7 @@
 		75399F1F279D26D600063CFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75399F1E279D26D600063CFC /* GoogleService-Info.plist */; };
 		7566189027A0379C0041A3ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7566188F27A0379C0041A3ED /* NetworkManager.swift */; };
 		757608CF279EDA630050C055 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757608CE279EDA630050C055 /* ImagePicker.swift */; };
+		7578545C27A102C2000DC53C /* BuddyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578545B27A102C2000DC53C /* BuddyProfile.swift */; };
 		7594C741279317A100C4C20F /* TabViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabViewUI.swift */; };
 		7594C74327931F0B00C4C20F /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* ProfileTabView.swift */; };
 		75D1CE502799EA470048EE28 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1CE4F2799EA470048EE28 /* Run.swift */; };
@@ -136,6 +137,7 @@
 		7566188F27A0379C0041A3ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		757608CE279EDA630050C055 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		7578545B27A102C2000DC53C /* BuddyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyProfile.swift; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		75D1CE4D2799E9D40048EE28 /* Lepus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lepus.xcdatamodel; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				9163762E279B213F0075E367 /* CoreDataManager.swift */,
 				91918B792797CECC00278A54 /* ViewExtension.swift */,
 				7566188F27A0379C0041A3ED /* NetworkManager.swift */,
+				7578545B27A102C2000DC53C /* BuddyProfile.swift */,
 				75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
@@ -602,6 +605,7 @@
 				917934C02792F96700DCFAC2 /* StartView.swift in Sources */,
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
 				75D1CE542799EC320048EE28 /* Lepus.xcdatamodeld in Sources */,
+				7578545C27A102C2000DC53C /* BuddyProfile.swift in Sources */,
 				91918B7A2797CECC00278A54 /* ViewExtension.swift in Sources */,
 				9167552B279EE565008FB654 /* MessageListView.swift in Sources */,
 				9175E028279D3D9C00B0AD4A /* Message.swift in Sources */,

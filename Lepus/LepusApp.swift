@@ -19,6 +19,7 @@ struct LepusApp: App {
             if (CDManager.user?.userId != "")
             {
                 TabViewUI()
+                
             }
             else{
                 StartView()

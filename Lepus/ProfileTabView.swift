@@ -42,14 +42,12 @@ struct ProfileTabView: View {
                         Spacer()
                         
                         Button(action: {
-                            LogOut()
+                            //LogOut()
                         }, label: {
                             Text("Logout")
                             .font(Font.custom("Rubik-Medium", size:15))
-                        }).padding(.vertical,12)
-                    }
-                        .padding(.horizontal, 15)
-                        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+                        })
+                    }.padding(.horizontal, 15).padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                     HStack{
                         Button(action: {}, label: {Text("10 Buddies").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
                         //Spacer()
@@ -57,8 +55,9 @@ struct ProfileTabView: View {
                         NavigationLink(destination: EditProfileView()
                                         .onAppear { self.tabBar.isHidden = true }     // !!
                                         .onDisappear { self.tabBar.isHidden = false } , isActive: $Redirect) {
-                            Button(action: {self.Redirect = true}, label: {Text("Edit Profile").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
+                            EmptyView()
                         }
+                        Button(action: {self.Redirect = true}, label: {Text("Edit Profile").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
 
                     }.padding(7).overlay(
                         RoundedRectangle(cornerRadius: 13)
