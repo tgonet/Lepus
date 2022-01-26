@@ -196,7 +196,7 @@ struct RegisterView: View {
  
 func registerUser(email:String,name:String, password:String,confirmPass:String){
     if(password == confirmPass){
-        let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/placeholder.jpeg?alt=media&token=1701b9cd-8f50-4a9a-bc99-cddb913c7ff0"
+        let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/profileImg.png?alt=media&token=30a50d9b-aefc-4dd5-92cd-88f173b6eef8"
         showAlert = false
         let auth = Auth.auth()
         do {
