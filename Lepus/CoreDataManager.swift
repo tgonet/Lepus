@@ -69,6 +69,8 @@ class CoreDataManager{
                 user.email = cdUser[0].email!
                 user.name = cdUser[0].name!
                 user.profilePic = cdUser[0].profilePic!
+                print("Coredata: \(user.profilePic)")
+                print("Coredata: \(user.name)")
             }
             
         }catch let error as NSError {
@@ -153,12 +155,42 @@ class CoreDataManager{
                 runList = cdRun
             }
             
-        }catch let error as NSError {
-            print("Could not get a user. \(error), \(error.userInfo)")
+        }
+        catch let error as NSError {
+            print("Could not get the runs. \(error), \(error.userInfo)")
         }
         
         return runList
     }
+    
+    func updateUsername(name:String, id:String){
+        let fetchRequest:NSFetchRequest<CDUser> = CDUser.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "userId= %@", id)
+        
+        do{
+            let cdUser = try CoreDataManager.container.viewContext.fetch(fetchRequest)
+            cdUser[0].name = name
+            try CoreDataManager.container.viewContext.save()
+            
+        }catch let error as NSError {
+            print("Could not get a user. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func updateUserPhoto(id:String, photoUrl:String){
+        let fetchRequest:NSFetchRequest<CDUser> = CDUser.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "userId= %@", id)
+        
+        do{
+            let cdUser = try CoreDataManager.container.viewContext.fetch(fetchRequest)
+            cdUser[0].profilePic = photoUrl
+            try CoreDataManager.container.viewContext.save()
+            
+        }catch let error as NSError {
+            print("Could not get a user. \(error), \(error.userInfo)")
+        }
+    }
+    
     
 }
 

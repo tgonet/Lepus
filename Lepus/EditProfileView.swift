@@ -103,6 +103,7 @@ struct EditProfileView: View {
         }.navigationBarTitleDisplayMode(.inline).navigationTitle("Edit Profile").toolbar {
             Button("Save") {
                 print("Help tapped!")
+                CoreDataManager().updateUsername(name: firebaseManager.name, id: Auth.auth().currentUser!.uid)
                 firebaseManager.updateProfile(weight: firebaseManager.weight, height: firebaseManager.height, name: firebaseManager.name, gender: firebaseManager.gender)
                 if(imageChanged){
                     upload(imagetoUpload: inputImage!)
@@ -146,6 +147,7 @@ struct EditProfileView: View {
             // To get URL for display in run history
             storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
                 firebaseManager.updateProfilePic(url: url!)
+                CoreDataManager().updateUserPhoto(id: Auth.auth().currentUser!.uid, photoUrl: url!.absoluteString)
                     })
             }
         }

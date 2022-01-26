@@ -196,6 +196,7 @@ struct RegisterView: View {
  
 func registerUser(email:String,name:String, password:String,confirmPass:String){
     if(password == confirmPass){
+        let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/placeholder.jpeg?alt=media&token=1701b9cd-8f50-4a9a-bc99-cddb913c7ff0"
         showAlert = false
         let auth = Auth.auth()
         do {
@@ -207,7 +208,6 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
         auth.createUser(withEmail: email, password: password){ (result, error) in
             if error == nil {
                 let currentUser = auth.currentUser
-                let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/profileImg.png?alt=media&token=30a50d9b-aefc-4dd5-92cd-88f173b6eef8"
                 let myDict:[String: Any] = ["email":email, "name":name, "profilePic":url, "id":currentUser!.uid, "weight":50, "height":165, "gender": "Male"]
                 CoreDataManager().StoreUser(user: User(userId: currentUser?.uid, email: email, name: name, profilePic: url, height: 165, weight: 50, gender: "Male"))
                 let ref = db.collection("users").document((currentUser!.uid))
@@ -216,16 +216,22 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
                         print("Error writing document: \(err)")
                     } else {
                         print("Document successfully written!")
-                        let changeRequest = currentUser!.createProfileChangeRequest()
-                        changeRequest.displayName = name
-                        changeRequest.photoURL = URL(string: url)
-                        changeRequest.commitChanges { error in
-                          // ...
-                        }
                         
                         self.selection = 1
                     }
                 }
+                let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
+                changeRequest.displayName = name
+                changeRequest.photoURL = URL(string: url)
+                changeRequest.commitChanges { error in
+                    if error != nil{
+                        print("Firebase: \(error)")
+                    }
+                    else{
+                        print("Firebase: No error")
+                    }
+                }
+                print("HI")
             }
             else {
                 return

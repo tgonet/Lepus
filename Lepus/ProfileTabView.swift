@@ -13,7 +13,7 @@ import Accelerate
 struct ProfileTabView: View {
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
     @ObservedObject var CDManager = CoreDataUserManager()
-    var user:Firebase.User? = Auth.auth().currentUser
+    let user = Auth.auth().currentUser!
     @State private var Redirect = false
     @State private var logOut = false
     @State private var tabBar: UITabBar! = nil
@@ -23,8 +23,6 @@ struct ProfileTabView: View {
     init() {
         UITableView.appearance().backgroundColor = UIColor.clear
         firebaseManager.readRuns()
-        name = user!.displayName!
-        url = user!.photoURL!
     }
     
     var body: some View {
@@ -61,7 +59,7 @@ struct ProfileTabView: View {
                             .stroke(Color("AccentColor"), lineWidth: 1)).padding(.horizontal).padding(.vertical,10).fixedSize(horizontal: false, vertical: true)
                     
                     List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
-                        RunRow(run: run, url: user!.photoURL!)
+                        RunRow(run: run, url: user.photoURL!)
                         }.listStyle(GroupedListStyle()).onAppear(perform: {
                             UITableView.appearance().contentInset.top = -35
                         })
@@ -69,8 +67,8 @@ struct ProfileTabView: View {
                 }.navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.onAppear(perform: {
                     print("HI")
                     //user = Auth.auth().currentUser
-                    self.name = user!.displayName!
-                    self.url = user!.photoURL!
+                    self.name = user.displayName!
+                    self.url = user.photoURL!
                     print(url)
                 })
             }.background(TabBarAccessor { tabbar in   // << here !!
