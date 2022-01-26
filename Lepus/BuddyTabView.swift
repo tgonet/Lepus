@@ -15,8 +15,8 @@ struct BuddyTabView: View {
     
     let messages = [
         Message(user: "Ming Zhe", datetime: Date(), content: "Hello, what time are we meeting?"),
-        Message(user: "Ye Cheng", datetime:Date(), content:"Hi, I'm Ye Cheng!"),
-        Message(user: "Joey", datetime:Date(), content:"Hi there, I'm Joey!")
+        Message(user: "Zhi Qi", datetime:Date(), content:"Hi, I'm Zhi Qi! :)"),
+        Message(user: "Zheng Hao", datetime:Date(), content:"Hi Joey!")
         ]
     
     var body: some View {
