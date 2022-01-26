@@ -74,6 +74,7 @@ struct ProfileTabView: View {
             }.background(TabBarAccessor { tabbar in   // << here !!
                 self.tabBar = tabbar
             })
+            .background(Color("BackgroundColor"))
     }
     
     func LogOut(){
@@ -165,7 +166,8 @@ struct RunRow: View {
             }
             Divider().background(Color("Divider"))
         }.listRowSeparator(.hidden)
+            .background(Color("BackgroundColor"))
     }
-    
+        
 }
 
