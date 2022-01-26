@@ -11,20 +11,9 @@ import Firebase
 @main
 struct LepusApp: App {
     @UIApplicationDelegateAdaptor(Delegate.self) var delegate
-    @ObservedObject var CDManager = CoreDataUserManager()
-    
     var body: some Scene {
         WindowGroup {
-            //let user:User = container.isLoggedIn()
-            if (CDManager.user?.userId != "")
-            {
-                TabViewUI()
-                
-            }
-            else{
-                StartView()
-            }
-            
+            Splashscreen()
         }
     }
 }
