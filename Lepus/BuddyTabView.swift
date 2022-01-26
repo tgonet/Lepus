@@ -120,6 +120,7 @@ struct BuddyRecommendationItem:View{
     var url:URL?
     var name:String
     
+    
     var body:some View{
         VStack{
             if(url != nil)
@@ -142,8 +143,14 @@ struct BuddyRecommendationItem:View{
 
 struct MessageListItem:View{
     var message:Message
+    @State private var showAlert = false
+    @State private var tabBar: UITabBar! = nil
+    @State private var Redirect = false
+
     var body: some View{
+        
         HStack(alignment:.center){
+    
             Image("profileImg")
                 .resizable()
                 .clipShape(Circle()).frame(width: 60.0, height: 60.0)
@@ -160,7 +167,20 @@ struct MessageListItem:View{
                 Text(message.content)
                     .font(Font.custom("Rubik-Regular", size:14))
             }
+            
+            NavigationLink(destination: chatView(message: message)
+                    .onAppear { self.tabBar.isHidden = true }
+                            .onDisappear { self.tabBar.isHidden = false } , isActive: $Redirect) {}
         }
+        .alert(isPresented: $showAlert){
+            Alert(title: Text(String(Redirect)), message: Text("Password and Confirm Password do not match"), dismissButton: .default(Text("Ok")))
+        }
+        
+
+        .onTapGesture {
+                      showAlert = true
+                      Redirect = true
+                  }
         .padding(.vertical, 8)
         .listRowBackground(Color("BackgroundColor"))
     }

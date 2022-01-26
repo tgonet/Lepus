@@ -7,22 +7,22 @@
 		<key>Lepus WatchKit App (Complication).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>26</integer>
 		</dict>
 		<key>Lepus WatchKit App (Notification).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>25</integer>
 		</dict>
 		<key>Lepus WatchKit App.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>23</integer>
 		</dict>
 		<key>Lepus.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>24</integer>
 		</dict>
 	</dict>
 </dict>
