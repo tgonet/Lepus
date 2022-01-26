@@ -18,6 +18,7 @@ struct TabViewUI: View {
     
     init() {
        UITabBar.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
+       
         networkManager.getConnectionStatus()
         if(networkManager.isConnected){
             runList = coreDataManager.getRuns()
@@ -44,9 +45,6 @@ struct TabViewUI: View {
             
             ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
         }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
-//        NavigationView {
-//
-//        }.navigationBarHidden(true).navigationBarBackButtonHidden(true).navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

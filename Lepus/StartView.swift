@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct StartView: View {
     @State var selection: Int? = nil
@@ -59,7 +60,7 @@ struct StartView: View {
             }
             .navigationBarHidden(true)
             .edgesIgnoringSafeArea(.top)
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).onAppear(perform: { print("Fiebase: \(Auth.auth().currentUser!.displayName)")})
         }
     }
 }
