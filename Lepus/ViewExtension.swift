@@ -15,6 +15,17 @@ extension View {
     func cornerRadius(radius: CGFloat, corner:UIRectCorner) -> some View{
         clipShape(RoundedCorner(radius: radius, corner: corner))    //pass in corner to curve radius
     }
+    
+    func placeholder<Content: View>(
+            when shouldShow: Bool,
+            alignment: Alignment = .leading,
+            @ViewBuilder placeholder: () -> Content) -> some View {
+
+            ZStack(alignment: alignment) {
+                placeholder().opacity(shouldShow ? 1 : 0)
+                self
+            }
+        }
 }
 
 struct RoundedCorner:Shape{

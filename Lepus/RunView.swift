@@ -64,7 +64,9 @@ struct RunView: View {
                             .frame(width: 350, height: 80)
                             .background(Color("AccentColor3"))
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .shadow(color: .gray, radius: 4, x: 5, y: 5)
+                            //.shadow(color: .gray, radius: 4, x: 5, y: 5)
+                            .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+                            .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                     }.padding(30)
                 }
                 else{

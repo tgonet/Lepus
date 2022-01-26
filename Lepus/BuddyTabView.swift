@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import UIKit
 
 struct BuddyTabView: View {
     @State var searchText = ""
@@ -25,7 +26,10 @@ struct BuddyTabView: View {
                 VStack{
                     HStack(alignment:.center, spacing:18){
                         Image(systemName: "magnifyingglass")
-                        TextField("Find someone", text: $searchText)
+                        TextField("", text: $searchText)
+                            .placeholder(when: searchText.isEmpty) {
+                                Text("Find someone").foregroundColor(Color(UIColor.darkGray))
+                            }
                             .autocapitalization(.none)
                             .font(Font.custom("Rubik-Regular", size:18))
                             .disableAutocorrection(true)
