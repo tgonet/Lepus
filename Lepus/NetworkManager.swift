@@ -25,7 +25,6 @@ class NetworkManager : ObservableObject{
                     print("No connection.")
                 }
             }
-            print(path.status)
         }
         monitor.start(queue: queue)
     }
