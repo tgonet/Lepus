@@ -18,11 +18,7 @@ struct BuddyTabView: View {
         Message(user: "Ye Cheng", datetime:Date(), content:"Hi, I'm Ye Cheng!"),
         Message(user: "Joey", datetime:Date(), content:"Hi there, I'm Joey!")
         ]
-    /*
-    init() {
-        FBManager.getBuddies()
-    }
-     */
+    
     var body: some View {
         ZStack{
             VStack{
