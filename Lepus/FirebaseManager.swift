@@ -217,6 +217,11 @@ class FirebaseManager : ObservableObject{
                 print("Error updating document: \(err)")
             } else {
                 print("Document successfully updated")
+                let changeRequest = self.user!.createProfileChangeRequest()
+                changeRequest.displayName = name
+                changeRequest.commitChanges { error in
+                  // ...
+                }
             }
         }
     }
@@ -224,7 +229,7 @@ class FirebaseManager : ObservableObject{
     func updateProfilePic(url:URL){
         let docRef = db.collection("users").document(user!.uid)
         docRef.updateData([
-            "url": url.absoluteString,
+            "profilePic": url.absoluteString,
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
