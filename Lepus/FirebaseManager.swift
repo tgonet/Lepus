@@ -273,9 +273,13 @@ class FirebaseManager : ObservableObject{
         
         var userLat:Double = 0
         var userLong:Double = 0
+        var userPace:Double = 0
+        var userDistance:Double = 0
         
         var recoLat:Double = 0
         var recoLong:Double = 0
+        var recoPace:Double = 0
+        var recoDistance:Double = 0
         
         buddyRef.getDocument{(document,error) in
             if let document = document, document.exists {
@@ -307,6 +311,7 @@ class FirebaseManager : ObservableObject{
                                             if let statistics = document.data()["statistics"] as? [String: Any] {
                                                 recoLat = Double(statistics["latitude"] as! String)!
                                                 recoLong = Double(statistics["longitude"] as! String)!
+                                                
 
                                                 if(self.isDistance500OrLesser(lat1: userLat, long1: userLong, lat2: recoLat, long2: recoLong))
                                                 {
@@ -316,6 +321,11 @@ class FirebaseManager : ObservableObject{
                                                     self.recoList.append(buddyReco)
                                                     print(buddyReco.name)
                                                 }
+                                                /*
+                                                else if ()
+                                                {
+                                                    
+                                                }*/
                                             }
                                         }
                                     }
