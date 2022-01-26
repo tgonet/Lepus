@@ -13,22 +13,25 @@ import Accelerate
 struct ProfileTabView: View {
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
     @ObservedObject var CDManager = CoreDataUserManager()
-    @State var user:Firebase.User? = Auth.auth().currentUser
+    var user:Firebase.User? = Auth.auth().currentUser
     @State private var Redirect = false
     @State private var logOut = false
     @State private var tabBar: UITabBar! = nil
+    @State private var name = ""
+    @State private var url = URL(string: "")
     
     init() {
         UITableView.appearance().backgroundColor = UIColor.clear
-        firebaseManager.readRuns() 
+        firebaseManager.readRuns()
+        name = user!.displayName!
+        url = user!.photoURL!
     }
     
     var body: some View {
         NavigationView {
-            ZStack {
                 VStack{
                     HStack{
-                        KFImage.url(user?.photoURL)
+                        KFImage.url(url)
                             .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)}
                             .resizable()
                             .loadDiskFileSynchronously()
@@ -36,24 +39,18 @@ struct ProfileTabView: View {
                             .onProgress { receivedSize, totalSize in  }
                             .onSuccess { result in  }
                             .onFailure { error in }
-                            .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)
-                        Text(user!.displayName!)
-                        
+                            .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20) .onChange(of: url) { newImage in
+                                //updateUserImage()
+                            }
+                        Text(name)
                         Spacer()
-                        
-                        Button(action: {
-                            //LogOut()
-                        }, label: {
-                            Text("Logout")
-                            .font(Font.custom("Rubik-Medium", size:15))
-                        })
-                    }.padding(.horizontal, 15).padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+                    }.padding(.horizontal, 15)
                     HStack{
                         Button(action: {}, label: {Text("10 Buddies").font(Font.custom("Rubik-Medium", size:15))}).frame(minWidth: 10, maxWidth: 500, alignment: .center)
                         //Spacer()
                         Divider()
                         NavigationLink(destination: EditProfileView()
-                                        .onAppear { self.tabBar.isHidden = true }     // !!
+                                        .onAppear { self.tabBar.isHidden = true }
                                         .onDisappear { self.tabBar.isHidden = false } , isActive: $Redirect) {
                             EmptyView()
                         }
@@ -69,11 +66,16 @@ struct ProfileTabView: View {
                             UITableView.appearance().contentInset.top = -35
                         })
                      
-                }
-            }.ignoresSafeArea(.all, edges: .top).background(TabBarAccessor { tabbar in   // << here !!
-                self.tabBar = tabbar
+                }.navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.onAppear(perform: {
+                    print("HI")
+                    //user = Auth.auth().currentUser
+                    self.name = user!.displayName!
+                    self.url = user!.photoURL!
+                    print(url)
                 })
-        }
+            }.background(TabBarAccessor { tabbar in   // << here !!
+                self.tabBar = tabbar
+            })
     }
     
     func LogOut(){

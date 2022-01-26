@@ -100,7 +100,7 @@ struct EditProfileView: View {
             
             Text("We will use these information to provide you with more accurate results").frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .center).multilineTextAlignment(.center).foregroundColor(Color("TextColor")).padding(.top, 30)
             Spacer()
-        }.navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar {
+        }.navigationBarTitleDisplayMode(.inline).navigationTitle("Edit Profile").toolbar {
             Button("Save") {
                 print("Help tapped!")
                 firebaseManager.updateProfile(weight: firebaseManager.weight, height: firebaseManager.height, name: firebaseManager.name, gender: firebaseManager.gender)
