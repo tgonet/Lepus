@@ -15,6 +15,7 @@ struct ProfileTabView: View {
     @ObservedObject var CDManager = CoreDataUserManager()
     let user = Auth.auth().currentUser!
     @State private var Redirect = false
+    @State private var RedirectBuddy = false
     @State private var logOut = false
     @State private var tabBar: UITabBar! = nil
     @State private var name = ""
@@ -45,7 +46,12 @@ struct ProfileTabView: View {
                     }
                     .padding(.horizontal, 15)
                     HStack{
-                        Button(action: {}, label:
+                        NavigationLink(destination: BuddyListView()
+                                        .onAppear { self.tabBar.isHidden = true }
+                                        .onDisappear { self.tabBar.isHidden = false } , isActive: $RedirectBuddy) {
+                            EmptyView()
+                        }
+                        Button(action: {self.RedirectBuddy = true}, label:
                                 {Text("10 Buddies")
                             .font(Font.custom("Rubik-Medium", size:15))})
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)
@@ -58,7 +64,6 @@ struct ProfileTabView: View {
                         }
                         Button(action: {self.Redirect = true}, label: {Text("Edit Profile")
                             .font(Font.custom("Rubik-Medium", size:15))})
-                            .foregroundColor(Color.black)
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)
 
                     }
@@ -67,7 +72,7 @@ struct ProfileTabView: View {
                             .stroke(Color("AccentColor"), lineWidth: 1.5))
                         .padding(.horizontal)
                         .padding(.vertical,10)
-                        .fixedSize(horizontal: false, vertical: true)
+                        .fixedSize(horizontal: false, vertical: true).foregroundColor(Color.black)
                     
                     List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
                         RunRow(run: run, url: user.photoURL!)
@@ -81,7 +86,7 @@ struct ProfileTabView: View {
                     self.name = user.displayName!
                     self.url = user.photoURL!
                 })
-            }
+        }
         .background(TabBarAccessor { tabbar in   // << here !!
                 self.tabBar = tabbar
             })
@@ -93,7 +98,7 @@ struct ProfileTabView: View {
         print("HI")
         do{
             try Auth.auth().signOut()
-            CoreDataManager().LogOutUser(user:CDManager.user!)
+            CoreDataManager().LogOutUser(id:CDManager.user!.userId!)
             print("test")
             self.logOut = true
         }
@@ -146,7 +151,7 @@ struct RunRow: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
             KFImage.url(URL(string: run.url))
-                .placeholder{Image("profileImg")}
+                .placeholder{Image("Mapplaceholder")}
                 .resizable()
                 .loadDiskFileSynchronously()
                 .cacheOriginalImage()

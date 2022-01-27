@@ -29,9 +29,12 @@
 		752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C4278DC13400DC7815 /* StopwatchManager.swift */; };
 		75399F1C279D207100063CFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75399F1B279D207100063CFC /* User.swift */; };
 		75399F1F279D26D600063CFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75399F1E279D26D600063CFC /* GoogleService-Info.plist */; };
+		755FACA027A1B669003AC99F /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = 755FAC9F27A1B669003AC99F /* Mapbox */; };
+		755FACA227A1C320003AC99F /* Splashscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755FACA127A1C320003AC99F /* Splashscreen.swift */; };
 		7566189027A0379C0041A3ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7566188F27A0379C0041A3ED /* NetworkManager.swift */; };
 		757608CF279EDA630050C055 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757608CE279EDA630050C055 /* ImagePicker.swift */; };
 		7578545C27A102C2000DC53C /* BuddyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578545B27A102C2000DC53C /* BuddyProfile.swift */; };
+		757D8ADB27A240E200E370D3 /* BuddyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D8ADA27A240E200E370D3 /* BuddyListView.swift */; };
 		7594C741279317A100C4C20F /* TabViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabViewUI.swift */; };
 		7594C74327931F0B00C4C20F /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* ProfileTabView.swift */; };
 		75D1CE502799EA470048EE28 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1CE4F2799EA470048EE28 /* Run.swift */; };
@@ -134,10 +137,12 @@
 		75399F19279D204C00063CFC /* Lepus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lepus; sourceTree = "<group>"; };
 		75399F1B279D207100063CFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75399F1E279D26D600063CFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		755FACA127A1C320003AC99F /* Splashscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splashscreen.swift; sourceTree = "<group>"; };
 		7566188F27A0379C0041A3ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		757608CE279EDA630050C055 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7578545B27A102C2000DC53C /* BuddyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyProfile.swift; sourceTree = "<group>"; };
+		757D8ADA27A240E200E370D3 /* BuddyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyListView.swift; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		75D1CE4D2799E9D40048EE28 /* Lepus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lepus.xcdatamodel; sourceTree = "<group>"; };
@@ -178,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0C8EC716826AD18A3C81076 /* Pods_Lepus.framework in Frameworks */,
+				755FACA027A1B669003AC99F /* Mapbox in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +276,8 @@
 				91918B792797CECC00278A54 /* ViewExtension.swift */,
 				7566188F27A0379C0041A3ED /* NetworkManager.swift */,
 				7578545B27A102C2000DC53C /* BuddyProfile.swift */,
+				755FACA127A1C320003AC99F /* Splashscreen.swift */,
+				757D8ADA27A240E200E370D3 /* BuddyListView.swift */,
 				75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
@@ -371,6 +379,9 @@
 				75294697278DC0DB00DC7815 /* PBXTargetDependency */,
 			);
 			name = Lepus;
+			packageProductDependencies = (
+				755FAC9F27A1B669003AC99F /* Mapbox */,
+			);
 			productName = Lepus;
 			productReference = 75294686278DC0D900DC7815 /* Lepus.app */;
 			productType = "com.apple.product-type.application";
@@ -442,6 +453,9 @@
 				Base,
 			);
 			mainGroup = 7529467D278DC0D900DC7815;
+			packageReferences = (
+				755FAC9E27A1B669003AC99F /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */,
+			);
 			productRefGroup = 75294687278DC0D900DC7815 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -606,7 +620,9 @@
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
 				75D1CE542799EC320048EE28 /* Lepus.xcdatamodeld in Sources */,
 				7578545C27A102C2000DC53C /* BuddyProfile.swift in Sources */,
+				757D8ADB27A240E200E370D3 /* BuddyListView.swift in Sources */,
 				91918B7A2797CECC00278A54 /* ViewExtension.swift in Sources */,
+				755FACA227A1C320003AC99F /* Splashscreen.swift in Sources */,
 				9167552B279EE565008FB654 /* MessageListView.swift in Sources */,
 				9175E028279D3D9C00B0AD4A /* Message.swift in Sources */,
 				7594C74327931F0B00C4C20F /* ProfileTabView.swift in Sources */,
@@ -994,6 +1010,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		755FAC9E27A1B669003AC99F /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maplibre/maplibre-gl-native-distribution";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		755FAC9F27A1B669003AC99F /* Mapbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 755FAC9E27A1B669003AC99F /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = Mapbox;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */ = {

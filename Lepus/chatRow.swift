@@ -10,13 +10,14 @@ import FirebaseAuth
 
 struct chatRow: View {
     var chatData: Message
+    
     @ObservedObject var CDManager = CoreDataUserManager()
     
 
 
     var body: some View {
-        let user = CDManager.user!
-        let uid = user.userId
+        var user = CDManager.user!
+        let uid = user.name
         HStack(spacing:15){
             //Nickname view
             if chatData.user != uid {
@@ -26,20 +27,37 @@ struct chatRow: View {
             if chatData.user == uid{Spacer(minLength: 0)}
             
             VStack(alignment: chatData.user == uid ? .trailing: .leading, spacing: 5, content:{
-                Text(chatData.content)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color("Color"))
-                    //Custom Shape
+                if chatData.user == uid {
+                    Text(chatData.content)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color(hex: 0xFFD100))
+                        //Custom Shape
                     .clipShape(chatBubble(myMsg: chatData.user == uid))
+                
                 let dateFormatter = DateFormatter()
                 let datetime =  dateFormatter.string(from: chatData.datetime)
                 Text(datetime)
                     .font(Font.custom("Sansita-BoldItalic", size:20))
                     .foregroundColor(.gray)
                     .padding(chatData.user == uid ? .leading: .trailing , 10)
-         
+                } else if chatData.user != uid {
+                    Text(chatData.content)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color(hex: 0x797777))
+                        //Custom Shape
+                        .clipShape(chatBubble(myMsg: chatData.user == uid))
+                    let dateFormatter = DateFormatter()
+                    let datetime =  dateFormatter.string(from: chatData.datetime)
+                    Text(datetime)
+                        .font(Font.custom("Sansita-BoldItalic", size:20))
+                        .foregroundColor(.gray)
+                        .padding(chatData.user == uid ? .leading: .trailing , 10)
+                }
+                    
             })
             
             if chatData.user == uid {
@@ -60,14 +78,15 @@ struct NickName:View{
 
 
     var body: some View{
-        let uid = user?.uid
+        let uid = user?.displayName
         Text(String(name.first!))
             .fontWeight(.heavy)
             .foregroundColor(.white)
             .frame(width: 50, height: 50)
-            .background((name == uid ? Color("#FFD100"):Color("ECECEC")).opacity(0.5))
+            .background((name == uid ? Color(hex:0xFFD100):Color(hex:0xECECEC)).opacity(0.8))
             .clipShape(Circle())
     }
 }
+
 
 
