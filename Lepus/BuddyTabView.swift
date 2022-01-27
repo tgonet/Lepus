@@ -61,19 +61,16 @@ struct BuddyTabView: View {
                         HStack{
                             if (FBManager.noStatistics)
                             {
-                                VStack(alignment: .leading)
-                                {
-                                    Text("Start recording your runs to see buddy recommendations!")
-                                        .font(Font.custom("Rubik-Regular", size:14))
-                                }
+                                Text("Start recording your runs to see buddy recommendations!")
+                                    .font(Font.custom("Rubik-Regular", size:14))
+                                    .frame(maxWidth:.infinity, alignment:.center)
+
                             }
                             else if (FBManager.noMatches)
                             {
-                                VStack(alignment: .leading)
-                                {
-                                    Text("No matches found yet!")
-                                        .font(Font.custom("Rubik-Regular", size:14))
-                                }
+                                Text("No matches found yet!")
+                                    .font(Font.custom("Rubik-Regular", size:14))
+                                    .frame(maxWidth:.infinity, alignment:.center)
                             }
                             else{
                                 ForEach(FBManager.recoList) {

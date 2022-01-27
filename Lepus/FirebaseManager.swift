@@ -413,30 +413,26 @@ class FirebaseManager : ObservableObject{
     }
     
     func getMessageList()->[Message]{
+        
         var messageList:[Message] = []
-        var message:Message?
+        var latestMessage:Message?
         let uid = user!.uid
+        /*
         let ref = db.collection("MessageGroup")
             .whereField("users", arrayContains: uid)
-            .getDocuments() { (querySnapshot, err) in
-            if let err = err {
+            .addSnapshotListener { (querySnapshot, err) in
+            guard let snapshot = querySnapshot else {
                 print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                    /*
-                    let data = document.data()
-                    let date = data as Any
-                    let pace = data["Pace"] as Any
-                    let name = data["Name"] as Any
-                    let distance = data["Distance"] as Any
-                    let duration = data["Duration"] as Any
-                    let url = data["Url"] as Any
-                    self.runList.append(Run(name: name as! String, date: date as! Date, distance: distance as! Double, pace: pace as! Double, duration: duration as! String, url:url as! String))
+                return
+            } snapshot.documentChanges.forEach {
+                diff in {
+                    diff
+                    if (diff.type == .added)
+                    {
+                        messageList.append()
+                    }
+                    
                      */
-                }
-            }
-        }
         return messageList
     }
 }
