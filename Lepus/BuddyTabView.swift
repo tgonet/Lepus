@@ -59,9 +59,27 @@ struct BuddyTabView: View {
                     
                     ScrollView (.horizontal, showsIndicators: false) {
                         HStack{
-                            ForEach(FBManager.recoList) {
-                                user in BuddyRecommendationItem(url: URL(string:user.profilePic), name: user.name)
-                                    .padding(8)
+                            if (FBManager.noStatistics)
+                            {
+                                VStack(alignment: .leading)
+                                {
+                                    Text("Start recording your runs to see buddy recommendations!")
+                                        .font(Font.custom("Rubik-Regular", size:14))
+                                }
+                            }
+                            else if (FBManager.noMatches)
+                            {
+                                VStack(alignment: .leading)
+                                {
+                                    Text("No matches found yet!")
+                                        .font(Font.custom("Rubik-Regular", size:14))
+                                }
+                            }
+                            else{
+                                ForEach(FBManager.recoList) {
+                                    user in BuddyRecommendationItem(url: URL(string:user.profilePic), name: user.name)
+                                        .padding(8)
+                                    }
                                 }
                             }
                             /*
@@ -74,6 +92,7 @@ struct BuddyTabView: View {
                              
                          }
                         .frame(height: 50)
+                        .foregroundColor(Color.black)
                         .padding(.horizontal)
                         .padding(.vertical, 20)
                  }
@@ -156,31 +175,26 @@ struct MessageListItem:View{
 
 
     var body: some View {
- 
-        HStack(alignment:.center){
-    
-            Image("profileImg")
-                .resizable()
-                .clipShape(Circle()).frame(width: 60.0, height: 60.0)
-            VStack(alignment: .leading, spacing:10){
-                HStack{
-                    
-                    Text(message.user)
-                        .font(Font.custom("Rubik-Medium", size:16))
-                    Spacer()
-                    let dateFormatter = DateFormatter()
-                    let datetime =  dateFormatter.string(from: message.datetime)
-                    Text(datetime)
+        NavigationLink(destination: chatView(), isActive: $Redirect){
+            HStack(alignment:.center){
+                Image("profileImg")
+                    .resizable()
+                    .clipShape(Circle()).frame(width: 60.0, height: 60.0)
+                VStack(alignment: .leading, spacing:10){
+                    HStack{
+                        
+                        Text(message.user)
+                            .font(Font.custom("Rubik-Medium", size:16))
+                        Spacer()
+                        let dateFormatter = DateFormatter()
+                        let datetime =  dateFormatter.string(from: message.datetime)
+                        Text(datetime)
+                            .font(Font.custom("Rubik-Regular", size:14))
+                    }
+                    Text(message.content)
                         .font(Font.custom("Rubik-Regular", size:14))
                 }
-                Text(message.content)
-                    .font(Font.custom("Rubik-Regular", size:14))
             }
-            NavigationLink(destination: chatView(), isActive: $Redirect){
-               
-            }
-            
-
         }
 
     
