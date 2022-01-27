@@ -107,7 +107,9 @@ struct EditProfileView: View {
             
             Text("We will use these information to provide you with more accurate results").frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .center).multilineTextAlignment(.center).foregroundColor(Color("TextColor")).padding(.top, 30)
             Spacer()
-        }.navigationBarTitleDisplayMode(.inline)
+        }
+        .padding(.top)
+        .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Edit Profile")
             .toolbar {
             Button("Save") {

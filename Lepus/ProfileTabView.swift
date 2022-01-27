@@ -23,6 +23,7 @@ struct ProfileTabView: View {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
+        UINavigationBar.appearance().tintColor = UIColor(Color("DarkYellow"))
         firebaseManager.readRuns()
     }
     
@@ -52,7 +53,7 @@ struct ProfileTabView: View {
                             EmptyView()
                         }
                         Button(action: {self.RedirectBuddy = true}, label:
-                                {Text("10 Buddies")
+                                {Text("1 Buddies")
                             .font(Font.custom("Rubik-Medium", size:15))})
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)
                         //Spacer()
@@ -69,10 +70,11 @@ struct ProfileTabView: View {
                     }
                     .padding(7).overlay(
                         RoundedRectangle(cornerRadius: 13)
-                            .stroke(Color("AccentColor"), lineWidth: 1.5))
+                            .stroke(Color("DarkYellow"), lineWidth: 1.5))
                         .padding(.horizontal)
                         .padding(.vertical,10)
-                        .fixedSize(horizontal: false, vertical: true).foregroundColor(Color.black)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .foregroundColor(Color("DarkYellow"))
                     
                     List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
                         RunRow(run: run, url: user.photoURL!)
