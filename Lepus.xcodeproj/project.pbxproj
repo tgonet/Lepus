@@ -29,7 +29,6 @@
 		752946C5278DC13400DC7815 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752946C4278DC13400DC7815 /* StopwatchManager.swift */; };
 		75399F1C279D207100063CFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75399F1B279D207100063CFC /* User.swift */; };
 		75399F1F279D26D600063CFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75399F1E279D26D600063CFC /* GoogleService-Info.plist */; };
-		755FACA027A1B669003AC99F /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = 755FAC9F27A1B669003AC99F /* Mapbox */; };
 		755FACA227A1C320003AC99F /* Splashscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755FACA127A1C320003AC99F /* Splashscreen.swift */; };
 		7566189027A0379C0041A3ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7566188F27A0379C0041A3ED /* NetworkManager.swift */; };
 		757608CF279EDA630050C055 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757608CE279EDA630050C055 /* ImagePicker.swift */; };
@@ -183,7 +182,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0C8EC716826AD18A3C81076 /* Pods_Lepus.framework in Frameworks */,
-				755FACA027A1B669003AC99F /* Mapbox in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +378,6 @@
 			);
 			name = Lepus;
 			packageProductDependencies = (
-				755FAC9F27A1B669003AC99F /* Mapbox */,
 			);
 			productName = Lepus;
 			productReference = 75294686278DC0D900DC7815 /* Lepus.app */;
@@ -454,7 +451,6 @@
 			);
 			mainGroup = 7529467D278DC0D900DC7815;
 			packageReferences = (
-				755FAC9E27A1B669003AC99F /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */,
 			);
 			productRefGroup = 75294687278DC0D900DC7815 /* Products */;
 			projectDirPath = "";
@@ -1010,25 +1006,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		755FAC9E27A1B669003AC99F /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/maplibre/maplibre-gl-native-distribution";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		755FAC9F27A1B669003AC99F /* Mapbox */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 755FAC9E27A1B669003AC99F /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
-			productName = Mapbox;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */ = {
