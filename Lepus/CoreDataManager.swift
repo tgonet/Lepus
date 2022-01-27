@@ -79,16 +79,14 @@ class CoreDataManager{
     }
     
     //Log Out -> Remove logged-in user details
-    func LogOutUser(user:User)
+    func LogOutUser(id:String)
     {
-        var cdUser:CDUser?
-        cdUser!.userId = user.userId
-        cdUser!.email = user.email
-        cdUser!.name = user.name
-        cdUser?.profilePic = user.profilePic
-        CoreDataManager.container.viewContext.delete(cdUser!)
+        let fetchRequest:NSFetchRequest<CDUser> = CDUser.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "userId= %@", id)
         
         do {
+            let cdUser = try CoreDataManager.container.viewContext.fetch(fetchRequest)
+            CoreDataManager.container.viewContext.delete(cdUser[0])
             try CoreDataManager.container.viewContext.save()
         }
         catch let error as NSError {
@@ -131,7 +129,6 @@ class CoreDataManager{
         cdRun.duration = duration
         cdRun.date = Date()
         cdRun.distance = distance
-        //cdRun.snapshot = image.pngData()
         cdRun.startLatitude = startLatitude
         cdRun.startLongitude = startLongitude
         do {

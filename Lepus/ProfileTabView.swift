@@ -93,7 +93,7 @@ struct ProfileTabView: View {
         print("HI")
         do{
             try Auth.auth().signOut()
-            CoreDataManager().LogOutUser(user:CDManager.user!)
+            CoreDataManager().LogOutUser(id:CDManager.user!.userId!)
             print("test")
             self.logOut = true
         }
@@ -146,7 +146,7 @@ struct RunRow: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
             KFImage.url(URL(string: run.url))
-                .placeholder{Image("profileImg")}
+                .placeholder{Image("Mapplaceholder")}
                 .resizable()
                 .loadDiskFileSynchronously()
                 .cacheOriginalImage()
