@@ -18,7 +18,22 @@ class chatModel: ObservableObject {
     let ref = Firestore.firestore()
     @ObservedObject var CDManager = CoreDataUserManager()
     
+    init(){
+        addMsgs()
+    }
     
+    func addMsgs(){
+        msgs.append(Message(user: "Ming Zhe", datetime: Date(), content: "Hello, what time are we meeting?"))
+        msgs.append(Message(user: "Yc", datetime:Date(), content:"6:45pm"))
+        msgs.append(Message(user: "Ming Zhe", datetime:Date(), content:"We are meeting at Ngee Ann Polytechnic's Stadium right?"))
+        msgs.append(Message(user: "Yc", datetime:Date(), content:"Yup!"))
+
+
+    }
+    
+    func writeMsg(userId:String){
+        msgs.append(Message(user: userId, datetime: Date(), content: txt))
+    }
 
     func readAllMsgs(){
         let user = CDManager.user!

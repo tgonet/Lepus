@@ -13,6 +13,8 @@ struct BuddyTabView: View {
     @State var searchText = ""
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
+
+
     
     let messages = [
         Message(user: "Ming Zhe", datetime: Date(), content: "Hello, what time are we meeting?"),
@@ -105,6 +107,8 @@ struct BuddyTabView: View {
                 }
                 .padding(.vertical, 12)
             }
+ 
+            
         }
         .onAppear{
             FBManager.getBuddies()
@@ -147,12 +151,12 @@ struct BuddyRecommendationItem:View{
 
 struct MessageListItem:View{
     var message:Message
-    @State private var showAlert = false
     @State private var tabBar: UITabBar! = nil
     @State private var Redirect = false
 
-    var body: some View{
-        
+
+    var body: some View {
+ 
         HStack(alignment:.center){
     
             Image("profileImg")
@@ -160,6 +164,7 @@ struct MessageListItem:View{
                 .clipShape(Circle()).frame(width: 60.0, height: 60.0)
             VStack(alignment: .leading, spacing:10){
                 HStack{
+                    
                     Text(message.user)
                         .font(Font.custom("Rubik-Medium", size:16))
                     Spacer()
@@ -171,20 +176,14 @@ struct MessageListItem:View{
                 Text(message.content)
                     .font(Font.custom("Rubik-Regular", size:14))
             }
+            NavigationLink(destination: chatView(), isActive: $Redirect){
+               
+            }
             
-            NavigationLink(destination: chatView(message: message)
-                    .onAppear { self.tabBar.isHidden = true }
-                            .onDisappear { self.tabBar.isHidden = false } , isActive: $Redirect) {}
-        }
-        .alert(isPresented: $showAlert){
-            Alert(title: Text(String(Redirect)), message: Text("Password and Confirm Password do not match"), dismissButton: .default(Text("Ok")))
-        }
-        
 
-        .onTapGesture {
-                      showAlert = true
-                      Redirect = true
-                  }
+        }
+
+    
         .padding(.vertical, 8)
         .listRowBackground(Color("BackgroundColor"))
     }
