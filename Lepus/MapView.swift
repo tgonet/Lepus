@@ -39,8 +39,6 @@ struct MapView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-
-
 }
 
 class Coordinator: NSObject, MKMapViewDelegate {

@@ -10,11 +10,12 @@ import FirebaseFirestoreSwift
 
 
 class BuddyRecoUser:Identifiable{
-    let id = UUID()
+    var id:String
     var name:String
     var profilePic:String
 
-    init(name:String, profilePic:String){
+    init(id: String, name:String, profilePic:String){
+        self.id = id
         self.name = name
         self.profilePic = profilePic
     }

@@ -29,8 +29,8 @@ class FirebaseManager : ObservableObject{
     @Published var noStatistics = false
     @Published var noMatches = false
     
-    func readRuns(){
-        db.collection("runs").whereField("userId", isEqualTo: user!.uid).addSnapshotListener{ (querySnapshot, err) in
+    func readRuns(id:String){
+        db.collection("runs").whereField("userId", isEqualTo: id).addSnapshotListener{ (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -332,9 +332,10 @@ class FirebaseManager : ObservableObject{
                                                 
                                                 if(LocationNear||PaceSimilar||DistanceSimilar)
                                                 {
+                                                    let id = document.data()["id"] as! String
                                                     let name = document.data()["name"] as Any
                                                     let profilePic = document.data()["profilePic"] as Any
-                                                    let buddyReco:BuddyRecoUser = BuddyRecoUser(name: name as! String, profilePic: profilePic as! String)
+                                                    let buddyReco:BuddyRecoUser = BuddyRecoUser(id: id, name: name as! String, profilePic: profilePic as! String)
                                                     self.recoList.append(buddyReco)
                                                     print(buddyReco.name)
                                                     print("Location near:\(LocationNear)")
@@ -401,7 +402,7 @@ class FirebaseManager : ObservableObject{
                         self.recoList.removeAll()
                         for recUser in querySnapshot!.documents{
                             var data = recUser.data()
-                            self.recoList.append(BuddyRecoUser(name: data["name"] as! String, profilePic: data["profilePic"] as! String))
+                            self.recoList.append(BuddyRecoUser(id: data["id"] as! String, name: data["name"] as! String, profilePic: data["profilePic"] as! String))
                         }
                     }
                 }
@@ -411,6 +412,8 @@ class FirebaseManager : ObservableObject{
             }
         }
     }
+    
+    
     
     func getMessageList()->[Message]{
         

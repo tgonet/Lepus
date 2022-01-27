@@ -35,7 +35,6 @@ struct BuddyListView_Previews: PreviewProvider {
 }
 
 struct BuddyListItem:View{
-    @State private var showAlert = false
     @State private var tabBar: UITabBar! = nil
     @State private var Redirect = false
     var user:BuddyRecoUser?
@@ -61,15 +60,9 @@ struct BuddyListItem:View{
                 }
             }
             
-//            NavigationLink(destination: chatView(message: message)
-//                    .onAppear { self.tabBar.isHidden = true }
-//                            .onDisappear { self.tabBar.isHidden = false } , isActive: $Redirect) {}
-        }
-        .alert(isPresented: $showAlert){
-            Alert(title: Text(String(Redirect)), message: Text("Password and Confirm Password do not match"), dismissButton: .default(Text("Ok")))
+            NavigationLink(destination: BuddyProfile(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!) , isActive: $Redirect) {}
         }
         .onTapGesture {
-                      showAlert = true
                       Redirect = true
                   }
         .padding(.vertical, 8)

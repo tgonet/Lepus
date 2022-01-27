@@ -12,18 +12,24 @@ import Kingfisher
 struct BuddyProfile: View {
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
     @ObservedObject var CDManager = CoreDataUserManager()
-    @State var user:Firebase.User? = Auth.auth().currentUser
+    var id:String
+    var name:String
+    var url:URL
+    //@State var user:Firebase.User? = Auth.auth().currentUser
     @State private var tabBar: UITabBar! = nil
-    @State private var friends:String = "false"
+    @State private var friends:String = "pending"
     
-    init(){
+    init(id:String, name:String, url:URL){
         UITableView.appearance().backgroundColor = UIColor.clear
-        firebaseManager.readRuns()
+        self.id = id
+        self.name = name
+        self.url = url
     }
+    
     var body: some View {
             VStack{
                 HStack{
-                    KFImage.url(user?.photoURL)
+                    KFImage.url(url)
                         .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)}
                         .resizable()
                         .loadDiskFileSynchronously()
@@ -32,17 +38,13 @@ struct BuddyProfile: View {
                         .onSuccess { result in  }
                         .onFailure { error in }
                         .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)
-                    Text(user!.displayName!)
+                    Text(name)
                     
                     Spacer()
                     
                     if friends == "pending" {
-                        Button(action: {
-                            //LogOut()
-                        }, label: {
-                            Text("Request Sent").foregroundColor(Color.black)
-                            .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
-                        }).overlay(
+                        Text("Request Sent")
+                        .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color("AccentColor"), lineWidth: 1))
                     }
@@ -50,24 +52,22 @@ struct BuddyProfile: View {
                         Button(action: {
                             //LogOut()
                         }, label: {
-                            Text("Add Buddy")
-                            .font(Font.custom("Rubik-Medium", size:12)).foregroundColor(Color.black).padding(.horizontal, 20).padding(.vertical, 7)
+                            Text("Add Buddy").foregroundColor(Color.black)
+                            .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
                         }).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                     else {
-                        Button(action: {}, label: {
-                            Text("Buddies").foregroundColor(Color.black)
-                                .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
-                        }).overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color("AccentColor"), lineWidth: 1))
+                        Text("Buddies")
+                            .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color("AccentColor"), lineWidth: 1))
                     }
                 }.padding(.horizontal, 15)//.padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
 
                 
                 if (friends == "true") {
                     List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
-                        RunRow(run: run, url: user!.photoURL!)
+                        RunRow(run: run, url: url)
                     }.listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
                     })
@@ -80,13 +80,14 @@ struct BuddyProfile: View {
                     }
                     
                 }
-            }
-                 
+            }.onAppear(perform: {
+                self.firebaseManager.readRuns(id: id)
+            })
     }
 }
 
 struct BuddyProfile_Previews: PreviewProvider {
     static var previews: some View {
-        BuddyProfile()
+        BuddyProfile(id: "1", name: "2", url: URL(string: "help")!)
     }
 }

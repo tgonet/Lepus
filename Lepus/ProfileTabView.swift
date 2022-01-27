@@ -23,7 +23,7 @@ struct ProfileTabView: View {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
-        firebaseManager.readRuns()
+        firebaseManager.readRuns(id: user.uid)
     }
     
     var body: some View {
