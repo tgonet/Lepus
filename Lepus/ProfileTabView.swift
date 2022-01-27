@@ -64,7 +64,6 @@ struct ProfileTabView: View {
                         }
                         Button(action: {self.Redirect = true}, label: {Text("Edit Profile")
                             .font(Font.custom("Rubik-Medium", size:15))})
-                            .foregroundColor(Color.black)
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)
 
                     }
@@ -73,7 +72,7 @@ struct ProfileTabView: View {
                             .stroke(Color("AccentColor"), lineWidth: 1.5))
                         .padding(.horizontal)
                         .padding(.vertical,10)
-                        .fixedSize(horizontal: false, vertical: true)
+                        .fixedSize(horizontal: false, vertical: true).foregroundColor(Color.black)
                     
                     List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
                         RunRow(run: run, url: user.photoURL!)
@@ -87,7 +86,7 @@ struct ProfileTabView: View {
                     self.name = user.displayName!
                     self.url = user.photoURL!
                 })
-            }
+        }
         .background(TabBarAccessor { tabbar in   // << here !!
                 self.tabBar = tabbar
             })

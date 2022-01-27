@@ -384,6 +384,29 @@ class FirebaseManager : ObservableObject{
         return false
     }
     
+    func getBuddyList(){
+        var buddyList:[String] = []
+        let ref = db.collection("Buddies").document(user!.uid)
+        ref.getDocument{(document,error) in
+            if let document = document, document.exists {
+                buddyList = document.data()!["buddyList"]! as! [String]
+                for i in buddyList{
+                    let buddyRef = self.db.collection("users").whereField("id", in: buddyList)
+                    buddyRef.addSnapshotListener{ (querySnapshot, err) in
+                        self.recoList.removeAll()
+                        for recUser in querySnapshot!.documents{
+                            var data = recUser.data()
+                            self.recoList.append(BuddyRecoUser(name: data["name"] as! String, profilePic: data["profilePic"] as! String))
+                        }
+                    }
+                }
+              }
+            else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
     func getMessageList()->[Message]{
         var messageList:[Message] = []
         var message:Message?

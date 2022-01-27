@@ -12,7 +12,6 @@ struct StartView: View {
     @State var selection: Int? = nil
     
     var body: some View {
-        NavigationView {
             ZStack{
                 Image("startBackground")
                 VStack{
@@ -58,10 +57,8 @@ struct StartView: View {
                 }
                 .padding(120)
             }
-            
             .edgesIgnoringSafeArea(.top)
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
 
