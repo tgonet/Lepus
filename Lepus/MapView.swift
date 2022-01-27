@@ -34,20 +34,6 @@ struct MapView: UIViewRepresentable {
         view.addOverlay(polylines)
         //view.region.center = view.userLocation.coordinate
         //print(#function, view.region.span)
-        // 1
-        let template = "https://api.mapbox.com/v4/directions/mapbox.driving/58.3492489633563,37.898002422381;58.3578,37.8787.json?access_token=pk.eyJ1IjoidGdvbmV0IiwiYSI6ImNreXZzbDliNTAwMGkyenRiM3FzcjhhYzMifQ.BEkyr3e4Ar5eeUxPt3TNag"
-
-        // 2
-        let overlay = MKTileOverlay(urlTemplate: template)
-
-        // 3
-        overlay.canReplaceMapContent = true
-
-        // 4
-        view.addOverlay(overlay, level: .aboveLabels)
-
-        //5
-        //tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
     }
 
     func makeCoordinator() -> Coordinator {
