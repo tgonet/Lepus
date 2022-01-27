@@ -22,8 +22,13 @@ struct ProfileTabView: View {
     @State private var url = URL(string: "")
     
     init() {
+        /*
+        UITableView.appearance().separatorStyle = .none
+        UITableViewCell.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
+         */
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
         firebaseManager.readRuns(id: user.uid)
+        UINavigationBar.appearance().tintColor = UIColor(Color("DarkYellow"))
     }
     
     var body: some View {
@@ -52,7 +57,7 @@ struct ProfileTabView: View {
                             EmptyView()
                         }
                         Button(action: {self.RedirectBuddy = true}, label:
-                                {Text("10 Buddies")
+                                {Text("1 Buddies")
                             .font(Font.custom("Rubik-Medium", size:15))})
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)
                         //Spacer()
@@ -69,19 +74,20 @@ struct ProfileTabView: View {
                     }
                     .padding(7).overlay(
                         RoundedRectangle(cornerRadius: 13)
-                            .stroke(Color("AccentColor"), lineWidth: 1.5))
+                            .stroke(Color("DarkYellow"), lineWidth: 1.5))
                         .padding(.horizontal)
                         .padding(.vertical,10)
-                        .fixedSize(horizontal: false, vertical: true).foregroundColor(Color.black)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .foregroundColor(Color("DarkYellow"))
                     
                     List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
                         RunRow(run: run, url: user.photoURL!)
                         }
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                             UITableView.appearance().contentInset.top = -35
-                            
-                        })
+                    }).listRowBackground(Color("BackgroundColor"))
                 }
+                //.background(Color("BackgroundColor"))
                 .navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.onAppear(perform: {
                     self.name = user.displayName!
                     self.url = user.photoURL!
@@ -90,7 +96,7 @@ struct ProfileTabView: View {
         .background(TabBarAccessor { tabbar in   // << here !!
                 self.tabBar = tabbar
             })
-        .background(Color("BackgroundColor"))
+        //.background(Color("BackgroundColor"))
     }
         
     
