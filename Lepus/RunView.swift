@@ -19,7 +19,9 @@ struct RunView: View {
     @State private var span = MKCoordinateSpan(latitudeDelta: 0.0002, longitudeDelta: 0.0002)
     @State private var snapshotImage: UIImage? = nil
 
-    
+    init(){
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color("DarkYellow"))
+    }
     var body: some View {
         ZStack {
             VStack{
@@ -97,7 +99,7 @@ struct RunView: View {
                             .background(Color("AccentColor2"))
                             .clipShape(Circle())
                     }.padding(30).alert("Do you want to end the run?", isPresented: $showingAlert) {
-                        Button("No", role: .cancel) { }
+                        Button("No", role: .cancel){ }
                         Button("Yes", role: .none) {
                             if(networkManager.isConnected){
                                 generateSnapshot(width: 300, height: 300, lineCoord: stopwatchManager.lineCoordinates)

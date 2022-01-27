@@ -27,6 +27,7 @@ class FirebaseManager : ObservableObject{
     
     @Published var recoList:[BuddyRecoUser] = []
     @Published var noStatistics = false
+    @Published var noMatches = false
     
     func readRuns(){
         db.collection("runs").whereField("userId", isEqualTo: user!.uid).addSnapshotListener{ (querySnapshot, err) in
@@ -342,6 +343,10 @@ class FirebaseManager : ObservableObject{
                                                 }
                                             }
                                         }
+                                    if (self.recoList.isEmpty)
+                                    {
+                                        self.noMatches = true
+                                    }
                                     }
                                 }
                     }

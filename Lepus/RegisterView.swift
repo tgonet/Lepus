@@ -24,6 +24,10 @@ struct RegisterView: View {
     let db = Firestore.firestore()
     @State var selection: Int? = nil
     
+    init(){
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color("DarkYellow"))
+    }
+    
     var body: some View {
         ZStack{
             
