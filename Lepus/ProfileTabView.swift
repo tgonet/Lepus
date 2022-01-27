@@ -22,6 +22,10 @@ struct ProfileTabView: View {
     @State private var url = URL(string: "")
     
     init() {
+        /*
+        UITableView.appearance().separatorStyle = .none
+        UITableViewCell.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
+         */
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
         UINavigationBar.appearance().tintColor = UIColor(Color("DarkYellow"))
         firebaseManager.readRuns()
@@ -81,9 +85,9 @@ struct ProfileTabView: View {
                         }
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                             UITableView.appearance().contentInset.top = -35
-                            
-                        })
+                    }).listRowBackground(Color("BackgroundColor"))
                 }
+                //.background(Color("BackgroundColor"))
                 .navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.onAppear(perform: {
                     self.name = user.displayName!
                     self.url = user.photoURL!
@@ -92,7 +96,7 @@ struct ProfileTabView: View {
         .background(TabBarAccessor { tabbar in   // << here !!
                 self.tabBar = tabbar
             })
-        .background(Color("BackgroundColor"))
+        //.background(Color("BackgroundColor"))
     }
         
     
