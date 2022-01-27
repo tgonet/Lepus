@@ -17,10 +17,21 @@ struct BuddyListView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing:10) {
+            /*
             VStack{
                 Text("Buddy Count : 10").font(Font.custom("Rubik-Medium", size:20))
             }.padding(20).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
+             */
+            HStack{
+                Text("\(firebaseManager.recoList.count) Buddies")
+                    .font(Font.custom("Rubik-Medium", size:16))
+                Spacer()
+            }
+            .foregroundColor(Color.black)
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal)
+            
             List(firebaseManager.recoList){user in
                 BuddyListItem(user:user)
             }.listStyle(GroupedListStyle())

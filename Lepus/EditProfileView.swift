@@ -44,7 +44,11 @@ struct EditProfileView: View {
                     .clipShape(Circle()).frame(width: 100.0, height: 100.0)
             }
             Button(action: {showingImagePicker = true}, label: {
-                Text("Change profile image").padding().font(Font.custom("Rubik-Medium", size:16)).padding(.bottom, 20)
+                Text("Change profile image")
+                    .padding()
+                    .font(Font.custom("Rubik-Medium", size:16))
+                    .foregroundColor(Color("DarkYellow"))
+                    .padding(.bottom, 20)
             })
             
             HStack(alignment:.center, spacing:10){
@@ -52,14 +56,15 @@ struct EditProfileView: View {
                 TextField("Name", text: $firebaseManager.name)
                     .autocapitalization(.none)
                     .font(Font.custom("Rubik-Regular", size:18))
-                    .foregroundColor(Color("AccentColor"))
+                    .foregroundColor(Color("DarkYellow"))
                     .disableAutocorrection(true) .multilineTextAlignment(.trailing).padding(.trailing, 20)
                 }
                 .padding(.vertical,10)
-                .background(Color.white)
+                .background(Color("TextFieldColor"))
             Divider()
             HStack(alignment:.center, spacing:10){
-                Text("Gender").padding(.leading,20)
+                Text("Gender")
+                    .padding(.leading,20)
                 Menu {
                     Picker("Please select your gender", selection: $firebaseManager.gender) {
                                     ForEach(gender, id: \.self) {
@@ -69,21 +74,23 @@ struct EditProfileView: View {
                 } label:{
                     Text(firebaseManager.gender)
                         .font(Font.custom("Rubik-Regular", size:18))
+                        .foregroundColor(Color("DarkYellow"))
                 }.frame(minWidth: 200, maxWidth: UIScreen.main.bounds.width, alignment: .trailing).padding(.trailing, 20)
             }
                 .padding(.vertical,10)
-                .background(Color.white).padding(.bottom,40)
+                .background(Color("TextFieldColor"))
+                .padding(.bottom,40)
             
             HStack(alignment:.center, spacing:10){
                 Text("Height (M)").padding(.leading,20)
                 TextField("Height", value: $firebaseManager.height, format: .number)
                     .autocapitalization(.none)
                     .font(Font.custom("Rubik-Regular", size:18))
-                    .foregroundColor(Color("AccentColor"))
+                    .foregroundColor(Color("DarkYellow"))
                     .disableAutocorrection(true) .multilineTextAlignment(.trailing).padding(.trailing, 20).keyboardType(.numberPad)
                 }
-                .padding(.vertical,10)
-                .background(Color.white)
+                .padding(.vertical,12)
+                .background(Color("TextFieldColor"))
             Divider()
             HStack(alignment:.center, spacing:10){
                 Text("Weight (KG)").padding(.leading,20)
@@ -91,16 +98,18 @@ struct EditProfileView: View {
                 TextField("Weight", value: $firebaseManager.weight, format: .number)
                     .autocapitalization(.none)
                     .font(Font.custom("Rubik-Regular", size:18))
-                    .foregroundColor(Color("AccentColor"))
+                    .foregroundColor(Color("DarkYellow"))
                     .disableAutocorrection(true).multilineTextAlignment(.trailing).padding(.trailing, 20).keyboardType(.numberPad
                     )
                 }
                 .padding(.vertical,10)
-                .background(Color.white)
+                .background(Color("TextFieldColor"))
             
             Text("We will use these information to provide you with more accurate results").frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .center).multilineTextAlignment(.center).foregroundColor(Color("TextColor")).padding(.top, 30)
             Spacer()
-        }.navigationBarTitleDisplayMode(.inline).navigationTitle("Edit Profile").toolbar {
+        }.navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Edit Profile")
+            .toolbar {
             Button("Save") {
                 print("Help tapped!")
                 if(networkManager.isConnected){
@@ -112,7 +121,9 @@ struct EditProfileView: View {
                     }
                     showingAlert = true
                 }
-            }.alert("Profile updated", isPresented: $showingAlert) {
+            }
+            .foregroundColor(Color("DarkYellow"))
+            .alert("Profile updated", isPresented: $showingAlert) {
                 Button("Ok", role: .none) {
                     self.presentationMode.wrappedValue.dismiss()
                 }
@@ -121,9 +132,12 @@ struct EditProfileView: View {
                     
                 }
             }
-        }.background(Color("BackgroundColor")).fullScreenCover(isPresented: $showingImagePicker) {
+        }
+        .background(Color("BackgroundColor")).fullScreenCover(isPresented: $showingImagePicker) {
             ImagePicker(image: $inputImage)
-        }.onChange(of: inputImage) { _ in loadImage() }
+
+        }
+        .onChange(of: inputImage) { _ in loadImage() }
     }
     
     func loadImage() {
