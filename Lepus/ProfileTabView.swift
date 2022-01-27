@@ -15,6 +15,7 @@ struct ProfileTabView: View {
     @ObservedObject var CDManager = CoreDataUserManager()
     let user = Auth.auth().currentUser!
     @State private var Redirect = false
+    @State private var RedirectBuddy = false
     @State private var logOut = false
     @State private var tabBar: UITabBar! = nil
     @State private var name = ""
@@ -45,7 +46,12 @@ struct ProfileTabView: View {
                     }
                     .padding(.horizontal, 15)
                     HStack{
-                        Button(action: {}, label:
+                        NavigationLink(destination: BuddyListView()
+                                        .onAppear { self.tabBar.isHidden = true }
+                                        .onDisappear { self.tabBar.isHidden = false } , isActive: $RedirectBuddy) {
+                            EmptyView()
+                        }
+                        Button(action: {self.RedirectBuddy = true}, label:
                                 {Text("10 Buddies")
                             .font(Font.custom("Rubik-Medium", size:15))})
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)

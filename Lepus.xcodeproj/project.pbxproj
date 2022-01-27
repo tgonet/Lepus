@@ -34,6 +34,7 @@
 		7566189027A0379C0041A3ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7566188F27A0379C0041A3ED /* NetworkManager.swift */; };
 		757608CF279EDA630050C055 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757608CE279EDA630050C055 /* ImagePicker.swift */; };
 		7578545C27A102C2000DC53C /* BuddyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578545B27A102C2000DC53C /* BuddyProfile.swift */; };
+		757D8ADB27A240E200E370D3 /* BuddyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D8ADA27A240E200E370D3 /* BuddyListView.swift */; };
 		7594C741279317A100C4C20F /* TabViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C740279317A100C4C20F /* TabViewUI.swift */; };
 		7594C74327931F0B00C4C20F /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594C74227931F0B00C4C20F /* ProfileTabView.swift */; };
 		75D1CE502799EA470048EE28 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1CE4F2799EA470048EE28 /* Run.swift */; };
@@ -141,6 +142,7 @@
 		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		757608CE279EDA630050C055 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7578545B27A102C2000DC53C /* BuddyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyProfile.swift; sourceTree = "<group>"; };
+		757D8ADA27A240E200E370D3 /* BuddyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyListView.swift; sourceTree = "<group>"; };
 		7594C740279317A100C4C20F /* TabViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUI.swift; sourceTree = "<group>"; };
 		7594C74227931F0B00C4C20F /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		75D1CE4D2799E9D40048EE28 /* Lepus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lepus.xcdatamodel; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				7566188F27A0379C0041A3ED /* NetworkManager.swift */,
 				7578545B27A102C2000DC53C /* BuddyProfile.swift */,
 				755FACA127A1C320003AC99F /* Splashscreen.swift */,
+				757D8ADA27A240E200E370D3 /* BuddyListView.swift */,
 				75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
 				7529468F278DC0DB00DC7815 /* Preview Content */,
@@ -617,6 +620,7 @@
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
 				75D1CE542799EC320048EE28 /* Lepus.xcdatamodeld in Sources */,
 				7578545C27A102C2000DC53C /* BuddyProfile.swift in Sources */,
+				757D8ADB27A240E200E370D3 /* BuddyListView.swift in Sources */,
 				91918B7A2797CECC00278A54 /* ViewExtension.swift in Sources */,
 				755FACA227A1C320003AC99F /* Splashscreen.swift in Sources */,
 				9167552B279EE565008FB654 /* MessageListView.swift in Sources */,

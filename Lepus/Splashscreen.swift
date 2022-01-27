@@ -27,7 +27,7 @@ struct Splashscreen: View {
                                                isActive: $isActiveStart,
                                                label: { EmptyView() })
             }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).background(Color("BackgroundColor")).onAppear(perform: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         if (CDManager.user?.userId != "")
                         {
                             isActiveTab = true
