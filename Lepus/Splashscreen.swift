@@ -36,9 +36,8 @@ struct Splashscreen: View {
                             isActiveStart = true
                         }
                     }
-            }).navigationBarBackButtonHidden(true)
-        }
-        
+            })
+        }.navigationBarBackButtonHidden(true).navigationBarHidden(true).navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

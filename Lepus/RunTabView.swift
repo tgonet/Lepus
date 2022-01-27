@@ -23,7 +23,6 @@ struct RunTabView: View {
     }
     
     var body: some View {
-        NavigationView {
             ZStack{
                 MapView(region: MKCoordinateRegion(center: stopwatchManager.locationManager.location.coordinate, span: span),lineCoordinates: stopwatchManager.lineCoordinates).ignoresSafeArea(edges: .top)
                 VStack{
@@ -51,8 +50,6 @@ struct RunTabView: View {
                         .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                     }
                 }.padding(30).padding(.bottom, 30)
-
-            }
                 .navigationBarTitle("", displayMode: .inline) //this must be empty
                 .navigationBarHidden(true)
                 .navigationBarBackButtonHidden(true)

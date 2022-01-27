@@ -42,7 +42,7 @@ struct TabViewUI: View {
                 }
             
             ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
-        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        }.navigationBarTitle("", displayMode: .inline) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
 
