@@ -48,7 +48,9 @@ struct BuddyListView_Previews: PreviewProvider {
 }
 
 struct BuddyListItem:View{
+    @Environment(\.presentationMode) var presentationMode
     @State private var Redirect = false
+    @State private var removeBuddy = false
     var user:BuddyRecoUser?
     
 
@@ -70,13 +72,46 @@ struct BuddyListItem:View{
                 HStack{
                     Text(user!.name)
                         .font(Font.custom("Rubik-Medium", size:16))
+                    Spacer()
+                    Button(action:{removeBuddy = true}, label:{
+                    Text("Buddies")
+                        .font(Font.custom("Rubik-Medium", size:12))
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 7)
+                    /*
+                        .background(Color("AccentColor"))
+                        .cornerRadius(8)
+                     */
+                    
+                        .overlay(RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color("AccentColor"), lineWidth: 1))
+                    })
+                        .alert(isPresented: $removeBuddy)
+                    {
+                        Alert(title: Text("Confirm to remove buddy?"),
+                              primaryButton: .default(Text("Stay Buddies")),
+                              secondaryButton: .destructive(Text("Remove Buddy"))
+                              )
+                    }
+                              /*
+                    .alert("Confirm to remove buddy? :(", isPresented: $removeBuddy) {
+                        Button("Stay Buddies", role: .none) {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                        Button("Remove Buddy", role: .destructive) {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                 }
-            }
+                               */
+                }
             
             NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!).background(TabBarAccessor { tabbar in   // << here !!
                 //self.tabBar = tabbar
                 //self.tabBar.isHidden = true
-            }) , isActive: $Redirect) {}
+            }) , isActive: $Redirect)
+            {EmptyView()}
+            .hidden()
+            .frame(width:0)
         }
         .onTapGesture {
                       Redirect = true
@@ -86,3 +121,4 @@ struct BuddyListItem:View{
     }
 }
 
+}
