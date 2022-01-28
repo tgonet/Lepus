@@ -11,6 +11,7 @@ import Kingfisher
 struct BuddyListView: View {
     
     @ObservedObject var firebaseManager = FirebaseManager()
+    @State private var tabBar: UITabBar! = nil
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
@@ -47,9 +48,9 @@ struct BuddyListView_Previews: PreviewProvider {
 }
 
 struct BuddyListItem:View{
-    @State private var tabBar: UITabBar! = nil
     @State private var Redirect = false
     var user:BuddyRecoUser?
+    
 
     var body: some View{
         
@@ -72,7 +73,10 @@ struct BuddyListItem:View{
                 }
             }
             
-            NavigationLink(destination: BuddyProfile(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!) , isActive: $Redirect) {}
+            NavigationLink(destination: BuddyProfile(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!).background(TabBarAccessor { tabbar in   // << here !!
+                //self.tabBar = tabbar
+                //self.tabBar.isHidden = true
+            }) , isActive: $Redirect) {}
         }
         .onTapGesture {
                       Redirect = true

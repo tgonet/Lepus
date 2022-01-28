@@ -16,8 +16,8 @@ struct ProfileTabView: View {
     let user = Auth.auth().currentUser!
     @State private var Redirect = false
     @State private var RedirectBuddy = false
+    @State private var RedirectLogout = false
     @State private var logOut = false
-    @State private var tabBar: UITabBar! = nil
     @State private var name = ""
     @State private var url = URL(string: "")
     
@@ -32,7 +32,6 @@ struct ProfileTabView: View {
     }
     
     var body: some View {
-        NavigationView {
                 VStack{
                     HStack{
                         KFImage.url(url)
@@ -48,12 +47,20 @@ struct ProfileTabView: View {
                             }
                         Text(name)
                         Spacer()
+                        NavigationLink(destination: StartView(), isActive: $RedirectLogout) {
+                            EmptyView()
+                        }
+                        Text("Logout")
+                        .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color("AccentColor"), lineWidth: 1)).onTapGesture {
+                                    RedirectLogout = true
+                                    LogOut()
+                                }
                     }
                     .padding(.horizontal, 15)
                     HStack{
-                        NavigationLink(destination: BuddyListView()
-                                        .onAppear { self.tabBar.isHidden = true }
-                                        .onDisappear { self.tabBar.isHidden = false } , isActive: $RedirectBuddy) {
+                        NavigationLink(destination: BuddyListView(), isActive: $RedirectBuddy) {
                             EmptyView()
                         }
                         Button(action: {self.RedirectBuddy = true}, label:
@@ -62,9 +69,7 @@ struct ProfileTabView: View {
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)
                         //Spacer()
                         Divider()
-                        NavigationLink(destination: EditProfileView()
-                                        .onAppear { self.tabBar.isHidden = true }
-                                        .onDisappear { self.tabBar.isHidden = false } , isActive: $Redirect) {
+                        NavigationLink(destination: EditProfileView(), isActive: $Redirect) {
                             EmptyView()
                         }
                         Button(action: {self.Redirect = true}, label: {Text("Edit Profile")
@@ -86,26 +91,17 @@ struct ProfileTabView: View {
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                             UITableView.appearance().contentInset.top = -35
                     }).listRowBackground(Color("BackgroundColor"))
-                }
-                //.background(Color("BackgroundColor"))
-                .navigationBarTitleDisplayMode(.inline).navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.onAppear(perform: {
-                    self.name = user.displayName!
-                    self.url = user.photoURL!
-                })
-        }
-        .background(TabBarAccessor { tabbar in   // << here !!
-                self.tabBar = tabbar
-            })
-        //.background(Color("BackgroundColor"))
+        }.onAppear(perform: {
+            self.name = user.displayName!
+            self.url = user.photoURL!
+        }).navigationBarHidden(true)//.navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.navigationBarTitleDisplayMode(.inline)
     }
         
     
     func LogOut(){
-        print("HI")
         do{
             try Auth.auth().signOut()
             CoreDataManager().LogOutUser(id:CDManager.user!.userId!)
-            print("test")
             self.logOut = true
         }
         catch let error as NSError{

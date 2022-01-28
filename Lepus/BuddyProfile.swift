@@ -16,7 +16,7 @@ struct BuddyProfile: View {
     var name:String
     var url:URL
     //@State var user:Firebase.User? = Auth.auth().currentUser
-    @State private var tabBar: UITabBar! = nil
+    @State private var tabBar: UITabBar! = UITabBar()
     @State private var friends:String = "pending"
     
     init(id:String, name:String, url:URL){
@@ -24,6 +24,7 @@ struct BuddyProfile: View {
         self.id = id
         self.name = name
         self.url = url
+        tabBar.isHidden = true
     }
     
     var body: some View {
@@ -62,7 +63,7 @@ struct BuddyProfile: View {
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(Color("AccentColor"), lineWidth: 1))
                     }
-                }.padding(.horizontal, 15)//.padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+                }.padding(.horizontal, 15).padding(.top)
 
                 
                 if (friends == "true") {
@@ -78,11 +79,18 @@ struct BuddyProfile: View {
                         Text("History will be shown once you guys are friends")
                         Spacer()
                     }
-                    
                 }
-            }.onAppear(perform: {
+            }.background(Color("BackgroundColor")).background(TabBarAccessor { tabbar in   // << here !!
+                self.tabBar = tabbar
+                self.tabBar.isHidden = true
+            }).onAppear(perform: {
                 self.firebaseManager.readRuns(id: id)
-            })
+            }).onChange(of: tabBar) { newImage in
+                print(tabBar.isHidden)
+                print("Changed")
+                tabBar.isHidden = true
+                
+            }
     }
 }
 
