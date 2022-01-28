@@ -25,6 +25,7 @@ struct EditProfileView: View {
     
     init(){
         firebaseManager.getprofileDetails(id: Auth.auth().currentUser!.uid)
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color("DarkYellow"))
     }
     
     var body: some View {
