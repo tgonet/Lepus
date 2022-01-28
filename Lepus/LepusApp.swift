@@ -13,7 +13,7 @@ struct LepusApp: App {
     @UIApplicationDelegateAdaptor(Delegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            Splashscreen()
+            Splashscreen().navigationBarBackButtonHidden(true).navigationBarHidden(true).navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
