@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import Kingfisher
 
-struct BuddyProfile: View {
+struct BuddyProfileView: View {
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
     @ObservedObject var CDManager = CoreDataUserManager()
     var id:String
@@ -80,22 +80,14 @@ struct BuddyProfile: View {
                         Spacer()
                     }
                 }
-            }.background(Color("BackgroundColor")).background(TabBarAccessor { tabbar in   // << here !!
-                self.tabBar = tabbar
-                self.tabBar.isHidden = true
-            }).onAppear(perform: {
+            }.background(Color("BackgroundColor")).onAppear(perform: {
                 self.firebaseManager.readRuns(id: id)
-            }).onChange(of: tabBar) { newImage in
-                print(tabBar.isHidden)
-                print("Changed")
-                tabBar.isHidden = true
-                
-            }
+            }).navigationBarBackButtonHidden(false)
     }
 }
 
 struct BuddyProfile_Previews: PreviewProvider {
     static var previews: some View {
-        BuddyProfile(id: "1", name: "2", url: URL(string: "help")!)
+        BuddyProfileView(id: "1", name: "2", url: URL(string: "help")!)
     }
 }

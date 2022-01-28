@@ -74,7 +74,7 @@ struct BuddyTabView: View {
                             }
                             else{
                                 ForEach(FBManager.recoList) {
-                                    user in BuddyRecommendationItem(url: URL(string:user.profilePic), name: user.name)
+                                    user in BuddyRecommendationItem(id: user.id, url: URL(string:user.profilePic), name: user.name)
                                         .padding(8)
                                     }
                                 }
@@ -141,12 +141,15 @@ struct BuddyTabView_Previews: PreviewProvider {
 }
 
 struct BuddyRecommendationItem:View{
+    var id:String
     var url:URL?
     var name:String
+    @State private var Redirect = false
     
     
     var body:some View{
         VStack{
+            NavigationLink(destination: BuddyProfileView(id: id, name: name, url: url!).navigationBarTitleDisplayMode(.inline) , isActive: $Redirect) {}
             if(url != nil)
             {
                 KFImage.url(url)
@@ -161,7 +164,9 @@ struct BuddyRecommendationItem:View{
             Text(name)
                 .font(Font.custom("Rubik-Regular", size:15))
         }
-        .foregroundColor(Color.black)
+        .foregroundColor(Color.black).onTapGesture {
+            Redirect = true
+        }
     }
 }
 

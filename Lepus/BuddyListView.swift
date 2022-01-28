@@ -73,7 +73,7 @@ struct BuddyListItem:View{
                 }
             }
             
-            NavigationLink(destination: BuddyProfile(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!).background(TabBarAccessor { tabbar in   // << here !!
+            NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!).background(TabBarAccessor { tabbar in   // << here !!
                 //self.tabBar = tabbar
                 //self.tabBar.isHidden = true
             }) , isActive: $Redirect) {}

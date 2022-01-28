@@ -31,18 +31,21 @@ struct TabViewUI: View {
        }
     
     var body: some View {
-        TabView {
-            BuddyTabView()
-                .tabItem{
-                    Label("Buddies", systemImage:"person.2.fill")
-                }
-            RunTabView()
-                .tabItem {
-                    Label("Run",systemImage:"figure.walk")
-                }
-            
-            ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
-        }.navigationBarTitle("", displayMode: .inline) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        NavigationView{
+            TabView {
+                BuddyTabView()
+                    .tabItem{
+                        Label("Buddies", systemImage:"person.2.fill")
+                    }
+                RunTabView()
+                    .tabItem {
+                        Label("Run",systemImage:"figure.walk")
+                    }
+                
+                ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
+            }//.navigationBarTitle("", displayMode: .inline) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        }.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        
     }
 }
 

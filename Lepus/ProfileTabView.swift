@@ -50,10 +50,8 @@ struct ProfileTabView: View {
                         NavigationLink(destination: StartView(), isActive: $RedirectLogout) {
                             EmptyView()
                         }
-                        Text("Logout")
-                        .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color("AccentColor"), lineWidth: 1)).onTapGesture {
+                        Text("Logout").foregroundColor(Color("DarkYellow"))
+                        .onTapGesture {
                                     RedirectLogout = true
                                     LogOut()
                                 }
