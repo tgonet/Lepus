@@ -16,15 +16,14 @@ struct BuddyProfileView: View {
     var name:String
     var url:URL
     //@State var user:Firebase.User? = Auth.auth().currentUser
-    @State private var tabBar: UITabBar! = UITabBar()
-    @State private var friends:String = "pending"
+    @State private var friends:String = ""
     
     init(id:String, name:String, url:URL){
-        UITableView.appearance().backgroundColor = UIColor.clear
+        UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
         self.id = id
         self.name = name
         self.url = url
-        tabBar.isHidden = true
+        firebaseManager.readRuns(id: id)
     }
     
     var body: some View {
@@ -43,7 +42,7 @@ struct BuddyProfileView: View {
                     
                     Spacer()
                     
-                    if friends == "pending" {
+                    if (friends == "pending") {
                         Text("Request Sent")
                         .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                             RoundedRectangle(cornerRadius: 8)
@@ -51,9 +50,19 @@ struct BuddyProfileView: View {
                     }
                     else if(friends == "false"){
                         Button(action: {
-                            //LogOut()
+                            firebaseManager.makeRequest(id: id)
+                            friends = "pending"
                         }, label: {
                             Text("Add Buddy").foregroundColor(Color.black)
+                            .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
+                        }).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    else if(friends == "toAccept"){
+                        Button(action: {
+                            firebaseManager.acceptRequest(id: id)
+                            friends = "true"
+                        }, label: {
+                            Text("Accept").foregroundColor(Color.black)
                             .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
                         }).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
                     }
@@ -61,17 +70,28 @@ struct BuddyProfileView: View {
                         Text("Buddies")
                             .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                                 RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color("AccentColor"), lineWidth: 1))
+                                    .stroke(Color("AccentColor"), lineWidth: 1)).onTapGesture {
+                                        print(firebaseManager.runList.count)
+                                    }
                     }
                 }.padding(.horizontal, 15).padding(.top)
 
-                
                 if (friends == "true") {
-                    List(firebaseManager.runList.sorted(by: {$0.date > $1.date})) {run in
-                        RunRow(run: run, url: url)
-                    }.listStyle(GroupedListStyle()).onAppear(perform: {
-                        UITableView.appearance().contentInset.top = -35
-                    })
+                    if (firebaseManager.runList.count == 0){
+                        VStack {
+                            Spacer()
+                            Text("Friend does not have any run!")
+                            Spacer()
+                        }
+                    }
+                    else{
+                        List(firebaseManager.runList) {run in
+                            RunRow(run: run, url: url)
+                        }.listStyle(GroupedListStyle()).onAppear(perform: {
+                            UITableView.appearance().contentInset.top = -35
+                        })
+                    }
+                    
                 }
                 else {
                     VStack {
@@ -80,9 +100,11 @@ struct BuddyProfileView: View {
                         Spacer()
                     }
                 }
-            }.background(Color("BackgroundColor")).onAppear(perform: {
-                self.firebaseManager.readRuns(id: id)
-            }).navigationBarBackButtonHidden(false)
+            }.background(Color("BackgroundColor")).navigationBarBackButtonHidden(false).onAppear(perform: {
+                firebaseManager.isBuddy(buddyId: id, completion: {(result)-> Void in
+                    self.friends = result
+                })
+            })
     }
 }
 

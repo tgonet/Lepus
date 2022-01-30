@@ -17,9 +17,9 @@ struct BuddyTabView: View {
 
     
     let messages = [
-        Message(user: "Ming Zhe", datetime: Date(), content: "Hello, what time are we meeting?"),
-        Message(user: "Zhi Qi", datetime:Date(), content:"Hi, I'm Zhi Qi! :)"),
-        Message(user: "Zheng Hao", datetime:Date(), content:"Hi Joey!")
+        Message(user: "Ming Zhe", datetime: Date(), message: "Hello, what time are we meeting?"),
+        Message(user: "Zhi Qi", datetime:Date(), message:"Hi, I'm Zhi Qi! :)"),
+        Message(user: "Zheng Hao", datetime:Date(), message:"Hi Joey!")
         ]
     
     var body: some View {
@@ -149,7 +149,7 @@ struct BuddyRecommendationItem:View{
     
     var body:some View{
         VStack{
-            NavigationLink(destination: BuddyProfileView(id: id, name: name, url: url!).navigationBarTitleDisplayMode(.inline) , isActive: $Redirect) {}
+            NavigationLink(destination: BuddyProfileView(id: id, name: name, url: url!).navigationBarTitleDisplayMode(.inline) , isActive: $Redirect) {EmptyView()}
             if(url != nil)
             {
                 KFImage.url(url)
@@ -177,7 +177,7 @@ struct MessageListItem:View{
 
 
     var body: some View {
-        NavigationLink(destination: chatView(), isActive: $Redirect){
+        NavigationLink(destination: chatView(documentId:"docId"), isActive: $Redirect){
             HStack(alignment:.center){
                 Image("profileImg")
                     .resizable()
@@ -193,13 +193,11 @@ struct MessageListItem:View{
                         Text(datetime)
                             .font(Font.custom("Rubik-Regular", size:14))
                     }
-                    Text(message.content)
+                    Text(message.message)
                         .font(Font.custom("Rubik-Regular", size:14))
                 }
             }
         }
-
-    
         .padding(.vertical, 8)
         .listRowBackground(Color("BackgroundColor"))
     }

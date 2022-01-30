@@ -9,10 +9,20 @@ import SwiftUI
 import Firebase
 
 struct chatView: View {
+    var documentId:String
     @ObservedObject var CDManager = CoreDataUserManager()
-
+    @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
+    
     @StateObject var chatData = chatModel()
     @State var scrolled = false
+    @State var chat_name:String = ""
+
+    init(documentId:String){
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color("DarkYellow"))
+        
+        self.documentId = "NAM12Qcn4U20AnKqWdPF"
+        
+    }
     
     var body: some View {
 
@@ -21,17 +31,21 @@ struct chatView: View {
             ScrollViewReader{ reader in
                 ScrollView{
                     VStack(spacing: 0){
-                        ForEach(chatData.msgs){msg in
+                        ForEach(FBManager.getMessages(documentId: documentId).reversed(), id: \.self){msg in
                             chatRow(chatData: msg)
                                 .onAppear(){
-                                    if msg.id == self.chatData.msgs.last!.id && !scrolled {
-                                        reader.scrollTo(chatData.msgs.last!.content, anchor: .bottom)
+                                    if msg.user != CDManager.user?.name {
+                                        chat_name = msg.user
+                                    }
+                                    if msg.id == self.FBManager.msgs.last!.id && !scrolled {
+                                        reader.scrollTo(FBManager.msgs.last!.message, anchor: .bottom)
                                         scrolled = true
+
                                     }
                                 }
                         }
-                        .onChange(of: chatData.msgs, perform: { value in
-                            reader.scrollTo(chatData.msgs.last!.content, anchor: .bottom)
+                        .onChange(of: FBManager.msgs, perform: { value in
+                            reader.scrollTo(FBManager.msgs.last!.message, anchor: .bottom)
                         })
                     }
                     .padding(.vertical)
@@ -39,13 +53,13 @@ struct chatView: View {
             }
             
             HStack(spacing:15){
-                TextField("Enter Message",text: $chatData.txt)
+                TextField("Enter Message",text: $FBManager.txt)
                     .padding(.horizontal)
                     .frame(height: 45)
                     .background(Color.primary.opacity(0.06))
                     .clipShape(Capsule())
                 
-                if chatData.txt != "" {
+                if FBManager.txt != "" {
                     Button(action: {sendMsg()}, label: {
                         Image(systemName: "paperplane.fill")
                             .font(.system(size: 32))
@@ -56,16 +70,20 @@ struct chatView: View {
                     })
                 }
             }
+            .navigationBarTitleDisplayMode(.inline).navigationTitle(chat_name)
         }
         
     }
     
     func sendMsg(){
-        let user = CDManager.user!
+        //let user = CDManager.user!
 
-        chatData.writeMsg(userId: user.name )
-        chatData.txt = ""
+        FBManager.sendMsg(documentId: documentId)
+        
+        FBManager.txt = ""
     }
+    
+
 }
 
 extension Color {

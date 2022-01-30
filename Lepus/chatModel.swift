@@ -23,16 +23,17 @@ class chatModel: ObservableObject {
     }
     
     func addMsgs(){
-        msgs.append(Message(user: "Ming Zhe", datetime: Date(), content: "Hello, what time are we meeting?"))
-        msgs.append(Message(user: "Yc", datetime:Date(), content:"6:45pm"))
-        msgs.append(Message(user: "Ming Zhe", datetime:Date(), content:"We are meeting at Ngee Ann Polytechnic's Stadium right?"))
-        msgs.append(Message(user: "Yc", datetime:Date(), content:"Yup!"))
+        let userName = CDManager.user?.name
+        msgs.append(Message(user: "Ming Zhe", datetime: Date(), message: "Hello, what time are we meeting?"))
+        msgs.append(Message(user: userName!, datetime:Date(), message:"6:45pm"))
+        msgs.append(Message(user: "Ming Zhe", datetime:Date(), message:"We are meeting at Ngee Ann Polytechnic's Stadium right?"))
+        msgs.append(Message(user: userName!, datetime:Date(), message:"Yup!"))
 
 
     }
     
     func writeMsg(userId:String){
-        msgs.append(Message(user: userId, datetime: Date(), content: txt))
+        msgs.append(Message(user: userId, datetime: Date(), message: txt))
     }
 
     func readAllMsgs(){
@@ -67,29 +68,6 @@ class chatModel: ObservableObject {
         }
     }
     
-    func sendMsg(receiveID:String){
-        let user = CDManager.user!
-        let uid = user.userId
-        let dateFormatter = DateFormatter()
-        let datetime =  dateFormatter.string(from: Date())
-                
-        let docData: [String: Any] = [
-            "content": txt,
-            "senderId": uid!,
-            "datetime": datetime
-        ]
-        
-        ref.collection("MessageGroup").document().collection("user").document().setData(docData) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            }
-        }
-        
-        self.txt = ""
-        
-        
-        
-    }
 }
 
 struct chatBubble: Shape {

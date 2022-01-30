@@ -32,7 +32,7 @@ struct TabViewUI: View {
                 runList.removeAll()
             }
         }
-       }
+    }
     
     var body: some View {
         NavigationView{

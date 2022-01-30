@@ -35,7 +35,7 @@ struct BuddyListView: View {
             .padding(.top)
             
             List(firebaseManager.recoList){user in
-                BuddyListItem(user:user)
+                BuddyListItem(user:user,firebaseManager: firebaseManager)
             }.listStyle(GroupedListStyle())
         }.background(Color("BackgroundColor")).navigationTitle("Buddy List").navigationBarTitleDisplayMode(.inline).onAppear(perform: {firebaseManager.getBuddyList()})
     }
@@ -52,10 +52,10 @@ struct BuddyListItem:View{
     @State private var Redirect = false
     @State private var removeBuddy = false
     var user:BuddyRecoUser?
-    
+    @State private var selection = ""
+    var firebaseManager:FirebaseManager
 
     var body: some View{
-        
         HStack(alignment:.center){
             KFImage.url(URL(string: user!.profilePic))
                 .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 60.0, height: 60.0).padding(.trailing,20)}
@@ -78,47 +78,32 @@ struct BuddyListItem:View{
                         .font(Font.custom("Rubik-Medium", size:12))
                         .padding(.horizontal, 20)
                         .padding(.vertical, 7)
-                    /*
-                        .background(Color("AccentColor"))
-                        .cornerRadius(8)
-                     */
-                    
                         .overlay(RoundedRectangle(cornerRadius: 8)
                         .stroke(Color("AccentColor"), lineWidth: 1))
                     })
-                        .alert(isPresented: $removeBuddy)
-                    {
-                        Alert(title: Text("Confirm to remove buddy?"),
-                              primaryButton: .default(Text("Stay Buddies")),
-                              secondaryButton: .destructive(Text("Remove Buddy"))
-                              )
-                    }
-                              /*
-                    .alert("Confirm to remove buddy? :(", isPresented: $removeBuddy) {
-                        Button("Stay Buddies", role: .none) {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
+                        .confirmationDialog("Confirm to remove buddy?", isPresented: $removeBuddy, titleVisibility: .visible) {
+                        Button("Stay Buddies") {}
                         Button("Remove Buddy", role: .destructive) {
-                            self.presentationMode.wrappedValue.dismiss()
+                            firebaseManager.removeBuddy(bUser: user!)
                         }
+                    }
+//                        .alert(isPresented: $removeBuddy)
+//                        {
+//                            Alert(title: Text("Confirm to remove buddy?"),
+//                              primaryButton: .default(Text("Stay Buddies")),
+//                              secondaryButton: .destructive(Text("Remove Buddy"))
+//                              )
+//                        }
+                             
                 }
-                               */
-                }
-            
-            NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!).background(TabBarAccessor { tabbar in   // << here !!
-                //self.tabBar = tabbar
-                //self.tabBar.isHidden = true
-            }) , isActive: $Redirect)
-            {EmptyView()}
-            .hidden()
-            .frame(width:0)
-        }
-        .onTapGesture {
-                      Redirect = true
-                  }
-        .padding(.vertical, 8)
-        .listRowBackground(Color("BackgroundColor")).listRowSeparator(.hidden)
+                NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!), isActive: $Redirect)
+                {EmptyView()}
+                .hidden()
+                .frame(width:0)
+            }
+            .padding(.vertical, 8)
+            .listRowBackground(Color("BackgroundColor")).listRowSeparator(.hidden)
+        }.onTapGesture {Redirect = true}
     }
-}
 
 }
