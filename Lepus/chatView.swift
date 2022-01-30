@@ -12,7 +12,7 @@ struct chatView: View {
     var documentId:String
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
-
+    
     @StateObject var chatData = chatModel()
     @State var scrolled = false
     @State var chat_name:String = ""
@@ -20,8 +20,7 @@ struct chatView: View {
     init(documentId:String){
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color("DarkYellow"))
         
-        self.documentId = documentId
-        print(documentId)
+        self.documentId = "NAM12Qcn4U20AnKqWdPF"
         
     }
     
@@ -32,21 +31,21 @@ struct chatView: View {
             ScrollViewReader{ reader in
                 ScrollView{
                     VStack(spacing: 0){
-                        ForEach(FBManager.getMessages(documentId: "NAM12Qcn4U20AnKqWdPF")){msg in
+                        ForEach(FBManager.getMessages(documentId: documentId).reversed(), id: \.self){msg in
                             chatRow(chatData: msg)
                                 .onAppear(){
                                     if msg.user != CDManager.user?.name {
                                         chat_name = msg.user
                                     }
-                                    if msg.id == self.chatData.msgs.last!.id && !scrolled {
-                                        reader.scrollTo(chatData.msgs.last!.message, anchor: .bottom)
+                                    if msg.id == self.FBManager.msgs.last!.id && !scrolled {
+                                        reader.scrollTo(FBManager.msgs.last!.message, anchor: .bottom)
                                         scrolled = true
 
                                     }
                                 }
                         }
-                        .onChange(of: chatData.msgs, perform: { value in
-                            reader.scrollTo(chatData.msgs.last!.message, anchor: .bottom)
+                        .onChange(of: FBManager.msgs, perform: { value in
+                            reader.scrollTo(FBManager.msgs.last!.message, anchor: .bottom)
                         })
                     }
                     .padding(.vertical)
@@ -79,10 +78,12 @@ struct chatView: View {
     func sendMsg(){
         //let user = CDManager.user!
 
-        FBManager.sendMsg(documentId: "NAM12Qcn4U20AnKqWdPF")
+        FBManager.sendMsg(documentId: documentId)
         
-        chatData.txt = ""
+        FBManager.txt = ""
     }
+    
+
 }
 
 extension Color {
