@@ -149,7 +149,7 @@ struct BuddyRecommendationItem:View{
     
     var body:some View{
         VStack{
-            NavigationLink(destination: BuddyProfileView(id: id, name: name, url: url!).navigationBarTitleDisplayMode(.inline) , isActive: $Redirect) {}
+            NavigationLink(destination: BuddyProfileView(id: id, name: name, url: url!).navigationBarTitleDisplayMode(.inline) , isActive: $Redirect) {EmptyView()}
             if(url != nil)
             {
                 KFImage.url(url)
@@ -198,8 +198,6 @@ struct MessageListItem:View{
                 }
             }
         }
-
-    
         .padding(.vertical, 8)
         .listRowBackground(Color("BackgroundColor"))
     }
