@@ -95,33 +95,6 @@ class CoreDataManager{
         }
     }
     
-    // For development testing
-    /*
-    func getUsers()->[User]{
-        let fetchRequest:NSFetchRequest<CDUser> =  CDUser.fetchRequest()
-        
-        var userList:[User] = []
-        do {
-            let cdUsers = try container.viewContext.fetch(fetchRequest)
-            if (cdUsers.count != 0)
-            {
-                for cdUser in cdUsers {
-                    let u: User = User(userId: "", email:"", name: "", profilePic: "")
-                    u.userId = cdUser.userId!
-                    u.name = cdUser.name!
-                    u.profilePic = cdUser.profilePic
-                    userList.append(u)
-                    print("\(u.userId) is stored in CoreData")
-                }
-            }
-            
-        }catch let error as NSError {
-            print("Could not get a user. \(error), \(error.userInfo)")
-        }
-        
-        return userList
-    }
-     */
     
     func saveRun(duration:String, pace:Double, distance:Double, startLatitude:Double, startLongitude:Double){
         let cdRun = CDRun(context: CoreDataManager.container.viewContext)
