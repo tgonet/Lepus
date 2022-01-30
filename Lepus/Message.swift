@@ -9,20 +9,20 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct Message:Identifiable,Codable,Hashable{
-    let id = UUID()
+    @DocumentID var id: String?
     var user:String
     var datetime:Date
-    var content:String
+    var message:String
     
-    init(user:String, datetime:Date, content:String){
+    init(user:String, datetime:Date, message:String){
         self.user = user
         self.datetime = datetime
-        self.content = content
+        self.message = message
     }
     enum CodingKeys: String,CodingKey {
         case id
         case user
         case datetime
-        case content
+        case message
     }
 }

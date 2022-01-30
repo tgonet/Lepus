@@ -12,8 +12,6 @@ struct chatRow: View {
     var chatData: Message
     
     @ObservedObject var CDManager = CoreDataUserManager()
-    
-
 
     var body: some View {
         var user = CDManager.user!
@@ -28,7 +26,7 @@ struct chatRow: View {
             
             VStack(alignment: chatData.user == uid ? .trailing: .leading, spacing: 5, content:{
                 if chatData.user == uid {
-                    Text(chatData.content)
+                    Text(chatData.message)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .padding()
@@ -43,7 +41,7 @@ struct chatRow: View {
                     .foregroundColor(.gray)
                     .padding(chatData.user == uid ? .leading: .trailing , 10)
                 } else if chatData.user != uid {
-                    Text(chatData.content)
+                    Text(chatData.message)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .padding()
