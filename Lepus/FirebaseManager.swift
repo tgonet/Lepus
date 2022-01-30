@@ -25,9 +25,14 @@ class FirebaseManager : ObservableObject{
     @Published var gender = "Male"
     @Published var name = ""
     
+    @Published var txt = ""
+    
     @Published var recoList:[BuddyRecoUser] = []
     @Published var noStatistics = false
     @Published var noMatches = false
+    
+    @ObservedObject var CDManager = CoreDataUserManager()
+
     
     func readRuns(id:String){
         db.collection("runs").whereField("userId", isEqualTo: id).addSnapshotListener{ (querySnapshot, err) in
@@ -614,6 +619,77 @@ class FirebaseManager : ObservableObject{
                      */
         return messageList
     }
+    
+    func getMessages(documentId:String)->[Message] {
+            let user_uid = user!.uid
+            var messageList:[Message] = []
+            let ref = db.collection("MessageGroup").document(documentId).collection("msg1")
+            ref.getDocuments(completion: {(querySnapshot,error) in
+                if let error = error {
+                    print("Error getting document:" ,error)
+                } else {
+                    messageList.removeAll()
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        let id = document.documentID
+                        let datetime = data["datetime"] as? Timestamp
+                        let message = data["message"] as? String
+                        let sender = data["senderId"] as? String
+                        if sender != nil && message != nil{
+                            messageList.append(Message(user: sender!, datetime: datetime!.dateValue(), message: message! ))
+                        }
+                    }
+                }
+                
+            })
+            
+            /*
+             ref.addSnapshotListener{ (querySnapshot, err) in
+                 if let err = err {
+                     print("Error getting documents: \(err)")
+                 } else {
+                     self.runList.removeAll()
+                     for document in querySnapshot!.documents {
+                         let data = document.data()
+                         let id = document.documentID
+                         let date = data["Date"] as? Timestamp
+                         let pace = data["Pace"] as? Double
+                         let name = data["Name"] as? String
+                         let distance = data["Distance"] as? Double
+                         let duration = data["Duration"] as? String
+                         let url = data["Url"] as? String
+                         self.runList.append(Run(id:id, name: name!, date: date!.dateValue(), distance: distance!, pace: pace!, duration: duration!, url:url!))
+                         }
+                     }
+             }
+             */
+            return messageList
+        }
+    
+    
+    func sendMsg(documentId:String){
+        let user = CDManager.user!
+        let uid = user.userId
+                
+        let docData: [String: Any] = [
+            "message": txt,
+            "senderId": uid!,
+            "datetime": Date()
+        ]
+        
+        db.collection("MessageGroup").document(documentId).collection("msg1").document().setData(docData) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            }
+        }
+        
+        self.txt = ""
+        
+        
+        
+    }
+    
+    
 }
 
 
