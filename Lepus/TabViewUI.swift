@@ -18,15 +18,19 @@ struct TabViewUI: View {
     
     init() {
         UITabBar.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
+        
         if(networkManager.isConnected){
             runList = coreDataManager.getRuns()
             //print(runList.count)
             if(runList.count > 0){
                 for run in runList {
                     firebaseManager.saveRun(duration: run.duration!, pace: run.pace, distance: run.distance, url: "", coord: CLLocationCoordinate2D(latitude: run.startLatitude, longitude: run.startLongitude))
+                    coreDataManager.RemoveRun(id: run.runId)
+                    print("Saving Runs to Firebase")
                 }
+                print("Removing runs...")
+                runList.removeAll()
             }
-                
         }
        }
     

@@ -16,16 +16,16 @@ class NetworkManager : ObservableObject{
     
     init(){
         monitor.pathUpdateHandler = { path in
-            if path.usesInterfaceType(.wifi) || path.usesInterfaceType(.cellular){
                 if path.status == .satisfied {
                     self.isConnected = true
                     print("We're connected!")
+                    
                 } else {
                     self.isConnected = false
                     print("No connection.")
                 }
-            }
         }
         monitor.start(queue: queue)
     }
+    
 }

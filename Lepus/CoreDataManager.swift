@@ -131,6 +131,24 @@ class CoreDataManager{
         return runList
     }
     
+    //Delete Offline Run record once updated in Firebase
+    func RemoveRun(id:Int32)
+    {
+        let fetchRequest:NSFetchRequest<CDRun> = CDRun.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "runId == \(id)")
+        
+        do {
+            let cdRun = try CoreDataManager.container.viewContext.fetch(fetchRequest)
+            CoreDataManager.container.viewContext.delete(cdRun[0])
+            try CoreDataManager.container.viewContext.save()
+        }
+        catch let error as NSError {
+            CoreDataManager.container.viewContext.rollback()
+            print("Could not remove run. \(error), \(error.userInfo)")
+        }
+    }
+    
+    
     func updateUsername(name:String, id:String){
         let fetchRequest:NSFetchRequest<CDUser> = CDUser.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "userId= %@", id)
