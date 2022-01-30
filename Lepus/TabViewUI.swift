@@ -28,7 +28,7 @@ struct TabViewUI: View {
             }
                 
         }
-       }
+    }
     
     var body: some View {
         NavigationView{

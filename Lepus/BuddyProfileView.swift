@@ -42,7 +42,7 @@ struct BuddyProfileView: View {
                     
                     Spacer()
                     
-                    if friends == "pending" {
+                    if (friends == "pending") {
                         Text("Request Sent")
                         .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                             RoundedRectangle(cornerRadius: 8)
@@ -50,9 +50,19 @@ struct BuddyProfileView: View {
                     }
                     else if(friends == "false"){
                         Button(action: {
-                            //LogOut()
+                            firebaseManager.makeRequest(id: id)
+                            friends = "pending"
                         }, label: {
                             Text("Add Buddy").foregroundColor(Color.black)
+                            .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
+                        }).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    else if(friends == "toAccept"){
+                        Button(action: {
+                            firebaseManager.acceptRequest(id: id)
+                            friends = "true"
+                        }, label: {
+                            Text("Accept").foregroundColor(Color.black)
                             .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
                         }).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
                     }

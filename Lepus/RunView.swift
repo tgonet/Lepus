@@ -109,7 +109,6 @@ struct RunView: View {
                                 self.stopwatchManager.stop()
                                 self.presentationMode.wrappedValue.dismiss()
                             }
-                            
                         }
                     }
                 }

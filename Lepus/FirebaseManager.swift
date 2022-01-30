@@ -417,12 +417,22 @@ class FirebaseManager : ObservableObject{
     
     func isBuddy(buddyId:String, completion: @escaping (_ result:String)->Void){
         var buddyList:[String] = []
+        var pendingBuddyList:[String] = []
+        var requestList:[String] = []
         let ref = db.collection("Buddies").document(user!.uid)
         ref.getDocument{(document,error) in
             if let document = document, document.exists {
                 buddyList = document.data()!["buddyList"]! as! [String]
+                pendingBuddyList = document.data()!["pendingBuddyList"]! as! [String]
+                requestList = document.data()!["requestList"]! as! [String]
                 if(buddyList.contains(buddyId)){
                     completion("true")
+                }
+                else if(pendingBuddyList.contains(buddyId)){
+                    completion("pending")
+                }
+                else if(requestList.contains(buddyId)){
+                    completion("toAccept")
                 }
                 else{
                     completion("false")
@@ -434,7 +444,8 @@ class FirebaseManager : ObservableObject{
             }
         }
     }
-    
+    //Request list for buddy
+    // pending list for user
     func addBuddy(id:String){
         var buddyList:[String] = []
         var pendingBuddyList:[String] = []
@@ -443,19 +454,109 @@ class FirebaseManager : ObservableObject{
             if let document = document, document.exists {
                 buddyList = document.data()!["buddyList"]! as! [String]
                 pendingBuddyList = document.data()!["pendingBuddyList"]! as! [String]
-                /// If this person has made a buddy request already
+                /// If requested person has made a buddy request previously
                 if(pendingBuddyList.contains(id)){
+                    /// Update current user buddy list
                     buddyList.append(id)
                     ref.updateData(["buddyList" : buddyList])
+                    pendingBuddyList.remove(at: pendingBuddyList.firstIndex(of: id)!)
+                    ref.updateData(["pendingBuddyList" : pendingBuddyList])
+                    /// Update buddy's buddy list
+                    let ref1 = self.db.collection("Buddies").document(id)
+                    ref1.getDocument{(document,error) in
+                        if let document = document, document.exists {
+                            buddyList = document.data()!["buddyList"]! as! [String]
+                            buddyList.append(self.user!.uid)
+                            ref1.updateData(["buddyList":buddyList])
+                        }
+                        else {
+                            print("Document does not exist")
+                            
+                        }
+                    }
                 }
                 /// If this person initiated the buddy request
                 else{
-                    pendingBuddyList.append(id)
-                    ref.updateData(["pendingBuddyList" : pendingBuddyList])
+                    let ref1 = self.db.collection("Buddies").document(id)
+                    ref1.getDocument{(document,error) in
+                        if let document = document, document.exists {
+                            pendingBuddyList = document.data()!["pendingBuddyList"]! as! [String]
+                            pendingBuddyList.append(self.user!.uid)
+                            ref1.updateData(["pendingBuddyList":pendingBuddyList])
+                        }
+                        else {
+                            print("Document does not exist")
+                            
+                        }
+                    }
                 }
               }
             else {
                 print("Document does not exist")
+            }
+        }
+    }
+    
+    func makeRequest(id:String){
+        var pendingBuddyList:[String] = []
+        var requestList:[String] = []
+        let ref = self.db.collection("Buddies").document(user!.uid)
+        ref.getDocument{(document,error) in
+            if let document = document, document.exists {
+                pendingBuddyList = document.data()!["pendingBuddyList"]! as! [String]
+                pendingBuddyList.append(id)
+                ref.updateData(["pendingBuddyList":pendingBuddyList])
+            }
+            else {
+                print("Document does not exist")
+            }
+        }
+        let ref1 = self.db.collection("Buddies").document(id)
+        ref1.getDocument{(document,error) in
+            if let document = document, document.exists {
+                requestList = document.data()!["requestList"]! as! [String]
+                requestList.append(self.user!.uid)
+                ref1.updateData(["requestList":requestList])
+            }
+            else {
+                print("Document does not exist")
+                
+            }
+        }
+    }
+    
+    func acceptRequest(id:String){
+        var buddyList:[String] = []
+        var requestList:[String] = []
+        var pendingBuddyList:[String] = []
+        let ref = self.db.collection("Buddies").document(user!.uid)
+        ref.getDocument{(document,error) in
+            if let document = document, document.exists {
+                buddyList = document.data()!["buddyList"]! as! [String]
+                requestList = document.data()!["requestList"]! as! [String]
+                buddyList.append(id)
+                ref.updateData(["buddyList":buddyList])
+                requestList.remove(at: requestList.firstIndex(of: id)!)
+                ref.updateData(["requestList":requestList])
+                let ref1 = self.db.collection("Buddies").document(id)
+                ref1.getDocument{(document,error) in
+                    if let document = document, document.exists {
+                        pendingBuddyList = document.data()!["pendingBuddyList"]! as! [String]
+                        buddyList = document.data()!["buddyList"]! as! [String]
+                        pendingBuddyList.remove(at: pendingBuddyList.firstIndex(of: self.user!.uid)!)
+                        ref1.updateData(["pendingBuddyList":pendingBuddyList])
+                        buddyList.append(self.user!.uid)
+                        ref1.updateData(["buddyList":buddyList])
+                    }
+                    else {
+                        print("Document does not exist")
+                        
+                    }
+                }
+            }
+            else {
+                print("Document does not exist")
+                
             }
         }
     }
@@ -466,17 +567,14 @@ class FirebaseManager : ObservableObject{
         ref.getDocument{(document,error) in
             if let document = document, document.exists {
                 buddyList = document.data()!["buddyList"]! as! [String]
-                let index = buddyList.firstIndex(of: bUser.id)
-                buddyList.remove(at: index!)
-                let index1 = self.recoList.firstIndex(where: {bUser.id == $0.id})
-                self.recoList.remove(at: index1!)
+                buddyList.remove(at: buddyList.firstIndex(of: bUser.id)!)
+                self.recoList.remove(at: self.recoList.firstIndex(where: {bUser.id == $0.id})!)
                 ref.updateData(["buddyList" : buddyList])
                 let ref1 = self.db.collection("Buddies").document(bUser.id)
                 ref1.getDocument{(document,error) in
                     if let document = document, document.exists {
                         buddyList = document.data()!["buddyList"]! as! [String]
-                        let index = buddyList.firstIndex(of: self.user!.uid)
-                        buddyList.remove(at: index!)
+                        buddyList.remove(at: buddyList.firstIndex(of: self.user!.uid)!)
                         ref1.updateData(["buddyList" : buddyList])
                       }
                     else {
