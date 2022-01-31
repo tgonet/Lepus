@@ -234,7 +234,7 @@ class FirebaseManager : ObservableObject{
         }
     }
     
-    func updateProfilePic(url:URL, completion: @escaping (_ result:String)->Void){
+    func updateProfilePic(url:URL, completion: @escaping ()->Void){
         let docRef = db.collection("users").document(user!.uid)
         docRef.updateData([
             "profilePic": url.absoluteString,
@@ -247,7 +247,7 @@ class FirebaseManager : ObservableObject{
                 changeRequest.commitChanges { error in
                   // ...
                 }
-                completion("done")
+                completion()
                 print("Document successfully updated")
             }
         }

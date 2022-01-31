@@ -169,7 +169,7 @@ struct EditProfileView: View {
             
             // To get URL for display in run history
             storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
-                firebaseManager.updateProfilePic(url: url!,completion: {(result)-> Void in
+                firebaseManager.updateProfilePic(url: url!,completion: { ()-> Void in
                     showingAlert = true
                 })
                 CoreDataManager().updateUserPhoto(id: Auth.auth().currentUser!.uid, photoUrl: url!.absoluteString)
