@@ -20,6 +20,7 @@ struct ProfileTabView: View {
     @State private var logOut = false
     @State private var name = ""
     @State private var url = URL(string: "")
+    @State private var buddyList:[BuddyRecoUser] = []
     
     init() {
         /*
@@ -64,10 +65,10 @@ struct ProfileTabView: View {
                             EmptyView()
                         }
                         Button(action: {self.RedirectBuddy = true}, label:
-                                {Text("\(firebaseManager.buddyList.count) Buddies")
+                                {Text("\(buddyList.count) Buddies")
                             .font(Font.custom("Rubik-Medium", size:15))})
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)
-                        //Spacer()
+                        //Spacer() 
                         Divider()
                         NavigationLink(destination: EditProfileView(), isActive: $Redirect) {
                             EmptyView()
@@ -94,6 +95,10 @@ struct ProfileTabView: View {
         }.onAppear(perform: {
             self.name = user.displayName!
             self.url = user.photoURL!
+            firebaseManager.readRuns(id: user.uid)
+            firebaseManager.getBuddyList(completion: { budList in
+                buddyList = budList
+            })
         }).navigationBarHidden(true)//.navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.navigationBarTitleDisplayMode(.inline)
     }
         

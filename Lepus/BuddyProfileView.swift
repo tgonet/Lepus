@@ -45,19 +45,13 @@ struct BuddyProfileView: View {
                     Spacer()
                     
                     if (friends == "pending") {
-                        /*
-                        Button(action: {
-                            firebaseManager.removeRequest(id: id)
-                            friends = ""
-                        }, label: {
-                            Text("Add Buddy").foregroundColor(Color.black)
-                            .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
-                        }).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
-                        */
                         Text("Request Sent")
                         .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color("AccentColor"), lineWidth: 1))
+                                .stroke(Color("AccentColor"), lineWidth: 1)).onTapGesture {
+                                    firebaseManager.removeRequest(id: id)
+                                    friends = "false"
+                                }
                          
                     }
                     else if(friends == "false"){
@@ -82,9 +76,7 @@ struct BuddyProfileView: View {
                         Text("Buddies")
                             .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                                 RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color("AccentColor"), lineWidth: 1)).onTapGesture {
-                                        print(firebaseManager.runList.count)
-                                    }
+                                    .stroke(Color("AccentColor"), lineWidth: 1))
                     }
                 }.padding(.horizontal, 15).padding(.top)
 

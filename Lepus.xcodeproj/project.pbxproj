@@ -31,6 +31,7 @@
 		75399F1F279D26D600063CFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75399F1E279D26D600063CFC /* GoogleService-Info.plist */; };
 		755FACA227A1C320003AC99F /* Splashscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755FACA127A1C320003AC99F /* Splashscreen.swift */; };
 		7566189027A0379C0041A3ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7566188F27A0379C0041A3ED /* NetworkManager.swift */; };
+		7567A08527A836FD00F3A7F3 /* RequestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7567A08427A836FD00F3A7F3 /* RequestListView.swift */; };
 		757608CF279EDA630050C055 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757608CE279EDA630050C055 /* ImagePicker.swift */; };
 		7578545C27A102C2000DC53C /* BuddyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578545B27A102C2000DC53C /* BuddyProfileView.swift */; };
 		757D8ADB27A240E200E370D3 /* BuddyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D8ADA27A240E200E370D3 /* BuddyListView.swift */; };
@@ -139,6 +140,7 @@
 		755FACA127A1C320003AC99F /* Splashscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splashscreen.swift; sourceTree = "<group>"; };
 		7566188F27A0379C0041A3ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		756708B427945B190076B317 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
+		7567A08427A836FD00F3A7F3 /* RequestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListView.swift; sourceTree = "<group>"; };
 		757608CE279EDA630050C055 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7578545B27A102C2000DC53C /* BuddyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyProfileView.swift; sourceTree = "<group>"; };
 		757D8ADA27A240E200E370D3 /* BuddyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyListView.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				7566188F27A0379C0041A3ED /* NetworkManager.swift */,
 				7578545B27A102C2000DC53C /* BuddyProfileView.swift */,
 				757D8ADA27A240E200E370D3 /* BuddyListView.swift */,
+				7567A08427A836FD00F3A7F3 /* RequestListView.swift */,
 				755FACA127A1C320003AC99F /* Splashscreen.swift */,
 				75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */,
 				7529468D278DC0DB00DC7815 /* Assets.xcassets */,
@@ -614,6 +617,7 @@
 				9175E02A279D4C7900B0AD4A /* BuddyRecoUser.swift in Sources */,
 				917934C02792F96700DCFAC2 /* StartView.swift in Sources */,
 				752946C3278DC10300DC7815 /* MapView.swift in Sources */,
+				7567A08527A836FD00F3A7F3 /* RequestListView.swift in Sources */,
 				75D1CE542799EC320048EE28 /* Lepus.xcdatamodeld in Sources */,
 				7578545C27A102C2000DC53C /* BuddyProfileView.swift in Sources */,
 				757D8ADB27A240E200E370D3 /* BuddyListView.swift in Sources */,

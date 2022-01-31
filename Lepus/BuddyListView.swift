@@ -11,19 +11,24 @@ import Kingfisher
 struct BuddyListView: View {
     
     @ObservedObject var firebaseManager = FirebaseManager()
-    @State private var tabBar: UITabBar! = nil
+    @State private var buddyList:[BuddyRecoUser] = []
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
     }
     
     var body: some View {
-        VStack {
-            /*
-            VStack{
-                Text("Buddy Count : 10").font(Font.custom("Rubik-Medium", size:20))
-            }.padding(20).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
-             */
+        VStack (alignment: .leading){
+            NavigationLink(destination: RequestListView())
+            {
+                HStack{
+                    VStack (alignment: .leading){
+                        Text("Follow Request").foregroundColor(Color("AccentColor2"))
+                        Text("Approve or Delete requests").font(Font.custom("Rubik-Regular", size:14)).foregroundColor(Color("TextColor"))
+                    }
+                    Spacer()
+                }.frame(maxWidth: .infinity).padding(.horizontal).padding(.top)
+            }
             HStack{
                 Text("\(firebaseManager.buddyList.count) Buddies")
                     .font(Font.custom("Rubik-Medium", size:16))
@@ -37,7 +42,11 @@ struct BuddyListView: View {
             List(firebaseManager.buddyList){user in
                 BuddyListItem(user:user,firebaseManager: firebaseManager)
             }.listStyle(GroupedListStyle())
-        }.background(Color("BackgroundColor")).navigationTitle("Buddy List").navigationBarTitleDisplayMode(.inline).onAppear(perform: {firebaseManager.getBuddyList()})
+        }.background(Color("BackgroundColor")).navigationTitle("Buddy List").navigationBarTitleDisplayMode(.inline).onAppear(perform: {
+            firebaseManager.getBuddyList(completion: { budList in 
+                //buddyList = budList
+            })
+        })
     }
 }
 
@@ -65,8 +74,9 @@ struct BuddyListItem:View{
                 .onProgress { receivedSize, totalSize in  }
                 .onSuccess { result in  }
                 .onFailure { error in }
+                .scaledToFill()
                 .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20) .onChange(of: user!.profilePic) { newImage in
-                    //updateUserImage()
+          
                 }
             VStack(alignment: .leading, spacing:10){
                 HStack{

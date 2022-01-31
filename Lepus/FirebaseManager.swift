@@ -33,6 +33,7 @@ class FirebaseManager : ObservableObject{
     @Published var noMatches = false
     
     @Published var buddyList:[BuddyRecoUser] = []
+    @Published var requestList:[BuddyRecoUser] = []
     
     @ObservedObject var CDManager = CoreDataUserManager()
 
@@ -399,24 +400,48 @@ class FirebaseManager : ObservableObject{
         return false
     }
     
-    func getBuddyList(){
+    func getBuddyList(completion: @escaping (_ result:[BuddyRecoUser])->Void){
         var fbBuddyList:[String] = []
-        buddyList = []
         let ref = db.collection("Buddies").document(user!.uid)
         ref.getDocument{(document,error) in
             if let document = document, document.exists {
                 fbBuddyList = document.data()!["buddyList"]! as! [String]
-                for i in fbBuddyList{
+                if(fbBuddyList.count != 0){
                     let buddyRef = self.db.collection("users").whereField("id", in: fbBuddyList)
-                    buddyRef.addSnapshotListener{ (querySnapshot, err) in
+                    buddyRef.getDocuments(completion: { (querySnapshot, err) in
                         self.buddyList.removeAll()
                         for recUser in querySnapshot!.documents{
                             var data = recUser.data()
                             self.buddyList.append(BuddyRecoUser(id: data["id"] as! String, name: data["name"] as! String, profilePic: data["profilePic"] as! String))
                         }
-                    }
+                        completion(self.buddyList)
+                    })
                 }
-              }
+            }
+            else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
+    func getRequestList(completion: @escaping (_ result:[BuddyRecoUser])->Void){
+        var requestList:[String] = []
+        let ref = db.collection("Buddies").document(user!.uid)
+        ref.getDocument{(document,error) in
+            if let document = document, document.exists {
+                requestList = document.data()!["requestList"]! as! [String]
+                if(requestList.count != 0){
+                    let buddyRef = self.db.collection("users").whereField("id", in: requestList)
+                    buddyRef.getDocuments(completion: { (querySnapshot, err) in
+                        self.requestList.removeAll()
+                        for recUser in querySnapshot!.documents{
+                            var data = recUser.data()
+                            self.requestList.append(BuddyRecoUser(id: data["id"] as! String, name: data["name"] as! String, profilePic: data["profilePic"] as! String))
+                        }
+                        completion(self.requestList)
+                    })
+                }
+            }
             else {
                 print("Document does not exist")
             }
@@ -480,7 +505,7 @@ class FirebaseManager : ObservableObject{
             }
         }
     }
-    /*
+    
     func removeRequest(id:String){
         var pendingBuddyList:[String] = []
         var requestList:[String] = []
@@ -488,7 +513,7 @@ class FirebaseManager : ObservableObject{
         ref.getDocument{(document,error) in
             if let document = document, document.exists {
                 pendingBuddyList = document.data()!["pendingBuddyList"]! as! [String]
-                pendingBuddyList.remove(id)
+                pendingBuddyList.remove(at: pendingBuddyList.firstIndex(of: id)!)
                 ref.updateData(["pendingBuddyList":pendingBuddyList])
             }
             else {
@@ -499,7 +524,7 @@ class FirebaseManager : ObservableObject{
         ref1.getDocument{(document,error) in
             if let document = document, document.exists {
                 requestList = document.data()!["requestList"]! as! [String]
-                requestList.append(self.user!.uid)
+                requestList.remove(at: requestList.firstIndex(of: self.user!.uid)!)
                 ref1.updateData(["requestList":requestList])
             }
             else {
@@ -508,8 +533,6 @@ class FirebaseManager : ObservableObject{
             }
         }
     }
-     */
-    
     
     func acceptRequest(id:String){
         var buddyList:[String] = []
@@ -557,7 +580,7 @@ class FirebaseManager : ObservableObject{
             if let document = document, document.exists {
                 buddyList = document.data()!["buddyList"]! as! [String]
                 buddyList.remove(at: buddyList.firstIndex(of: bUser.id)!)
-                self.recoList.remove(at: self.recoList.firstIndex(where: {bUser.id == $0.id})!)
+                self.buddyList.remove(at: self.buddyList.firstIndex(where: {bUser.id == $0.id})!)
                 ref.updateData(["buddyList" : buddyList])
                 let ref1 = self.db.collection("Buddies").document(bUser.id)
                 ref1.getDocument{(document,error) in
