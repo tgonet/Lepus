@@ -303,6 +303,7 @@ class FirebaseManager : ObservableObject{
         buddyRef.getDocument{(document,error) in
             if let document = document, document.exists {
                 buddyList = document.data()!["buddyList"]! as! [String]
+                buddyList.append(contentsOf: document.data()!["pendingBuddyList"]! as! [String])
                 //print("Buddy 1: \(buddyList[0])")
               }
             else {
