@@ -122,7 +122,7 @@ struct EditProfileView: View {
                         /// To do async to only show alert after image is uploaded
                         upload(imagetoUpload: inputImage!)
                     }
-                    showingAlert = true
+                    
                 }
             }
             .foregroundColor(Color("DarkYellow"))
@@ -169,7 +169,9 @@ struct EditProfileView: View {
             
             // To get URL for display in run history
             storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
-                firebaseManager.updateProfilePic(url: url!)
+                firebaseManager.updateProfilePic(url: url!,completion: {(result)-> Void in
+                    showingAlert = true
+                })
                 CoreDataManager().updateUserPhoto(id: Auth.auth().currentUser!.uid, photoUrl: url!.absoluteString)
                     })
             }
