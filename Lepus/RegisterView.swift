@@ -220,7 +220,11 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
                         print("Error writing document: \(err)")
                     } else {
                         print("Document successfully written!")
-                        
+                        let ref1 = db.collection("Buddies").document((currentUser!.uid))
+                        ref.setData(["buddyList":[],
+                                     "pendingBuddyList":[],
+                                     "requestList":[]
+                                    ])
                         self.selection = 1
                     }
                 }
