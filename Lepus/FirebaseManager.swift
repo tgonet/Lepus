@@ -32,6 +32,8 @@ class FirebaseManager : ObservableObject{
     @Published var noStatistics = false
     @Published var noMatches = false
     
+    @Published var buddyList:[BuddyRecoUser] = []
+    
     @ObservedObject var CDManager = CoreDataUserManager()
 
     
@@ -278,7 +280,7 @@ class FirebaseManager : ObservableObject{
     }
  */
 
-    func getBuddies(){
+    func getBuddyRecos(){
         recoList = []
         let uid = user!.uid
         var buddyList:[String] = []
@@ -398,19 +400,19 @@ class FirebaseManager : ObservableObject{
     }
     
     func getBuddyList(){
-        var buddyList:[String] = []
-        recoList = []
+        var fbBuddyList:[String] = []
+        buddyList = []
         let ref = db.collection("Buddies").document(user!.uid)
         ref.getDocument{(document,error) in
             if let document = document, document.exists {
-                buddyList = document.data()!["buddyList"]! as! [String]
-                for i in buddyList{
-                    let buddyRef = self.db.collection("users").whereField("id", in: buddyList)
+                fbBuddyList = document.data()!["buddyList"]! as! [String]
+                for i in fbBuddyList{
+                    let buddyRef = self.db.collection("users").whereField("id", in: fbBuddyList)
                     buddyRef.addSnapshotListener{ (querySnapshot, err) in
-                        self.recoList.removeAll()
+                        self.buddyList.removeAll()
                         for recUser in querySnapshot!.documents{
                             var data = recUser.data()
-                            self.recoList.append(BuddyRecoUser(id: data["id"] as! String, name: data["name"] as! String, profilePic: data["profilePic"] as! String))
+                            self.buddyList.append(BuddyRecoUser(id: data["id"] as! String, name: data["name"] as! String, profilePic: data["profilePic"] as! String))
                         }
                     }
                 }
@@ -478,6 +480,36 @@ class FirebaseManager : ObservableObject{
             }
         }
     }
+    /*
+    func removeRequest(id:String){
+        var pendingBuddyList:[String] = []
+        var requestList:[String] = []
+        let ref = self.db.collection("Buddies").document(user!.uid)
+        ref.getDocument{(document,error) in
+            if let document = document, document.exists {
+                pendingBuddyList = document.data()!["pendingBuddyList"]! as! [String]
+                pendingBuddyList.remove(id)
+                ref.updateData(["pendingBuddyList":pendingBuddyList])
+            }
+            else {
+                print("Document does not exist")
+            }
+        }
+        let ref1 = self.db.collection("Buddies").document(id)
+        ref1.getDocument{(document,error) in
+            if let document = document, document.exists {
+                requestList = document.data()!["requestList"]! as! [String]
+                requestList.append(self.user!.uid)
+                ref1.updateData(["requestList":requestList])
+            }
+            else {
+                print("Document does not exist")
+                
+            }
+        }
+    }
+     */
+    
     
     func acceptRequest(id:String){
         var buddyList:[String] = []
