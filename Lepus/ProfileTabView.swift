@@ -42,7 +42,9 @@ struct ProfileTabView: View {
                             .onProgress { receivedSize, totalSize in  }
                             .onSuccess { result in  }
                             .onFailure { error in }
-                            .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20) .onChange(of: url) { newImage in
+                            .clipShape(Circle())
+                            .scaledToFill()
+                            .frame(width: 65.0, height: 65.0).padding(.trailing,20) .onChange(of: url) { newImage in
                                 //updateUserImage()
                             }
                         Text(name)
@@ -62,7 +64,7 @@ struct ProfileTabView: View {
                             EmptyView()
                         }
                         Button(action: {self.RedirectBuddy = true}, label:
-                                {Text("1 Buddies")
+                                {Text("\(firebaseManager.buddyList.count) Buddies")
                             .font(Font.custom("Rubik-Medium", size:15))})
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)
                         //Spacer()
@@ -142,7 +144,9 @@ struct RunRow: View {
                     .onProgress { receivedSize, totalSize in  }
                     .onSuccess { result in  }
                     .onFailure { error in }
-                    .clipShape(Circle()).frame(width: 35.0, height: 35.0)
+                    .clipShape(Circle())
+                    .scaledToFill()
+                    .frame(width: 35.0, height: 35.0)
                 
                 Text(run.name)
                     .font(Font.custom("Rubik-Regular", size:16))

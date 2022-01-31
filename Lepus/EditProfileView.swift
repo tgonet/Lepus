@@ -21,7 +21,7 @@ struct EditProfileView: View {
     @State var image:Image = Image("profileImg")
     @ObservedObject var firebaseManager = FirebaseManager()
     @ObservedObject var networkManager = NetworkManager()
-    var gender = ["Male", "Female"]
+    var gender = ["Male", "Female", "Prefer not to say"]
     
     init(){
         firebaseManager.getprofileDetails(id: Auth.auth().currentUser!.uid)
@@ -31,7 +31,11 @@ struct EditProfileView: View {
     var body: some View {
         VStack(spacing:0){
             if(imageChanged){
-                image.resizable().clipShape(Circle()).frame(width: 100.0, height: 100.0)
+                image
+                    .resizable()
+                    .clipShape(Circle())
+                    .scaledToFill()
+                    .frame(width: 100.0, height: 100.0)
             }
             else{
                 KFImage.url(url)
@@ -42,7 +46,9 @@ struct EditProfileView: View {
                     .onProgress { receivedSize, totalSize in  }
                     .onSuccess { result in  }
                     .onFailure { error in }
-                    .clipShape(Circle()).frame(width: 100.0, height: 100.0)
+                    .clipShape(Circle())
+                    .scaledToFill()
+                    .frame(width: 100.0, height: 100.0)
             }
             Button(action: {showingImagePicker = true}, label: {
                 Text("Change profile image")

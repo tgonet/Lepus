@@ -37,16 +37,28 @@ struct BuddyProfileView: View {
                         .onProgress { receivedSize, totalSize in  }
                         .onSuccess { result in  }
                         .onFailure { error in }
-                        .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20)
+                        .clipShape(Circle())
+                        .scaledToFill()
+                        .frame(width: 65.0, height: 65.0).padding(.trailing,20)
                     Text(name)
                     
                     Spacer()
                     
                     if (friends == "pending") {
+                        /*
+                        Button(action: {
+                            firebaseManager.removeRequest(id: id)
+                            friends = ""
+                        }, label: {
+                            Text("Add Buddy").foregroundColor(Color.black)
+                            .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
+                        }).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
+                        */
                         Text("Request Sent")
                         .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color("AccentColor"), lineWidth: 1))
+                         
                     }
                     else if(friends == "false"){
                         Button(action: {

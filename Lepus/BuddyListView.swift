@@ -25,7 +25,7 @@ struct BuddyListView: View {
             }.padding(20).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8))
              */
             HStack{
-                Text("\(firebaseManager.recoList.count) Buddies")
+                Text("\(firebaseManager.buddyList.count) Buddies")
                     .font(Font.custom("Rubik-Medium", size:16))
                     .foregroundColor(Color("AccentColor2"))
                 Spacer()
@@ -34,7 +34,7 @@ struct BuddyListView: View {
             .padding(.horizontal)
             .padding(.top)
             
-            List(firebaseManager.recoList){user in
+            List(firebaseManager.buddyList){user in
                 BuddyListItem(user:user,firebaseManager: firebaseManager)
             }.listStyle(GroupedListStyle())
         }.background(Color("BackgroundColor")).navigationTitle("Buddy List").navigationBarTitleDisplayMode(.inline).onAppear(perform: {firebaseManager.getBuddyList()})

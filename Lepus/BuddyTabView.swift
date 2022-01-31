@@ -127,7 +127,7 @@ struct BuddyTabView: View {
             
         }
         .onAppear{
-            FBManager.getBuddies()
+            FBManager.getBuddyRecos()
         }
         .ignoresSafeArea(.all, edges: .top)
         .background(Color("BackgroundColor"))
@@ -154,7 +154,9 @@ struct BuddyRecommendationItem:View{
             {
                 KFImage.url(url)
                     .resizable()
-                    .clipShape(Circle()).frame(width: 60.0, height: 60.0)
+                    .clipShape(Circle())
+                    .scaledToFill()
+                    .frame(width: 60.0, height: 60.0)
             }
             else{
                 Image("profileImg")
@@ -181,7 +183,9 @@ struct MessageListItem:View{
             HStack(alignment:.center){
                 Image("profileImg")
                     .resizable()
-                    .clipShape(Circle()).frame(width: 60.0, height: 60.0)
+                    .clipShape(Circle())
+                    .scaledToFill()
+                    .frame(width: 60.0, height: 60.0)
                 VStack(alignment: .leading, spacing:10){
                     HStack{
                         
