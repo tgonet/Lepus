@@ -629,8 +629,6 @@ class FirebaseManager : ObservableObject{
         
     }
     
-    
-    
     func getMessageList()->[Message]{
         
         var messageList:[Message] = []
