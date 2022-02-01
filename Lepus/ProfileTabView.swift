@@ -65,8 +65,12 @@ struct ProfileTabView: View {
                             EmptyView()
                         }
                         Button(action: {self.RedirectBuddy = true}, label:
-                                {Text("\(buddyList.count) Buddies")
-                            .font(Font.custom("Rubik-Medium", size:15))})
+                                {Text("\(firebaseManager.buddyList.count) Buddies")
+                            .font(Font.custom("Rubik-Medium", size:15))}).onAppear(perform: {
+                                firebaseManager.getBuddyList(completion: { budList in
+                                    buddyList = budList
+                                })
+                            })
                             .frame(minWidth: 10, maxWidth: 500, alignment: .center)
                         //Spacer() 
                         Divider()
@@ -96,9 +100,6 @@ struct ProfileTabView: View {
             self.name = user.displayName!
             self.url = user.photoURL!
             firebaseManager.readRuns(id: user.uid)
-            firebaseManager.getBuddyList(completion: { budList in
-                buddyList = budList
-            })
         }).navigationBarHidden(true)//.navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.navigationBarTitleDisplayMode(.inline)
     }
         

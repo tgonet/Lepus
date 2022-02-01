@@ -26,14 +26,14 @@ struct RequestListView: View {
             
             List(firebaseManager.requestList){user in
                 BuddyRequestListItem(user:user,firebaseManager: firebaseManager)
-            }.listStyle(GroupedListStyle())
-        }.background(Color("BackgroundColor")).navigationTitle("Request List").navigationBarTitleDisplayMode(.inline).onAppear(perform: {
-            print("hi")
-            firebaseManager.getRequestList(completion: {reqList in
-                //list = reqList
+            }.listStyle(GroupedListStyle()).onAppear(perform: {
+                print("hi")
+                firebaseManager.getRequestList(completion: {reqList in
+                    //list = reqList
+                })
+                
             })
-            
-        })
+        }.background(Color("BackgroundColor")).navigationTitle("Request List").navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -45,7 +45,6 @@ struct RequestListView_Previews: PreviewProvider {
 
 struct BuddyRequestListItem:View{
     @Environment(\.presentationMode) var presentationMode
-    @State private var Redirect = false
     @State private var removeBuddy = false
     @State private var friends = "false"
     var user:BuddyRecoUser?
@@ -79,11 +78,7 @@ struct BuddyRequestListItem:View{
                                 .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7)
                             }).background(Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 8)).onTapGesture {
                                 firebaseManager.acceptRequest(id: user!.id)
-                                firebaseManager.getRequestList(completion: {reqList in
-                                    //list = reqList
-                                })
                                 friends = "true"
-                                print("HI")
                             }
                         }
                         else{
@@ -97,7 +92,7 @@ struct BuddyRequestListItem:View{
                 }
                 .padding(.vertical, 8)
                 .listRowBackground(Color("BackgroundColor")).listRowSeparator(.hidden)
-            }.onTapGesture {Redirect = true}
+            }
         }
     }
 }
