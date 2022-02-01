@@ -354,15 +354,15 @@ class FirebaseManager : ObservableObject{
                                                     append = LocationNear||PaceSimilar||DistanceSimilar
                                                 }
                                                 
-                                                else if (filter == "Location Ran")
+                                                else if (filter == "Similar Run Location")
                                                 {
                                                     append = LocationNear
                                                 }
-                                                else if (filter == "Distance Ran")
+                                                else if (filter == "Similar Distance Ran")
                                                 {
                                                     append = DistanceSimilar
                                                 }
-                                                else if (filter == "AveragePace")
+                                                else if (filter == "Similar Pace")
                                                 {
                                                     append = PaceSimilar
                                                 }

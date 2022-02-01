@@ -11,7 +11,7 @@ import Kingfisher
 struct BuddyRecoView: View {
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
     
-    private var selectionList = ["All", "Location Ran","Distance Ran", "Average Pace"]
+    private var selectionList = ["All", "Similar Run Location","Similar Distance Ran", "Similar Pace"]
     @State private var disclosureExpanded = false
     @State private var filter = "Filter by..."
     
