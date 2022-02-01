@@ -12,10 +12,10 @@ import Kingfisher
 struct BuddyProfileView: View {
     @ObservedObject var firebaseManager:FirebaseManager = FirebaseManager()
     @ObservedObject var CDManager = CoreDataUserManager()
+    @State private var removeBuddy = false
     var id:String
     var name:String
     var url:URL
-    //@State var user:Firebase.User? = Auth.auth().currentUser
     @State private var friends:String = ""
     
     init(id:String, name:String, url:URL){
@@ -24,6 +24,9 @@ struct BuddyProfileView: View {
         self.name = name
         self.url = url
         firebaseManager.readRuns(id: id)
+        firebaseManager.getBuddyList(completion: { budList in
+            //buddyList = budList
+        })
     }
     
     var body: some View {
@@ -76,7 +79,15 @@ struct BuddyProfileView: View {
                         Text("Buddies")
                             .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                                 RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color("AccentColor"), lineWidth: 1))
+                                    .stroke(Color("AccentColor"), lineWidth: 1)).onTapGesture {
+                                        removeBuddy = true
+                                    }.confirmationDialog("Confirm to remove buddy?", isPresented: $removeBuddy, titleVisibility: .visible) {
+                                        Button("Stay Buddies") {}
+                                        Button("Remove Buddy", role: .destructive) {
+                                            firebaseManager.removeBuddy(bUser: BuddyRecoUser(id: id, name: name, profilePic: ""))
+                                            friends = "false"
+                                        }
+                                    }
                     }
                 }.padding(.horizontal, 15).padding(.top)
 

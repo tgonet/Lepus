@@ -423,6 +423,7 @@ class FirebaseManager : ObservableObject{
     
     func getBuddyList(completion: @escaping (_ result:[BuddyRecoUser])->Void){
         var fbBuddyList:[String] = []
+        self.buddyList = []
         let ref = db.collection("Buddies").document(user!.uid)
         ref.getDocument{(document,error) in
             if let document = document, document.exists {
@@ -430,13 +431,15 @@ class FirebaseManager : ObservableObject{
                 if(fbBuddyList.count != 0){
                     let buddyRef = self.db.collection("users").whereField("id", in: fbBuddyList)
                     buddyRef.getDocuments(completion: { (querySnapshot, err) in
-                        self.buddyList.removeAll()
                         for recUser in querySnapshot!.documents{
                             var data = recUser.data()
                             self.buddyList.append(BuddyRecoUser(id: data["id"] as! String, name: data["name"] as! String, profilePic: data["profilePic"] as! String))
                         }
                         completion(self.buddyList)
                     })
+                }
+                else{
+                    completion([])
                 }
             }
             else {
@@ -447,6 +450,7 @@ class FirebaseManager : ObservableObject{
     
     func getRequestList(completion: @escaping (_ result:[BuddyRecoUser])->Void){
         var requestList:[String] = []
+        self.requestList = []
         let ref = db.collection("Buddies").document(user!.uid)
         ref.getDocument{(document,error) in
             if let document = document, document.exists {
@@ -454,13 +458,15 @@ class FirebaseManager : ObservableObject{
                 if(requestList.count != 0){
                     let buddyRef = self.db.collection("users").whereField("id", in: requestList)
                     buddyRef.getDocuments(completion: { (querySnapshot, err) in
-                        self.requestList.removeAll()
                         for recUser in querySnapshot!.documents{
                             var data = recUser.data()
                             self.requestList.append(BuddyRecoUser(id: data["id"] as! String, name: data["name"] as! String, profilePic: data["profilePic"] as! String))
                         }
                         completion(self.requestList)
                     })
+                }
+                else{
+                    completion(self.requestList)
                 }
             }
             else {
