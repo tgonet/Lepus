@@ -29,8 +29,8 @@ class FirebaseManager : ObservableObject{
     @Published var msgs:[Message] = []
     
     @Published var recoList:[BuddyRecoUser] = []
-    @Published var noStatistics = false
-    @Published var noMatches = false
+    @Published var noStatistics = true
+    @Published var noMatches = true
     
     @Published var buddyList:[BuddyRecoUser] = []
     @Published var requestList:[BuddyRecoUser] = []
@@ -281,7 +281,7 @@ class FirebaseManager : ObservableObject{
     }
  */
 
-    func getBuddyRecos(){
+    func getBuddyRecos(records:Int, filter:String){
         recoList = []
         let uid = user!.uid
         var buddyList:[String] = []
@@ -300,6 +300,8 @@ class FirebaseManager : ObservableObject{
         var LocationNear = true
         var DistanceSimilar = true
         var PaceSimilar = true
+        
+        var buddyReco:BuddyRecoUser = BuddyRecoUser(id: "", name: "", profilePic: "")
         
         buddyRef.getDocument{(document,error) in
             if let document = document, document.exists {
@@ -323,7 +325,7 @@ class FirebaseManager : ObservableObject{
                         
                         self.db.collection("users")
                             .whereField("id", notIn: buddyList)
-                            .limit(to: 10)
+                            .limit(to: records)
                             .getDocuments(){ [self](querySnapshot, err) in
                                 if let err = err {
                                     print("Error getting documents: \(err)")
@@ -341,12 +343,43 @@ class FirebaseManager : ObservableObject{
                                                 PaceSimilar = self.isPaceSimilar(pace1: userPace, pace2: recoPace)
                                                 DistanceSimilar = self.isDistanceSimilar(distance1: userDistance, distance2: recoDistance)
                                                 
-                                                if(LocationNear||PaceSimilar||DistanceSimilar)
+                                                let id = document.data()["id"] as! String
+                                                let name = document.data()["name"] as Any
+                                                let profilePic = document.data()["profilePic"] as Any
+                                                buddyReco = BuddyRecoUser(id: id, name: name as! String, profilePic: profilePic as! String)
+                                                
+                                                var append = false
+                                                if (filter == "All" || filter == "Filter by...")
                                                 {
-                                                    let id = document.data()["id"] as! String
-                                                    let name = document.data()["name"] as Any
-                                                    let profilePic = document.data()["profilePic"] as Any
-                                                    let buddyReco:BuddyRecoUser = BuddyRecoUser(id: id, name: name as! String, profilePic: profilePic as! String)
+                                                    if(LocationNear||PaceSimilar||DistanceSimilar)
+                                                    {
+                                                        append = true
+                                                    }
+                                                }
+                                                
+                                                else if (filter == "Location Ran")
+                                                {
+                                                    if(LocationNear)
+                                                    {
+                                                        append = true
+                                                    }
+                                                }
+                                                else if (filter == "Distance Ran")
+                                                {
+                                                    if(DistanceSimilar)
+                                                    {
+                                                        append = true
+                                                    }
+                                                }
+                                                else if (filter == "AveragePace")
+                                                {
+                                                    if(PaceSimilar)
+                                                    {
+                                                        append = true
+                                                    }
+                                                }
+                                                if append == true
+                                                {
                                                     self.recoList.append(buddyReco)
                                                     print(buddyReco.name)
                                                     print("Location near:\(LocationNear)")
@@ -355,15 +388,13 @@ class FirebaseManager : ObservableObject{
                                                 }
                                             }
                                         }
-                                    if (self.recoList.isEmpty)
+                                    if (!self.recoList.isEmpty)
                                     {
-                                        self.noMatches = true
+                                        self.noMatches = false
                                     }
                                     }
                                 }
-                    }
-                    else{
-                        self.noStatistics = true
+                        self.noStatistics = false
                     }
                 }
                 else

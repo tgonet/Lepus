@@ -62,6 +62,7 @@
 		91E73909278DD6B700502C0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E73907278DD6B700502C0A /* Rubik-Regular.ttf */; };
 		91E7390C278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
 		91E7390D278DD6DB00502C0A /* Sansita-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */; };
+		91F1F86427A8F1D800E364F2 /* BuddyRecoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F86327A8F1D800E364F2 /* BuddyRecoView.swift */; };
 		B0C8EC716826AD18A3C81076 /* Pods_Lepus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBC0700A1D6DFA389D5985E /* Pods_Lepus.framework */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +162,7 @@
 		91918B792797CECC00278A54 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		91E73907278DD6B700502C0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		91E7390B278DD6DB00502C0A /* Sansita-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sansita-BoldItalic.ttf"; sourceTree = "<group>"; };
+		91F1F86327A8F1D800E364F2 /* BuddyRecoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyRecoView.swift; sourceTree = "<group>"; };
 		975CC499B1A90F2EF26266EC /* Pods-Lepus WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-Lepus WatchKit Extension/Pods-Lepus WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
 		A14D196DDE99C93BD424E126 /* Pods-Lepus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepus.debug.xcconfig"; path = "Target Support Files/Pods-Lepus/Pods-Lepus.debug.xcconfig"; sourceTree = "<group>"; };
 		A1EC9C9B87CA22E754D1997C /* Pods_Lepus_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepus_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,22 +263,23 @@
 				75294689278DC0D900DC7815 /* LepusApp.swift */,
 				7594C740279317A100C4C20F /* TabViewUI.swift */,
 				9175E02B279EBA1A00B0AD4A /* BuddyTabView.swift */,
+				91F1F86327A8F1D800E364F2 /* BuddyRecoView.swift */,
 				7529468B278DC0D900DC7815 /* RunTabView.swift */,
+				756708B427945B190076B317 /* RunView.swift */,
+				757D8ADA27A240E200E370D3 /* BuddyListView.swift */,
 				7594C74227931F0B00C4C20F /* ProfileTabView.swift */,
+				75F20308279BC61200D9CE78 /* EditProfileView.swift */,
 				75F2C4CA2799569800D7F261 /* FirebaseManager.swift */,
 				917934BF2792F96700DCFAC2 /* StartView.swift */,
 				917934C12792F97200DCFAC2 /* LoginView.swift */,
 				0EF6A1E5278E973D00E55FAA /* RegisterView.swift */,
 				752946C2278DC10300DC7815 /* MapView.swift */,
 				752946C4278DC13400DC7815 /* StopwatchManager.swift */,
-				756708B427945B190076B317 /* RunView.swift */,
-				75F20308279BC61200D9CE78 /* EditProfileView.swift */,
 				757608CE279EDA630050C055 /* ImagePicker.swift */,
 				9163762E279B213F0075E367 /* CoreDataManager.swift */,
 				91918B792797CECC00278A54 /* ViewExtension.swift */,
 				7566188F27A0379C0041A3ED /* NetworkManager.swift */,
 				7578545B27A102C2000DC53C /* BuddyProfileView.swift */,
-				757D8ADA27A240E200E370D3 /* BuddyListView.swift */,
 				7567A08427A836FD00F3A7F3 /* RequestListView.swift */,
 				755FACA127A1C320003AC99F /* Splashscreen.swift */,
 				75D1CE4C2799E9D40048EE28 /* Lepus.xcdatamodeld */,
@@ -606,6 +609,7 @@
 				75D1CE562799EDE70048EE28 /* LepusApp.swift in Sources */,
 				9163762F279B213F0075E367 /* CoreDataManager.swift in Sources */,
 				75D1CE502799EA470048EE28 /* Run.swift in Sources */,
+				91F1F86427A8F1D800E364F2 /* BuddyRecoView.swift in Sources */,
 				7529468C278DC0D900DC7815 /* RunTabView.swift in Sources */,
 				917934C22792F97200DCFAC2 /* LoginView.swift in Sources */,
 				7594C741279317A100C4C20F /* TabViewUI.swift in Sources */,

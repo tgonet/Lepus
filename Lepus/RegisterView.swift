@@ -221,7 +221,7 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
                     } else {
                         print("Document successfully written!")
                         let ref1 = db.collection("Buddies").document((currentUser!.uid))
-                        ref.setData(["buddyList":[],
+                        ref1.setData(["buddyList":[],
                                      "pendingBuddyList":[],
                                      "requestList":[]
                                     ])

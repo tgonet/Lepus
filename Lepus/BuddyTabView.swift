@@ -13,7 +13,7 @@ struct BuddyTabView: View {
     @State var searchText = ""
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
-
+    @State private var viewMoreRecos = false
 
     
     let messages = [
@@ -50,8 +50,15 @@ struct BuddyTabView: View {
                         Text("Buddy Recommendations")
                             .font(Font.custom("Rubik-Medium", size:16))
                         Spacer()
+                        NavigationLink(destination: BuddyRecoView(), isActive: $viewMoreRecos)
+                        {EmptyView()}
+
                         Text("View more...")
                             .font(Font.custom("Rubik-Regular", size:14))
+                            .onTapGesture {
+                                viewMoreRecos = true
+                            }
+                            
                     }
                     .foregroundColor(Color.black)
                     .frame(maxWidth: .infinity)
@@ -79,14 +86,7 @@ struct BuddyTabView: View {
                                     }
                                 }
                             }
-                            /*
-                            ForEach(0...10, id: \.self) {
-                                index in BuddyRecommendationItem()
-                                    .padding(8)
-                                }
-                            }
-                             */
-                             
+            
                          }
                         .frame(height: 50)
                         .foregroundColor(Color.black)
@@ -127,7 +127,7 @@ struct BuddyTabView: View {
             
         }
         .onAppear{
-            FBManager.getBuddyRecos()
+            FBManager.getBuddyRecos(records: 10, filter: "All")
         }
         .ignoresSafeArea(.all, edges: .top)
         .background(Color("BackgroundColor"))
