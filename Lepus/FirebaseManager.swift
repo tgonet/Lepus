@@ -477,7 +477,7 @@ class FirebaseManager : ObservableObject{
                     })
                 }
                 else{
-                    completion(self.requestList)
+                    completion([])
                 }
             }
             else {
@@ -584,6 +584,7 @@ class FirebaseManager : ObservableObject{
                 buddyList.append(id)
                 ref.updateData(["buddyList":buddyList])
                 requestList.remove(at: requestList.firstIndex(of: id)!)
+                self.requestList.remove(at: self.requestList.firstIndex(where: {$0.id == id})!)
                 ref.updateData(["requestList":requestList])
                 let ref1 = self.db.collection("Buddies").document(id)
                 ref1.getDocument{(document,error) in

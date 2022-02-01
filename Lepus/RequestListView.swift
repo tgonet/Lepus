@@ -26,14 +26,15 @@ struct RequestListView: View {
             
             List(firebaseManager.requestList){user in
                 BuddyRequestListItem(user:user,firebaseManager: firebaseManager)
-            }.listStyle(GroupedListStyle()).onAppear(perform: {
-                print("hi")
+            }.listStyle(GroupedListStyle())
+        }.background(Color("BackgroundColor"))
+            .navigationTitle("Request List")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear(perform: {
                 firebaseManager.getRequestList(completion: {reqList in
                     //list = reqList
                 })
-                
             })
-        }.background(Color("BackgroundColor")).navigationTitle("Request List").navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -65,8 +66,8 @@ struct BuddyRequestListItem:View{
                     .onFailure { error in }
                     .scaledToFill()
                     .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20) .onChange(of: user!.profilePic) { newImage in
-                        //updateUserImage()
-                    }
+                        
+                }
                 VStack(alignment: .leading, spacing:10){
                     HStack{
                         Text(user!.name)

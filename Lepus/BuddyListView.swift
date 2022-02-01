@@ -9,7 +9,6 @@ import SwiftUI
 import Kingfisher
 
 struct BuddyListView: View {
-    
     @ObservedObject var firebaseManager = FirebaseManager()
     @State private var buddyList:[BuddyRecoUser] = []
     
@@ -18,17 +17,7 @@ struct BuddyListView: View {
     }
     
     var body: some View {
-        VStack (alignment: .leading){
-            NavigationLink(destination: RequestListView())
-            {
-                HStack{
-                    VStack (alignment: .leading){
-                        Text("Follow Request").foregroundColor(Color("AccentColor2"))
-                        Text("Approve or Delete requests").font(Font.custom("Rubik-Regular", size:14)).foregroundColor(Color("TextColor"))
-                    }
-                    Spacer()
-                }.frame(maxWidth: .infinity).padding(.horizontal).padding(.top)
-            }
+        VStack {
             HStack{
                 Text("\(firebaseManager.buddyList.count) Buddies")
                     .font(Font.custom("Rubik-Medium", size:16))
@@ -42,11 +31,14 @@ struct BuddyListView: View {
             List(firebaseManager.buddyList){user in
                 BuddyListItem(user:user,firebaseManager: firebaseManager)
             }.listStyle(GroupedListStyle())
-        }.background(Color("BackgroundColor")).navigationTitle("Buddy List").navigationBarTitleDisplayMode(.inline).onAppear(perform: {
-            firebaseManager.getBuddyList(completion: { budList in 
-                //buddyList = budList
+        }.background(Color("BackgroundColor"))
+            .navigationTitle("Buddy List")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear(perform: {
+                firebaseManager.getBuddyList(completion: { budList in
+                    //buddyList = budList
+                })
             })
-        })
     }
 }
 
@@ -58,14 +50,14 @@ struct BuddyListView_Previews: PreviewProvider {
 
 struct BuddyListItem:View{
     @Environment(\.presentationMode) var presentationMode
-    @State private var Redirect = false
     @State private var removeBuddy = false
     var user:BuddyRecoUser?
     @State private var selection = ""
     var firebaseManager:FirebaseManager
 
     var body: some View{
-        NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!)){
+        NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!))
+        {
             HStack(alignment: .center){
                 KFImage.url(URL(string: user!.profilePic))
                     .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 60.0, height: 60.0).padding(.trailing,20)}
@@ -78,7 +70,7 @@ struct BuddyListItem:View{
                     .scaledToFill()
                     .clipShape(Circle()).frame(width: 65.0, height: 65.0).padding(.trailing,20) .onChange(of: user!.profilePic) { newImage in
               
-                    }
+                }
                 VStack(alignment: .leading, spacing:10){
                     HStack{
                         Text(user!.name)

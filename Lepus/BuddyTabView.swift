@@ -106,8 +106,14 @@ struct BuddyTabView: View {
                         Text("Messages")
                             .font(Font.custom("Rubik-Medium", size:16))
                         Spacer()
-                        Text("0 requests")
-                            .font(Font.custom("Rubik-Regular", size:14))
+                        
+                        NavigationLink(destination: RequestListView()){
+                            Text("\(FBManager.requestList.count) requests")
+                                .font(Font.custom("Rubik-Regular", size:14)).onAppear(perform: {
+                                    FBManager.getRequestList(completion: { list in
+                                    })
+                                })
+                        }
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
