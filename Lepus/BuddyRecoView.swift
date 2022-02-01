@@ -41,7 +41,13 @@ struct BuddyRecoView: View {
                 }
                 .font(Font.custom("Rubik-Regular", size:18))
                 .padding(.horizontal)
+                .padding(.vertical, 8)
+                .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color("AccentColor"), lineWidth: 2))
+                .padding(.horizontal)
                 .padding(.vertical)
+                
                 if (FBManager.noStatistics)
                 {
                     Text("Start recording your runs to see buddy recommendations!")
@@ -65,8 +71,9 @@ struct BuddyRecoView: View {
                         .padding(.horizontal)
                     }
                 }
+            Spacer()
         }
-        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarTitle("Buddy Recommendations", displayMode: .inline)
     }
 }
 

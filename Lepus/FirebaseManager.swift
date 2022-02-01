@@ -351,33 +351,22 @@ class FirebaseManager : ObservableObject{
                                                 var append = false
                                                 if (filter == "All" || filter == "Filter by...")
                                                 {
-                                                    if(LocationNear||PaceSimilar||DistanceSimilar)
-                                                    {
-                                                        append = true
-                                                    }
+                                                    append = LocationNear||PaceSimilar||DistanceSimilar
                                                 }
                                                 
                                                 else if (filter == "Location Ran")
                                                 {
-                                                    if(LocationNear)
-                                                    {
-                                                        append = true
-                                                    }
+                                                    append = LocationNear
                                                 }
                                                 else if (filter == "Distance Ran")
                                                 {
-                                                    if(DistanceSimilar)
-                                                    {
-                                                        append = true
-                                                    }
+                                                    append = DistanceSimilar
                                                 }
                                                 else if (filter == "AveragePace")
                                                 {
-                                                    if(PaceSimilar)
-                                                    {
-                                                        append = true
-                                                    }
+                                                    append = PaceSimilar
                                                 }
+                                                
                                                 if append == true
                                                 {
                                                     self.recoList.append(buddyReco)

@@ -14,6 +14,7 @@ struct BuddyTabView: View {
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
     @State private var viewMoreRecos = false
+    @State private var viewRequests = false
 
     
     let messages = [
@@ -106,14 +107,13 @@ struct BuddyTabView: View {
                         Text("Messages")
                             .font(Font.custom("Rubik-Medium", size:16))
                         Spacer()
-                        
-                        NavigationLink(destination: RequestListView()){
-                            Text("\(FBManager.requestList.count) requests")
-                                .font(Font.custom("Rubik-Regular", size:14)).onAppear(perform: {
-                                    FBManager.getRequestList(completion: { list in
-                                    })
-                                })
-                        }
+                        Text("\(FBManager.requestList.count) requests")
+                            .font(Font.custom("Rubik-Regular", size:14))
+                            .onTapGesture {
+                                viewRequests = true
+                            }
+                        NavigationLink(destination: RequestListView(), isActive: $viewRequests)
+                        {EmptyView()}
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
@@ -129,11 +129,11 @@ struct BuddyTabView: View {
                 }
                 .padding(.vertical, 12)
             }
- 
-            
         }
         .onAppear{
             FBManager.getBuddyRecos(records: 10, filter: "All")
+            FBManager.getRequestList(completion: {reqList in
+            })
         }
         .ignoresSafeArea(.all, edges: .top)
         .background(Color("BackgroundColor"))
