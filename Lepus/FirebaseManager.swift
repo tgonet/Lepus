@@ -34,6 +34,7 @@ class FirebaseManager : ObservableObject{
     
     @Published var buddyList:[BuddyRecoUser] = []
     @Published var requestList:[BuddyRecoUser] = []
+    @Published var messageList:[Message] = []
     
     @ObservedObject var CDManager = CoreDataUserManager()
 
@@ -673,34 +674,40 @@ class FirebaseManager : ObservableObject{
         return messageList
     }
     
-    func getLatestMessage(buddyId:String)->Message{
+    func getLatestMessageList(){
         var latestMessage:Message?
         let uid = user!.uid
-        
-        let ref = db.collection("MessageGroup").whereField("user", arrayContainsAny:[uid,buddyId])
+        self.messageList = []
+        let ref = db.collection("MessageGroup").whereField("user", arrayContainsAny:[uid])
         
         ref.getDocuments(completion: {(querySnapshot,error) in
             if let error = error {
                 print("Error getting document:" ,error)
-            } else {
-                for document in querySnapshot!.documents {
-                    let data = document.data()
-                    let id = document.documentID
-                    let datetime = data["datetime"] as? Timestamp
-                    let message = data["message"] as? String
-                    let sender = data["senderId"] as? String
-                    //Check if user have started convo with user
-                    if sender != nil && message != nil{
-                        latestMessage = Message(id: id, user: sender!, datetime: Date(), message: message!)
+            }
+            else {
+                if(querySnapshot!.documents.count != 0){
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        let user = data["user"] as? [String]
+                        let friendID = user?.first(where: {$0 != uid})
+                        let id = document.documentID
+                        let msg = data["msg1"] as? [String: Any]
+                        let datetime = msg!["datetime"] as? Timestamp
+                        let message = msg!["message"] as? String
+                        let sender = msg!["senderId"] as? String
+                        //Check if user have started convo with user
+                        if sender != nil && message != nil{
+                            latestMessage = Message(id: id, user: sender!, datetime: Date(), message: message!, friendID: friendID)
+                            self.messageList.append(latestMessage!)
                         }
                     }
+                }
+                else{
+                    self.messageList = []
+                    //latestMessage = Message(id:"", user: "", datetime: Date(), message: "You have not send message to this person yet!")
+                }
             }
         })
-        if latestMessage == nil {
-            latestMessage = Message(id:"", user: "", datetime: Date(), message: "You have not send message to this person yet!")
-        }
-        return latestMessage!
-
     }
     
     func getMessages(documentId:String)->[Message] {

@@ -13,6 +13,7 @@ struct Message:Identifiable,Codable,Hashable{
     var user:String
     var datetime:Date
     var message:String
+    var friendID:String?
     
     init(id:String,user:String, datetime:Date, message:String){
         self.id = id
@@ -20,6 +21,15 @@ struct Message:Identifiable,Codable,Hashable{
         self.datetime = datetime
         self.message = message
     }
+    
+    init(id:String,user:String, datetime:Date, message:String, friendID:String?){
+        self.id = id
+        self.user = user
+        self.datetime = datetime
+        self.message = message
+        self.friendID = friendID
+    }
+    
     enum CodingKeys: String,CodingKey {
         case id
         case user

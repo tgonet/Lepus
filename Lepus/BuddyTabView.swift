@@ -19,11 +19,9 @@ struct BuddyTabView: View {
     
     
     init(){
-        FBManager.getBuddyList { result in
-        }
+        
     }
     var body: some View {
-
         ZStack{
             VStack{
                 VStack{
@@ -72,7 +70,6 @@ struct BuddyTabView: View {
                                 Text("Start recording your runs to see buddy recommendations!")
                                     .font(Font.custom("Rubik-Regular", size:14))
                                     .frame(maxWidth:.infinity, alignment:.center)
-
                             }
                             else if (FBManager.noMatches)
                             {
@@ -118,11 +115,18 @@ struct BuddyTabView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
                     
-                    List(FBManager.buddyList){ buddy in
-                        MessageListItem(buddy:buddy,message:FBManager.getLatestMessage(buddyId:buddy.id))
+                    List(FBManager.messageList){ message in
+                        let buddy = FBManager.buddyList.first(where: {$0.id == message.friendID!})
+                        MessageListItem(buddy: buddy!, message: message)
                     }
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
+                        FBManager.messageList.forEach({ i in
+                            var item:BuddyRecoUser = FBManager.buddyList.first(where: {$0.id == i.friendID!})!
+                            print("hi: \(item.id)")
+                        })
+                        print("help: \(FBManager.buddyList.count)")
+                        print("bye: \(FBManager.messageList.count)")
                     })
                     
                 }
@@ -131,8 +135,11 @@ struct BuddyTabView: View {
         }
         .onAppear{
             FBManager.getBuddyRecos(records: 10, filter: "All")
-            FBManager.getRequestList(completion: {reqList in
-            })
+            FBManager.getRequestList {reqList in }
+            FBManager.getBuddyList { result in
+                FBManager.getLatestMessageList()
+            }
+            
         }
         .ignoresSafeArea(.all, edges: .top)
         .background(Color("BackgroundColor"))
@@ -183,9 +190,8 @@ struct MessageListItem:View{
     @State private var Redirect = false
     var message:Message
 
-
     var body: some View {
-            NavigationLink(destination: chatView(documentId:"ffltHVKNvpxmk3DzRNFQ",buddy:buddy), isActive: $Redirect){
+        NavigationLink(destination: chatView(documentId: message.id!,buddy:buddy), isActive: $Redirect){
             HStack(alignment:.center){
                 Image("profileImg")
                     .resizable()
