@@ -117,7 +117,7 @@ struct BuddyTabView: View {
                     
                     List(FBManager.messageList){ message in
                         let buddy = FBManager.buddyList.first(where: {$0.id == message.friendID!})
-                        MessageListItem(buddy: buddy!, message: message)
+                        //MessageListItem(buddy: buddy!, message: message)
                     }
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
