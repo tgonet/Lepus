@@ -95,9 +95,8 @@ struct BuddyRequestListItem:View{
                     
                 }
                 .padding(.vertical, 8)
-                .listRowBackground(Color("BackgroundColor")).listRowSeparator(.hidden)
             }
-        }
+        }.listRowBackground(Color("BackgroundColor")).listRowSeparator(.hidden)
     }
 }
 

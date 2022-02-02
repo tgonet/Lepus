@@ -95,12 +95,12 @@ struct ProfileTabView: View {
                         }
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                             UITableView.appearance().contentInset.top = -35
-                    }).listRowBackground(Color("BackgroundColor"))
+                    })
         }.onAppear(perform: {
             self.name = user.displayName!
             self.url = user.photoURL!
             firebaseManager.readRuns(id: user.uid)
-        }).navigationBarHidden(true)//.navigationTitle("Profile").toolbar{Button("Logout"){LogOut()}}.navigationBarTitleDisplayMode(.inline)
+        }).navigationBarHidden(true).background(Color("BackgroundColor"))
     }
         
     
@@ -192,7 +192,7 @@ struct RunRow: View {
                 }
             }
             Divider().background(Color("Divider"))
-        }.listRowSeparator(.hidden)
+        }.listRowSeparator(.hidden).listRowBackground(Color("BackgroundColor"))
     }
     
 }
