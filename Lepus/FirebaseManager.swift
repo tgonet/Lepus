@@ -649,7 +649,7 @@ class FirebaseManager : ObservableObject{
                     let sender = data["senderId"] as? String
                     print(message!)
                     print(id)
-                    //messageList.append(Message(id:id,user: sender!, datetime: datetime!.dateValue(), message: message! ))
+                    messageList.append(Message(id:id,user: sender!, datetime: datetime!.dateValue(), message: message! ))
                 }
             }
             
@@ -691,13 +691,13 @@ class FirebaseManager : ObservableObject{
                     let sender = data["senderId"] as? String
                     //Check if user have started convo with user
                     if sender != nil && message != nil{
-                        //latestMessage = Message(id: id, user: sender!, datetime: Date(), message: message!)
+                        latestMessage = Message(id: id, user: sender!, datetime: Date(), message: message!)
                         }
                     }
             }
         })
         if latestMessage == nil {
-            //latestMessage = Message(id:"", user: "", datetime: Date(), message: "You have not send message to this person yet!")
+            latestMessage = Message(id:"", user: "", datetime: Date(), message: "You have not send message to this person yet!")
         }
         return latestMessage!
 
@@ -717,7 +717,7 @@ class FirebaseManager : ObservableObject{
                             let datetime = data["datetime"] as? Timestamp
                             let message = data["message"] as? String
                             let sender = data["senderId"] as? String
-                            //self.msgs.append(Message(id:id,user: sender!, datetime: datetime!.dateValue(), message: message! ))
+                            self.msgs.append(Message(id:id,user: sender!, datetime: datetime!.dateValue(), message: message! ))
                         } else {
                             
                         }

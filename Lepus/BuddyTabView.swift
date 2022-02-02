@@ -119,7 +119,7 @@ struct BuddyTabView: View {
                     .padding(.horizontal)
                     
                     List(FBManager.buddyList){ buddy in
-                        //MessageListItem(buddy:buddy,message:FBManager.getLatestMessage(buddyId:buddy.id))
+                        MessageListItem(buddy:buddy,message:FBManager.getLatestMessage(buddyId:buddy.id))
                     }
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35

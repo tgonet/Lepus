@@ -14,7 +14,8 @@ struct Message:Identifiable,Codable,Hashable{
     var datetime:Date
     var message:String
     
-    init(user:String, datetime:Date, message:String){
+    init(id:String,user:String, datetime:Date, message:String){
+        self.id = id
         self.user = user
         self.datetime = datetime
         self.message = message
