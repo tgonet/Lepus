@@ -18,6 +18,16 @@ struct BuddyListView: View {
     
     var body: some View {
         VStack {
+            NavigationLink(destination: RequestListView())
+                        {
+                            HStack{
+                                VStack (alignment: .leading){
+                                    Text("Follow Request").foregroundColor(Color("AccentColor2"))
+                                    Text("Approve or Delete requests").font(Font.custom("Rubik-Regular", size:14)).foregroundColor(Color("TextColor"))
+                                }
+                                Spacer()
+                            }.frame(maxWidth: .infinity).padding(.horizontal).padding(.top)
+                        }
             HStack{
                 Text("\(firebaseManager.buddyList.count) Buddies")
                     .font(Font.custom("Rubik-Medium", size:16))
