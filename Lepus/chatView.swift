@@ -12,15 +12,17 @@ struct chatView: View {
     var documentId:String
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
-    
+    @State var buddy:BuddyRecoUser
     @StateObject var chatData = chatModel()
     @State var scrolled = false
     @State var chat_name:String = ""
 
-    init(documentId:String){
+    init(documentId:String,buddy:BuddyRecoUser){
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color("DarkYellow"))
         
-        self.documentId = "NAM12Qcn4U20AnKqWdPF"
+        self.documentId = documentId
+        self.buddy = buddy
+
         
     }
     
@@ -31,13 +33,14 @@ struct chatView: View {
             ScrollViewReader{ reader in
                 ScrollView{
                     VStack(spacing: 0){
+                        
                         ForEach(FBManager.getMessages(documentId: documentId).reversed(), id: \.self){msg in
                             chatRow(chatData: msg)
                                 .onAppear(){
-                                    if msg.user != CDManager.user?.name {
-                                        chat_name = msg.user
+                                    if buddy.id != CDManager.user?.userId! {
+                                        chat_name = buddy.name
                                     }
-                                    if msg.id == self.FBManager.msgs.last!.id && !scrolled {
+                                    if msg.id == self.FBManager.msgs.first!.id && !scrolled {
                                         reader.scrollTo(FBManager.msgs.last!.message, anchor: .bottom)
                                         scrolled = true
 

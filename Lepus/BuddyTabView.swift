@@ -15,15 +15,15 @@ struct BuddyTabView: View {
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
     @State private var viewMoreRecos = false
     @State private var viewRequests = false
-
+    @State private var buddyList:[BuddyRecoUser] = []
     
-    let messages = [
-        Message(user: "Ming Zhe", datetime: Date(), message: "Hello, what time are we meeting?"),
-        Message(user: "Zhi Qi", datetime:Date(), message:"Hi, I'm Zhi Qi! :)"),
-        Message(user: "Zheng Hao", datetime:Date(), message:"Hi Joey!")
-        ]
     
+    init(){
+        FBManager.getBuddyList { result in
+        }
+    }
     var body: some View {
+
         ZStack{
             VStack{
                 VStack{
@@ -118,9 +118,8 @@ struct BuddyTabView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
                     
-                    List(messages) {
-                        message in
-                        MessageListItem(message:message)
+                    List(FBManager.buddyList){ buddy in
+                        MessageListItem(buddy:buddy,message:FBManager.getLatestMessage(buddyId:buddy.id))
                     }
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
@@ -179,13 +178,14 @@ struct BuddyRecommendationItem:View{
 }
 
 struct MessageListItem:View{
-    var message:Message
+    var buddy:BuddyRecoUser
     @State private var tabBar: UITabBar! = nil
     @State private var Redirect = false
+    var message:Message
 
 
     var body: some View {
-        NavigationLink(destination: chatView(documentId:"docId"), isActive: $Redirect){
+            NavigationLink(destination: chatView(documentId:"ffltHVKNvpxmk3DzRNFQ",buddy:buddy), isActive: $Redirect){
             HStack(alignment:.center){
                 Image("profileImg")
                     .resizable()
@@ -195,7 +195,7 @@ struct MessageListItem:View{
                 VStack(alignment: .leading, spacing:10){
                     HStack{
                         
-                        Text(message.user)
+                        Text(buddy.name)
                             .font(Font.custom("Rubik-Medium", size:16))
                         Spacer()
                         let dateFormatter = DateFormatter()
@@ -208,7 +208,7 @@ struct MessageListItem:View{
                 }
             }
         }
-        .padding(.vertical, 8)
-        .listRowBackground(Color("BackgroundColor"))
-    }
+            .padding(.vertical, 8)
+            .listRowBackground(Color("BackgroundColor"))
+        }
 }
