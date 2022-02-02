@@ -53,8 +53,11 @@ struct BuddyRequestListItem:View{
     var firebaseManager:FirebaseManager
 
     var body: some View{
-        NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!))
-        {
+        ZStack{
+            NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!))
+            {
+                EmptyView()
+            }.opacity(0)
             HStack(alignment:.center){
                 KFImage.url(URL(string: user!.profilePic))
                     .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 60.0, height: 60.0).padding(.trailing,20)}
@@ -92,9 +95,8 @@ struct BuddyRequestListItem:View{
                     
                 }
                 .padding(.vertical, 8)
-                .listRowBackground(Color("BackgroundColor")).listRowSeparator(.hidden)
             }
-        }
+        }.listRowBackground(Color("BackgroundColor")).listRowSeparator(.hidden)
     }
 }
 

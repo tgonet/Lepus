@@ -18,6 +18,16 @@ struct BuddyListView: View {
     
     var body: some View {
         VStack {
+            NavigationLink(destination: RequestListView())
+                        {
+                            HStack{
+                                VStack (alignment: .leading){
+                                    Text("Follow Request").foregroundColor(Color("AccentColor2"))
+                                    Text("Approve or Delete requests").font(Font.custom("Rubik-Regular", size:14)).foregroundColor(Color("TextColor"))
+                                }
+                                Spacer()
+                            }.frame(maxWidth: .infinity).padding(.horizontal).padding(.top)
+                        }
             HStack{
                 Text("\(firebaseManager.buddyList.count) Buddies")
                     .font(Font.custom("Rubik-Medium", size:16))
@@ -56,8 +66,11 @@ struct BuddyListItem:View{
     var firebaseManager:FirebaseManager
 
     var body: some View{
-        NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!))
-        {
+        ZStack{
+            NavigationLink(destination: BuddyProfileView(id: user!.id, name: user!.name, url: URL(string: user!.profilePic)!))
+            {
+                EmptyView()
+            }.opacity(0)
             HStack(alignment: .center){
                 KFImage.url(URL(string: user!.profilePic))
                     .placeholder{Image("profileImg").clipShape(Circle()).frame(width: 60.0, height: 60.0).padding(.trailing,20)}
@@ -94,8 +107,7 @@ struct BuddyListItem:View{
                     }
                 }
                 .padding(.vertical, 8)
-                .listRowBackground(Color("BackgroundColor")).listRowSeparator(.hidden)
             }
-        }
+        }.listRowBackground(Color("BackgroundColor")).listRowSeparator(.hidden)
     }
 }

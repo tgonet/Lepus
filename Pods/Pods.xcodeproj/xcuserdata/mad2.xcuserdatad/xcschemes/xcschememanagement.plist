@@ -67,7 +67,7 @@
 		<key>FirebaseFirestoreSwift.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>15</integer>
 		</dict>
 		<key>FirebaseStorage.xcscheme</key>
 		<dict>
@@ -105,7 +105,7 @@
 		<key>Kingfisher.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>17</integer>
 		</dict>
 		<key>Pods-Lepus WatchKit App.xcscheme</key>
 		<dict>
@@ -153,7 +153,7 @@
 		<key>gRPC-C++-gRPCCertificates-Cpp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>19</integer>
 		</dict>
 		<key>gRPC-C++.xcscheme</key>
 		<dict>
@@ -163,7 +163,7 @@
 		<key>gRPC-C++.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>22</integer>
 		</dict>
 		<key>gRPC-Core.xcscheme</key>
 		<dict>
@@ -173,7 +173,7 @@
 		<key>gRPC-Core.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>24</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>

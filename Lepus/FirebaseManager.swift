@@ -633,11 +633,31 @@ class FirebaseManager : ObservableObject{
         
     }
     
-    func getMessageList()->[Message]{
-        
+    func getMessageList(buddyId:String)->[Message]{
         var messageList:[Message] = []
         var latestMessage:Message?
         let uid = user!.uid
+        
+        let ref = db.collection("MessageGroup").whereField("users", in: [uid])
+        
+        ref.getDocuments(completion: {(querySnapshot,error) in
+            if let error = error {
+                print("Error getting document:" ,error)
+            } else {
+                messageList.removeAll()
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let id = document.documentID
+                    let datetime = data["datetime"] as? Timestamp
+                    let message = data["message"] as? String
+                    let sender = data["senderId"] as? String
+                    print(message!)
+                    print(id)
+                    messageList.append(Message(id:id,user: sender!, datetime: datetime!.dateValue(), message: message! ))
+                }
+            }
+            
+        })
         /*
         let ref = db.collection("MessageGroup")
             .whereField("users", arrayContains: uid)
@@ -657,8 +677,37 @@ class FirebaseManager : ObservableObject{
         return messageList
     }
     
+    func getLatestMessage(buddyId:String)->Message{
+        var latestMessage:Message?
+        let uid = user!.uid
+        
+        let ref = db.collection("MessageGroup").whereField("user", arrayContainsAny:[uid,buddyId])
+        
+        ref.getDocuments(completion: {(querySnapshot,error) in
+            if let error = error {
+                print("Error getting document:" ,error)
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let id = document.documentID
+                    let datetime = data["datetime"] as? Timestamp
+                    let message = data["message"] as? String
+                    let sender = data["senderId"] as? String
+                    //Check if user have started convo with user
+                    if sender != nil && message != nil{
+                        latestMessage = Message(id: id, user: sender!, datetime: Date(), message: message!)
+                        }
+                    }
+            }
+        })
+        if latestMessage == nil {
+            latestMessage = Message(id:"", user: "", datetime: Date(), message: "You have not send message to this person yet!")
+        }
+        return latestMessage!
+
+    }
+    
     func getMessages(documentId:String)->[Message] {
-            let user_uid = user!.uid
             let ref = db.collection("MessageGroup").document(documentId).collection("msg1")
             ref.getDocuments(completion: {(querySnapshot,error) in
                 if let error = error {
@@ -666,12 +715,16 @@ class FirebaseManager : ObservableObject{
                 } else {
                     self.msgs.removeAll()
                     for document in querySnapshot!.documents {
-                        let data = document.data()
-                        let id = document.documentID
-                        let datetime = data["datetime"] as? Timestamp
-                        let message = data["message"] as? String
-                        let sender = data["senderId"] as? String
-                        self.msgs.append(Message(user: sender!, datetime: datetime!.dateValue(), message: message! ))
+                        if document.exists{
+                            let data = document.data()
+                            let id = document.documentID
+                            let datetime = data["datetime"] as? Timestamp
+                            let message = data["message"] as? String
+                            let sender = data["senderId"] as? String
+                            self.msgs.append(Message(id:id,user: sender!, datetime: datetime!.dateValue(), message: message! ))
+                        } else {
+                            
+                        }
                     }
                 }
                 
