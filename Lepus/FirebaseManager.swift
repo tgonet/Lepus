@@ -307,7 +307,6 @@ class FirebaseManager : ObservableObject{
             if let document = document, document.exists {
                 buddyList = document.data()!["buddyList"]! as! [String]
                 buddyList.append(contentsOf: document.data()!["pendingBuddyList"]! as! [String])
-                //print("Buddy 1: \(buddyList[0])")
               }
             else {
                 print("Document does not exist")
@@ -332,7 +331,6 @@ class FirebaseManager : ObservableObject{
                                 }
                                 else {
                                     for document in querySnapshot!.documents {
-                                        print("\(document.documentID) => \(document.data())")
                                             if let statistics = document.data()["statistics"] as? [String: Any] {
                                                 recoLat = Double(statistics["latitude"] as! String)!
                                                 recoLong = Double(statistics["longitude"] as! String)!
@@ -370,10 +368,6 @@ class FirebaseManager : ObservableObject{
                                                 if append == true
                                                 {
                                                     self.recoList.append(buddyReco)
-                                                    print(buddyReco.name)
-                                                    print("Location near:\(LocationNear)")
-                                                    print("Pace similar:\(PaceSimilar)")
-                                                    print("Distance similar:\(DistanceSimilar)")
                                                 }
                                             }
                                         }
@@ -403,7 +397,6 @@ class FirebaseManager : ObservableObject{
         let coord1 = CLLocation(latitude: lat1, longitude: long1)
         let coord2 = CLLocation(latitude: lat2, longitude: long2)
         let distanceInMeters = coord1.distance(from: coord2)
-        print("\(distanceInMeters) in function")
         return distanceInMeters <= 500
     }
     
