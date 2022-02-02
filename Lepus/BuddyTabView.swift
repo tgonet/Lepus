@@ -25,6 +25,14 @@ struct BuddyTabView: View {
         ZStack{
             VStack{
                 VStack{
+                    
+                    Image("LogoBlack")
+                        .resizable()
+                        .opacity(0.75)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:70)
+                        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+                     
                     HStack(alignment:.center, spacing:18){
                         Image(systemName: "magnifyingglass")
                         TextField("", text: $searchText)
@@ -43,7 +51,7 @@ struct BuddyTabView: View {
                         .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                         .cornerRadius(10)
                         .padding()
-                        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+                        //.padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
 
                     HStack{
                         Text("Buddy Recommendations")
@@ -92,6 +100,7 @@ struct BuddyTabView: View {
                         .padding(.vertical, 20)
                  }
                 .padding(.vertical, 12)
+                
                 .background(
                     LinearGradient(
                         gradient: Gradient(colors: [Color("DarkYellow"), Color("LightYellow")]),
@@ -114,8 +123,8 @@ struct BuddyTabView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
-                    
-                    List(FBManager.messageList){ message in
+                
+                    List(searchResults){ message in
                         let buddy = FBManager.buddyList.first(where: {$0.id == message.friendID!})
                         if(buddy != nil){
                             MessageListItem(buddy: buddy, message: message)
@@ -131,12 +140,14 @@ struct BuddyTabView: View {
                         print("help: \(FBManager.buddyList.count)")
                         print("bye: \(FBManager.messageList.count)")
                     })
-                    .searchable(text: $searchText)
+                 
                     
                 }
                 .padding(.vertical, 12)
+                 
             }
         }
+                 
         .onAppear{
             FBManager.getBuddyRecos(records: 10, filter: "All")
             FBManager.getRequestList {reqList in }
@@ -147,7 +158,16 @@ struct BuddyTabView: View {
         .ignoresSafeArea(.all, edges: .top)
         .background(Color("BackgroundColor"))
     }
-    
+    var searchResults: [Message] {
+            if searchText.isEmpty {
+                return FBManager.messageList
+            } else {
+                return FBManager.messageList.filter {
+                    let friendId = $0.friendID
+                    let buddy = FBManager.buddyList.first(where: {$0.id == friendId})
+                    return buddy!.name.lowercased().contains(searchText) }
+            }
+        }
 }
 
 struct BuddyTabView_Previews: PreviewProvider {
