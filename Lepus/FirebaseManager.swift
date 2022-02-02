@@ -381,6 +381,10 @@ class FirebaseManager : ObservableObject{
                                     {
                                         self.noMatches = false
                                     }
+                                    else
+                                    {
+                                        self.noMatches = true
+                                    }
                                     }
                                 }
                         self.noStatistics = false
