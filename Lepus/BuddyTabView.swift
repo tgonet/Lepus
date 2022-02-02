@@ -117,7 +117,10 @@ struct BuddyTabView: View {
                     
                     List(FBManager.messageList){ message in
                         let buddy = FBManager.buddyList.first(where: {$0.id == message.friendID!})
-                        //MessageListItem(buddy: buddy!, message: message)
+                        if(buddy != nil){
+                            MessageListItem(buddy: buddy, message: message)
+                        }
+                        
                     }
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
@@ -186,13 +189,13 @@ struct BuddyRecommendationItem:View{
 }
 
 struct MessageListItem:View{
-    var buddy:BuddyRecoUser
+    var buddy:BuddyRecoUser?
     @State private var tabBar: UITabBar! = nil
     @State private var Redirect = false
     var message:Message
 
     var body: some View {
-        NavigationLink(destination: chatView(documentId: message.id!,buddy:buddy), isActive: $Redirect){
+        NavigationLink(destination: chatView(documentId: message.id!,buddy:buddy!), isActive: $Redirect){
             HStack(alignment:.center){
                 Image("profileImg")
                     .resizable()
@@ -202,7 +205,7 @@ struct MessageListItem:View{
                 VStack(alignment: .leading, spacing:10){
                     HStack{
                         
-                        Text(buddy.name)
+                        Text(buddy!.name)
                             .font(Font.custom("Rubik-Medium", size:16))
                         Spacer()
                         let dateFormatter = DateFormatter()
