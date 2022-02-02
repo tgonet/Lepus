@@ -29,7 +29,7 @@ struct BuddyTabView: View {
                         Image(systemName: "magnifyingglass")
                         TextField("", text: $searchText)
                             .placeholder(when: searchText.isEmpty) {
-                                Text("Find someone").foregroundColor(Color(UIColor.darkGray))
+                                Text("Find buddy").foregroundColor(Color(UIColor.darkGray))
                             }
                             .autocapitalization(.none)
                             .font(Font.custom("Rubik-Regular", size:18))
