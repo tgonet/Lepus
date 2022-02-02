@@ -128,6 +128,7 @@ struct BuddyTabView: View {
                         print("help: \(FBManager.buddyList.count)")
                         print("bye: \(FBManager.messageList.count)")
                     })
+                    .searchable(text: $searchText)
                     
                 }
                 .padding(.vertical, 12)
@@ -139,11 +140,11 @@ struct BuddyTabView: View {
             FBManager.getBuddyList { result in
                 FBManager.getLatestMessageList()
             }
-            
         }
         .ignoresSafeArea(.all, edges: .top)
         .background(Color("BackgroundColor"))
     }
+    
 }
 
 struct BuddyTabView_Previews: PreviewProvider {
