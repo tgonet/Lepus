@@ -46,7 +46,7 @@ struct BuddyListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
                 firebaseManager.getBuddyList(completion: { budList in
-                    //buddyList = budList
+                    buddyList = budList
                 })
             })
     }
