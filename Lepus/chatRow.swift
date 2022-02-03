@@ -10,16 +10,17 @@ import FirebaseAuth
 
 struct chatRow: View {
     var chatData: Message
+    var buddy:BuddyRecoUser
     
     @ObservedObject var CDManager = CoreDataUserManager()
 
     var body: some View {
         var user = CDManager.user!
-        let uid = user.name
+        let uid = user.userId
         HStack(spacing:15){
             //Nickname view
             if chatData.user != uid {
-                NickName(name:chatData.user)
+                NickName(name:buddy.name)
             }
             
             if chatData.user == uid{Spacer(minLength: 0)}
@@ -59,7 +60,7 @@ struct chatRow: View {
             })
             
             if chatData.user == uid {
-                NickName(name:chatData.user)
+                NickName(name:user.name)
             }
             
             if chatData.user != uid{Spacer(minLength: 0)}

@@ -35,7 +35,7 @@ struct chatView: View {
                     VStack(spacing: 0){
                         
                         ForEach(FBManager.getMessages(documentId: documentId).reversed(), id: \.self){msg in
-                            chatRow(chatData: msg)
+                            chatRow(chatData: msg,buddy:buddy)
                                 .onAppear(){
                                     if buddy.id != CDManager.user?.userId! {
                                         chat_name = buddy.name

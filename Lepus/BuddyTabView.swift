@@ -134,11 +134,11 @@ struct BuddyTabView: View {
                     .listStyle(GroupedListStyle()).onAppear(perform: {
                         UITableView.appearance().contentInset.top = -35
                         FBManager.messageList.forEach({ i in
-                            var item:BuddyRecoUser = FBManager.buddyList.first(where: {$0.id == i.friendID!})!
-                            print("hi: \(item.id)")
+                            if FBManager.buddyList.first(where: {$0.id == i.friendID!}) != nil{
+                                var item:BuddyRecoUser = FBManager.buddyList.first(where: {$0.id == i.friendID!})!
+                            }
                         })
-                        print("help: \(FBManager.buddyList.count)")
-                        print("bye: \(FBManager.messageList.count)")
+
                     })
                  
                     
