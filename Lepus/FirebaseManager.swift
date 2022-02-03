@@ -446,7 +446,7 @@ class FirebaseManager : ObservableObject{
         }
     }
     
-    func getRequestList(completion: @escaping (_ result:[BuddyRecoUser])->Void){
+    func getRequestList(){
         var requestList:[String] = []
         self.requestList = []
         let ref = db.collection("Buddies").document(user!.uid)
@@ -460,11 +460,7 @@ class FirebaseManager : ObservableObject{
                             var data = recUser.data()
                             self.requestList.append(BuddyRecoUser(id: data["id"] as! String, name: data["name"] as! String, profilePic: data["profilePic"] as! String))
                         }
-                        completion(self.requestList)
                     })
-                }
-                else{
-                    completion([])
                 }
             }
             else {

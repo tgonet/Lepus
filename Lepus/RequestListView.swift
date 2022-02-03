@@ -10,7 +10,6 @@ import Kingfisher
 
 struct RequestListView: View {
     @ObservedObject var firebaseManager = FirebaseManager()
-    @State private var list:[BuddyRecoUser] = []
     
     var body: some View {
         VStack{
@@ -31,9 +30,7 @@ struct RequestListView: View {
             .navigationTitle("Request List")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
-                firebaseManager.getRequestList(completion: {reqList in
-                    //list = reqList
-                })
+                firebaseManager.getRequestList()
             })
     }
 }

@@ -10,7 +10,6 @@ import Kingfisher
 
 struct BuddyListView: View {
     @ObservedObject var firebaseManager = FirebaseManager()
-    @State private var buddyList:[BuddyRecoUser] = []
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
@@ -46,7 +45,6 @@ struct BuddyListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
                 firebaseManager.getBuddyList(completion: { budList in
-                    //buddyList = budList
                 })
             })
     }
