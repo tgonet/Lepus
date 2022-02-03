@@ -583,8 +583,10 @@ class FirebaseManager : ObservableObject{
                         buddyList.append(self.user!.uid)
                         ref1.updateData(["buddyList":buddyList])
                         
+                        var Dict:[String:Any?] = ["message":"", "senderId":"", "datetime":Date()]
                         self.db.collection("MessageGroup").addDocument(data:[
-                             "user":[self.user!.uid,id]
+                             "user":[self.user!.uid,id],
+                             "msg1":Dict
                             ])
                     }
                     else {
@@ -619,6 +621,22 @@ class FirebaseManager : ObservableObject{
                         print("Document does not exist")
                     }
                 }
+                self.db.collection("MessageGroup").whereField("user", arrayContainsAny:[self.user!.uid]).getDocuments(completion: {querySnapshot,error in
+                    for document in querySnapshot!.documents{
+                        let data = document.data()
+                        let Id = data["user"] as? [String]
+                        if(Id!.contains(bUser.id)){
+                            let ref2 = self.db.collection("MessageGroup").document(document.documentID)
+                            ref2.delete() { err in
+                                if let err = err {
+                                    print("Error removing document: \(err)")
+                                } else {
+                                    print("Document successfully removed!")
+                                }
+                            }
+                        }
+                    }
+                })
               }
             else {
                 print("Document does not exist")
