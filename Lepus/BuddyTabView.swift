@@ -150,7 +150,7 @@ struct BuddyTabView: View {
                  
         .onAppear{
             FBManager.getBuddyRecos(records: 10, filter: "All")
-            FBManager.getRequestList {reqList in }
+            FBManager.getRequestList()
             FBManager.getBuddyList { result in
                 FBManager.getLatestMessageList()
             }
