@@ -740,7 +740,7 @@ class FirebaseManager : ObservableObject{
     
     func getMessages(documentId:String)->[Message] {
             let ref = db.collection("MessageGroup").document(documentId).collection("msg1")
-            ref.getDocuments(completion: {(querySnapshot,error) in
+            ref.order(by: "datetime", descending: true).getDocuments(completion: {(querySnapshot,error) in
                 if let error = error {
                     print("Error getting document:" ,error)
                 } else {

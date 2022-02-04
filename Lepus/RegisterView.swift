@@ -18,10 +18,24 @@ struct RegisterView: View {
     
     @State private var showPassword = false
     @State private var showConfirm = false
-    @State private var showAlert = false
     @State private var isLoading = false
-      
+    
+    @State private var showAlert = false
+
+    @State private var selectedGender = "Male"
+    @State private var selectedDate = Date()
+    @State private var selectedHeight = 160
+    @State private var selectedWeight = 50
+    
+    var errorCode:Int = 0
+    var gender = ["Male", "Female", "Prefer not to say"]
+    
+    var height = [Int](0...300)
+    var weight = [Int](0...300)
+    @State private var errorMessage:String = ""
+    
     let db = Firestore.firestore()
+    @ObservedObject var FBManager = FirebaseManager()
     @State var selection: Int? = nil
     
     init(){
@@ -30,9 +44,9 @@ struct RegisterView: View {
     
     var body: some View {
         ZStack{
-            
-        
+
             VStack{
+                
                 ScrollView{
                 Image("runImage")
                     .resizable()
@@ -45,24 +59,26 @@ struct RegisterView: View {
                                 
                     }
                 
-            HStack(alignment:.center, spacing:15){
-                Image(systemName: "envelope")
-                TextField("Email", text: $email)
-                    .autocapitalization(.none)
-                    .font(Font.custom("Rubik-Regular", size:18))
-                    .disableAutocorrection(true)
-                }
-                .padding(.vertical,12)
-                .padding(.horizontal)
-                
-                .background(Color("TextFieldColor"))
-                .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
-                .cornerRadius(10)
-                .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
-                .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+                    Group {
+                        HStack(alignment:.center, spacing:15){
+                    Image(systemName: "envelope")
+                    TextField("Email", text: $email)
+                        .autocapitalization(.none)
+                        .font(Font.custom("Rubik-Regular", size:18))
+                        .disableAutocorrection(true)
+                    }
+                    .padding(.vertical,12)
+                    .padding(.horizontal)
+                    
+                    .background(Color("TextFieldColor"))
+                    .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+                    .cornerRadius(10)
+                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                 .padding()
+                    
             
             HStack(spacing:15){
                 Image(systemName: "person.fill")
@@ -158,11 +174,75 @@ struct RegisterView: View {
                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                 .padding()
-                
-            
+                    
+                    
+                        HStack(alignment:.center, spacing:10){
+                            Text("Gender")
+                                .padding(.leading,20)
+                            Menu {
+                                Picker("Please select your gender", selection: $selectedGender) {
+                                                ForEach(gender, id: \.self) {
+                                                    Text($0).font(Font.custom("Rubik-Regular", size:18))
+                                                }
+                                }
+                            } label:{
+                                Text(selectedGender)
+                                    .font(Font.custom("Rubik-Regular", size:18))
+                                    .foregroundColor(Color("DarkYellow"))
+                            }.frame(minWidth: 200, maxWidth: UIScreen.main.bounds.width, alignment: .trailing).padding(.trailing, 20)
+                        }
+                            .padding(.vertical,10)
+                            .background(Color("TextFieldColor"))
+                            .padding(.bottom,40)
+                        
+                        HStack(alignment:.center, spacing:10){
+                            Text("Height (CM)").padding(.leading,20)
+                            TextField("Height", value: $selectedHeight, format: .number)
+                                .autocapitalization(.none)
+                                .font(Font.custom("Rubik-Regular", size:18))
+                                .foregroundColor(Color("DarkYellow"))
+                                .disableAutocorrection(true) .multilineTextAlignment(.trailing).padding(.trailing, 20).keyboardType(.numberPad)
+                            
+                            Text("Weight (KG)").padding(.leading,20)
+                            Spacer()
+                            TextField("Weight", value: $selectedWeight, format: .number)
+                                .autocapitalization(.none)
+                                .font(Font.custom("Rubik-Regular", size:18))
+                                .foregroundColor(Color("DarkYellow"))
+                                .disableAutocorrection(true).multilineTextAlignment(.trailing).padding(.trailing, 20).keyboardType(.numberPad
+                                )
+                            }
+                            .padding(.vertical,10)
+                            .background(Color("TextFieldColor"))
+                      
+                        HStack(alignment: .center, spacing: 0) {
+                            DatePicker("Date of Birth:",selection:$selectedDate,displayedComponents: .date)
+                            
+                                .padding(.vertical,12)
+                                .padding(.horizontal)
+                                
+                                .background(Color("TextFieldColor"))
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+                                .cornerRadius(10)
+                                .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+                                .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+                                .padding()
+                        }
+                        
+                        if errorMessage != "" || errorMessage != nil {
+                            HStack(alignment:.center,spacing: 0){
+                                Text("\(errorMessage)")
+                            }
+                            .foregroundColor(Color.red)
+                            .font(Font.custom("Rubik-Regular", size:16))
+                            .padding(.bottom)
+                        }
+
+                    }
             Spacer()
             //Redirect to home page? upon creation
-            
             NavigationLink(destination: TabViewUI(), tag: 1, selection: $selection) {
                 Button(action:{
                     hideKeyboard()
@@ -189,7 +269,7 @@ struct RegisterView: View {
                         .disabled((email != "" && name != "" && password != "" && confirmPassword != "") ? false:true)
                         .alert(isPresented: $showAlert){
                                             Alert(title: Text("Password does not match"), message: Text("Password and Confirm Password do not match"), dismissButton: .default(Text("Ok")))
-                    }
+                        }
                 }
                 .edgesIgnoringSafeArea(.top)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -198,7 +278,9 @@ struct RegisterView: View {
         }
     }
  
-func registerUser(email:String,name:String, password:String,confirmPass:String){
+    
+    
+    func registerUser(email:String,name:String, password:String,confirmPass:String){
     if(password == confirmPass){
         let url = "https://firebasestorage.googleapis.com/v0/b/lepus-d32ce.appspot.com/o/profileImg.png?alt=media&token=30a50d9b-aefc-4dd5-92cd-88f173b6eef8"
         showAlert = false
@@ -210,9 +292,14 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
         }
         //startLoading()
         auth.createUser(withEmail: email, password: password){ (result, error) in
-            if error == nil {
+            let error2:NSError = error! as NSError
+            if error2 != nil{
+                errorMessage = error2.localizedDescription
+            }
+            
+            if error == nil && error2 == nil {
                 let currentUser = auth.currentUser
-                let myDict:[String: Any] = ["email":email, "name":name, "profilePic":url, "id":currentUser!.uid, "weight":50, "height":165, "gender": "Male"]
+                let myDict:[String: Any] = ["email":email, "name":name, "profilePic":url, "id":currentUser!.uid,"dob":selectedDate, "weight":selectedWeight, "height":selectedHeight, "gender": selectedGender]
                 CoreDataManager().StoreUser(user: User(userId: currentUser?.uid, email: email, name: name, profilePic: url, height: 165, weight: 50, gender: "Male"))
                 let ref = db.collection("users").document((currentUser!.uid))
                 ref.setData(myDict,merge: true){ err in
@@ -239,7 +326,6 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
                         print("Firebase: No error")
                     }
                 }
-                print("HI")
             }
             else {
                 return
@@ -261,7 +347,9 @@ func registerUser(email:String,name:String, password:String,confirmPass:String){
             isLoading = false
         }
     }
+    
 }
+
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
