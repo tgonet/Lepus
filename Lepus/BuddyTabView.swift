@@ -215,7 +215,10 @@ struct MessageListItem:View{
     var message:Message
 
     var body: some View {
-        NavigationLink(destination: chatView(documentId: message.id!,buddy:buddy!), isActive: $Redirect){
+        ZStack{
+            NavigationLink(destination: chatView(documentId: message.id!,buddy:buddy!), isActive: $Redirect){
+                EmptyView()
+            }.opacity(0)
             HStack(alignment:.center){
                 Image("profileImg")
                     .resizable()
@@ -236,9 +239,8 @@ struct MessageListItem:View{
                     Text(message.message)
                         .font(Font.custom("Rubik-Regular", size:14))
                 }
-            }
+            }.padding(.vertical, 8)
+                .listRowBackground(Color("BackgroundColor"))
         }
-            .padding(.vertical, 8)
-            .listRowBackground(Color("BackgroundColor"))
-        }
+    }
 }

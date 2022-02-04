@@ -23,10 +23,6 @@ struct ProfileTabView: View {
     @State private var buddyList:[BuddyRecoUser] = []
     
     init() {
-        /*
-        UITableView.appearance().separatorStyle = .none
-        UITableViewCell.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
-         */
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
         firebaseManager.readRuns(id: user.uid)
         UINavigationBar.appearance().tintColor = UIColor(Color("DarkYellow"))
@@ -60,6 +56,21 @@ struct ProfileTabView: View {
                                 }
                     }
                     .padding(.horizontal, 15)
+                    HStack (spacing: 50) {
+                        VStack{
+                            Text("Runs").font(Font.custom("SansitaOne-Boldltalic", size:12))
+                            Text("\(firebaseManager.noRuns)").font(Font.custom("Rubik-Medium", size:20))
+                        }
+                        VStack{
+                            Text("Avg Pace").font(Font.custom("SansitaOne-Boldltalic", size:12))
+                            Text("\(String(format: "%.2f", firebaseManager.pace))").font(Font.custom("Rubik-Medium", size:20))
+                        }
+                        VStack{
+                            Text("Avg Distance").font(Font.custom("SansitaOne-Boldltalic", size:12))
+                            Text("\(String(format: "%.2f", firebaseManager.distance))").font(Font.custom("Rubik-Medium", size:20))
+                        }
+                        
+                    }.padding(.top).padding(.bottom)
                     HStack{
                         NavigationLink(destination: BuddyListView(), isActive: $RedirectBuddy) {
                             EmptyView()
@@ -100,6 +111,7 @@ struct ProfileTabView: View {
             self.name = user.displayName!
             self.url = user.photoURL!
             firebaseManager.readRuns(id: user.uid)
+            firebaseManager.getUserStats()
         }).navigationBarHidden(true).background(Color("BackgroundColor"))
     }
         
@@ -168,7 +180,7 @@ struct RunRow: View {
                 .onProgress { receivedSize, totalSize in  }
                 .onSuccess { result in  }
                 .onFailure { error in }
-            .frame(height: 300)
+                .frame(height: 300).padding(.bottom,10)
             HStack{
                 VStack(alignment: .leading){
                     Text("Distance")
@@ -176,7 +188,7 @@ struct RunRow: View {
                     Text("\(String(format: "%.2f", run.distance))KM")
                         .font(Font.custom("Rubik-Medium", size:15))
                 }
-                .padding(.trailing)
+                .padding(.trailing).padding(.trailing,40)
                 VStack(alignment: .leading){
                     Text("Average Pace")
                         .font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))

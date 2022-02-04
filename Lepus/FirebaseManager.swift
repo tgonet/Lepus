@@ -24,6 +24,9 @@ class FirebaseManager : ObservableObject{
     @Published var weight = 0.00
     @Published var gender = "Male"
     @Published var name = ""
+    @Published var pace = 0.00
+    @Published var noRuns = 0
+    @Published var distance = 0.00
     
     @Published var txt = ""
     @Published var msgs:[Message] = []
@@ -255,6 +258,20 @@ class FirebaseManager : ObservableObject{
                 print("Document successfully updated")
             }
         }
+    }
+    
+    func getUserStats(){
+        db.collection("users").document(user!.uid).getDocument(completion: { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                let stats = data!["statistics"] as? [String:Any]
+                if(stats != nil){
+                    self.pace = stats!["avgPace"] as! Double
+                    self.distance = stats!["avgDistance"] as! Double
+                    self.noRuns = stats!["numRuns"] as! Int
+                }
+            }
+        })
     }
     
 /*
