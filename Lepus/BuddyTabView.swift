@@ -240,7 +240,7 @@ struct MessageListItem:View{
                         .font(Font.custom("Rubik-Regular", size:14))
                 }
             }.padding(.vertical, 8)
-                .listRowBackground(Color("BackgroundColor"))
-        }
+                
+        }.listRowBackground(Color("BackgroundColor"))
     }
 }

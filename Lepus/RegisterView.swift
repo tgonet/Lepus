@@ -313,7 +313,6 @@ struct RegisterView: View {
         auth.createUser(withEmail: email, password: password){ (result, error) in
             if error != nil {
                 errorMessage = error!.localizedDescription
-
             }
             if error == nil {
                 let currentUser = auth.currentUser
