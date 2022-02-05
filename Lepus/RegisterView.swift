@@ -24,8 +24,8 @@ struct RegisterView: View {
 
     @State private var selectedGender = "Male"
     @State private var selectedDate = Date()
-    @State private var selectedHeight = 160
-    @State private var selectedWeight = 50
+    @State private var selectedHeight:Double = 160
+    @State private var selectedWeight:Double = 50
     
     var errorCode:Int = 0
     var gender = ["Male", "Female", "Prefer not to say"]
@@ -191,29 +191,48 @@ struct RegisterView: View {
                                     .foregroundColor(Color("DarkYellow"))
                             }.frame(minWidth: 200, maxWidth: UIScreen.main.bounds.width, alignment: .trailing).padding(.trailing, 20)
                         }
-                            .padding(.vertical,10)
-                            .background(Color("TextFieldColor"))
-                            .padding(.bottom,40)
+                        .padding(.vertical,12)
+                        .padding(.horizontal)
+                        
+                        .background(Color("TextFieldColor"))
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+                        .cornerRadius(10)
+                        .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+                        .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+                        .padding()
                         
                         HStack(alignment:.center, spacing:10){
-                            Text("Height (CM)").padding(.leading,20)
+                            Text("Height (cm)").padding(.leading,15)
                             TextField("Height", value: $selectedHeight, format: .number)
+                                .keyboardType(.decimalPad)
                                 .autocapitalization(.none)
                                 .font(Font.custom("Rubik-Regular", size:18))
                                 .foregroundColor(Color("DarkYellow"))
                                 .disableAutocorrection(true) .multilineTextAlignment(.trailing).padding(.trailing, 20).keyboardType(.numberPad)
                             
-                            Text("Weight (KG)").padding(.leading,20)
+                            Text("Weight (kg)").padding(.leading,15)
                             Spacer()
                             TextField("Weight", value: $selectedWeight, format: .number)
+                                .keyboardType(.decimalPad)
                                 .autocapitalization(.none)
                                 .font(Font.custom("Rubik-Regular", size:18))
                                 .foregroundColor(Color("DarkYellow"))
                                 .disableAutocorrection(true).multilineTextAlignment(.trailing).padding(.trailing, 20).keyboardType(.numberPad
                                 )
                             }
-                            .padding(.vertical,10)
-                            .background(Color("TextFieldColor"))
+                        .padding(.vertical,12)
+                        .padding(.horizontal)
+                        
+                        .background(Color("TextFieldColor"))
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+                        .cornerRadius(10)
+                        .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+                        .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+                        .padding()
                       
                         HStack(alignment: .center, spacing: 0) {
                             DatePicker("Date of Birth:",selection:$selectedDate,displayedComponents: .date)
@@ -292,12 +311,11 @@ struct RegisterView: View {
         }
         //startLoading()
         auth.createUser(withEmail: email, password: password){ (result, error) in
-            let error2:NSError = error! as NSError
-            if error2 != nil{
-                errorMessage = error2.localizedDescription
+            if error != nil {
+                errorMessage = error!.localizedDescription
+
             }
-            
-            if error == nil && error2 == nil {
+            if error == nil {
                 let currentUser = auth.currentUser
                 let myDict:[String: Any] = ["email":email, "name":name, "profilePic":url, "id":currentUser!.uid,"dob":selectedDate, "weight":selectedWeight, "height":selectedHeight, "gender": selectedGender]
                 CoreDataManager().StoreUser(user: User(userId: currentUser?.uid, email: email, name: name, profilePic: url, height: 165, weight: 50, gender: "Male"))
