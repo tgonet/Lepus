@@ -48,7 +48,11 @@ struct TabViewUI: View {
                 
                 ProfileTabView().tabItem{ Label("Profile", systemImage:"person.fill")}
             }//.navigationBarTitle("", displayMode: .inline) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
-        }.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        }
+        .accentColor(Color("DarkYellow"))
+        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         
     }
 }
