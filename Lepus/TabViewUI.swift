@@ -24,7 +24,7 @@ struct TabViewUI: View {
             //print(runList.count)
             if(runList.count > 0){
                 for run in runList {
-                    firebaseManager.saveRun(duration: run.duration!, pace: run.pace, distance: run.distance, url: "", coord: CLLocationCoordinate2D(latitude: run.startLatitude, longitude: run.startLongitude))
+                    firebaseManager.saveRun(duration: run.duration!, mins: 123/60, pace: run.pace, distance: run.distance, url: "", coord: CLLocationCoordinate2D(latitude: run.startLatitude, longitude: run.startLongitude))
                     coreDataManager.RemoveRun(id: run.runId)
                     print("Saving Runs to Firebase")
                 }

@@ -183,12 +183,9 @@ struct RunRow: View {
                 .frame(height: 300).padding(.bottom,10)
             HStack{
                 VStack(alignment: .leading){
-                    Text("Distance")
-                        .font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
-                    Text("\(String(format: "%.2f", run.distance))KM")
-                        .font(Font.custom("Rubik-Medium", size:15))
-                }
-                .padding(.trailing).padding(.trailing,40)
+                    Text("Distance").font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
+                    Text("\(String(format: "%.2f", run.distance))KM").font(Font.custom("Rubik-Medium", size:15))
+                }.frame(width: 70, alignment: .leading).padding(.trailing,50)
                 VStack(alignment: .leading){
                     Text("Average Pace")
                         .font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
@@ -201,6 +198,10 @@ struct RunRow: View {
                 VStack(alignment: .leading){
                     Text("Duration").font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
                     Text(run.duration).font(Font.custom("Rubik-Medium", size:15))
+                }.frame(width: 70).padding(.trailing,50)
+                VStack(alignment: .leading){
+                    Text("Calories").font(Font.custom("Rubik-Regular", size:12)).foregroundColor(Color("TextColor"))
+                    Text("\(run.calories)").font(Font.custom("Rubik-Medium", size:15))
                 }
             }
             Divider().background(Color("Divider"))

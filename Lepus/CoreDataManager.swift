@@ -96,10 +96,11 @@ class CoreDataManager{
     }
     
     
-    func saveRun(duration:String, pace:Double, distance:Double, startLatitude:Double, startLongitude:Double){
+    func saveRun(duration:String, pace:Double, mins:Int, distance:Double, startLatitude:Double, startLongitude:Double){
         let cdRun = CDRun(context: CoreDataManager.container.viewContext)
         cdRun.pace = pace
         cdRun.duration = duration
+        cdRun.mins = Int32(mins)
         cdRun.date = Date()
         cdRun.distance = distance
         cdRun.startLatitude = startLatitude

@@ -105,7 +105,7 @@ struct RunView: View {
                                 generateSnapshot(width: 300, height: 300, lineCoord: stopwatchManager.lineCoordinates)
                             }
                             else{
-                                CoreDataManager().saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, startLatitude: stopwatchManager.lineCoordinates[0].latitude, startLongitude: stopwatchManager.lineCoordinates[0].longitude)
+                                CoreDataManager().saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, mins: stopwatchManager.secondsElapsed/60, distance: stopwatchManager.distance, startLatitude: stopwatchManager.lineCoordinates[0].latitude, startLongitude: stopwatchManager.lineCoordinates[0].longitude)
                                 self.stopwatchManager.stop()
                                 self.presentationMode.wrappedValue.dismiss()
                             }
@@ -212,7 +212,7 @@ struct RunView: View {
             
             // To get URL for display in run history
             storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
-                firebaseManager.saveRun(duration: stopwatchManager.timeStr, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, url: url!.absoluteString, coord: coord)
+                firebaseManager.saveRun(duration: stopwatchManager.timeStr, mins: stopwatchManager.secondsElapsed/60, pace: stopwatchManager.avePace, distance: stopwatchManager.distance, url: url!.absoluteString, coord: coord)
                 self.stopwatchManager.stop()
                 self.presentationMode.wrappedValue.dismiss()
                 })

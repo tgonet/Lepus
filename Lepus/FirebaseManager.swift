@@ -51,158 +51,173 @@ class FirebaseManager : ObservableObject{
                 self.runList.removeAll()
                 for document in querySnapshot!.documents {
                     let data = document.data()
+                    print("\(data)")
                     let id = document.documentID
                     let date = data["Date"] as? Timestamp
                     let pace = data["Pace"] as? Double
+                    let calories = data["Calories"] as? Int
                     let name = data["Name"] as? String
                     let distance = data["Distance"] as? Double
                     let duration = data["Duration"] as? String
                     let url = data["Url"] as? String
-                    self.runList.append(Run(id:id, name: name!, date: date!.dateValue(), distance: distance!, pace: pace!, duration: duration!, url:url!))
+                    self.runList.append(Run(id:id, name: name!, date: date!.dateValue(), distance: distance!, pace: pace!, calories: calories!, duration: duration!, url:url!))
                 }
             }
             self.runList = self.runList.sorted(by: {$0.date > $1.date})
         }
     }
     
-    func saveRun(duration:String, pace:Double, distance:Double, url:String, coord:CLLocationCoordinate2D){
-        ref = db.collection("runs").addDocument(data: [
-            "Duration":duration,
-            "Pace":pace,
-            "Distance":distance,
-            "Startlatitude":"\(coord.latitude)",
-            "Startlongitude":"\(coord.longitude)",
-            "Url":url,
-            "Date": Date(),
-            "Name": user!.displayName!,
-            "userId":user!.uid]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(self.ref!.documentID)")
-                
-                
-                let userRef = self.db.collection("users").document(self.user!.uid)
-                userRef.getDocument{(document,error) in
-                    if let document = document, document.exists {   //1. userRef start
-                        let userLocationRef = userRef.collection("Locations")
-                        userLocationRef.getDocuments(){(querySnapshot, err) in //2. userLocationRef start
-                            if querySnapshot?.documents.count == 0 { //3. if userLocationRef docs not found
-                                //print("Error getting documents: \(err)")
-                                self.locRef = userLocationRef.addDocument(data: [
-                                    "latitude":"\(coord.latitude)",
-                                    "longitude":"\(coord.longitude)",
-                                    "runCount":1]) { err in //4. error
-                                    if let err = err { //5. if
-                                        print("Error adding document: \(err)")
-                                    } //5. if
-                                    else { //6. else
-                                        print("Document added with ID: \(self.locRef!.documentID)")
-                                        userRef.updateData([
-                                            "statistics.avgPace":pace,
-                                            "statistics.avgDistance":distance,
-                                            "statistics.frequentLocationId":self.locRef!.documentID,
-                                            "statistics.frequentLocationCount":1,
-                                            "statistics.latitude":"\(coord.latitude)",
-                                            "statistics.longitude":"\(coord.longitude)",
-                                            "statistics.numRuns":1
-                                        ])
-                                        { err in    //7. err in
-                                            if let err = err {  //8. if
-                                                print("Error adding user's statistics: \(err)")
-                                            } //8. if
-                                            else {  //9. else
-                                                print("User's statistics successfully added")
-                                            }   //9. else
-                                        } //7. err in
-                                    } //6. else
-                                } //4. error
-                            } //3. if userLocationRef docs not found
-                            else { //10. else userLocationRef found
-                                print(querySnapshot?.documents)
-                                if let statistics = document.data()!["statistics"] as? [String: Any] {  //11. user statistics found
-                                    var latitude = Double(statistics["latitude"] as! String)!
-                                    var longitude = Double(statistics["longitude"] as! String)!
-                                    var avgPace = statistics["avgPace"] as! Double
-                                    var avgDistance = statistics["avgDistance"] as! Double
-                                    var numRuns = statistics["numRuns"] as! Double
-                                    var frequentLocationId = statistics["frequentLocationId"] as! String
-                                    var frequentLocationCount = statistics["frequentLocationCount"] as! Double
-                                    
-                                    avgPace = (avgPace * numRuns + pace)/(numRuns+1)
-                                    avgDistance = (avgDistance * numRuns + distance)/(numRuns+1)
-                                    
-                                    if self.isLocationDistance500OrLesser(lat1: coord.latitude, long1: coord.longitude, lat2: latitude, long2: longitude)
-                                    {   //12. if freq Location close to run location
-                                        latitude = (latitude * frequentLocationCount + coord.latitude)/(frequentLocationCount+1)
-                                        longitude = (longitude * frequentLocationCount + coord.longitude)/(frequentLocationCount+1)
-                                        frequentLocationCount += 1
-                                        userLocationRef.document(frequentLocationId).updateData([
-                                            "runCount": FieldValue.increment(Int64(1))
-                                        ])
-                                    } //12. if freq Location close to run location
-                                    else //13. else freq Location close to run location
-                                    {
-                                        var exist = false
-                                        for document in querySnapshot!.documents { //14. for document
-                                            print("\(document.documentID) => \(document.data())")
-                                            if (document.documentID != frequentLocationId)
-                                            {   //15. remove frequentLocation from check
-                                                let data = document.data()
-                                                let locLat = Double(data["latitude"] as! String)!
-                                                let locLong = Double(data["longitude"] as! String)!
-                                                let runCount = data["runCount"] as! Double
-                                                if self.isLocationDistance500OrLesser(lat1: coord.latitude, long1: coord.longitude, lat2: locLat, long2: locLong)
-                                                { // 16. if freq Location close to run location
-                                                    if runCount+1 > frequentLocationCount
-                                                    {
-                                                        // error here
-                                                        frequentLocationId = document.documentID
-                                                        frequentLocationCount = runCount+1
-                                                        longitude = locLong
-                                                        latitude = locLat
-                                                    }
-                                                    userLocationRef.document(document.documentID).updateData([
-                                                        "runCount": FieldValue.increment(Int64(1))
-                                                    ])
-                                                    exist = true
-                                                    break;
-                                                } // 16. if freq Location close to run location
-                                            } //15. remove frequentLocation from check
-                                        } //14. for document
-                                        
-                                        if !exist
-                                        { // 17. if exist false
-                                        userLocationRef.addDocument(data: [
+    func saveRun(duration:String, mins:Int, pace:Double, distance:Double, url:String, coord:CLLocationCoordinate2D){
+        
+        db.collection("users").document(user!.uid).getDocument(completion: { document, error in
+            if let document = document, document.exists {
+                let data = document.data()!
+                self.weight = data["weight"] as! Double
+                self.height = data["height"] as! Double
+                let calories = Double(mins) * (7 * 3.5 * self.weight) / 200
+                print("\(calories)")
+                self.ref = self.db.collection("runs").addDocument(data: [
+                    "Calories": Int(calories),
+                    "Duration": duration,
+                    "Pace": pace,
+                    "Distance": distance,
+                    "Startlatitude": "\(coord.latitude)",
+                    "Startlongitude": "\(coord.longitude)",
+                    "Url": url,
+                    "Date": Date(),
+                    "Name": self.user!.displayName!,
+                    "userId": self.user!.uid]) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added with ID: \(self.ref!.documentID)")
+                        
+                        
+                        let userRef = self.db.collection("users").document(self.user!.uid)
+                        userRef.getDocument{(document,error) in
+                            if let document = document, document.exists {   //1. userRef start
+                                let userLocationRef = userRef.collection("Locations")
+                                userLocationRef.getDocuments(){(querySnapshot, err) in //2. userLocationRef start
+                                    if querySnapshot?.documents.count == 0 { //3. if userLocationRef docs not found
+                                        //print("Error getting documents: \(err)")
+                                        self.locRef = userLocationRef.addDocument(data: [
                                             "latitude":"\(coord.latitude)",
                                             "longitude":"\(coord.longitude)",
-                                            "runCount":1]){ err in // 18. error
-                                            if let err = err {//19. if error
+                                            "runCount":1]) { err in //4. error
+                                            if let err = err { //5. if
                                                 print("Error adding document: \(err)")
-                                            } //19. if error
-                                            } //18. error
-                                        } // 17. if exist false
-                                    } //13. else freq Location close to run location
-                                    numRuns += 1
-                                    userRef.updateData([
-                                        "statistics.avgPace":avgPace,
-                                        "statistics.avgDistance":avgDistance,
-                                        "statistics.frequentLocationId":frequentLocationId,
-                                        "statistics.frequentLocationCount":frequentLocationCount,
-                                        "statistics.latitude":"\(latitude)",
-                                        "statistics.longitude":"\(longitude)",
-                                        "statistics.numRuns":numRuns
-                                    ])
-                                } //11. user statistics found
-                            } //10. else userLocationRef found
-                        } //2. userLocationRef end
-                    } //1. userRef end
-                    else{
-                        print("User does not exist")
+                                            } //5. if
+                                            else { //6. else
+                                                print("Document added with ID: \(self.locRef!.documentID)")
+                                                userRef.updateData([
+                                                    "statistics.avgPace":pace,
+                                                    "statistics.avgDistance":distance,
+                                                    "statistics.frequentLocationId":self.locRef!.documentID,
+                                                    "statistics.frequentLocationCount":1,
+                                                    "statistics.latitude":"\(coord.latitude)",
+                                                    "statistics.longitude":"\(coord.longitude)",
+                                                    "statistics.numRuns":1
+                                                ])
+                                                { err in    //7. err in
+                                                    if let err = err {  //8. if
+                                                        print("Error adding user's statistics: \(err)")
+                                                    } //8. if
+                                                    else {  //9. else
+                                                        print("User's statistics successfully added")
+                                                    }   //9. else
+                                                } //7. err in
+                                            } //6. else
+                                        } //4. error
+                                    } //3. if userLocationRef docs not found
+                                    else { //10. else userLocationRef found
+                                        print(querySnapshot?.documents)
+                                        if let statistics = document.data()!["statistics"] as? [String: Any] {  //11. user statistics found
+                                            var latitude = Double(statistics["latitude"] as! String)!
+                                            var longitude = Double(statistics["longitude"] as! String)!
+                                            var avgPace = statistics["avgPace"] as! Double
+                                            var avgDistance = statistics["avgDistance"] as! Double
+                                            var numRuns = statistics["numRuns"] as! Double
+                                            var frequentLocationId = statistics["frequentLocationId"] as! String
+                                            var frequentLocationCount = statistics["frequentLocationCount"] as! Double
+                                            
+                                            avgPace = (avgPace * numRuns + pace)/(numRuns+1)
+                                            avgDistance = (avgDistance * numRuns + distance)/(numRuns+1)
+                                            
+                                            if self.isLocationDistance500OrLesser(lat1: coord.latitude, long1: coord.longitude, lat2: latitude, long2: longitude)
+                                            {   //12. if freq Location close to run location
+                                                latitude = (latitude * frequentLocationCount + coord.latitude)/(frequentLocationCount+1)
+                                                longitude = (longitude * frequentLocationCount + coord.longitude)/(frequentLocationCount+1)
+                                                frequentLocationCount += 1
+                                                userLocationRef.document(frequentLocationId).updateData([
+                                                    "runCount": FieldValue.increment(Int64(1))
+                                                ])
+                                            } //12. if freq Location close to run location
+                                            else //13. else freq Location close to run location
+                                            {
+                                                var exist = false
+                                                for document in querySnapshot!.documents { //14. for document
+                                                    print("\(document.documentID) => \(document.data())")
+                                                    if (document.documentID != frequentLocationId)
+                                                    {   //15. remove frequentLocation from check
+                                                        let data = document.data()
+                                                        let locLat = Double(data["latitude"] as! String)!
+                                                        let locLong = Double(data["longitude"] as! String)!
+                                                        let runCount = data["runCount"] as! Double
+                                                        if self.isLocationDistance500OrLesser(lat1: coord.latitude, long1: coord.longitude, lat2: locLat, long2: locLong)
+                                                        { // 16. if freq Location close to run location
+                                                            if runCount+1 > frequentLocationCount
+                                                            {
+                                                                // error here
+                                                                frequentLocationId = document.documentID
+                                                                frequentLocationCount = runCount+1
+                                                                longitude = locLong
+                                                                latitude = locLat
+                                                            }
+                                                            userLocationRef.document(document.documentID).updateData([
+                                                                "runCount": FieldValue.increment(Int64(1))
+                                                            ])
+                                                            exist = true
+                                                            break;
+                                                        } // 16. if freq Location close to run location
+                                                    } //15. remove frequentLocation from check
+                                                } //14. for document
+                                                
+                                                if !exist
+                                                { // 17. if exist false
+                                                userLocationRef.addDocument(data: [
+                                                    "latitude":"\(coord.latitude)",
+                                                    "longitude":"\(coord.longitude)",
+                                                    "runCount":1]){ err in // 18. error
+                                                    if let err = err {//19. if error
+                                                        print("Error adding document: \(err)")
+                                                    } //19. if error
+                                                    } //18. error
+                                                } // 17. if exist false
+                                            } //13. else freq Location close to run location
+                                            numRuns += 1
+                                            userRef.updateData([
+                                                "statistics.avgPace":avgPace,
+                                                "statistics.avgDistance":avgDistance,
+                                                "statistics.frequentLocationId":frequentLocationId,
+                                                "statistics.frequentLocationCount":frequentLocationCount,
+                                                "statistics.latitude":"\(latitude)",
+                                                "statistics.longitude":"\(longitude)",
+                                                "statistics.numRuns":numRuns
+                                            ])
+                                        } //11. user statistics found
+                                    } //10. else userLocationRef found
+                                } //2. userLocationRef end
+                            } //1. userRef end
+                            else{
+                                print("User does not exist")
+                            }
+                        }
                     }
                 }
             }
-        }
+            
+        })
+        
     }
     
     func getprofileDetails(id:String){

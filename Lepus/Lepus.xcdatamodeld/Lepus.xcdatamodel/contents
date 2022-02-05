@@ -4,6 +4,7 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="duration" optional="YES" attributeType="String"/>
+        <attribute name="mins" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="pace" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="runId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="startLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -18,7 +19,7 @@
         <relationship name="runs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDRun" inverseName="byUser" inverseEntity="CDRun"/>
     </entity>
     <elements>
-        <element name="CDRun" positionX="-59.21728515625" positionY="13.28762817382812" width="128" height="149"/>
+        <element name="CDRun" positionX="-59.21728515625" positionY="13.28762817382812" width="128" height="164"/>
         <element name="CDUser" positionX="-410.2501831054688" positionY="38.29745483398438" width="128" height="118"/>
     </elements>
 </model>
