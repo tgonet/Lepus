@@ -10,6 +10,7 @@ import Kingfisher
 
 struct BuddyListView: View {
     @ObservedObject var firebaseManager = FirebaseManager()
+    @State var searchText = ""
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
@@ -17,6 +18,28 @@ struct BuddyListView: View {
     
     var body: some View {
         VStack {
+            HStack(alignment:.center, spacing:18){
+                Image(systemName: "magnifyingglass")
+                TextField("", text: $searchText)
+                    .placeholder(when: searchText.isEmpty) {
+                        Text("Search buddy").foregroundColor(Color(UIColor.darkGray))
+                    }
+                    .autocapitalization(.none)
+                    .font(Font.custom("Rubik-Regular", size:18))
+                    .disableAutocorrection(true)
+            }
+            .padding(.vertical,12)
+            .padding(.horizontal)
+            
+            .background(Color("TextFieldColor"))
+            .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
+            .cornerRadius(10)
+            .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
+            .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
+            .padding()
+
             NavigationLink(destination: RequestListView())
                         {
                             HStack{
@@ -37,7 +60,7 @@ struct BuddyListView: View {
             .padding(.horizontal)
             .padding(.top)
             
-            List(firebaseManager.buddyList){user in
+            List(searchResults){user in
                 BuddyListItem(user:user,firebaseManager: firebaseManager)
             }.listStyle(GroupedListStyle())
         }.background(Color("BackgroundColor"))
@@ -47,6 +70,15 @@ struct BuddyListView: View {
                 firebaseManager.getBuddyList(completion: { budList in
                 })
             })
+         
+    }
+    var searchResults: [BuddyRecoUser] {
+        if searchText.isEmpty {
+            return firebaseManager.buddyList
+        }
+        else{
+            return firebaseManager.buddyList.filter{$0.name.lowercased().contains(searchText)}
+        }
     }
 }
 

@@ -56,21 +56,31 @@ struct ProfileTabView: View {
                                 }
                     }
                     .padding(.horizontal, 15)
-                    HStack (spacing: 50) {
+                    HStack{
+                        Spacer()
                         VStack{
-                            Text("Runs").font(Font.custom("SansitaOne-Boldltalic", size:12))
-                            Text("\(firebaseManager.noRuns)").font(Font.custom("Rubik-Medium", size:20))
+                            Text("Runs")
+                                .font(Font.custom("Rubik-Regular", size:12))
+                            Text("\(firebaseManager.noRuns)").font(Font.custom("Sansita-BoldItalic", size:20))
                         }
+                        .frame(maxWidth:.infinity, alignment:.center)
                         VStack{
-                            Text("Avg Pace").font(Font.custom("SansitaOne-Boldltalic", size:12))
-                            Text("\(String(format: "%.2f", firebaseManager.pace))").font(Font.custom("Rubik-Medium", size:20))
+                            Text("Avg Pace")
+                                .font(Font.custom("Rubik-Regular", size:12))
+                            Text("\(String(format: "%.2f", firebaseManager.pace))").font(Font.custom("Sansita-BoldItalic", size:20))
                         }
+                        .frame(maxWidth:.infinity, alignment:.center)
                         VStack{
-                            Text("Avg Distance").font(Font.custom("SansitaOne-Boldltalic", size:12))
-                            Text("\(String(format: "%.2f", firebaseManager.distance))").font(Font.custom("Rubik-Medium", size:20))
+                            Text("Avg Distance")
+                                .font(Font.custom("Rubik-Regular", size:12))
+                            Text("\(String(format: "%.2f", firebaseManager.distance))")
+                                .font(Font.custom("Sansita-BoldItalic", size:20))
                         }
-                        
-                    }.padding(.top).padding(.bottom)
+                        .frame(maxWidth:.infinity, alignment:.center)
+                        Spacer()
+                    }
+                    .padding(.top)
+                    .padding(.bottom)
                     HStack{
                         NavigationLink(destination: BuddyListView(), isActive: $RedirectBuddy) {
                             EmptyView()
