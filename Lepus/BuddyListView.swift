@@ -88,12 +88,12 @@ struct BuddyListItem:View{
                             .font(Font.custom("Rubik-Medium", size:16))
                         Spacer()
                         Button(action:{}, label:{
-                        Text("Buddies")
+                            Text("Buddies").foregroundColor(Color("AccentColor2"))
                             .font(Font.custom("Rubik-Medium", size:12))
                             .padding(.horizontal, 20)
                             .padding(.vertical, 7)
                             .overlay(RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color("AccentColor"), lineWidth: 1))
+                            .stroke(Color("DarkYellow"), lineWidth: 1))
                         }).onTapGesture {
                             removeBuddy = true
                         }.confirmationDialog("Confirm to remove buddy?", isPresented: $removeBuddy, titleVisibility: .visible) {

@@ -51,7 +51,7 @@ struct BuddyProfileView: View {
                         Text("Request Sent")
                         .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color("AccentColor"), lineWidth: 1)).onTapGesture {
+                                .stroke(Color("DarkYellow"), lineWidth: 1)).onTapGesture {
                                     firebaseManager.removeRequest(id: id)
                                     friends = "false"
                                 }
@@ -79,7 +79,7 @@ struct BuddyProfileView: View {
                         Text("Buddies")
                             .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                                 RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color("AccentColor"), lineWidth: 1)).onTapGesture {
+                                    .stroke(Color("DarkYellow"), lineWidth: 1)).onTapGesture {
                                         removeBuddy = true
                                     }.confirmationDialog("Confirm to remove buddy?", isPresented: $removeBuddy, titleVisibility: .visible) {
                                         Button("Stay Buddies") {}
