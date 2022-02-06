@@ -36,6 +36,7 @@ struct chatView: View {
                         
                         ForEach(FBManager.getMessages(documentId: documentId).reversed(), id: \.self){msg in
                             chatRow(chatData: msg,buddy:buddy)
+                                .padding(.top,10)
                                 .onAppear(){
                                     if buddy.id != CDManager.user?.userId! {
                                         chat_name = buddy.name
@@ -65,10 +66,10 @@ struct chatView: View {
                 if FBManager.txt != "" {
                     Button(action: {sendMsg()}, label: {
                         Image(systemName: "paperplane.fill")
-                            .font(.system(size: 32))
+                            .font(.system(size: 20))
                             .foregroundColor(.white)
-                            .frame(width: 45, height: 45)
-                            .background(Color(hex:0xFFD100))
+                            .frame(width: 40, height: 40)
+                            .background(Color("DarkYellow"))
                             .clipShape(Circle())
                     })
                 }
