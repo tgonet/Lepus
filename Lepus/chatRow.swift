@@ -12,9 +12,10 @@ import FirebaseAuth
 struct chatRow: View {
     var chatData: Message
     var buddy:BuddyRecoUser
+    /*
     @Binding var latestMsgDate:Date?
     @Binding var firstMsg:Bool
-    @Binding var msgNo:Int
+     */
     @ObservedObject var CDManager = CoreDataUserManager()
     
     var body: some View {
@@ -23,17 +24,11 @@ struct chatRow: View {
         
         VStack
         {
-            HStack
-            {
-                Text("\(msgNo)")
-            }
-            if (compareDates())
-            {
-                HStack(alignment: .center, spacing: 0) {
-                    Text(chatData.datetime , style:.date
-                    )
-                }.padding()
-            }
+
+            HStack(alignment: .center, spacing: 0) {
+                Text(chatData.datetime , style:.date
+                )
+            }.padding()
             
             HStack(spacing:15){
                 //Nickname view
@@ -98,9 +93,16 @@ struct chatRow: View {
         }
         .padding(.horizontal)
         .id(chatData.id)
+        /*
         .onAppear()
         {
-            msgNo += 1
+            if latestMsgDate == nil
+            {
+            latestMsgDate = chatData.datetime
+            }
+        }
+        .onChange(of: latestMsgDate) {
+            msgDate in
             print(compareDates())
             print(firstMsg)
             if compareDates() && firstMsg == false{
@@ -112,24 +114,13 @@ struct chatRow: View {
                 print("not first msg anymore")
                 firstMsg = false
             }
-            /*
-            if (compareDates() && !firstMsg)
-            {
-                latestMsgDate = chatData.datetime
-            }
-            if firstMsg
-            {
-                firstMsg = false
-            }
-             */
+            
         }
-        .onDisappear()
-        {
-            print("disappear")
-        }
+         */
+
     }
         
-    
+    /*
     func compareDates()->Bool
     {
         let formatter = DateFormatter()
@@ -147,6 +138,7 @@ struct chatRow: View {
             }
         return false
     }
+     */
 }
 
 struct NickName:View{

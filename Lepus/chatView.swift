@@ -12,20 +12,20 @@ struct chatView: View {
     var documentId:String
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
-    var buddy:BuddyRecoUser
+    @State var buddy:BuddyRecoUser
     @State var scrolled = false
     @State var chat_name:String = ""
+    /*
     @State var latestMsgDate:Date?
     @State var firstMsg:Bool = true
-    @State var msgNo:Int = 1
-
+*/
     init(documentId:String,buddy:BuddyRecoUser){
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color("DarkYellow"))
         
         self.documentId = documentId
         
         self.buddy = buddy
-        self._latestMsgDate = State(initialValue: nil)
+        //self._latestMsgDate = State(initialValue: nil)
     }
     
     var body: some View {
@@ -37,7 +37,7 @@ struct chatView: View {
                     VStack(spacing: 0){
                         
                         ForEach(FBManager.getMessages(documentId: documentId).reversed(), id: \.self){msg in
-                            chatRow(chatData: msg,buddy:buddy, latestMsgDate:self.$latestMsgDate, firstMsg: self.$firstMsg, msgNo:self.$msgNo)
+                            chatRow(chatData: msg,buddy:buddy)
                                 .padding(.top,10)
                                 .onAppear(){
                                     if buddy.id != CDManager.user?.userId! {
