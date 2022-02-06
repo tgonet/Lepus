@@ -236,8 +236,15 @@ struct MessageListItem:View{
                         Text(datetime)
                             .font(Font.custom("Rubik-Regular", size:14))
                     }
-                    Text(message.message)
-                        .font(Font.custom("Rubik-Regular", size:14))
+                    HStack(alignment: .center, spacing: 0) {
+
+                        Text(message.message)
+                            .font(Font.custom("Rubik-Regular", size:14))
+                        Spacer()
+                        Text(message.datetime, style: .date)
+                            .font(Font.custom("Rubik-Regular", size:14))
+                    }
+                    
                 }
             }.padding(.vertical, 8)
                 

@@ -815,7 +815,16 @@ class FirebaseManager : ObservableObject{
                 print("Error adding document: \(err)")
             }
         }
+        let msgData: [String:Any] = [
+            "msg1":docData
+        ]
         
+        db.collection("MessageGroup").document(documentId).setData(msgData,merge: true){
+            err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            }
+        }
         self.txt = ""
         
         
