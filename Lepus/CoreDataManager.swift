@@ -10,9 +10,7 @@ import Foundation
 import CoreData
 
 class CoreDataManager{
-    //static let shared = CoreDataManager()
     var runList:[CDRun] = []
-    //let container:NSPersistentContainer
     
     private static var container: NSPersistentContainer = {
                 let container = NSPersistentContainer(name: "Lepus")
@@ -26,17 +24,6 @@ class CoreDataManager{
     var context: NSManagedObjectContext {
            return Self.container.viewContext
        }
-        /*
-    init(){
-        
-        container = NSPersistentContainer(name: "Lepus")
-        container.loadPersistentStores {(storeDescription, error) in
-            if let error = error as NSError?{
-                fatalError("Unresolved error: \(error)")
-            }
-            }
-    }
-         */
     
     // Login and Register -> Store the user for persistent session
     func StoreUser(user:User)

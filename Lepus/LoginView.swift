@@ -10,7 +10,6 @@ import Firebase
 import FirebaseFirestore
 
 struct LoginView: View {
-    //let container = CoreDataManager.shared
     let db = Firestore.firestore()
     @State private var email:String = ""
     @State private var password:String = ""
@@ -19,11 +18,7 @@ struct LoginView: View {
     @State private var authFail = false
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var FBManager = FirebaseManager()
-    /*
-    init(){
-        print(CDManager.user.userId)
-    }
-     */
+
     var body: some View {
             ZStack{
                 VStack{

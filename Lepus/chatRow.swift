@@ -12,10 +12,6 @@ import FirebaseAuth
 struct chatRow: View {
     var chatData: Message
     var buddy:BuddyRecoUser
-    /*
-    @Binding var latestMsgDate:Date?
-    @Binding var firstMsg:Bool
-     */
     @ObservedObject var CDManager = CoreDataUserManager()
     
     var body: some View {
@@ -24,11 +20,6 @@ struct chatRow: View {
         
         VStack
         {
-
-            HStack(alignment: .center, spacing: 0) {
-                Text(chatData.datetime , style:.date
-                )
-            }.padding()
             
             HStack(spacing:15){
                 //Nickname view
@@ -40,10 +31,6 @@ struct chatRow: View {
                 
                 
                 VStack(alignment: chatData.user == uid ? .trailing: .leading, spacing: 5, content:{
-                    //dateFormatter.dateFormat = "dd/MM/yyyy"
-
-                    
-                    //let date = dateFormatter.string(from:chatData.datetime)
                     
                     if chatData.user == uid {
                         HStack(alignment: .center, spacing: 0) {
@@ -56,7 +43,7 @@ struct chatRow: View {
                             .clipShape(chatBubble(myMsg: chatData.user == uid))
                         }
                         HStack(alignment: .center, spacing: 0) {
-                            Text(chatData.datetime,style:.time)
+                            Text(formatDateTime())
                             .font(Font.custom("Rubik-Regular", size:10))
                             .foregroundColor(.gray)
                             .padding(chatData.user == uid ? .leading: .trailing , 10)
@@ -74,7 +61,7 @@ struct chatRow: View {
                         }
                         HStack(alignment: .center, spacing: 0) {
 
-                            Text(chatData.datetime,style:.time)
+                            Text(formatDateTime())
                                 .font(Font.custom("Rubik-Regular", size:10))
                                 .foregroundColor(.gray)
                                 .padding(chatData.user == uid ? .leading: .trailing , 10)
@@ -93,52 +80,15 @@ struct chatRow: View {
         }
         .padding(.horizontal)
         .id(chatData.id)
-        /*
-        .onAppear()
-        {
-            if latestMsgDate == nil
-            {
-            latestMsgDate = chatData.datetime
-            }
-        }
-        .onChange(of: latestMsgDate) {
-            msgDate in
-            print(compareDates())
-            print(firstMsg)
-            if compareDates() && firstMsg == false{
-                print("changing date")
-                latestMsgDate = chatData.datetime
-            }
-            if firstMsg
-            {
-                print("not first msg anymore")
-                firstMsg = false
-            }
-            
-        }
-         */
 
     }
-        
-    /*
-    func compareDates()->Bool
+    func formatDateTime()->String
     {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        
-        let chatDate = formatter.string(from:chatData.datetime)
-        var latestDate = ""
-        if (latestMsgDate != nil)
-        {
-            latestDate = formatter.string(from:latestMsgDate!)
-        }
-        
-        if (latestDate == "" || latestDate != chatDate) {
-            return true
-            }
-        return false
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: chatData.datetime)
     }
-     */
 }
 
 struct NickName:View{

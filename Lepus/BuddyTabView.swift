@@ -76,8 +76,8 @@ struct BuddyTabView: View {
                             if (FBManager.noStatistics)
                             {
                                 Text("Start recording your runs to see buddy recommendations!")
-                                    .font(Font.custom("Rubik-Regular", size:14))
-                                    .frame(maxWidth:.infinity, alignment:.center)
+                                    .font(Font.custom("Rubik-Regular", size:12))
+                                    
                             }
                             else if (FBManager.noMatches)
                             {

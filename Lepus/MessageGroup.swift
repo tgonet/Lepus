@@ -14,14 +14,5 @@ struct MessageGroupView{
     var senderId: String
     var datetime: Date
     var userList:Array<String>
-    /*
-    init(latestMessageData: [String:Any]){
-        let message = latestMessageData["message"] as? String ?? ""
-        self.message = message
-        let datetime = (latestMessageData["datetime"] as? Date)!
-        self.datetime = datetime
-        let senderId = latestMessageData["senderId"] as? String ?? ""
-        self.senderId = senderId
-    }
-     */
+
 }

@@ -288,31 +288,6 @@ class FirebaseManager : ObservableObject{
             }
         })
     }
-    
-/*
-    func getUser(from uid:String, completion: @escaping User? -> ()){
-        var user:User?
-        let ref = db.collection("users").document(uid)
-        ref.getDocument{ (document, error) in
-            let result = Result {
-                try document?.data(as: User.self)
-                }
-                switch result {
-                case .success(let u):
-                    if let u = u {
-                        print("\(u.userId!), \(u.email), \(u.name), \(u.profilePic)")
-                        user = u
-                    } else {
-                        print("Document does not exist")
-                    }
-                case .failure(let error):
-                    print("Error decoding user: \(error)")
-                }
-        }
-        print(user ?? "nil")
-        completion(user)
-    }
- */
 
     func getBuddyRecos(records:Int, filter:String){
         recoList = []
@@ -698,22 +673,7 @@ class FirebaseManager : ObservableObject{
             }
             
         })
-        /*
-        let ref = db.collection("MessageGroup")
-            .whereField("users", arrayContains: uid)
-            .addSnapshotListener { (querySnapshot, err) in
-            guard let snapshot = querySnapshot else {
-                print("Error getting documents: \(err)")
-                return
-            } snapshot.documentChanges.forEach {
-                diff in {
-                    diff
-                    if (diff.type == .added)
-                    {
-                        messageList.append()
-                    }
-                    
-                     */
+        
         return messageList
     }
     
@@ -747,7 +707,6 @@ class FirebaseManager : ObservableObject{
                 }
                 else{
                     self.messageList = []
-                    //latestMessage = Message(id:"", user: "", datetime: Date(), message: "You have not send message to this person yet!")
                 }
             }
         })
@@ -775,27 +734,6 @@ class FirebaseManager : ObservableObject{
                 }
                 
             })
-            
-            /*
-             ref.addSnapshotListener{ (querySnapshot, err) in
-                 if let err = err {
-                     print("Error getting documents: \(err)")
-                 } else {
-                     self.runList.removeAll()
-                     for document in querySnapshot!.documents {
-                         let data = document.data()
-                         let id = document.documentID
-                         let date = data["Date"] as? Timestamp
-                         let pace = data["Pace"] as? Double
-                         let name = data["Name"] as? String
-                         let distance = data["Distance"] as? Double
-                         let duration = data["Duration"] as? String
-                         let url = data["Url"] as? String
-                         self.runList.append(Run(id:id, name: name!, date: date!.dateValue(), distance: distance!, pace: pace!, duration: duration!, url:url!))
-                         }
-                     }
-             }
-             */
             return msgs
         }
     

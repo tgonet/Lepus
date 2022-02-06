@@ -15,17 +15,12 @@ struct chatView: View {
     @State var buddy:BuddyRecoUser
     @State var scrolled = false
     @State var chat_name:String = ""
-    /*
-    @State var latestMsgDate:Date?
-    @State var firstMsg:Bool = true
-*/
     init(documentId:String,buddy:BuddyRecoUser){
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color("DarkYellow"))
         
         self.documentId = documentId
         
         self.buddy = buddy
-        //self._latestMsgDate = State(initialValue: nil)
     }
     
     var body: some View {
@@ -82,7 +77,6 @@ struct chatView: View {
     }
     
     func sendMsg(){
-        //let user = CDManager.user!
 
         FBManager.sendMsg(documentId: documentId)
         

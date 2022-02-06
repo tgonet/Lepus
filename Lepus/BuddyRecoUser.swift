@@ -20,15 +20,4 @@ class BuddyRecoUser:Identifiable{
         self.profilePic = profilePic
     }
 }
-/*
-struct BuddyRecoUser:Codable{
-    @DocumentID var userId: String?
-    var name:String
-    var profilePic:URL?
 
-    init(name:String, profilePic:URL?){
-        self.name = name
-        self.profilePic = profilePic
-    }
-}
- */
