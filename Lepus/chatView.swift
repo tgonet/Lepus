@@ -13,7 +13,6 @@ struct chatView: View {
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
     @State var buddy:BuddyRecoUser
-    @StateObject var chatData = chatModel()
     @State var scrolled = false
     @State var chat_name:String = ""
 
@@ -36,6 +35,7 @@ struct chatView: View {
                         
                         ForEach(FBManager.getMessages(documentId: documentId).reversed(), id: \.self){msg in
                             chatRow(chatData: msg,buddy:buddy)
+                                .padding(.top,10)
                                 .onAppear(){
                                     if buddy.id != CDManager.user?.userId! {
                                         chat_name = buddy.name
@@ -65,10 +65,10 @@ struct chatView: View {
                 if FBManager.txt != "" {
                     Button(action: {sendMsg()}, label: {
                         Image(systemName: "paperplane.fill")
-                            .font(.system(size: 32))
+                            .font(.system(size: 20))
                             .foregroundColor(.white)
-                            .frame(width: 45, height: 45)
-                            .background(Color(hex:0xFFD100))
+                            .frame(width: 40, height: 40)
+                            .background(Color("DarkYellow"))
                             .clipShape(Circle())
                     })
                 }
@@ -95,5 +95,16 @@ extension Color {
         let green = Double((hex & 0xff00) >> 8) / 255.0
         let blue = Double((hex & 0xff) >> 0) / 255.0
         self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
+    }
+}
+
+struct chatBubble: Shape {
+    
+    var myMsg : Bool
+    
+    func path(in rect: CGRect) ->Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [.topLeft , .topRight, myMsg ? .bottomLeft : .bottomRight], cornerRadii: CGSize(width: 15, height: 15))
+        
+        return Path(path.cgPath)
     }
 }
