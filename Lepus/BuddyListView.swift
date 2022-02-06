@@ -36,8 +36,6 @@ struct BuddyListView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color("TextFieldBorderColor"), lineWidth: 2))
             .cornerRadius(10)
-            .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
-            .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
             .padding()
 
             NavigationLink(destination: RequestListView())

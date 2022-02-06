@@ -231,23 +231,37 @@ struct MessageListItem:View{
                         Text(buddy!.name)
                             .font(Font.custom("Rubik-Medium", size:16))
                         Spacer()
-                        let dateFormatter = DateFormatter()
-                        let datetime =  dateFormatter.string(from: message.datetime)
-                        Text(datetime)
-                            .font(Font.custom("Rubik-Regular", size:14))
+                        
+                        if (compareDates())
+                        {
+                            Text(message.datetime, style: .time)
+                                .font(Font.custom("Rubik-Regular", size:14))
+                        }
+                        else
+                        {
+                            Text(message.datetime, style: .date)
+                                .font(Font.custom("Rubik-Regular", size:14))
+                        }
                     }
                     HStack(alignment: .center, spacing: 0) {
 
                         Text(message.message)
                             .font(Font.custom("Rubik-Regular", size:14))
                         Spacer()
-                        Text(message.datetime, style: .date)
-                            .font(Font.custom("Rubik-Regular", size:14))
                     }
                     
                 }
             }.padding(.vertical, 8)
                 
         }.listRowBackground(Color("BackgroundColor"))
+    }
+    
+    func compareDates()->Bool
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        let datetime =  dateFormatter.string(from: message.datetime)
+        let dateNow = dateFormatter.string(from: Date.now)
+        return (datetime == dateNow)
     }
 }

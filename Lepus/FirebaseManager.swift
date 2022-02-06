@@ -740,7 +740,7 @@ class FirebaseManager : ObservableObject{
                         let sender = msg!["senderId"] as? String
                         //Check if user have started convo with user
                         if sender != nil && message != nil{
-                            latestMessage = Message(id: id, user: sender!, datetime: Date(), message: message!, friendID: friendID)
+                            latestMessage = Message(id: id, user: sender!, datetime: datetime!.dateValue(), message: message!, friendID: friendID)
                             self.messageList.append(latestMessage!)
                         }
                     }
