@@ -69,6 +69,7 @@ struct EditProfileView: View {
                 .padding(.vertical,10)
                 .background(Color("TextFieldColor"))
             Divider()
+                .foregroundColor(Color("Divider"))
             HStack(alignment:.center, spacing:10){
                 Text("Gender")
                     .padding(.leading,20)

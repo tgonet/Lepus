@@ -36,7 +36,7 @@ struct StartView: View {
                                 .foregroundColor(Color.black)
                         })
                             .padding(20)
-                            .frame(width: 350, height: 60)
+                            .frame(width: UIScreen.main.bounds.width*0.8, height: 60)
                             .background(Color("AccentColor"))
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                         .padding(.bottom)
@@ -50,7 +50,7 @@ struct StartView: View {
                                 .foregroundColor(Color.white)
                         })
                             .padding(20)
-                            .frame(width: 350, height: 60)
+                            .frame(width: UIScreen.main.bounds.width*0.8, height: 60)
                             .background(Color.black)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
@@ -58,7 +58,10 @@ struct StartView: View {
                 .padding(120)
             }
             .edgesIgnoringSafeArea(.top)
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).navigationBarHidden(true).navigationBarBackButtonHidden(true)
+            .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, minHeight: 0, maxHeight: UIScreen.main.bounds.height)
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+            
     }
 }
 
