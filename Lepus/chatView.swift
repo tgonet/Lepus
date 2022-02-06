@@ -13,7 +13,6 @@ struct chatView: View {
     @ObservedObject var CDManager = CoreDataUserManager()
     @ObservedObject var FBManager:FirebaseManager = FirebaseManager()
     @State var buddy:BuddyRecoUser
-    @StateObject var chatData = chatModel()
     @State var scrolled = false
     @State var chat_name:String = ""
 
@@ -96,5 +95,16 @@ extension Color {
         let green = Double((hex & 0xff00) >> 8) / 255.0
         let blue = Double((hex & 0xff) >> 0) / 255.0
         self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
+    }
+}
+
+struct chatBubble: Shape {
+    
+    var myMsg : Bool
+    
+    func path(in rect: CGRect) ->Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [.topLeft , .topRight, myMsg ? .bottomLeft : .bottomRight], cornerRadii: CGSize(width: 15, height: 15))
+        
+        return Path(path.cgPath)
     }
 }

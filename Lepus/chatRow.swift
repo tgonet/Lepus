@@ -11,12 +11,19 @@ import FirebaseAuth
 struct chatRow: View {
     var chatData: Message
     var buddy:BuddyRecoUser
+
     
     @ObservedObject var CDManager = CoreDataUserManager()
 
     var body: some View {
-        var user = CDManager.user!
+        let user = CDManager.user!
         let uid = user.userId
+
+        HStack(alignment: .center, spacing: 0) {
+            Text(chatData.datetime , style:.date
+            )
+            
+        }.padding()
         HStack(spacing:15){
             //Nickname view
             if chatData.user != uid {
@@ -25,7 +32,13 @@ struct chatRow: View {
             
             if chatData.user == uid{Spacer(minLength: 0)}
             
+            
             VStack(alignment: chatData.user == uid ? .trailing: .leading, spacing: 5, content:{
+                //dateFormatter.dateFormat = "dd/MM/yyyy"
+
+                
+                //let date = dateFormatter.string(from:chatData.datetime)
+                
                 if chatData.user == uid {
                     HStack(alignment: .center, spacing: 0) {
                         Text(chatData.message)
