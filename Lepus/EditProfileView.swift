@@ -120,7 +120,6 @@ struct EditProfileView: View {
             .navigationTitle("Edit Profile")
             .toolbar {
             Button("Save") {
-                print("Help tapped!")
                 if(networkManager.isConnected){
                     CoreDataManager().updateUsername(name: firebaseManager.name, id: Auth.auth().currentUser!.uid)
                     firebaseManager.updateProfile(weight: firebaseManager.weight, height: firebaseManager.height, name: firebaseManager.name, gender: firebaseManager.gender)
@@ -128,7 +127,10 @@ struct EditProfileView: View {
                         /// To do async to only show alert after image is uploaded
                         upload(imagetoUpload: inputImage!)
                     }
-                    
+                    showingAlert = true
+                }
+                else{
+                    showingNoConnAlert = true
                 }
             }
             .foregroundColor(Color("DarkYellow"))
