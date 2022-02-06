@@ -86,7 +86,7 @@ struct BuddyRequestListItem:View{
                             Text("Buddies")
                                 .font(Font.custom("Rubik-Medium", size:12)).padding(.horizontal, 20).padding(.vertical, 7).overlay(
                                     RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color("AccentColor"), lineWidth: 1))
+                                        .stroke(Color("DarkYellow"), lineWidth: 1.5))
                         }
                     }
                     
